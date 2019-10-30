@@ -1,7 +1,7 @@
 import type {HortenEdge} from "../horten/edge";
 import type {HortenNomogram} from "../horten/nomogram";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {combineLatest, mergeMap, switchMap, take, withLatestFrom} from "rxjs/operators";
+import {combineLatest, mergeMap, switchMap, take, withLatestFrom, zipAll} from "rxjs/operators";
 import type {HortenItem} from "../horten/item";
 import type {HortenTable} from "../horten/table";
 import type {HortenPage} from "../horten/page";
@@ -74,9 +74,18 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
             ofType(flow.model.fetchItem.success),
             mergeMap(action => {
                 return [
-                    graph.model.setGraphFromFlow.request(action.payload),
                     possibleLayouts.model.fetchList.request({meta: {filter: {flows: action.payload.data.id}}}),
                     possibleLayouts.model.osloJoin.request({meta: {room: {creator: userIDPortal(state$.value)}}}),]
+            }));
+
+    const onFlowAndLayoutLoaded = (action$, state$) =>
+        action$.pipe(
+            ofType(flow.model.fetchItem.success),
+            withLatestFrom(layout.model.setItem.success),
+            mergeMap(actionpack => {
+                let action = actionpack.payload
+                return [
+                    graph.model.setGraphFromFlow.request(action.payload),]
             }));
 
     const onLayoutSelectedChangeLayout = (action$, state$) =>
@@ -214,6 +223,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
         onFlowSelectedLoadedSetGraph,
         onGraphSetNodes,
         onGraphAndSampleLoadedStartFlow,
+        onFlowAndLayoutLoaded,
         addin,
         addin2,
         )

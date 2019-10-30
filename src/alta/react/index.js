@@ -28,7 +28,7 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
 
     let killEpicPayload = (props) => ({
         alias: alias,
-        pageKill: newStavanger.page.model.killPage.request(props),
+        killPage: newStavanger.page.model.killPage.request(props),
         end: createHaldenOsloActions(rootStavanger.epics.model.alias, alias + "_EPIC", "END")
     })
 

@@ -35,10 +35,7 @@ class NodesContainer extends React.PureComponent {
         this.props.updateLayout(layout)
     }
 
-    shouldComponentUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): boolean {
-        if (nextProps.nodes != this.props.nodes) return true
-        else return false
-    }
+
 
 
     render() {

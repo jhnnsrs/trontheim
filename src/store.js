@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import {createEpicMiddleware, ofType} from 'redux-observable';
 import {BehaviorSubject} from 'rxjs';
 import {mergeMap, takeUntil} from 'rxjs/operators';
@@ -42,9 +42,16 @@ const combine = (reducers) => {
 	return combineReducers(reducers);
 };
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+
+	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+		trace: true,
+		traceLimit: 25
+	}) || compose;
+
 const store = createStore(
 	combine(rootReducer),
-	composeWithDevTools(
+	composeEnhancers(
 		applyMiddleware(authMiddleware,epicMiddleware),
 	));
 

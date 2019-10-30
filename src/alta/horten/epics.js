@@ -82,7 +82,7 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
             // which would cause the old one(s) to be unsubscribed
             mergeMap(epicdict => {
                     let {epic, end, alias } = epicdict
-
+                    console.log("Adding epic"+ alias)
                     return epic(action$, ...rest).pipe(
                         takeUntil(action$.pipe(
                             ofType(end.request.toString()),
@@ -92,6 +92,17 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
                 }
             )
         );
+
+    const onRegisterEpicSuccess = (action$, state$) =>
+        action$.pipe(
+            ofType(model.registerEpic.success.toString()),
+            mergeMap(action => {
+                // TODO: mabye by buffer? First make sure old graph is destroyed
+                let {epic, end, alias, pageInit} = action.payload
+                console.log("EPIC SUCCESS")
+                return [pageInit]
+
+            }));
 
 
     const registerEpic = (action$, state$) =>
@@ -107,16 +118,32 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
                     console.log("Failure Registering Epic of '", alias, "' with", model.alias)
 
                 }
-                return [model.registerEpic.success(action.payload),pageInit]
+                return [model.registerEpic.success(action.payload)]
 
             }));
 
-    const killEpic = (action$, state$) =>
+
+    const killEpicRequest = (action$, state$) =>
         action$.pipe(
             ofType(model.killEpic.request.toString()),
             mergeMap(action => {
-                return [action.payload.end.request(),
-                        model.killEpic.success(action.payload.alias)]
+                const { end, killPage, alias} = action.payload
+
+                return [killPage,model.killEpic.success({alias: alias, end: end}),]
+
+
+
+            }));
+
+
+
+    const killEpic = (action$, state$) =>
+        action$.pipe(
+            ofType(model.killEpic.success.toString()),
+            mergeMap(action => {
+                const {end} = action.payload
+
+                return [end.request()]
 
             }));
 
@@ -129,6 +156,8 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
     return combineEpics(
         onNodeEpicsChangedLoadEpicsEpic,
         registerEpic,
+        onRegisterEpicSuccess,
+        killEpicRequest,
         killEpic
     )
 };
@@ -147,7 +176,7 @@ export const createHortenEpicsReducer =  (model: HortenEpicsModel, defaultState:
         [model.killEpic.success.toString()]: (state, action) => {
             let newstate = {...state, touched: true}
             //TODO: Remove Killed Epic from list
-            delete newstate.running[action.payload];
+            delete newstate.running[action.payload.alias];
             return newstate
 
         },
