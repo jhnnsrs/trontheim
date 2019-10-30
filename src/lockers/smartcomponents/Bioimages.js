@@ -1,0 +1,54 @@
+import React, {Component} from "react";
+import type {LockersStavanger, SampleStavanger} from "../stavanger";
+import {
+    Button, ButtonGroup,
+    Card,
+    CardBody,
+    CardImg,
+    CardImgOverlay,
+    CardSubtitle,
+    CardText,
+    CardTitle,
+    Container
+} from "reactstrap";
+import {connectInstrument} from "../../alta/react";
+import Octicon, {Plus} from "@githubprimer/octicons-react";
+import * as _ from "lodash"
+import ButtonToNavigate from "../../generics/ButtonToNavigate";
+
+class Bioimages extends Component {
+
+    render() {
+        const {bioimages} = this.props;
+        if (bioimages.data) {
+            return (
+                <React.Fragment>
+                {bioimages.data.map((bioimage, index) =>
+                        <Card className="mt-2 overflow-auto" key={bioimage.data.id} onClick={() => this.props.selectBioimage(bioimage)}>
+                            <CardBody>
+                                <CardTitle>{bioimage.data.name}</CardTitle>
+                                <CardSubtitle>Bioimage {bioimage.data.id}</CardSubtitle>
+                                <ButtonGroup>
+                                    <ButtonToNavigate size="sm" to={"/bioimage/" + bioimage.data.id}>Open</ButtonToNavigate>
+                                </ButtonGroup>
+                            </CardBody>
+                        </Card>)}
+                </React.Fragment>
+            );
+        }
+        else {
+            return ""
+        }
+    }
+}
+
+const mapStavangerToProps = (stavanger: LockersStavanger) => ({
+    bioimages: stavanger.bioimages.selectors.getModel,
+});
+
+const mapStavangerToDispatch  = (stavanger: LockersStavanger) =>  ({
+    selectBioimage: (sample) => stavanger.bioimages.model.selectItem.request(sample),
+});
+
+
+export default connectInstrument(mapStavangerToProps, mapStavangerToDispatch)(Bioimages);

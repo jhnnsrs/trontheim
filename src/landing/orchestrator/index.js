@@ -1,0 +1,34 @@
+import {combineEpics, ofType} from "redux-observable";
+import {map, mergeMap, combineLatest} from "rxjs/operators";
+import type {LandingStavanger} from "../stavanger";
+
+export const orchestraterEpic = (stavanger: LandingStavanger) => {
+
+    const onPageInit = (action$, state$) =>
+        action$.pipe(
+            ofType(stavanger.page.model.initPage.request),
+            mergeMap(action => {
+                return [stavanger.page.model.initPage.success()]
+            }));
+
+    const onRequestOsloModel = (action$, state$) =>
+        action$.pipe(
+            ofType(stavanger.page.model.dynamic("REQUEST_OSLO_MODAL").request),
+            mergeMap(action => {
+                return [stavanger.page.model.initPage.success()]
+            }));
+
+
+
+
+    const apiConnections = combineEpics()
+
+
+    return combineEpics(
+        onPageInit,
+        onRequestOsloModel,
+        apiConnections
+    )
+}
+
+export default orchestraterEpic

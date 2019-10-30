@@ -1,0 +1,38 @@
+import {createStavanger} from "../../alta/stavanger";
+import {createHortenNodes} from "../../alta/horten/nodes";
+import {createHortenGraph} from "../../alta/horten/graph";
+import type {HortenGraph} from "../../alta/horten/graph";
+import type {HortenDetail} from "../../alta/horten/detail";
+import {createHortenDetail} from "../../alta/horten/detail";
+import * as constants from "../../constants"
+import type {Stavanger} from "../../alta/stavanger";
+import {createHortenTable} from "../../alta/horten/table";
+import type {HortenTable} from "../../alta/horten/table";
+import {createHortenNomogram} from "../../alta/horten/nomogram";
+import type {HortenNodes} from "../../alta/horten/nodes";
+import type {HortenNomogramNode} from "../../alta/horten/nomogram";
+import {createHortenItem} from "../../alta/horten/item";
+import type {HortenItem} from "../../alta/horten/item";
+
+
+export type BioImageFlowStavanger = Stavanger & {
+    nodes: HortenNodes,
+    graph: HortenGraph,
+    flows: HortenTable,
+    layout: HortenItem,
+    possibleLayouts: HortenTable,
+}
+
+export const bioImageFlowStavanger: BioImageFlowStavanger = createStavanger({
+    nodes: createHortenNodes("NODES"),
+    graph: createHortenNomogram({type: "GRAPH",
+        start: (nodes) => nodes.find( (node: HortenNomogramNode) => node.type === "watcher")
+    }),
+    flows: createHortenTable({type: constants.FLOW, url: "filterflows"}),
+    layout: createHortenItem({type: constants.LAYOUT, url: "layouts"}),
+    possibleLayouts: createHortenTable({type: constants.LAYOUT, url: "layouts"})
+})
+
+// You Should decide upfront if this is
+// supposed to be a dynamically spawned container with a lot of instances - A Node
+// Or if this is a generic Container that should be loaded upfront with an ALIAS that is always the same and can host NODES
