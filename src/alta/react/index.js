@@ -26,28 +26,31 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
     // TODO Normal rootStavanger should be set to newStanger.parent here, as new operas should only live in their parents
     // but well fuck my life and so on
 
-    let killEpicPayload = {
+    let killEpicPayload = (props) => ({
         alias: alias,
+        pageKill: newStavanger.page.model.killPage.request(props),
         end: createHaldenOsloActions(rootStavanger.epics.model.alias, alias + "_EPIC", "END")
-    }
+    })
 
-    let registerEpicPayload = {
+    let registerEpicPayload = (props) => ({
         epic: epic,
         alias: alias,
+        pageInit: newStavanger.page.model.initPage.request(props),
         end: createHaldenOsloActions(rootStavanger.epics.model.alias, alias + "_EPIC", "END")
-    }
+    })
 
 
     class WrappedComponentWrappper extends React.Component {
 
         componentDidMount(): void {
-            this.props.registerEpic()
-            this.props.pageInit(this.props)
+            let {isRunning, children, registerEpic, killEpic, killPage, ...restProps} = this.props
+            this.props.registerEpic(restProps)
         }
 
         componentWillUnmount(): void {
-            this.props.pageKill(this.props)
-            this.props.killEpic()
+            console.log("Unmounting")
+            this.props.killPage(this.props)
+            this.props.killEpic(this.props)
         }
 
         render() {
@@ -67,10 +70,9 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
 
 
     let mapDispatchToProps = {
-        registerEpic: () =>  rootStavanger.epics.model.registerEpic.request(registerEpicPayload),
-        killEpic: () => rootStavanger.epics.model.killEpic.request(killEpicPayload),
-        pageInit: (props) => newStavanger.page.model.initPage.request(props),
-        pageKill: (props) => newStavanger.page.model.killPage.request(props)
+        registerEpic: (props) =>  rootStavanger.epics.model.registerEpic.request(registerEpicPayload(props)),
+        killEpic: (props) => rootStavanger.epics.model.killEpic.request(killEpicPayload(props)),
+        killPage: (props) => newStavanger.page.model.reset.request({}),
     }
 
     return connect(mapStateToProps,mapDispatchToProps)(WrappedComponentWrappper)

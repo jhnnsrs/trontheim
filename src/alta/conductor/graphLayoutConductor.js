@@ -1,7 +1,7 @@
 import type {HortenEdge} from "../horten/edge";
 import type {HortenNomogram} from "../horten/nomogram";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {combineLatest, mergeMap, switchMap, take} from "rxjs/operators";
+import {combineLatest, mergeMap, switchMap, take, withLatestFrom} from "rxjs/operators";
 import type {HortenItem} from "../horten/item";
 import type {HortenTable} from "../horten/table";
 import type {HortenPage} from "../horten/page";
@@ -86,6 +86,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
                 return [layout.model.setItem.request(action.payload)]
             }));
 
+
     const onLayoutListComesSelectFirstLayout = (action$, state$) =>
         action$.pipe(
             ofType(possibleLayouts.model.fetchList.success),
@@ -95,7 +96,13 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
                     let firstitem = list[0]
                     return [layout.model.setItem.request(firstitem)]
                 }
-                else return [layout.model.dynamic("NO_LAYOUT_TO_SET").request("")]
+                else return [layout.model.setItem.request(
+                    {
+                        data:
+                            {id: 1, name: " No Layout Yet", layout: JSON.stringify({}), creator: 1, flows: []}
+                    }
+
+                )]
             }));
 
 
@@ -170,7 +177,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
     const onGraphAndSampleLoadedStartFlow = (action$, state$) =>
         action$.pipe(
             ofType(watcher.model.fetchItem.success),
-            combineLatest(action$.ofType(nodes.model.allNodesRegistered.success)),
+            withLatestFrom(action$.ofType(nodes.model.allNodesRegistered.success)),
             mergeMap(actions => {
                 console.log("STARTING THE FLOW")
                 let watchingdata = actions[0].payload

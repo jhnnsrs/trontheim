@@ -30,15 +30,22 @@ class NodesContainer extends React.PureComponent {
         });
     }
 
+
     onLayoutChange(layout) {
         this.props.updateLayout(layout)
     }
 
+    shouldComponentUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): boolean {
+        if (nextProps.nodes != this.props.nodes) return true
+        else return false
+    }
 
 
     render() {
         let {nodes, layoutna} = this.props
         let layoutclass = layoutna ? JSON.parse(layoutna.layout) : {}
+        console.log(layoutclass)
+        console.log(this.props)
         return (
             <React.Fragment>
                 <ResponsiveReactGridLayout

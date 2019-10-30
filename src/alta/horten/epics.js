@@ -99,7 +99,7 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
             ofType(model.registerEpic.request.toString()),
             mergeMap(action => {
                 // TODO: mabye by buffer? First make sure old graph is destroyed
-                let {epic, end, alias} = action.payload
+                let {epic, end, alias, pageInit} = action.payload
                 try {
                     nodeepic$.next({epic: epic, end: end, alias: alias})
                 }
@@ -107,7 +107,7 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
                     console.log("Failure Registering Epic of '", alias, "' with", model.alias)
 
                 }
-                return [model.registerEpic.success(action.payload)]
+                return [model.registerEpic.success(action.payload),pageInit]
 
             }));
 

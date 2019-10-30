@@ -136,6 +136,7 @@ export const createHortenNodesReducer =  (model: HortenNodesModel, defaultState:
         [model.registerNode.success.toString()]: (state, action) => {
             let newdict = {}
             console.log("Registering node")
+            console.log(action.payload.nodeid)
             //TODO: Nameing sceme shoud be simmilar
             newdict[action.payload.nodeid] = action.payload
             return {...state, running: Object.assign(state.running,newdict)}

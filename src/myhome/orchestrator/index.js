@@ -12,6 +12,7 @@ export const orchestraterEpic = (stavanger: HomeStavanger) => {
         action$.pipe(
             ofType(stavanger.page.model.initPage.success),
             mergeMap(action => {
+                console.log("Hallo")
                 let userid = userIDPortal(state$.value)
                 return [
                     stavanger.displays.model.fetchList.request({filter: {creator: userid}}),
