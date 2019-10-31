@@ -10,6 +10,7 @@ import {generateName} from "../../utils";
 import {graphNodeMaestro} from "../maestro/graph-node";
 import {graphEdgeMaestro} from "../maestro/graph-edge";
 import type {HortenNodes} from "../horten/nodes";
+import {autoResetMaestro} from "../maestro/autoreset";
 
 
 export interface GraphLayoutStavanger {
@@ -56,6 +57,9 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
     // Model Constant
     let MODEL = configuration.model
     let WATCHERNAME = configuration.watcherName
+
+
+    const autoreset = autoResetMaestro(stavanger)
 
     const onPageInitLoadFlow = (action$, state$) =>
         action$.pipe(
@@ -226,6 +230,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
         onFlowAndLayoutLoaded,
         addin,
         addin2,
+        autoreset,
         )
 
 }

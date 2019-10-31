@@ -26,6 +26,8 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
     // TODO Normal rootStavanger should be set to newStanger.parent here, as new operas should only live in their parents
     // but well fuck my life and so on
 
+
+
     let killEpicPayload = (props) => ({
         alias: alias,
         killPage: newStavanger.page.model.killPage.request(props),
