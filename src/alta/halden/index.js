@@ -1,6 +1,6 @@
 //@flow
 import type {Alias, HortenApiCall, HortenType, Props, State} from "../horten/types";
-import {createHaldenActions} from "../oslo";
+import {createHaldenActions, createHaldenMetaActions} from "../oslo";
 import {Action} from "redux";
 import type {ActionStream, StateStream} from "../horten/creators";
 import type {HaldenActions} from "../oslo";
@@ -17,14 +17,14 @@ export type HaldenSelector = (State,Props) => any;
 export type HaldenAccesor = (any) => (State,Props) => any;
 
 
-export function createHaldenAction(haldenActionParameter: HaldenActionParameter ): HaldenAction {
+export function createHaldenAction(haldenActionParameter: HaldenActionParameter, meta = null ): HaldenAction {
     return function (alias: Alias,type: HortenType,key) {
-        try {
+        if (meta) {
+            return createHaldenMetaActions(alias, type, key, haldenActionParameter)
+        }
+        else {
             return createHaldenActions(alias, type, key, haldenActionParameter)
         }
-        catch(e) {
-            return createHaldenAction(alias,type,key,haldenActionParameter)
-            console.log(alias,type,key,haldenActionParameter)}
     }
 }
 

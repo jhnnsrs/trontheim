@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/alta/maestro/autoreset.js" afterDir="false" />
+    <list default="true" id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="trying to make nodes work, weird epic issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/conductor/graphLayoutConductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/graphLayoutConductor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/react/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/halden/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/halden/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/epics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/epics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/oslo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/oslo/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +21,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -65,6 +67,9 @@
       <option name="presentableId" value="Default" />
       <updated>1572446602133</updated>
       <workItem from="1572446603393" duration="16525000" />
+      <workItem from="1573212085381" duration="44000" />
+      <workItem from="1573212172132" duration="2044000" />
+      <workItem from="1573643779758" duration="249000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -91,7 +96,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

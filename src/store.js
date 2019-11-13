@@ -47,13 +47,11 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
 	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
 		trace: true,
 		traceLimit: 25
-	}) || compose;
-
+	}) || compos
 const store = createStore(
 	combine(rootReducer),
-	composeEnhancers(
 		applyMiddleware(authMiddleware,epicMiddleware),
-	));
+	);
 
 epicMiddleware.run(hotReloadingEpic)
 

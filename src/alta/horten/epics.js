@@ -41,8 +41,8 @@ export type HortenEpics = {
     defaultState: HortenEpicsDefaultState
 }
 export const createHortenEpicsModel = createHortenModel({
-    registerEpic: createHaldenAction("REGISTER_EPIC"),
-    killEpic: createHaldenAction("KILL_EPIC"),
+    registerEpic: createHaldenAction("REGISTER_EPIC",true),
+    killEpic: createHaldenAction("KILL_EPIC", true),
 })
 
 export const createHortenEpicsHelpers = createHortenHelpers()
