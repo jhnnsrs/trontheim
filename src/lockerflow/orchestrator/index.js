@@ -2,7 +2,7 @@ import {combineEpics} from "redux-observable";
 import type {LockerFlowStavanger} from "../stavanger";
 import * as constants from "../../constants";
 import {apiConnector, itemConnector} from "../../rootMaestros";
-import {graphConductor, graphLayoutWatcherConductor} from "../../alta/conductor/graphLayoutConductor";
+import {graphConductor} from "../../alta/conductor/graph";
 
 export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
 

@@ -39,7 +39,7 @@ export interface ParserConfiguration {
 }
 
 
-export const graphConductor = (stavanger: GraphLayoutStavanger, configuration: ParserConfiguration): Epic  => {
+export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, configuration: ParserConfiguration): Epic  => {
 
     // Necessary Models for this Conductor
     let flow: HortenItem = configuration.flow ? stavanger[configuration.flow] : stavanger.flow

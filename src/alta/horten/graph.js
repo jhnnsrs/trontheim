@@ -252,7 +252,7 @@ const defaultState = {
     },
     meta: {
         error: null,
-        status:
+        status: null,
     }
 
 };
@@ -266,10 +266,6 @@ export const createHortenGraphReducer = createHortenReducer((model: HortenGraphM
         [model.setShow.success]: (state, action) => {
             return {...state, show: {...state.show, nodes: action.payload}};
         },
-        [model.setGraphError.success]: (state, action) => {
-            return {...state, meta: {...state.meta, error: action.payload}};
-        },
-
         [model.onNodeStatusUpdate.success]: (state, action) => {
             let nodes = {...state.show.nodes}
             nodes[action.payload.instanceid].status = action.payload.status

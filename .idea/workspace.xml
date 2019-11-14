@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/alta/conductor/graph.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/alta/conductor/node.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/alta/horten/registry.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/alta/maestro/page-registry.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/edge/BioImageWatcher/Opera.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/edge/BioImageWatcher/StartButton.js" afterDir="false" />
@@ -13,6 +11,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/conductor/collectorconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/collectorconductor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/conductor/foreignconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/foreignconductor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/conductor/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/graph.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/conductor/graphLayoutConductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/graphLayoutConductor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/conductor/parserconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/parserconductor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/conductor/taskconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/taskconductor.js" afterDir="false" />
@@ -36,6 +35,7 @@
       <change beforePath="$PROJECT_DIR$/src/alta/horten/oauth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/oauth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/oslo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/oslo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/registry.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/restapi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/types.js" afterDir="false" />
@@ -75,7 +75,6 @@
       <change beforePath="$PROJECT_DIR$/src/flowbuilder/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flowbuilder/stavanger/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/landing/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/landing/stavanger/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lockerflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/stavanger/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nodes/AISEvaluator/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/AISEvaluator/LineRectComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nodes/AISEvaluator/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/AISEvaluator/container.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nodes/AISEvaluator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/AISEvaluator/index.js" afterDir="false" />
@@ -346,13 +345,11 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/alta/maestro/page-nodes.js</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/alta/conductor/node.js</url>
           <line>32</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

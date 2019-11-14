@@ -57,13 +57,6 @@ export const graphConductor = (stavanger: GraphLayoutStavanger, configuration: P
     let WATCHERNAME = configuration.watcherName
 
 
-
-
-
-
-
-
-
     const onPageInitLoadFlow = (action$, state$) =>
         action$.pipe(
             ofType(stavanger.page.model.initPage.success),
@@ -214,21 +207,10 @@ export const graphConductor = (stavanger: GraphLayoutStavanger, configuration: P
                 return [ nodes.model.setNodes.request({data: {diagram: action.payload}})]
             }));
 
-    let addin2 = graphEdgeMaestro(stavanger)
 
     return combineEpics(
         onPageInitLoadFlow,
         onLayoutUpdatedCreate,
-        onLayoutListComesSelectFirstLayout,
-        onLayoutUpdatedUpdateLayout,
-        onLayoutSelectedChangeLayout,
-        onFlowSelectedLoadedSetGraph,
-        onGraphSetNodes,
-        onGraphAndSampleLoadedStartFlow,
-        onFlowAndLayoutLoaded,
-        addin,
-        addin2,
-        autoreset,
         )
 
 }

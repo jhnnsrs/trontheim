@@ -23,7 +23,7 @@ import {empty} from "rxjs"
 
 export type HortenRegistryModel = HortenModel & {
     setNodes: HaldenActions,
-    onModelIn: HaldenActions
+    onModelIn: HaldenActions,
     registerNode: HaldenActions,
     allNodesRegistered: HaldenActions,
     setError: HaldenActions
