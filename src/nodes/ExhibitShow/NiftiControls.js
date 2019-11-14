@@ -1,5 +1,4 @@
-
-import React, {Component} from "react";
+import React from "react";
 import {Button, ButtonGroup, Container} from "reactstrap";
 
 import {connectInstrument} from "../../alta/react";

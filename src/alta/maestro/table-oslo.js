@@ -1,14 +1,7 @@
 import {combineEpics, Epic, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
-import {NODE} from "../constants"
-import type {HortenNode, HortenNodeModel} from "../horten/node";
-import type {HortenGraph} from "../horten/graph";
-import {createHortenNodeModel} from "../horten/node";
-import type {HortenRestAPI} from "../horten/restapi";
-import type {HortenList} from "../horten/list";
 import type {HortenTable} from "../horten/table";
 import type {HortenOslo} from "../horten/oslo";
-
 
 
 export const tableOsloMaestro = (oslo: HortenOslo) => (list: HortenTable): Epic  => {

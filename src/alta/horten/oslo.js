@@ -1,20 +1,23 @@
 //@flow
 import type {Alias, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
-import { createHorten2} from "./index";
-import { Epic, ofType} from "redux-observable";
-import { of } from 'rxjs';
+import {createHorten2} from "./index";
+import {Epic, ofType} from "redux-observable";
+import {of} from 'rxjs';
 import {catchError, map, mergeMap, takeUntil} from "rxjs/operators";
-import {createHortenEpic,
+import {
+    createHortenEpic,
     createHortenHelpers,
-    createHortenModel, createHortenReducer,
+    createHortenModel,
+    createHortenReducer,
     createHortenSelectors
 } from "./creators";
+import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
-    createHaldenEpic, createHaldenPassThroughEpicFromActions,
+    createHaldenEpic,
+    createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
-import type {HaldenSelector} from "../halden";
 import {Reducer} from "redux";
 import websocketConnect from "rxjs-websockets";
 import {QueueingSubject} from "queueing-subject";

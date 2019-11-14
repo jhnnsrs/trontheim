@@ -1,9 +1,9 @@
 import type {Alias, HortenModel, HortenSelectors, HortenType, HortenURL, HttpMethod} from "./types";
 import type {HaldenAction, HaldenApiCreator} from "../halden";
+import {createHaldenSelector} from "../halden";
 
 import _ from "lodash";
-import {createHaldenSelector} from "../halden";
-import {createHaldenActions, createOsloActions} from "../oslo";
+import {createHaldenActions} from "../oslo";
 import type {Header} from "../oslo/api";
 import {createOsloApi} from "../oslo/api";
 import {Observable} from "rxjs";
@@ -11,7 +11,6 @@ import {Action, Reducer} from "redux";
 import {combineEpics, Epic} from "redux-observable";
 import type {HortenEpics} from "./epics";
 import {handleActions} from "redux-actions";
-import {POSTING} from "../constants";
 
 export type State= any
 export type Props = any

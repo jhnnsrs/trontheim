@@ -1,21 +1,20 @@
-
-import {createHortenGraph} from "../../alta/horten/graph";
 import * as constants from "../../constants";
-import {createStavanger} from "../../alta/stavanger";
 import type {Stavanger} from "../../alta/stavanger";
+import {createStavanger} from "../../alta/stavanger";
 import type {HortenNodes} from "../../alta/horten/nodes";
-import type {HortenGraph} from "../../alta/horten/graph";
 import {createHortenNodes} from "../../alta/horten/nodes";
 import type {HortenForm} from "../../alta/horten/form";
 import {createHortenForm} from "../../alta/horten/form";
-import {createHortenItem} from "../../alta/horten/item";
-import {createHortenTable} from "../../alta/horten/table";
-import type {HortenTable} from "../../alta/horten/table";
 import type {HortenItem} from "../../alta/horten/item";
+import {createHortenItem} from "../../alta/horten/item";
+import type {HortenTable} from "../../alta/horten/table";
+import {createHortenTable} from "../../alta/horten/table";
+import type {HortenNomogram} from "../../alta/horten/nomogram";
+import {createHortenNomogram} from "../../alta/horten/nomogram";
 
 export type FlowBuilderStavanger = Stavanger & {
     nodes: HortenNodes,
-    graph: HortenGraph,
+    graph: HortenNomogram,
     flow: HortenItem,
     flowForm: HortenForm,
     flows: HortenTable,
@@ -26,7 +25,7 @@ export type FlowBuilderStavanger = Stavanger & {
 
 export const flowBuilderStavanger: FlowBuilderStavanger = createStavanger({
     flowForm: createHortenForm(constants.FLOW),
-    graph: createHortenGraph(constants.GRAPH),
+    graph: createHortenNomogram({type: constants.GRAPH}),
     flow: createHortenItem({type: constants.FLOW, url:"filterflows"}),
     flows: createHortenTable({type: constants.FLOW, url:"filterflows"}),
     nodesList: createHortenTable({type: constants.NODE,url: "nodes"}),

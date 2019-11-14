@@ -1,11 +1,7 @@
-
-import {combineEpics, ofType} from "redux-observable";
-import type {DisplayNodeStavanger, BioSeriesCollectorStavanger} from "./index";
-import {createEdgeMaestro, createModuleMaestro} from "../lib/meastros";
-import * as constants from "../../constants";
-import {audit, filter, map, mergeMap, switchMap, take} from "rxjs/operators";
+import {combineEpics} from "redux-observable";
+import type {BioSeriesCollectorStavanger} from "./index";
+import {createEdgeMaestro} from "../lib/meastros";
 import {apiConnector, itemConnector} from "../../rootMaestros";
-import {watcherConductor} from "../../alta/conductor/watcherconductor";
 import {collectorConductor} from "../../alta/conductor/collectorconductor";
 
 

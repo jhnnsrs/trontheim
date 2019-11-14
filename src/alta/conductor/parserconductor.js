@@ -1,7 +1,7 @@
 import type {HortenEdge} from "../horten/edge";
 import type {HortenNomogram} from "../horten/nomogram";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {filter, mergeMap, switchMap, take} from "rxjs/operators";
+import {filter, mergeMap} from "rxjs/operators";
 import type {HortenItem} from "../horten/item";
 import type {HortenTable} from "../horten/table";
 import type {HortenPage} from "../horten/page";

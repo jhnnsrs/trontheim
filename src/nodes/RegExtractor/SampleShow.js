@@ -1,9 +1,7 @@
-import {Button, ButtonGroup, CardBody, CardText, Container} from "reactstrap"
+import {Button, Container} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
-import Form from "../../alta/react/FinalMold";
-import type {RegExtractorStavanger, SliceLineTransformer} from "./index";
-import {Field} from "react-final-form";
+import type {RegExtractorStavanger} from "./index";
 import List from "../../generics/List";
 import SeperatingLine from "../../generics/SeperatingLine";
 

@@ -10,7 +10,7 @@ import {handleActions} from "redux-actions";
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
 import * as constants from "../constants";
-import {Observable, Subject, of} from "rxjs";
+import {Observable, of, Subject} from "rxjs";
 import {createOsloPassThroughEpic} from "../helpers";
 
 

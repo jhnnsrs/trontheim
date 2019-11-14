@@ -14,7 +14,6 @@ import {createHaldenAction, createHaldenEpic, createHaldenParamterizedAction, cr
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
 import {Observable} from "rxjs";
-import * as _ from "lodash"
 import BroadcastChannel from 'broadcast-channel'
 
 import v4 from 'uuid'

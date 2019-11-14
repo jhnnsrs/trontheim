@@ -1,11 +1,9 @@
-
 import React, {Component} from "react";
 import CamerasOrthographic from "../../dicom/src/cameras/cameras.orthographic";
 import * as THREE from "three";
 import {TrackballOrthoControl} from "../../dicom/src/controls/controls";
 import HelpersStack from "../../dicom/src/helpers/helpers.stack";
 import LoadersVolume from "../../dicom/src/loaders/loaders.volume";
-import {Button, Container} from "reactstrap";
 
 import {connectInstrument} from "../../alta/react";
 import type {ExhibitShowStavanger} from "./index";

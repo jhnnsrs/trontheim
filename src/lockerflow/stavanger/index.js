@@ -1,20 +1,22 @@
-import {createStavanger} from "../../alta/stavanger";
-import {createHortenNodes} from "../../alta/horten/nodes";
-import type {HortenNodes} from "../../alta/horten/nodes";
-import type {HortenGraph} from "../../alta/horten/graph";
-import * as constants from "../../constants"
 import type {Stavanger} from "../../alta/stavanger";
-import {createHortenItem} from "../../alta/horten/item";
+import {createStavanger} from "../../alta/stavanger";
+import type {HortenNodes} from "../../alta/horten/nodes";
+import * as constants from "../../constants"
 import type {HortenItem} from "../../alta/horten/item";
-import {createHortenNomogram} from "../../alta/horten/nomogram";
-import {createHortenTable} from "../../alta/horten/table";
+import {createHortenItem} from "../../alta/horten/item";
+import type {HortenNomogram, HortenNomogramNode} from "../../alta/horten/nomogram";
 import type {HortenTable} from "../../alta/horten/table";
-import type {HortenNomogramNode} from "../../alta/horten/nomogram";
+import {createHortenTable} from "../../alta/horten/table";
 import {DEF_LOCKER} from "../../constants/definitions";
+import {createHortenGraph} from "../../alta/horten/graph";
+import {createHortenRegistry} from "../../alta/horten/registry";
+import type {HortenRegistry} from "../../alta/horten/registry";
+import type {HortenGraph} from "../../alta/horten/graph";
+import {createHortenPage} from "../../alta/horten/page";
 
 
 export type LockerFlowStavanger = Stavanger & {
-    nodes: HortenNodes,
+    registry: HortenRegistry,
     graph: HortenGraph,
     flow: HortenItem,
     locker: HortenItem,
@@ -23,8 +25,9 @@ export type LockerFlowStavanger = Stavanger & {
 }
 
 export const lockerFlowStavanger: LockerFlowStavanger = createStavanger({
-    nodes: createHortenNodes({type: "NODES"}),
-    graph: createHortenNomogram({type: "GRAPH",
+    page: createHortenPage({type: "page", reset: true}), // Overwrites Standard Page
+    registry: createHortenRegistry({type: "NODES"}),
+    graph: createHortenGraph({type: "GRAPH",
         start: (nodes) => nodes.find( (node: HortenNomogramNode) => node.type === "watcher")
     }),
     flow: createHortenItem({type: constants.FLOW, url: "filterflows"}),

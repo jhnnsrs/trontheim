@@ -4,26 +4,15 @@ import {ImageMutater} from "./container";
 import {connectOpera} from "../../alta/react";
 import {orchestraterEpic} from "./orchestrater";
 import * as constants from "../../constants"
-import {createHortenForm} from "../../alta/horten/form";
-import type {HortenForm} from "../../alta/horten/form";
-import {createHortenItem} from "../../alta/horten/item";
-import {createHortenTable} from "../../alta/horten/table";
 import type {HortenTable} from "../../alta/horten/table";
-import type {HortenItem} from "../../alta/horten/item";
-import {createHortenEdge} from "../../alta/horten/edge";
+import {createHortenTable} from "../../alta/horten/table";
 import type {HortenEdge} from "../../alta/horten/edge";
-import {
-    DEF_DISPLAY,
-    DEF_EXHIBIT,
-    DEF_EXPERIMENT,
-    DEF_REPRESENTATION,
-    DEF_SAMPLE,
-    DEF_USER
-} from "../../constants/definitions";
-import {createHortenValue} from "../../alta/horten/value";
+import {createHortenEdge} from "../../alta/horten/edge";
+import {DEF_DISPLAY, DEF_EXPERIMENT, DEF_REPRESENTATION, DEF_SAMPLE, DEF_USER} from "../../constants/definitions";
 import type {HortenValue} from "../../alta/horten/value";
-import {createHortenMold} from "../../alta/horten/mold";
+import {createHortenValue} from "../../alta/horten/value";
 import type {HortenMold} from "../../alta/horten/mold";
+import {createHortenMold} from "../../alta/horten/mold";
 
 
 export type  DisplaySelectorStavanger = Stavanger &{

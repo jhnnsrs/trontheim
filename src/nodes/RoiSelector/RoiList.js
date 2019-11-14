@@ -1,17 +1,6 @@
 import React, {Component} from "react";
-import {
-    Button,
-    ButtonGroup,
-    Card,
-    CardBody,
-    CardImg,
-    CardImgOverlay,
-    CardSubtitle,
-    CardText,
-    CardTitle, Table
-} from "reactstrap";
+import {Button, Card, CardBody, CardSubtitle, CardTitle, Table} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
 import type {RoiSelectorStavanger} from "./index";
 import * as _ from "lodash";
 

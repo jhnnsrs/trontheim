@@ -9,7 +9,6 @@ import {combineStavangersToEpic} from "./EpicRegistry";
 import {rootStavanger} from "../../rootStavanger";
 import {Container} from "reactstrap";
 import type {Stavanger} from "../stavanger";
-import {createHaldenActions} from "../oslo";
 import standardOrchestrator from "./StandardOrchestration";
 
 export const StavangerContext = React.createContext(null);

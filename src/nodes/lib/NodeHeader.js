@@ -1,11 +1,7 @@
-import {Button, Card, CardBody, CardHeader, CardTitle, Col, Row} from "reactstrap";
+import {CardHeader, Col, Row} from "reactstrap";
 import React from "react";
-import {Link} from "react-router-dom";
-import Octicon, {ArrowRight, Plus, X} from "@githubprimer/octicons-react";
 import {connectInstrument} from "../../alta/react";
 import type {HortenEdge} from "../../alta/horten/edge";
-import {ContainerQuery} from 'react-container-query';
-import classnames from 'classnames';
 import PopButton from "./PopButton";
 import AlienButton from "./AlienButton";
 

@@ -1,26 +1,20 @@
 //@flow
-import type {Alias, HortenApiCall, HortenModel, HortenSelectors, HortenSelectorsCreator} from "./types";
-import * as qs from "querystring";
-import {ajax} from "rxjs/ajax";
+import type {Alias, Horten, HortenModel, HortenSelectors, HortenType, Props, State} from "./types";
 import {Reducer} from "redux";
-import handleActions from "redux-actions/es/handleActions";
 import {ABORTED, ITEMCREATED, ITEMDELETED, ITEMUPDATED, LOADED} from "../constants";
 import {
-    createOsloApiEpic,
-    createOsloJoinRoomEpic, createOsloPassThroughEpic,
+    createOsloPassThroughEpic,
     deletedFromStavangerList,
     deletingFromStavangerList,
-    expandFromOslo, getHeader, getRootUrl,
-    pushToStavangerList, updateStavangerList
+    expandFromOslo,
+    pushToStavangerList,
+    updateStavangerList
 } from "../helpers";
-import {combineEpics, Epic} from "redux-observable";
-import {createHorten, createHorten2} from "./index";
-import type {Horten, HortenType, State, Props} from "./types";
-import {Action, Observable} from "rxjs";
-import {createOsloActions} from "../oslo";
-import {createHortenApi, createHortenEpic, createHortenModel, createHortenReducer} from "./creators";
-import {createHaldenAction, createHaldenApi} from "../halden";
+import {Epic} from "redux-observable";
+import {createHorten2} from "./index";
 import type {HaldenActions} from "../oslo";
+import {createHortenEpic, createHortenModel, createHortenReducer} from "./creators";
+import {createHaldenAction} from "../halden";
 
 
 export type HortenModelUrl = string

@@ -1,6 +1,5 @@
 import type {RoiShowStavanger} from "./index";
 import {connectInstrument} from "../../alta/react";
-import {TwoDShowComponent} from "./TwoDShowComponent";
 import {LineRoi} from "../../fabric/LineRoi";
 import React from "react"
 

@@ -1,23 +1,16 @@
 //@flow
-import type {Alias, Horten, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
-import {createHorten, createHorten2} from "./index";
-import {combineEpics, Epic, ofType} from "redux-observable";
-import {catchError, map, mergeMap, takeUntil} from "rxjs/operators";
+import type {Alias, Horten, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
+import {createHorten2} from "./index";
+import {Epic} from "redux-observable";
 import {
-    createHortenApi, createHortenEpic,
-    createHortenEpics,
+    createHortenEpic,
     createHortenHelpers,
-    createHortenModel, createHortenReducer,
+    createHortenModel,
+    createHortenReducer,
     createHortenSelectors
 } from "./creators";
-import {
-    createHaldenAction,
-    createHaldenApi,
-    createHaldenEpic,
-    createHaldenFunctionSelector, createHaldenPassThroughEpicFromActions,
-    createHaldenSelector
-} from "../halden";
 import type {HaldenSelector} from "../halden";
+import {createHaldenAction, createHaldenPassThroughEpicFromActions, createHaldenSelector} from "../halden";
 import {Reducer} from "redux";
 import {TOOL_NONE} from "react-svg-pan-zoom";
 import type {HaldenActions} from "../oslo";

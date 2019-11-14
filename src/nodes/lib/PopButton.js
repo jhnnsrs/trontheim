@@ -1,8 +1,7 @@
-import {Button, ButtonGroup} from "reactstrap"
+import {Button} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
 import type {TwoDShowStavanger} from "./index";
-import ButtonToNavigate from "../../generics/ButtonToNavigate";
 
 class StartButton extends Component<any,any> {
     render() {

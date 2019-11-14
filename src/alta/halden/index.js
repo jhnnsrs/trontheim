@@ -1,9 +1,9 @@
 //@flow
 import type {Alias, HortenApiCall, HortenType, Props, State} from "../horten/types";
+import type {HaldenActions} from "../oslo";
 import {createHaldenActions, createHaldenMetaActions} from "../oslo";
 import {Action} from "redux";
 import type {ActionStream, StateStream} from "../horten/creators";
-import type {HaldenActions} from "../oslo";
 import {Epic, ofType} from "redux-observable";
 import {Observable} from "rxjs";
 import {catchError, map} from "rxjs/operators";

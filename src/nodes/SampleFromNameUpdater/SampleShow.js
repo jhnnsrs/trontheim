@@ -1,9 +1,7 @@
-import {Button, ButtonGroup, CardBody, CardText, Container} from "reactstrap"
+import {Container} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
-import Form from "../../alta/react/FinalMold";
-import type {SampleFromNameUpdaterStavanger, SliceLineTransformer} from "./index";
-import {Field} from "react-final-form";
+import type {SampleFromNameUpdaterStavanger} from "./index";
 
 class LineRectComponent extends Component<any,any> {
     render() {

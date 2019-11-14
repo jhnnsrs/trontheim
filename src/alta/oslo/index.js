@@ -1,7 +1,6 @@
 //@flow
 
 import {createAction} from "redux-actions";
-import {Action} from "redux";
 
 
 export interface DataStructure<M> { data: M, meta: any}

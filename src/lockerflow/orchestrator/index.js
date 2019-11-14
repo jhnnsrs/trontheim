@@ -1,24 +1,18 @@
-import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest, switchMap, take} from "rxjs/operators";
+import {combineEpics} from "redux-observable";
 import type {LockerFlowStavanger} from "../stavanger";
-import {graphNodeMaestro} from "../../alta/maestro/graph-node";
 import * as constants from "../../constants";
 import {apiConnector, itemConnector} from "../../rootMaestros";
-import {graphEdgeMaestro} from "../../alta/maestro/graph-edge";
-import {userIDPortal} from "../../portals";
-import {generateName} from "../../utils";
-import {graphLayoutWatcherConductor} from "../../alta/conductor/graphLayoutConductor";
+import {graphConductor, graphLayoutWatcherConductor} from "../../alta/conductor/graphLayoutConductor";
 
 export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
 
 
-    const watcherConductor = graphLayoutWatcherConductor(stavanger, {
+    const watcherConductor = graphConductor(stavanger, {
         watcherName: "LockerWatcher",
         watcher: "locker",
-        watcherParamsAccessor: (params) => params.lockerid,
-        flowParamsAccessor: (params) => params.flowid,
+        watcherParamsAccessor: (props) => props.match.params.lockerid,
+        flowParamsAccessor: (props) => props.match.params.flowid,
         model: constants.LOCKER,
-
 
     })
 

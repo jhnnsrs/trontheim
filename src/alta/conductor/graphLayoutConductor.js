@@ -1,13 +1,12 @@
 import type {HortenEdge} from "../horten/edge";
 import type {HortenNomogram} from "../horten/nomogram";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {combineLatest, mergeMap, switchMap, take, withLatestFrom, zipAll} from "rxjs/operators";
+import {mergeMap, switchMap, take, withLatestFrom} from "rxjs/operators";
 import type {HortenItem} from "../horten/item";
 import type {HortenTable} from "../horten/table";
 import type {HortenPage} from "../horten/page";
 import {userIDPortal} from "../../portals";
 import {generateName} from "../../utils";
-import {graphNodeMaestro} from "../maestro/graph-node";
 import {graphEdgeMaestro} from "../maestro/graph-edge";
 import type {HortenNodes} from "../horten/nodes";
 import {autoResetMaestro} from "../maestro/autoreset";
@@ -40,7 +39,7 @@ export interface ParserConfiguration {
 }
 
 
-export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, configuration: ParserConfiguration): Epic  => {
+export const graphConductor = (stavanger: GraphLayoutStavanger, configuration: ParserConfiguration): Epic  => {
 
     // Necessary Models for this Conductor
     let flow: HortenItem = configuration.flow ? stavanger[configuration.flow] : stavanger.flow
@@ -213,7 +212,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
             }));
 
 
-    let addin = graphNodeMaestro(stavanger)
+    let addin = graphEdgeMaestro(stavanger)
     let addin2 = graphEdgeMaestro(stavanger)
 
     return combineEpics(

@@ -1,27 +1,25 @@
 //@flow
-import type {Alias,Horten, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
-import {createHorten, createHorten2} from "./index";
-import {combineEpics, Epic, ofType} from "redux-observable";
+import type {Alias, Horten, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
+import {createHorten2} from "./index";
+import {Epic, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
 import {
-    createHortenApi, createHortenEpic,
+    createHortenEpic,
     createHortenHelpers,
     createHortenModel,
     createHortenReducer,
     createHortenSelectors
 } from "./creators";
+import type {HaldenAccesor, HaldenSelector} from "../halden";
 import {
     createHaldenAccessor,
-    createHaldenAction, createHaldenEpic,
+    createHaldenAction,
+    createHaldenEpic,
     createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
-import type {HaldenAccesor, HaldenSelector} from "../halden";
-import {handleActions} from "redux-actions";
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
-import {combineOsloActionsWithPassThrough} from "../oslo/epics";
-import {logout} from "redux-implicit-oauth2";
 
 export type HortenPageModel = HortenModel &{
     initPage: HaldenActions,

@@ -10,9 +10,9 @@ import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import type {HortenEdge} from "../../alta/horten/edge";
 import {createHortenEdge} from "../../alta/horten/edge";
-import {DEF_EXPERIMENT, DEF_MUTATING, DEF_REFLECTION, DEF_SAMPLE} from "../../constants/definitions";
-import {createHortenMold} from "../../alta/horten/mold";
+import {DEF_EXPERIMENT, DEF_SAMPLE} from "../../constants/definitions";
 import type {HortenMold} from "../../alta/horten/mold";
+import {createHortenMold} from "../../alta/horten/mold";
 
 
 export type  ExperimentAdderStavanger = Stavanger &{

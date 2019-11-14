@@ -1,21 +1,20 @@
-import {createStavanger} from "../../alta/stavanger";
-import {createHortenNodes} from "../../alta/horten/nodes";
-import type {HortenNodes} from "../../alta/horten/nodes";
-import type {HortenGraph} from "../../alta/horten/graph";
-import * as constants from "../../constants"
 import type {Stavanger} from "../../alta/stavanger";
-import {createHortenItem} from "../../alta/horten/item";
+import {createStavanger} from "../../alta/stavanger";
+import type {HortenNodes} from "../../alta/horten/nodes";
+import {createHortenNodes} from "../../alta/horten/nodes";
+import * as constants from "../../constants"
 import type {HortenItem} from "../../alta/horten/item";
+import {createHortenItem} from "../../alta/horten/item";
+import type {HortenNomogram, HortenNomogramNode} from "../../alta/horten/nomogram";
 import {createHortenNomogram} from "../../alta/horten/nomogram";
-import {createHortenTable} from "../../alta/horten/table";
 import type {HortenTable} from "../../alta/horten/table";
-import type {HortenNomogramNode} from "../../alta/horten/nomogram";
-import {DEF_DISPLAY, DEF_EXHIBIT} from "../../constants/definitions";
+import {createHortenTable} from "../../alta/horten/table";
+import {DEF_EXHIBIT} from "../../constants/definitions";
 
 
 export type DisplayFlowStavanger = Stavanger & {
     nodes: HortenNodes,
-    graph: HortenGraph,
+    graph: HortenNomogram,
     flow: HortenItem,
     exhibit: HortenItem,
     layout: HortenItem,

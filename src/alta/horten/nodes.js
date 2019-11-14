@@ -1,29 +1,25 @@
 //@flow
-import type {Alias, Horten, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
-import {createHorten, createHorten2} from "./index";
-import {combineEpics, Epic, ofType} from "redux-observable";
-import {mergeMap, takeUntil} from "rxjs/operators";
+import type {Alias, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
+import {createHorten2} from "./index";
+import {Epic, ofType} from "redux-observable";
+import {mergeMap} from "rxjs/operators";
 import {
-    createHortenApi,
     createHortenEpic,
     createHortenHelpers,
-    createHortenModel, createHortenReducer,
+    createHortenModel,
+    createHortenReducer,
     createHortenSelectors
 } from "./creators";
+import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
     createHaldenEpic,
     createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
-import type {HaldenSelector} from "../halden";
-import {handleActions} from "redux-actions";
 import {Reducer} from "redux";
 import type {OsloActions} from "../oslo";
-import type {HortenNodeDefaultState} from "./node";
-import {empty, of} from "rxjs"
-import {createOsloPassThroughEpic} from "../helpers";
-import v4 from "uuid"
+import {empty} from "rxjs"
 
 export type HortenNodesModel = HortenModel & {
     setNodes: OsloActions,
@@ -33,8 +29,8 @@ export type HortenNodesModel = HortenModel & {
 }
 
 export type HortenNodesSelectors = HortenSelectors & {
-    getComponents: HaldenSelector<[HortenNodeDefaultState]>,
-    getRunning: HaldenSelector<{ [Alias]: HortenNodeDefaultState }>
+    getComponents: HaldenSelector,
+    getRunning: HaldenSelector
 }
 
 export type HortenNodesDefinition = {

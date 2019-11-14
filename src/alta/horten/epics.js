@@ -1,18 +1,12 @@
 //@flow
-import type {Alias,Horten, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
+import type {Alias, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
 import {createHorten} from "./index";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {mergeMap, takeUntil, map} from "rxjs/operators";
+import {map, mergeMap, takeUntil} from "rxjs/operators";
 import {BehaviorSubject} from "rxjs";
 import {createHortenApi, createHortenHelpers, createHortenModel, createHortenSelectors} from "./creators";
-import {
-    createHaldenAction,
-    createHaldenFunctionSelector,
-    createHaldenOsloActions,
-    createHaldenSelector
-} from "../halden";
 import type {HaldenSelector} from "../halden";
-import type {StavangerNodesModel} from "../../bergen/models";
+import {createHaldenAction, createHaldenOsloActions, createHaldenSelector} from "../halden";
 import {handleActions} from "redux-actions";
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";

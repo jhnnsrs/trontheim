@@ -1,5 +1,5 @@
 //@flow
-import type {Alias, HortenApiCall, HortenModel, HortenSelectorsCreator} from "./types";
+import type {Alias, HortenApiCall, HortenModel, HortenType, Props, State} from "./types";
 import * as qs from "querystring";
 import {ajax} from "rxjs/ajax";
 import {Reducer} from "redux";
@@ -7,20 +7,21 @@ import handleActions from "redux-actions/es/handleActions";
 import {ABORTED, ITEMCREATED, ITEMDELETED, ITEMUPDATED, LOADED} from "../constants";
 import {
     createOsloApiEpic,
-    createOsloJoinRoomEpic, createOsloPassThroughEpic,
+    createOsloJoinRoomEpic,
+    createOsloPassThroughEpic,
     deletedFromStavangerList,
     deletingFromStavangerList,
-    expandFromOslo, getHeader, getRootUrl,
-    pushToStavangerList, updateStavangerList
+    expandFromOslo,
+    getHeader,
+    getRootUrl,
+    pushToStavangerList,
+    updateStavangerList
 } from "../helpers";
 import {combineEpics, Epic} from "redux-observable";
 import {createHorten} from "./index";
-import type {Horten, HortenType, State, Props} from "./types";
-import {Action, Observable} from "rxjs";
-import {createOsloActions} from "../oslo";
+import type {HaldenActions} from "../oslo";
 import {createHortenApi, createHortenModel} from "./creators";
 import {createHaldenAction, createHaldenApi} from "../halden";
-import type {HaldenActions} from "../oslo";
 
 
 export type HortenModelUrl = string
