@@ -82,10 +82,10 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
             // which would cause the old one(s) to be unsubscribed
             mergeMap(epicdict => {
                     let {epic, end, alias } = epicdict
-                    console.log("Adding epic"+ alias)
+                    console.log("Adding epic "+ alias)
                     return epic(action$, ...rest).pipe(
                         takeUntil(action$.pipe(
-                            ofType(end.request.toString()),
+                            ofType(end.request),
                             map(end => {console.log("Ending Epic for '"+alias + "' gracefully"); return end})
                         ))
                     )
@@ -95,10 +95,10 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
 
     const onRegisterEpicSuccess = (action$, state$) =>
         action$.pipe(
-            ofType(model.registerEpic.success.toString()),
+            ofType(model.registerEpic.success),
             mergeMap(action => {
                 // TODO: mabye by buffer? First make sure old graph is destroyed
-                let {epic, end, alias, pageInit} = action.payload
+                let {epic, end, alias, pageInit} = action.meta
                 console.log("EPIC SUCCESS")
                 return [pageInit]
 
@@ -107,10 +107,11 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
 
     const registerEpic = (action$, state$) =>
         action$.pipe(
-            ofType(model.registerEpic.request.toString()),
+            ofType(model.registerEpic.request),
             mergeMap(action => {
+                console.log("CALLED")
                 // TODO: mabye by buffer? First make sure old graph is destroyed
-                let {epic, end, alias, pageInit} = action.payload
+                let {epic, end, alias, pageInit} = action.meta
                 try {
                     nodeepic$.next({epic: epic, end: end, alias: alias})
                 }
@@ -118,7 +119,7 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
                     console.log("Failure Registering Epic of '", alias, "' with", model.alias)
 
                 }
-                return [model.registerEpic.success(action.payload)]
+                return [model.registerEpic.success(action.payload,action.meta)]
 
             }));
 
@@ -176,13 +177,13 @@ export const createHortenEpicsReducer =  (model: HortenEpicsModel, defaultState:
         [model.killEpic.success.toString()]: (state, action) => {
             let newstate = {...state, touched: true}
             //TODO: Remove Killed Epic from list
-            delete newstate.running[action.payload.alias];
+            delete newstate.running[action.meta.alias];
             return newstate
 
         },
         [model.registerEpic.success.toString()]: (state, action) => {
             let newdict = {}
-            newdict[action.payload.alias] = action.payload.end.request.toString()
+            newdict[action.meta.alias] = action.meta.end.request.toString()
             return {...state, touched: true, running: Object.assign(state.running,newdict)}
         },
     },

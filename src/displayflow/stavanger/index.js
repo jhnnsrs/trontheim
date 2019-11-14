@@ -23,7 +23,7 @@ export type DisplayFlowStavanger = Stavanger & {
 }
 
 export const displayFlowStavanger: DisplayFlowStavanger = createStavanger({
-    nodes: createHortenNodes("NODES"),
+    nodes: createHortenNodes({type: "NODES"}),
     graph: createHortenNomogram({type: "GRAPH",
         start: (nodes) => nodes.find( (node: HortenNomogramNode) => node.type === "watcher")
     }),

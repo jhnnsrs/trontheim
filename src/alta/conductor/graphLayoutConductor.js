@@ -85,9 +85,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
     const onFlowAndLayoutLoaded = (action$, state$) =>
         action$.pipe(
             ofType(flow.model.fetchItem.success),
-            withLatestFrom(layout.model.setItem.success),
-            mergeMap(actionpack => {
-                let action = actionpack.payload
+            mergeMap(action => {
                 return [
                     graph.model.setGraphFromFlow.request(action.payload),]
             }));

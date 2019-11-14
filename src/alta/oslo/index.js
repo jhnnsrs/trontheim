@@ -39,11 +39,26 @@ export function createHaldenActions(alias: string,model: string,key:string,metho
     abort: createAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_ABORT`),
 }}
 
+export const MetaAction = (type)  => {
+
+    let actionCreator = (payload, meta) => ({
+        type: type,
+        payload: payload,
+        meta: meta
+    })
+
+    actionCreator.toString = function () {
+        return type;
+    };
+
+    return actionCreator
+}
+
 export function createHaldenMetaActions(alias: string,model: string,key:string,method:string): HaldenActions { return {
-    request: createAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_REQUEST`,undefined,(payload) => payload.meta),
-    success: createAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_SUCCESS`,undefined,(payload) => payload.meta),
-    failure: createAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_FAILURE`,undefined,(payload) => payload.meta),
-    abort: createAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_ABORT`,undefined,(payload) => payload.meta),
+    request: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_REQUEST`),
+    success: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_SUCCESS`),
+    failure: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_FAILURE`),
+    abort: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_ABORT`)
 }}
 
 export function createHaldenListeningActions(alias: string,key: string,model:string,method:string): OsloActions {

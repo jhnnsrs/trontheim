@@ -22,7 +22,7 @@ export type SampleFlowStavanger = Stavanger & {
 }
 
 export const sampleFlowStavanger: SampleFlowStavanger = createStavanger({
-    nodes: createHortenNodes("NODES"),
+    nodes: createHortenNodes({type: "NODES"}),
     graph: createHortenNomogram({type: "GRAPH",
         start: (nodes) => nodes.find( (node: HortenNomogramNode) => node.type === "watcher")
     }),

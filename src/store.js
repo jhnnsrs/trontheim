@@ -14,6 +14,7 @@ import reducerRegistry from "./routerRegistry";
 // Build the middleware for intercepting and dispatching navigation sta
 
 const epic$ = new BehaviorSubject(rootEpic);
+
 const hotReloadingEpic = (action$, ...rest) =>
 	epic$.pipe(
 		mergeMap(epic =>
@@ -45,27 +46,20 @@ const combine = (reducers) => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
 
 	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+		//actionSanitizer: (action) => ({ ...action, meta: "WITH_META"}),
 		trace: true,
 		traceLimit: 25
-	}) || compos
+	}) || compose
+
+
 const store = createStore(
 	combine(rootReducer),
+	composeEnhancers(
 		applyMiddleware(authMiddleware,epicMiddleware),
-	);
+	)
+);
 
 epicMiddleware.run(hotReloadingEpic)
-
-if (module.hot) {
-	module.hot.accept('./rootEpic', () => {
-		const nextRootEpic = require('./rootEpic').rootEpic;
-		// First kill any running epics
-		store.dispatch({ type: 'EPIC_END' });
-		// Now setup the new one
-		epic$.next(nextRootEpic);
-	});
-}
-
-
 
 
 // store = createStore(reducer, initialState);

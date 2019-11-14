@@ -13,7 +13,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
 
     const onLoginSetApiPoint = (action$, state$) =>
         action$.pipe(
-            ofType(stavanger.page.model.initPage.request),
+            ofType(stavanger.page.model.initPage.success),
             mergeMap(action => {
                 let token = window.localStorage.getItem("token");
                 let osloconfig = window.localStorage.getItem("osloconfig")
@@ -29,7 +29,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
                     ]
                 }
                 else return [
-                    stavanger.page.model.initPage.success("Uh Have to login first darling"),]
+                    stavanger.page.model.dynamic("LOGIN_REQUIRED").success("Uh Have to login first darling"),]
             })
         );
 

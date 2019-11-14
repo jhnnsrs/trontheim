@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="trying to make nodes work, weird epic issues">
+    <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/alta/react/StandardOrchestration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/halden/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/halden/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alien/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alien/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/conductor/graphLayoutConductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/graphLayoutConductor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/conductor/parserconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/parserconductor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/conductor/serverRequestConductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/serverRequestConductor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/conductor/taskconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/taskconductor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/conductor/updaterconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/updaterconductor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/epics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/epics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/nodes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/maestro/mynewmeastro.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/oslo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/oslo/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/react/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bioimageflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/bioimageflow/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/displayflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/displayflow/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exhibitflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/exhibitflow/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/flow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flow/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/flowbuilder/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flowbuilder/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/header/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodepop/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodepop/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodetester/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodetester/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sampleflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sampleflow/stavanger/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,10 +36,17 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,15 +63,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/alta/maestro" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\alta\maestro" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -56,36 +79,36 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="" />
+      <changelist id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="" />
       <created>1572446602133</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572446602133</updated>
-      <workItem from="1572446603393" duration="16525000" />
-      <workItem from="1573212085381" duration="44000" />
-      <workItem from="1573212172132" duration="2044000" />
-      <workItem from="1573643779758" duration="249000" />
+      <workItem from="1572446603393" duration="9690000" />
+      <workItem from="1573722066794" duration="8304000" />
     </task>
-    <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
-      <created>1572457230437</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1572457230437</updated>
-    </task>
-    <task id="LOCAL-00002" summary="trying to make nodes work, weird epic issues">
-      <created>1572462471526</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1572462471526</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,7 +128,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="trying to make nodes work, weird epic issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to make nodes work, weird epic issues" />
+    <MESSAGE value="Got rid of custom css" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got rid of custom css" />
   </component>
 </project>

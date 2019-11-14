@@ -12,7 +12,7 @@ import {
 } from "./creators";
 import {
     createHaldenAccessor,
-    createHaldenAction,
+    createHaldenAction, createHaldenEpic,
     createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
@@ -21,9 +21,11 @@ import {handleActions} from "redux-actions";
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
 import {combineOsloActionsWithPassThrough} from "../oslo/epics";
+import {logout} from "redux-implicit-oauth2";
 
 export type HortenPageModel = HortenModel &{
     initPage: HaldenActions,
+    resetPage: HaldenActions,
     killPage: HaldenActions,
     setProp: HaldenActions,
 }
@@ -42,6 +44,7 @@ export type HortenPageDefaultState = {
 
 export type HortenPageDefinition = {
     type: HortenType,
+    reset: false,
 
 }
 
@@ -62,7 +65,8 @@ export type HortenPage = Horten & {
 export const createHortenPageModel = createHortenModel({
     // This is Mainly for the FlowDiagram Interoperability
     initPage: createHaldenAction("INIT"),
-    killPage: createHaldenAction("KILL"),
+    killPage: createHaldenAction("KILL", true),
+    resetPage: createHaldenAction("RESET_PAGE", true),
     setProp: createHaldenAction("SET_PROP"),
 })
 
@@ -77,15 +81,25 @@ export const createHortenPageSelectors = createHortenSelectors({
 
 
 
-export const createHortenPageEpic = createHortenEpic((model: HortenPageModel, selector: HortenPageSelectors) => ({
+export const createHortenPageEpic = createHortenEpic((model: HortenPageModel, selector: HortenPageSelectors, helpers: HortenPageHelpers, definition: HortenPageDefinition) => ({
 
     // PARTSTART: EPICS
     // The Nodes Epic will carry along the EPICS of all the spawned Node
-    initPassThrough: createHaldenPassThroughEpicFromActions(model.initPage),
-    setPropPassThrough: createHaldenPassThroughEpicFromActions(model.setProp)
+    setPropPassThrough: createHaldenPassThroughEpicFromActions(model.setProp),
+    killPage: createHaldenEpic((action$, state$) =>
+        action$.pipe(
+            ofType(model.killPage.request),
+            mergeMap(action => {
+                console.log(action)
+                return definition.reset ? [model.resetPage.request(action.payload,action.meta)] : [model.killPage.success(action.payload,action.meta)]
+                }
 
+            )))
 
-}));
+        }
+    )
+)
+;
 
 const defaultState = {
     props: null
@@ -110,6 +124,8 @@ export function createHortenPage(definition: HortenPageDefinition): ((Alias) => 
     let helperCreator = createHortenPageHelpers;
     let epicCreator = createHortenPageEpic;
     let reducerCreator = createHortenPageReducer;
+
+
 
     return createHorten2(definition, modelCreator, selectorsCreator, helperCreator, epicCreator, reducerCreator, defaultState)
 }

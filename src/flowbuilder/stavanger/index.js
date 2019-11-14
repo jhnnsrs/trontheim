@@ -30,7 +30,7 @@ export const flowBuilderStavanger: FlowBuilderStavanger = createStavanger({
     flow: createHortenItem({type: constants.FLOW, url:"filterflows"}),
     flows: createHortenTable({type: constants.FLOW, url:"filterflows"}),
     nodesList: createHortenTable({type: constants.NODE,url: "nodes"}),
-    nodes: createHortenNodes("NODES"),
+    nodes: createHortenNodes({type: "NODES"}),
 })
 
 

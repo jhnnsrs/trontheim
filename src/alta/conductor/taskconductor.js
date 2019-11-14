@@ -46,7 +46,7 @@ export const taskConductor = (nodeStavanger: EdgeStavanger, configuration: Parse
 
     const onPageStartedListenToOutput = (action$, state$) =>
         action$.pipe(
-            ofType(page.model.initPage.request),
+            ofType(page.model.initPage.success),
             mergeMap(action => {
                     return outputs.map( out => out.model.osloJoin.request({meta: {room: {nodeid: out.model.alias}}}))
                 }

@@ -1,6 +1,6 @@
 import {combineEpics} from "redux-observable";
 import {connect} from "react-redux";
-import type {EpicCreator, Node, StavangerCreator} from "../../test/lib/connectors";
+import type {EpicCreator, StavangerCreator} from "../../test/lib/connectors";
 import {registerStavangerReducers} from "./ReducerRegistry";
 import React from "react";
 import _ from "lodash";
@@ -9,9 +9,8 @@ import {combineStavangersToEpic} from "./EpicRegistry";
 import {rootStavanger} from "../../rootStavanger";
 import {Container} from "reactstrap";
 import type {Stavanger} from "../stavanger";
-import Loadable from "react-loadable";
-import {createHaldenOsloActions} from "../halden";
-import routerRegistry from "../../routerRegistry";
+import {createHaldenActions} from "../oslo";
+import standardOrchestrator from "./StandardOrchestration";
 
 export const StavangerContext = React.createContext(null);
 
@@ -28,17 +27,16 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
 
 
 
-    let killEpicPayload = (props) => ({
+    let killEpicMeta = {
         alias: alias,
-        killPage: newStavanger.page.model.killPage.request(props),
-        end: createHaldenOsloActions(rootStavanger.epics.model.alias, alias + "_EPIC", "END")
-    })
+        end: rootStavanger.epics.model.dynamic(alias + "_END"),
+    }
 
-    let registerEpicPayload = (props) => ({
+    let registerEpicMeta = (props) => ({
         epic: epic,
         alias: alias,
-        pageInit: newStavanger.page.model.initPage.request(props),
-        end: createHaldenOsloActions(rootStavanger.epics.model.alias, alias + "_EPIC", "END")
+        pageInit: newStavanger.page.model.initPage.success(props),
+        end: rootStavanger.epics.model.dynamic(alias + "_END"),
     })
 
 
@@ -46,13 +44,13 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
 
         componentDidMount(): void {
             let {isRunning, children, registerEpic, killEpic, killPage, ...restProps} = this.props
-            this.props.registerEpic(restProps)
+            this.props.initPage(restProps)
         }
 
         componentWillUnmount(): void {
             console.log("Unmounting")
-            this.props.killPage(this.props)
-            this.props.killEpic(this.props)
+            let {isRunning, children, registerEpic, killEpic, killPage, ...restProps} = this.props
+            this.props.killPage(restProps)
         }
 
         render() {
@@ -72,9 +70,8 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
 
 
     let mapDispatchToProps = {
-        registerEpic: (props) =>  rootStavanger.epics.model.registerEpic.request(registerEpicPayload(props)),
-        killEpic: (props) => rootStavanger.epics.model.killEpic.request(killEpicPayload(props)),
-        killPage: (props) => newStavanger.page.model.reset.request({}),
+        initPage: (props) =>  rootStavanger.epics.model.registerEpic.request(props, registerEpicMeta(props)), // First it registeres the Epics, then it inits the page
+        killPage: (props) => newStavanger.page.model.killPage.request(props,killEpicMeta), // First it waits for the Page to be killed
     }
 
     return connect(mapStateToProps,mapDispatchToProps)(WrappedComponentWrappper)
@@ -107,8 +104,9 @@ export function connectOpera<T>(stavanger: StavangerCreator<T>) {
                     try {
                         const stavangerEnsembleEpics = combineStavangersToEpic(ensembleStavanger, alias)
                         const stavangerOrchestraEpic = orchestrater(rootStavanger)
+                        const standardOrchestration = standardOrchestrator(rootStavanger)
 
-                        const combinedEpic = combineEpics(stavangerEnsembleEpics,stavangerOrchestraEpic)
+                        const combinedEpic = combineEpics(stavangerEnsembleEpics,stavangerOrchestraEpic,standardOrchestration)
                         // Maybe it should also return the epics
                         const Wrapper = WrappedComponent(Component,alias,combinedEpic,rootStavanger, ensembleStavanger)
 

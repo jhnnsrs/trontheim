@@ -20,7 +20,7 @@ export type NodeTesterStavanger = Stavanger & {
 }
 
 export const nodetestStavanger: NodeTesterStavanger = createStavanger({
-    nodes: createHortenNodes("NODES"),
+    nodes: createHortenNodes({type: "NODES"}),
     graph: createHortenNomogram({type: "graph"}),
     node: createHortenItem({type: constants.NODE, url: "nodes"}),
 })

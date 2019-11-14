@@ -24,7 +24,7 @@ export type AlienStavanger = Stavanger & {
 }
 
 export const alienStavanger: AlienStavanger = createStavanger({
-    nodes: createHortenNodes("NODES"),
+    nodes: createHortenNodes({type: "NODES"}),
     graph: createHortenNomogram({type: "graph"}),
     noderequests: createHortenTable(DEF_FOREIGNNODEREQUEST),
     node: createHortenItem({type: constants.NODE, url: "nodes"}),
