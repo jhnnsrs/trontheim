@@ -1,7 +1,9 @@
 //@flow
 import type {Alias, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
 import {createHorten2} from "./index";
-import {Epic} from "redux-observable";
+import {combineEpics, Epic, ofType} from "redux-observable";
+import {mergeMap, switchMap, map, take, withLatestFrom} from "rxjs/operators";
+
 import {
     createHortenEpic,
     createHortenHelpers,
@@ -10,14 +12,22 @@ import {
     createHortenSelectors
 } from "./creators";
 import type {HaldenSelector} from "../halden";
-import {createHaldenAction, createHaldenPassThroughEpicFromActions, createHaldenSelector} from "../halden";
+import {
+    createHaldenAction,
+    createHaldenEpic,
+    createHaldenPassThroughEpicFromActions,
+    createHaldenSelector
+} from "../halden";
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
-import {isUndefined} from "redux-actions/lib/utils/isUndefined";
+
+export type OutName = string
+
 
 export type HortenNodeModel = HortenModel & {
     init: HaldenActions,
     setOutput: HaldenActions,
+    setOut: (OutName) => HaldenActions,
     setInput: HaldenActions,
     setModel: HaldenActions,
     pop: HaldenActions, //For the Node that causes the Pop
@@ -60,7 +70,11 @@ export type HortenNodeDefinition = {
     isPoppable: boolean | isUndefined,
     isAlienable: boolean | isUndefined,
     type: HortenType,
-    ins: Array<NodeMap>
+    ins: Array<NodeMap>,
+    ports: {
+        ins: [ {name: string, map?: string, type: string }],
+        outs: [ {name: string, map?: string, type: string }]
+    }
 
 }
 
@@ -80,7 +94,8 @@ export type HortenNode = {
 export const createHortenNodeModel = createHortenModel({
     init: createHaldenAction("INIT"),
     setInput: createHaldenAction("SET_INPUT"),
-    setOutput: createHaldenAction("SET_OUTPUT"),
+    setOutput: createHaldenAction("SET_OUTPUT",true),
+    setOut: createHaldenAction("SET_OUTPUT", true, true),
     fetchLinks: createHaldenAction("FETCH_LINKS"),
     setModel: createHaldenAction("SET_MODEL"),
     setProgress: createHaldenAction("UPDATE_FIELD"),
@@ -106,13 +121,44 @@ export const createHortenNodeSelectors = createHortenSelectors({
 })
 
 
-export const createHortenNodeEpic = createHortenEpic((model: HortenNodeModel, selectors: HortenNodeSelectors) => ({
+export const createHortenNodeEpic = createHortenEpic((model: HortenNodeModel, selectors: HortenNodeSelectors , helpers, definition) => {
+    // We are Building Now According to the constructed Models and setting the Out with the Required Information
+
+    const outepics = definition.ports.outs.map(
+        out => {
+
+            console.log(out)
+            return (action$, state$) => action$.pipe(
+                ofType(model.setOut(out.name).request),
+                map(action => {
+                        let output = {
+                            data: action.payload.data,
+                            meta: {
+                                ...action.payload.meta,
+                                type: out.type,
+                                instance: model.alias,
+                                port: out.name
+                            }
+                        }
+                        return model.setOutput.success(output,output.meta)
+                    }
+                )
+            )
+        }
+    )
+
+    return {
         progressPassThrough: createHaldenPassThroughEpicFromActions(model.setProgress),
         requireUserThrough: createHaldenPassThroughEpicFromActions(model.requireUser),
         setModelPassThrough: createHaldenPassThroughEpicFromActions(model.setModel),
         setStatePassThrough: createHaldenPassThroughEpicFromActions(model.setStatus),
+        setOutput: combineEpics(...outepics)
+
+
+    }
+}
         // No Fetch links Passthrough because it is handled by the Graph
-}));
+);
 
 
 const defaultState = {

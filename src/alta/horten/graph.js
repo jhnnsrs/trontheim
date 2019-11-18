@@ -20,12 +20,16 @@ import {
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
 import v4 from "uuid"
+export type NodeID = string
 
 export type HortenGraphModel = HortenModel & {
 
     // Initial Set
     setGraphFromFlow: HaldenActions,
     setGraphError: HaldenActions,
+
+    // NodeAPI
+    setNodeIn: (NodeID) => HaldenActions,
 
 
     // Node APIS
@@ -44,7 +48,7 @@ export type HortenGraphModel = HortenModel & {
 
 export type HortenGraphSelectors = HortenSelectors & {
     getGraphShow: HaldenSelector,
-    getDiagram: HaldenSelector,
+    getGraph: HaldenSelector,
     getLinksForNode: HaldenSelector,
 }
 export type HortenGraphHelpers = HortenHelpers & {}
@@ -93,12 +97,14 @@ export type HortenGraph = {
 
 
 export const createHortenGraphModel = createHortenModel({
-    onNodeOutput: createHaldenAction("NODE_OUTPUT"),
+    onNodeOutput: createHaldenAction("NODE_OUTPUT", true),
     setNodeInput: createHaldenAction("SET_NODE_INPUT"),
+    setNodeIn: createHaldenAction("NODE_INPUT_SET",false, true),
     setGraphFromFlow: createHaldenAction("FROM_FLOW_SET"),
     createShowFromGraph: createHaldenAction("CREATE_SHOW"),
     onNodeStatusUpdate: createHaldenAction("NODE_STATUS"),
     setShow: createHaldenAction("SET_SHOW"),
+    setGraphError: createHaldenAction("GRAPH_ERROR"),
 })
 
 export const createHortenGraphHelpers = createHortenHelpers()
@@ -132,9 +138,9 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     const input = action.payload;
                     const data = action.payload.data;
                     const meta = action.payload.meta;
-                    const nodemodel = action.payload.meta.model;
+                    const type = action.payload.meta.type;
 
-                    const instanceid = action.payload.meta.instanceid;
+                    const instance = action.payload.meta.instance;
 
 
                     let nodes = null
@@ -143,7 +149,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     let links = null
 
                     try {
-                        let graph = selectors.getDiagram(state$.value)
+                        let graph = selectors.getGraph(state$.value)
                         nodes = graph.nodes;
                         links = graph.links;
                     } catch (e) {
@@ -152,14 +158,16 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
 
                     const actions = [];
 
-                    let mappedchain = links.filter(item => item.sourcePort.startsWith(nodemodel.toUpperCase() + "_OUT")); //TODO: ID comparison
 
-                    console.log("Found the following Nodes for " + nodemodel, mappedchain)
+
+                    let mappedchain = links.filter(item => item.sourcePort.startsWith(type.toUpperCase())); //TODO: ID comparison
+
+                    console.log("Found the following Nodes for " + type, mappedchain)
                     mappedchain = mappedchain.filter(link => nodes.find(node => {
-                        return (node.instanceid === instanceid && node.id === link.source)
+                        return (node.instance === instance && node.id === link.source)
                     }) != null);
 
-                    console.log("Filtered and ended up with the folling nodes for " + nodemodel, mappedchain)
+                    console.log("Filtered and ended up with the folling nodes for " + type, mappedchain)
                     mappedchain.map(link => {
 
                         // Find the Attached Nodes
@@ -169,25 +177,25 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
 
                         if (nodeinstance) {
                             // Checks if Diagram is correctly connected
-                            if (link.targetPort.startsWith(nodemodel.toUpperCase() + "_IN") || link.targetPort.startsWith("*")) {
+                            if (link.targetPort.startsWith(type.toUpperCase() + "_IN") || link.targetPort.startsWith("*")) {
 
                                 let outmodel = {
                                     data: data,
                                     meta: {
                                         ...meta,
-                                        model: nodemodel,
-                                        target: nodeinstance.instanceid,
+                                        model: type,
+                                        target: nodeinstance.instance,
                                         origin: meta.nodeid
                                     }
                                 }
-                                actions.push(model.setNodeInput.request(outmodel))
+                                actions.push(model.setNodeIn(nodeinstance.instance).request(outmodel))
                                 actions.push(model.onNodeStatusUpdate.request({
                                     instance: nodeinstance.instanceid,
                                     status: definition.statusIN
                                 }))
 
                             } else {
-                                actions.push(model.setGraphError.request("Check Connections of " + nodeinstance.instanceid + " of Class " + nodeinstance.nodeid))
+                                actions.push(model.setGraphError.request("Check Connections of " + nodeinstance.instance + " of Class " + nodeinstance.nodeid))
                             }
 
                         }
@@ -209,13 +217,17 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                 let nodes = diagram.nodes.map(node => {
                     const instanceid = (node.name + "-" + v4()).toLowerCase()
 
-                    return {...node, instanceid: instanceid, base: node.id}
+                    return {...node, instance: instanceid, base: node.id}
                 })
 
                 // Set the Links
                 let links = diagram.links.map(link => link)
+
+
                 let graph = {links: links, nodes: nodes}
-                return [model.setGraphFromFlow.success(graph), model.createShowFromGraph.request(graph)]
+                return [
+                    model.setGraphFromFlow.success(graph),
+                    model.createShowFromGraph.request(graph)]
                 }
             )),
     onCreateShowFromGraphRequest: (action$, state$) =>
@@ -225,16 +237,15 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             mergeMap(action => {
                     // TODO: IMPORTANT stavanger detail right now get is not adhering to normal datastucture
                     let diagram = action.payload
-                    let orderednodes = [] // OF SHAPE [[FIRST, FIRST],[SECOND, SECOND],[THIRD]]
                     let nodes: Array<HortenGraphNode> = diagram.nodes
                     let nodeDict = {}
 
                     nodes.map(node => {
-                        nodeDict[node.nodeid] = node
+                        nodeDict[node.instance] = node
                     })
 
 
-                    return [model.setShow.success(nodeDict)]
+                    return [model.setShow.success({nodes: nodeDict, links: null})]
                 }
             )),
     onNodeStatusChanged: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),
@@ -264,11 +275,11 @@ export const createHortenGraphReducer = createHortenReducer((model: HortenGraphM
             return {...state, graph: action.payload};
         },
         [model.setShow.success]: (state, action) => {
-            return {...state, show: {...state.show, nodes: action.payload}};
+            return {...state, show: {...state.show, nodes: action.payload.nodes, links: action.payload.links}};
         },
         [model.onNodeStatusUpdate.success]: (state, action) => {
             let nodes = {...state.show.nodes}
-            nodes[action.payload.instanceid].status = action.payload.status
+            nodes[action.payload.instance] = action.payload.status
             return {...state, show: {...state.show, nodes: nodes}};
         },
     })

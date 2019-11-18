@@ -1,5 +1,5 @@
 /** * Imports ***/
-import * as PAKO from 'pako' ;
+import * as PAKO from 'pako';
 import LoadersBase from './loaders.base';
 import CoreUtils from '../core/core.utils';
 import ModelsSeries from '../models/models.series';

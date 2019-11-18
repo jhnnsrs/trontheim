@@ -1,13 +1,9 @@
 import React, {Component} from "react";
-import {Route, Switch} from 'react-router-dom'
-
-
-
+import {Route} from 'react-router-dom'
 // Header Fouter and Route
 import PrivateRoute from "../auth/PrivateRoute";
 import Footer from "../common/components/Footer";
 import Header from "../header";
-
 // Common Stavanger
 import Experiment from "../experiment";
 import NodeBuilder from "../nodebuilder";

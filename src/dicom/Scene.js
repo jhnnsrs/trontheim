@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import * as THREE from 'three'
 import CamerasOrthographic from './src/cameras/cameras.orthographic'
-import { TrackballOrthoControl} from "./src/controls/controls";
+import {TrackballOrthoControl} from "./src/controls/controls";
 import HelpersStack from './src/helpers/helpers.stack';
 import LoadersVolume from './src/loaders/loaders.volume';
-import HelpersLut from './src/helpers/helpers.lut';
 import {Button, Container} from "reactstrap";
 
 

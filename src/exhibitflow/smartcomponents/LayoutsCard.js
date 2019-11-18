@@ -1,4 +1,4 @@
-import {Button, ButtonGroup, Card, CardBody, CardText, CardTitle} from "reactstrap";
+import {Button, ButtonGroup, Card, CardBody, CardTitle} from "reactstrap";
 import type {BioImageFlowStavanger} from "../../flow/stavanger";
 import {connectInstrument} from "../../alta/react";
 import React from "react";

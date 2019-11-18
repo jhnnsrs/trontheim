@@ -1,5 +1,5 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {LandingStavanger} from "../stavanger";
 
 export const orchestraterEpic = (stavanger: LandingStavanger) => {

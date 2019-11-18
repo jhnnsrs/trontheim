@@ -1,7 +1,5 @@
 import * as SRD from "storm-react-diagrams";
 import {DefaultNodeFactory} from "storm-react-diagrams";
-import * as _ from "lodash"
-import {NodeSpawnModel} from "./NodeModels";
 import {ClassicNodeFactory} from "./FilterNodeFactory";
 
 export default class DiagramApp {

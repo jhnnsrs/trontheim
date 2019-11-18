@@ -1,8 +1,7 @@
 import React, {Component} from "react";
-import type {AnswerStavanger, SampleStavanger} from "../stavanger";
-import {Button, Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
+import type {AnswerStavanger} from "../stavanger";
+import {Card, CardBody, CardText, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
 
 class AnswerDetailCard extends Component {
 

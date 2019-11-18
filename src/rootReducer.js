@@ -1,6 +1,5 @@
-import  reducerRegistry from "./routerRegistry";
-import { combineReducers } from 'redux';
-import { authReducer } from 'redux-implicit-oauth2';
+import reducerRegistry from "./routerRegistry";
+import {authReducer} from 'redux-implicit-oauth2';
 
 
 reducerRegistry.register("auth", authReducer);

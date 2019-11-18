@@ -1,4 +1,8 @@
 
+//GRAPH ERROR
+const graphConnectionError = 701
+
+
 // ATTENTION STATES
 const requireUserAtStart = 401
 const requireUserOnInput = 402
@@ -50,6 +54,11 @@ export const WAITING = {
 export const DONE = {
     ouputSend: outputSend,
 }
+
+export const GRAPHERROR = {
+    connectionError: graphConnectionError,
+}
+
 
 export function buildStatus(code, message = null){
     return { code: code, message: message}

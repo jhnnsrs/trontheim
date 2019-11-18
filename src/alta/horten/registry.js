@@ -2,7 +2,7 @@
 import type {Alias, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
 import {createHorten2} from "./index";
 import {Epic, ofType} from "redux-observable";
-import {mergeMap} from "rxjs/operators";
+import {mergeMap, switchMap} from "rxjs/operators";
 import {
     createHortenEpic,
     createHortenHelpers,
@@ -13,18 +13,22 @@ import {
 import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
-    createHaldenEpic, createHaldenFunctionSelector,
+    createHaldenEpic,
+    createHaldenFunctionSelector,
     createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
 import {Reducer} from "redux";
-import type {HaldenActions, OsloActions} from "../oslo";
-import {empty} from "rxjs"
+import type {HaldenActions} from "../oslo";
+import {empty, zip} from "rxjs"
+import type {NodeID} from "./graph";
 
 export type HortenRegistryModel = HortenModel & {
     setNodes: HaldenActions,
+    setNodesFromGraph: HaldenActions,
     onModelIn: HaldenActions,
     registerNode: HaldenActions,
+    register: (NodeID) => HaldenActions,
     allNodesRegistered: HaldenActions,
     setError: HaldenActions
 }
@@ -55,8 +59,10 @@ export type HortenRegistry = {
 
 export const createHortenRegistryModel = createHortenModel({
     setNodes: createHaldenAction("SET_NODES"),
+    setNodesFromGraph: createHaldenAction("SET_NODES_FROM_GRAPH"),
     onModelIn: createHaldenAction("ON_MODEL_IN"),
     registerNode: createHaldenAction("REGISTER_NODE", true),
+    register: createHaldenAction("REGISTER_NODE", false, true),
     setError: createHaldenAction("SET_ERROR"),
     allNodesRegistered: createHaldenAction("ALL_NODES_REGISTERED"),
 })
@@ -93,31 +99,36 @@ export const createHortenRegistryEpic = createHortenEpic((model: HortenRegistryM
                 }))),
         onNodeRegisterCheckAllRegistered: createHaldenEpic((action$, state$) =>
             action$.pipe(
-                ofType(model.registerNode.success),
-                mergeMap(action => {
-                    let state = state$.value
-                    let running = selectors.getRunning(state, null)
-                    let components = selectors.getComponents(state, null)
-                    let running_length = Object.keys(running).length
-                    let components_length = components.length
+                ofType(model.setNodes.success),
+                switchMap(action => {
 
-                    if (running_length == components_length) return [model.allNodesRegistered.request(components)]
-                    else return empty()
+                    let nodes = selectors.getComponents(state$.value)
+
+                    let registerActions = nodes.map(node => model.register(node.instance).request.toString())
+                    let actionStreams = registerActions.map(action => action$.ofType(action))
+
+                    console.log(registerActions)
+                    return zip(...actionStreams).pipe(
+                        mergeMap(actions => {
+                            console.log(actions)
+                            return [model.allNodesRegistered.request("YES")]
+                        }
+                    )
+                    )
 
                 }))),
-        onSetNodesRequestSetNodes: createHaldenEpic((action$, state$) =>
+        onSetNodesFromGraphRequestSetNodes: createHaldenEpic((action$, state$) =>
             action$.pipe(
-                ofType(model.setNodes.request.toString()),
+                ofType(model.setNodesFromGraph.request),
                 mergeMap(action => {
-                    console.log("Setting Nodes from FlowDiagram", action.payload)
-                    const graph = action.payload.data
-                    let {nodes} = graph.diagram
+                    console.log("Setting Nodes from Graph", action.payload)
+                    const graph = action.payload
+                    let nodes = graph.nodes
 
                     // Parse item
                     let newnodes = [];
                     for (let node in nodes) {
                         let object = {...nodes[node]}
-                        delete object.ports
                         newnodes.push(object)
                     }
                     return [

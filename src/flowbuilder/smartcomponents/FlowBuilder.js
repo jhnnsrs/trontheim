@@ -1,6 +1,5 @@
-import {Button, ButtonGroup, CardTitle} from "reactstrap";
+import {Button, ButtonGroup, Card, CardTitle} from "reactstrap";
 import React from "react";
-import {Card} from "reactstrap";
 import {FlowDiagram} from "./FlowDiagram";
 import {connectInstrument} from "../../alta/react";
 import type {FlowBuilderStavanger} from "../stavanger";

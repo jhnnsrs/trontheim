@@ -15,7 +15,6 @@ import FlatCube from "../cube/FlatCube";
 import NiftiControls from "../cube/NiftiControls";
 
 
-
 export class Experiment extends Component {
 
     render() {

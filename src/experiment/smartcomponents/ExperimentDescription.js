@@ -1,10 +1,7 @@
 import React, {Component} from "react";
 import type {ExperimentStavanger} from "../stavanger";
-import {Button, Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardBody, CardText, CardTitle, Col, Row} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {LightBulb, Plus} from "@githubprimer/octicons-react";
-import ExperimentalGroupForm from "./ExperimentalGroupForm";
-import {Link} from "react-router-dom";
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
 
 class ExperimentDescription extends Component {

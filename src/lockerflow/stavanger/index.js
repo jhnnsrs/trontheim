@@ -1,17 +1,16 @@
 import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
-import type {HortenNodes} from "../../alta/horten/nodes";
 import * as constants from "../../constants"
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
-import type {HortenNomogram, HortenNomogramNode} from "../../alta/horten/nomogram";
+import type {HortenNomogramNode} from "../../alta/horten/nomogram";
 import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import {DEF_LOCKER} from "../../constants/definitions";
-import {createHortenGraph} from "../../alta/horten/graph";
-import {createHortenRegistry} from "../../alta/horten/registry";
-import type {HortenRegistry} from "../../alta/horten/registry";
 import type {HortenGraph} from "../../alta/horten/graph";
+import {createHortenGraph} from "../../alta/horten/graph";
+import type {HortenRegistry} from "../../alta/horten/registry";
+import {createHortenRegistry} from "../../alta/horten/registry";
 import {createHortenPage} from "../../alta/horten/page";
 
 

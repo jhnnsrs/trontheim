@@ -1,11 +1,8 @@
 import React, {Component} from "react";
 import DiagramApp from "../graph/DiagramApp";
-import {
-    NodeSpawnModel
-} from "../graph/NodeModels";
+import {NodeSpawnModel} from "../graph/NodeModels";
 import {DiagramModel, DiagramWidget} from "storm-react-diagrams";
-import {Button, ButtonGroup, Container} from "reactstrap";
-import {connect} from "react-redux";
+import {Button} from "reactstrap";
 
 export class FlowDiagram extends Component {
 

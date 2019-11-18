@@ -53,6 +53,16 @@ export const MetaAction = (type)  => {
     return actionCreator
 }
 
+export function createHaldenParameterActions(alias: string,model: string,key:string,method:string): HaldenActions {
+    return (parameter) =>
+    ({
+    request: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_${parameter.toUpperCase()}_REQUEST`),
+    success: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_${parameter.toUpperCase()}_SUCCESS`),
+    failure: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_${parameter.toUpperCase()}_FAILURE`),
+    abort: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_${parameter.toUpperCase()}_ABORT`)
+        })
+}
+
 export function createHaldenMetaActions(alias: string,model: string,key:string,method:string): HaldenActions { return {
     request: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_REQUEST`),
     success: MetaAction(`${alias.toUpperCase()}-${key.toUpperCase()}_${model.toUpperCase()}_${method.toUpperCase()}_SUCCESS`),

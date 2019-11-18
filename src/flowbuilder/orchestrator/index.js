@@ -1,8 +1,7 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {FlowBuilderStavanger} from "../stavanger";
-import {Observable} from "rxjs";
-import {apiConnector, itemConnector, userSelector} from "../../rootMaestros";
+import {apiConnector} from "../../rootMaestros";
 import {userIDPortal, userPortal} from "../../portals";
 
 export const orchestraterEpic = (stavanger: FlowBuilderStavanger) => {

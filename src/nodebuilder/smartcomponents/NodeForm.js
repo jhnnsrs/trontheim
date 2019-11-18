@@ -1,24 +1,10 @@
-import React, {Component} from "react";
-import type {NodeBuilderStavanger} from "../stavanger";
-import {
-    Button, ButtonGroup,
-    Card,
-    CardBody,
-    CardImg,
-    CardImgOverlay,
-    CardText,
-    CardTitle,
-    Carousel, CarouselCaption, CarouselControl,
-    CarouselIndicators, CarouselItem, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane
-} from "reactstrap";
+import React from "react";
+import {Card, CardBody, Nav, NavItem, NavLink, TabContent, TabPane} from "reactstrap";
 import classnames from 'classnames';
 import ArnHeimHostSelector from "./ArnHeimHostSelector";
 import VarietySelector from "./VarietySelector";
 import EntitySelector from "./EntitySelector";
 import EntityForm from "./EntityForm";
-
-
-
 
 
 export default class NodeForm extends React.Component {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Button, Card, CardBody, Col, Container, Row} from "reactstrap";
+import {Container, Row} from "reactstrap";
 import {sampleFlowStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
@@ -10,7 +10,6 @@ import FlowComponent from "./smartcomponents/FlowComponent";
 import DisplayComponent from "./smartcomponents/SampleComponent";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
 import NodeGridContainer from "../flow/smartcomponents/NodeGridContainer";
-import LayoutList from "../flow/smartcomponents/LayoutList";
 import LayoutsCard from "./smartcomponents/LayoutsCard";
 
 export class Bergen extends Component {

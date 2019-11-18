@@ -1,8 +1,7 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {HeaderStavanger} from "../stavanger";
 import {rootStavanger} from "../../rootStavanger";
-import {osloEndpoints} from "../../constants/endpoints";
 
 export const orchestraterEpic = (stavanger: HeaderStavanger) => {
 

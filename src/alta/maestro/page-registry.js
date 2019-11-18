@@ -1,5 +1,4 @@
-import {combineEpics, Epic, ofType} from "redux-observable";
-import {mergeMap} from "rxjs/operators";
+import {combineEpics, Epic} from "redux-observable";
 import type {HortenPage} from "../horten/page";
 import type {HortenNodes} from "../horten/nodes";
 

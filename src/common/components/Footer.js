@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import {Collapse, Nav, Navbar, NavItem, NavLink} from "reactstrap";
-import {Pencil, Plus} from "@githubprimer/octicons-react";
-import Octicon from "@githubprimer/octicons-react";
+import React, {Component} from 'react';
+import {Nav, Navbar, NavItem, NavLink} from "reactstrap";
+import Octicon, {Pencil} from "@githubprimer/octicons-react";
 
 class Footer extends Component {
 

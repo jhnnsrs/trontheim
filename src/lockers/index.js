@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Card, Col, Container, Row} from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
-import Bioimages from "./smartcomponents/Bioimages";
 import LockerDetailCard from "./smartcomponents/LockerDetailCard";
 import UserDetailCard from "./smartcomponents/UserDetailCard";
 import {lockersStavanger} from "./stavanger";

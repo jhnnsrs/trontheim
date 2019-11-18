@@ -1,14 +1,8 @@
 import React, {Component} from "react";
 import type {NodeTesterStavanger} from "../stavanger";
-import {Button, Card, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
+import {Card} from "reactstrap";
 import {connectInstrument, StavangerContext} from "../../alta/react";
-import {NodeAsyncContainer, NodeTestAsyncContainer, NodeTestContainer} from "../../alta/react/Nodes";
-import * as _ from "lodash";
-
-
-
-import MaxISPOpera from "../../nodes/MaxISP"
-import {rootStavanger} from "../../rootStavanger";
+import {NodeTestAsyncContainer} from "../../alta/react/Nodes";
 
 
 // THIS IS CRUCIAL THAT IS IS A PURE COMPONENT

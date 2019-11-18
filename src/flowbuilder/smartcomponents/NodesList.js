@@ -1,9 +1,8 @@
 import React from "react";
-import {Button, ButtonGroup, Card, CardBody, CardColumns, CardSubtitle, CardTitle} from "reactstrap";
+import {Card, CardBody, CardColumns, CardSubtitle, CardTitle} from "reactstrap";
 import * as _ from "lodash";
 import {connectInstrument} from "../../alta/react";
 import type {FlowBuilderStavanger} from "../stavanger";
-import Octicon, {Trashcan} from "@githubprimer/octicons-react";
 import NodeDrag from "./NodeDrag";
 
 class List extends React.Component {

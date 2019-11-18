@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, NavLink} from "reactstrap";
+import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
 import Avatar from "react-avatar";
 import type {HeaderStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";

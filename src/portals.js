@@ -1,6 +1,4 @@
-
 import {rootStavanger} from "./rootStavanger";
-
 
 
 // Portals, they should vanish

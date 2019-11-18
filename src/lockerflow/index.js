@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Button, Card, CardBody, Col, Container, Row} from "reactstrap";
+import {Container, Row} from "reactstrap";
 import {lockerFlowStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
@@ -11,20 +11,10 @@ import LockerComponent from "./smartcomponents/LockerComponent";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
 import NodeGridContainer from "../flow/smartcomponents/NodeGridContainer";
 import LayoutsCard from "./smartcomponents/LayoutsCard";
+import Registry from "./smartcomponents/Registry";
 
 export class Bergen extends Component {
 
-
-    constructor() {
-        super();
-        this.state = {
-            grid: false,
-        }
-    }
-
-    changeLayout() {
-        this.setState({grid: !this.state.grid})
-    }
 
     render() {
         console.log("Rerender Major Template")
@@ -39,7 +29,7 @@ export class Bergen extends Component {
                                 <LayoutsCard/>
                             </Sidebar>
                             <MainContainer>
-                                <NodeGridContainer/>
+                                <Registry/>
                             </MainContainer>
                         </Row>
                     </Container>
@@ -51,4 +41,4 @@ export class Bergen extends Component {
 
 
 // dynamic:
-export  default connectOpera(lockerFlowStavanger)(orchestraterEpic)(Bergen)("lockerflow",rootStavanger);
+export  default connectOpera(lockerFlowStavanger)(orchestraterEpic)(Bergen)("!aa",rootStavanger);

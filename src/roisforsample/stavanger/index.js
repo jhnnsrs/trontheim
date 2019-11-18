@@ -1,13 +1,8 @@
-import {createStavanger} from "../../alta/stavanger";
-import type {HortenDetail} from "../../alta/horten/detail";
-import {createHortenDetail} from "../../alta/horten/detail";
-import * as constants from "../../constants"
 import type {Stavanger} from "../../alta/stavanger";
-import {createHortenList} from "../../alta/horten/list";
-import type {HortenList} from "../../alta/horten/list";
-import {createHortenTable} from "../../alta/horten/table";
+import {createStavanger} from "../../alta/stavanger";
 import type {HortenTable} from "../../alta/horten/table";
-import {DEF_DISPLAY, DEF_EXHIBIT, DEF_FLOW, DEF_REPRESENTATION, DEF_ROI, DEF_SAMPLE} from "../../constants/definitions";
+import {createHortenTable} from "../../alta/horten/table";
+import {DEF_ROI, DEF_SAMPLE} from "../../constants/definitions";
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
 

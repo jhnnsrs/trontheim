@@ -1,12 +1,10 @@
 import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
-import {DEF_EXPERIMENT, DEF_EXPERIMENTALGROUP, DEF_SAMPLE} from "../../constants/definitions";
-import {createHortenItem} from "../../alta/horten/item";
-import {createHortenTable} from "../../alta/horten/table";
+import {DEF_EXPERIMENTALGROUP, DEF_SAMPLE} from "../../constants/definitions";
 import type {HortenItem} from "../../alta/horten/item";
+import {createHortenItem} from "../../alta/horten/item";
 import type {HortenTable} from "../../alta/horten/table";
-import type {HortenMold} from "../../alta/horten/mold";
-import {createHortenMold} from "../../alta/horten/mold";
+import {createHortenTable} from "../../alta/horten/table";
 
 
 export type ExperimentalGroupStavanger = Stavanger & {

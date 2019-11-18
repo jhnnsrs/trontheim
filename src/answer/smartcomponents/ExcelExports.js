@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import type {AnswerStavanger} from "../stavanger";
-import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardTitle} from "reactstrap";
+import {Card, CardBody, CardSubtitle, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import ButtonToNavigate from "../../generics/ButtonToNavigate";
 import OsloLink from "../../generics/OsloLink";
 
 class ProfilesList extends Component {

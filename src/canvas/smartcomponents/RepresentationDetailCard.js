@@ -1,9 +1,7 @@
-import {Component} from "react";
-import React from "react";
+import React, {Component} from "react";
 import {Button, Card, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
-import Octicon,{Plus} from "@githubprimer/octicons-react";
+import Octicon, {Plus} from "@githubprimer/octicons-react";
 import connect from "react-redux/es/connect/connect";
-import * as sta from "../actions"
 
 class RepresentationDetailCard extends Component {
 

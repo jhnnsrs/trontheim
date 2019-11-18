@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Card, CardBody, CardImg, CardImgOverlay, CardSubtitle, CardText, CardTitle} from "reactstrap";
+import {Card, CardBody, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
 

@@ -6,7 +6,6 @@ import {mergeMap, takeUntil} from 'rxjs/operators';
 import rootEpic from './rootEpic';
 import rootReducer from './rootReducer';
 import {authMiddleware} from "redux-implicit-oauth2";
-import {composeWithDevTools} from "redux-devtools-extension";
 import reducerRegistry from "./routerRegistry";
 
 // export `history` to use in LoginApp.js, we using `createBrowserHistory`

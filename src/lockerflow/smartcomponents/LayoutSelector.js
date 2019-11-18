@@ -1,4 +1,4 @@
-import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
+import {ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
 import React from "react";
 
 export default class LayoutSelector extends React.Component {

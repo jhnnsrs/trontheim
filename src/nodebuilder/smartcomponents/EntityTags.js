@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../style.css';
 import {requestSuggets, setSelected} from "../actions";
-import { WithContext as ReactTags } from 'react-tag-input';
+import {WithContext as ReactTags} from 'react-tag-input';
 
 
 const KeyCodes = {

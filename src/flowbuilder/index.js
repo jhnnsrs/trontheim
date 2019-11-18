@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Container, Row} from 'reactstrap';
+import {Container, Row} from 'reactstrap';
 import './style.scss';
 import {connectOpera} from "../alta/react";
 import {orchestraterEpic} from "./orchestrator";

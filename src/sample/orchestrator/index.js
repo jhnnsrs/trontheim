@@ -1,5 +1,5 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {SampleStavanger} from "../stavanger";
 import * as constants from "../../constants";
 import {apiConnector, itemConnector} from "../../rootMaestros";

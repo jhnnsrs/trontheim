@@ -7,7 +7,6 @@ import type {HortenTable} from "../horten/table";
 import type {HortenPage} from "../horten/page";
 import {userIDPortal} from "../../portals";
 import {generateName} from "../../utils";
-import {graphEdgeMaestro} from "../maestro/graph-edge";
 import type {HortenNodes} from "../horten/nodes";
 
 

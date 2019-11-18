@@ -1,4 +1,3 @@
-
 import {Button} from "reactstrap";
 import React from "react";
 import type {HeaderStavanger} from "../stavanger";

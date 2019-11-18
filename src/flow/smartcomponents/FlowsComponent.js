@@ -1,10 +1,9 @@
 import React, {Component} from "react";
 import type {BioImageFlowStavanger} from "../stavanger";
-import {Button, Card, CardImg, CardImgOverlay, CardText, CardTitle, Row, Col, Container} from "reactstrap";
+import {Button, Card, Col, Container, Row} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
-import logo from '../..';
 import List from "../../generics/List";
+
 class FlowsComponent extends Component {
 
     render() {

@@ -2,8 +2,7 @@
 import React, {Component} from 'react';
 import {connectInstrument} from "../../alta/react";
 import type {OrganizerStavanger} from "../stavanger";
-import {DragDropContext, DraggableLocation, DragStart, DropResult} from "react-beautiful-dnd";
-import {Container} from "reactstrap";
+import {DragDropContext, DragStart, DropResult} from "react-beautiful-dnd";
 
 
 class DragAndDropArea extends Component {

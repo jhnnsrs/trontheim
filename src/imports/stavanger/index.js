@@ -5,10 +5,9 @@ import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
 import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
-import type {HortenForm} from "../../alta/horten/form";
+import type {HortenMold} from "../../alta/horten/mold";
 import {createHortenMold} from "../../alta/horten/mold";
 import {DEF_BIOIMAGE, DEF_LOCKER} from "../../constants/definitions";
-import type {HortenMold} from "../../alta/horten/mold";
 
 
 export type ImportsStavanger = Stavanger & {

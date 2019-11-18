@@ -1,5 +1,3 @@
-import {Container, Navbar, NavbarBrand, NavbarToggler} from "reactstrap";
-import {NavigationBar} from "./components/NavigationBar";
 import React from "react";
 import {connectOpera} from "../alta/react";
 import {rootStavanger} from "../rootStavanger";

@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import type {RoiForSampleStavanger} from "../stavanger";
 import {Card, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import ButtonToNavigate from "../../generics/ButtonToNavigate";
 
 class SampleDetailCard extends Component {
 
