@@ -185,10 +185,11 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                                         ...meta,
                                         model: type,
                                         target: nodeinstance.instance,
+                                        port: link.targetPort,
                                         origin: meta.nodeid
                                     }
                                 }
-                                actions.push(model.setNodeIn(nodeinstance.instance).request(outmodel))
+                                actions.push(model.setNodeIn(nodeinstance.instance).request(outmodel,outmodel.meta))
                                 actions.push(model.onNodeStatusUpdate.request({
                                     instance: nodeinstance.instanceid,
                                     status: definition.statusIN

@@ -12,6 +12,7 @@ import {MainContainer, Sidebar} from "../common/components/HomeRow";
 import NodeGridContainer from "../flow/smartcomponents/NodeGridContainer";
 import LayoutsCard from "./smartcomponents/LayoutsCard";
 import Registry from "./smartcomponents/Registry";
+import Show from "./smartcomponents/Show";
 
 export class Bergen extends Component {
 
@@ -27,6 +28,7 @@ export class Bergen extends Component {
                                 <FlowComponent/>
                                 <LockerComponent/>
                                 <LayoutsCard/>
+                                <Show/>
                             </Sidebar>
                             <MainContainer>
                                 <Registry/>

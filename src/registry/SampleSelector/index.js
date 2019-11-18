@@ -15,6 +15,7 @@ import type {HortenValue} from "../../alta/horten/value";
 import {createHortenValue} from "../../alta/horten/value";
 import {createHortenNode} from "../../alta/horten/node";
 import {createHortenMold} from "../../alta/horten/mold";
+import type {HortenNode} from "../../alta/horten/node";
 
 
 export type  SampleSelectorStavanger = Stavanger &{
@@ -22,7 +23,7 @@ export type  SampleSelectorStavanger = Stavanger &{
     locker: HortenValue,
     bioimage: HortenValue,
     samples: HortenTable,
-    edge: HortenEdge,
+    node: HortenNode,
     settings: HortenForm
 
 
