@@ -13,7 +13,7 @@ import {
 import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
-    createHaldenEpic,
+    createHaldenEpic, createHaldenHelper,
     createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
@@ -67,8 +67,7 @@ export const createHortenHTTPModel = createHortenModel({
 })
 
 export const createHortenHTTPHelpers = createHortenHelpers({
-    makeHttpRequest: (s, s1, hortenModel: HortenHTTPModel, hortenSelectors) => (data: any, meta, actions: HaldenActions) => {
-
+    makeHttpRequest: createHaldenHelper((hortenModel: HortenHTTPModel, hortenSelectors) => (data: any, meta, actions: HaldenActions) => {
 
         let request = { data: data,
             meta: {...meta, actions: actions}
@@ -77,6 +76,7 @@ export const createHortenHTTPHelpers = createHortenHelpers({
 
         return hortenModel.requestHttp.request(request)
     }
+    )
 
 
 })
