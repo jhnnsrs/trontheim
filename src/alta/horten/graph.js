@@ -28,9 +28,15 @@ export type HortenGraphModel = HortenModel & {
     setGraphFromFlow: HaldenActions,
     setGraphError: HaldenActions,
 
-    // NodeAPI
+    // Node API
     setNodeIn: (NodeID) => HaldenActions,
 
+    // Out
+    foreignNodeIn: HaldenActions,
+
+    // In
+    setNodeType: HaldenActions,
+    setNodeSettings: HaldenActions,
 
     // Node APIS
     onNodeStatusUpdate: HaldenActions,
@@ -49,7 +55,13 @@ export type HortenGraphModel = HortenModel & {
 export type HortenGraphSelectors = HortenSelectors & {
     getGraphShow: HaldenSelector,
     getGraph: HaldenSelector,
-    getLinksForNode: HaldenSelector,
+    getLinksForNode: (string) => HaldenSelector,
+    getNodeStatus: (string) => HaldenSelector,
+    getNode: (string) => HaldenSelector,
+    hasNodePopped: (string) => HaldenSelector,
+    getNodeType: (string) => HaldenSelector,
+    getNodeSettings: (string) => HaldenSelector,
+
 }
 export type HortenGraphHelpers = HortenHelpers & {}
 export type HortenGraphDefaultState = {
@@ -100,6 +112,9 @@ export const createHortenGraphModel = createHortenModel({
     onNodeOutput: createHaldenAction("NODE_OUTPUT", true),
     setNodeInput: createHaldenAction("SET_NODE_INPUT"),
     setNodeIn: createHaldenAction("NODE_INPUT_SET",false, true),
+    setNodeType: createHaldenAction("SET_NODE_TYPE"),
+    foreignNodeIn: createHaldenAction("SET_FOREIGN_NODE_IN"),
+    setNodeSettings: createHaldenAction("SET_NODE_SETTINGS"),
     setGraphFromFlow: createHaldenAction("FROM_FLOW_SET"),
     createShowFromGraph: createHaldenAction("CREATE_SHOW"),
     onNodeStatusUpdate: createHaldenAction("NODE_STATUS"),
@@ -112,17 +127,46 @@ export const createHortenGraphHelpers = createHortenHelpers()
 export const createHortenGraphSelectors = createHortenSelectors({
     getGraphShow: createHaldenSelector("show"),
     getGraph: createHaldenFunctionSelector((state) => state.graph),
-    getLinksForNode: createHaldenFunctionSelector((state, props, params) => {
-        let nodeid = params.nodeid
-        let diagram = state.diagram
+    getNodeStatus: createHaldenFunctionSelector((state, props, params) => {
+        let alias = params
+        let diagram = state.show
 
         let links = diagram.links
         let nodes = diagram.nodes
-        let node = nodes.find(node => node.nodeid == nodeid)
+        return nodes[alias]
+    }, true),
+    getNode: createHaldenFunctionSelector((state, props, params) => {
+        let alias = params
+        let diagram = state.show
 
-        // Read: All links that are targeting the node
-        return links.filter(item => item.target == node.id)
-    }, true)
+        let links = diagram.links
+        let nodes = diagram.nodes
+        return nodes[alias]
+    }, true),
+    hasNodePopped: createHaldenFunctionSelector((state, props, params) => {
+        let alias = params
+        let diagram = state.show
+
+        let links = diagram.links
+        let nodes = diagram.nodes
+        return nodes[alias].hasPopped
+    }, true),
+    getNodeType: createHaldenFunctionSelector((state, props, params) => {
+        let alias = params
+        let diagram = state.show
+
+        let links = diagram.links
+        let nodes = diagram.nodes
+        return nodes[alias].nodetype
+    }, true),
+    getNodeSettings: createHaldenFunctionSelector((state, props, params) => {
+        let alias = params
+        let diagram = state.show
+
+        let links = diagram.links
+        let nodes = diagram.nodes
+        return nodes[alias].defaultsettings
+    }, true),
 })
 
 
@@ -159,15 +203,14 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     const actions = [];
 
 
-
                     let mappedchain = links.filter(item => item.sourcePort.startsWith(type.toUpperCase())); //TODO: ID comparison
 
-                    console.log("Found the following Nodes for " + type, mappedchain)
+                    helpers.log("Found the following Nodes for " + type, mappedchain)
                     mappedchain = mappedchain.filter(link => nodes.find(node => {
                         return (node.instance === instance && node.id === link.source)
                     }) != null);
 
-                    console.log("Filtered and ended up with the folling nodes for " + type, mappedchain)
+                    helpers.log("Filtered and ended up with the folling nodes for " + type, mappedchain)
                     mappedchain.map(link => {
 
                         // Find the Attached Nodes
@@ -189,9 +232,25 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                                         origin: meta.nodeid
                                     }
                                 }
+
+                                // Checks if Node is ALien or Local
+                                let nodetype = selectors.getNodeType(nodeinstance.instance)(state$.value)
+                                helpers.log("Node has type of : ", nodetype,)
+
+                                // Depending on Type send to Veil
+                                if (nodetype === "pop") {
+                                    actions.push(model.foreignNodeIn.request(outmodel))
+                                    helpers.log("Pushing to foreignNode ",outmodel)
+                                } else {
+                                    actions.push(model.setNodeIn(nodeinstance.instance).request(outmodel,outmodel.meta))
+                                }
+
+
                                 actions.push(model.setNodeIn(nodeinstance.instance).request(outmodel,outmodel.meta))
-                                actions.push(model.onNodeStatusUpdate.request({
-                                    instance: nodeinstance.instanceid,
+
+
+                                    actions.push(model.onNodeStatusUpdate.request({
+                                    instance: nodeinstance.instance,
                                     status: definition.statusIN
                                 }))
 
@@ -249,7 +308,18 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     return [model.setShow.success({nodes: nodeDict, links: null})]
                 }
             )),
+    onPopNodeRequestPopNode: (action$, state$) =>
+        action$.pipe(
+            ofType(model.setNodeType.request),
+            mergeMap(action => {
+                    // TODO: Here an instantiation of the node type on veil should maybe happen?
+                    let instance = action.payload.instance
+                    let type = action.payload.type
+                    return [model.setNodeType.success(action.payload)]
+                }
+            )),
     onNodeStatusChanged: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),
+    setNodeSettingsPassThrough: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),
 }))
 
 
@@ -280,7 +350,18 @@ export const createHortenGraphReducer = createHortenReducer((model: HortenGraphM
         },
         [model.onNodeStatusUpdate.success]: (state, action) => {
             let nodes = {...state.show.nodes}
-            nodes[action.payload.instance] = action.payload.status
+            nodes[action.payload.instance]["status"] = action.payload.status
+            return {...state, show: {...state.show, nodes: nodes}};
+        },
+        [model.setNodeType.success]: (state, action) => {
+            let nodes = {...state.show.nodes}
+            nodes[action.payload.instance].nodetype = action.payload.type
+            return {...state, show: {...state.show, nodes: nodes}};
+        },
+        [model.setNodeSettings.success]: (state, action) => {
+            let nodes = {...state.show.nodes}
+            //TODO: Change defaultsettings to a settings parameter in stormdiagram
+            nodes[action.payload.instance].defaultsettings = action.payload.settings
             return {...state, show: {...state.show, nodes: nodes}};
         },
     })

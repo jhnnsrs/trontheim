@@ -47,7 +47,7 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
         }
 
         componentWillUnmount(): void {
-            console.log("Unmounting")
+            console.log("Unmounting called ")
             let {isRunning, children, registerEpic, killEpic, killPage, ...restProps} = this.props
             this.props.killPage(restProps)
         }
@@ -115,7 +115,7 @@ export function connectOpera<T>(stavanger: StavangerCreator<T>) {
                             </StavangerContext.Provider>)
                     }
                     catch (e) {
-                        console.log("Failure with Epic", alias)
+                        console.log("Failure with Epic ", alias, "| ", e)
                         return ((props) => "")
                     }
 

@@ -14,12 +14,14 @@ import {
 import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
-    createHaldenEpic,
+    createHaldenEpic, createHaldenHelper,
     createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
-import {Reducer} from "redux";
+import {Action, Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
+import {ATTENTION, buildStatus} from "../../constants/nodestatus";
+import type {StatusCode} from "../../constants/nodestatus";
 
 export type OutName = string
 
@@ -52,8 +54,11 @@ export type HortenNodeSelectors = HortenSelectors & {
 
 }
 
+export type HortenNodeHelpers = HortenHelpers & {
+    setStatus: (StatusCode, string) => Action,
+    requireUser: (string) => Action
 
-export type HortenNodeHelpers = HortenHelpers & {}
+}
 
 
 export type HortenNodeDefaultState = {
@@ -109,7 +114,10 @@ export const createHortenNodeModel = createHortenModel({
     requireUser: createHaldenAction("REQUIRE_USER"),
 })
 
-export const createHortenNodeHelpers = createHortenHelpers()
+export const createHortenNodeHelpers = createHortenHelpers({
+    setStatus: createHaldenHelper( (model) => (statuscode, message) => model.setStatus.request(buildStatus(statuscode, message))),
+    requireUser: createHaldenHelper( (model) => (message) => model.setStatus.request(buildStatus(ATTENTION.requireUserOnInput, message)))
+    })
 
 export const createHortenNodeSelectors = createHortenSelectors({
     getInput: createHaldenSelector("input"),
@@ -126,8 +134,6 @@ export const createHortenNodeEpic = createHortenEpic((model: HortenNodeModel, se
 
     const outepics = definition.ports.outs.map(
         out => {
-
-            console.log(out)
             return (action$, state$) => action$.pipe(
                 ofType(model.setOut(out.name).request),
                 map(action => {

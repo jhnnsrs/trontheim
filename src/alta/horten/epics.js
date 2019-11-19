@@ -1,15 +1,22 @@
 //@flow
 import type {Alias, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
-import {createHorten} from "./index";
+import {createHorten, createHorten2} from "./index";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {map, mergeMap, takeUntil} from "rxjs/operators";
+import {catchError, map, mergeMap, takeUntil} from "rxjs/operators";
 import {BehaviorSubject} from "rxjs";
-import {createHortenApi, createHortenHelpers, createHortenModel, createHortenSelectors} from "./creators";
+import {
+    createHortenApi,
+    createHortenEpic,
+    createHortenHelpers,
+    createHortenModel, createHortenReducer,
+    createHortenSelectors
+} from "./creators";
 import type {HaldenSelector} from "../halden";
 import {createHaldenAction, createHaldenOsloActions, createHaldenSelector} from "../halden";
 import {handleActions} from "redux-actions";
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
+import type {HortenEdgeDefinition} from "./edge";
 
 export type HortenEpicsModel = HortenModel &{
     registerEpic: HaldenActions,
@@ -20,13 +27,16 @@ export type HortenEpicsSelectors = HortenSelectors & {
     getEpics: HaldenSelector
 }
 
-export type HortenEpicsApi = HortenApi
 export type HortenEpicsHelpers = HortenHelpers
+
+export type HortenEpicsDefinition = {
+    type: HortenType
+}
 
 export type HortenEpics = {
     model: HortenEpicsModel,
     selectors: HortenEpicsSelectors,
-    api: HortenEpicsApi,
+    definition: HortenEdgeDefinition,
     helpers: HortenEpicsHelpers,
     epic: Epic,
     reducer: Reducer,
@@ -46,12 +56,9 @@ export const createHordenEpicsSelectors = createHortenSelectors({
 })
 
 
-export const createHortenEpicsApi = createHortenApi({
-    fetchItem: () => null
-})
 
 
-export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: HortenEpicsSelectors, api: HortenEpicsApi ) => {
+export const createHortenEpicsEpic = createHortenEpic(( model: HortenEpicsModel, selectors: HortenEpicsSelectors, helpers: HortenEpicsHelpers ) => {
 
     // PARTSTART: EPICS
     // The Nodes Epic will carry along the EPICS of all the spawned Node
@@ -66,7 +73,11 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
 
     const rootNodeEpics = combineEpics(dummyEpic)
 
-    let nodeepic$ = new BehaviorSubject({epic: rootNodeEpics, end: createHaldenOsloActions("I","WILL","DIE"), alias:"DUMMY"});
+    let nodeepic$ = new BehaviorSubject({
+        epic: rootNodeEpics,
+        end: createHaldenOsloActions("I", "WILL", "DIE"),
+        alias: "DUMMY"
+    });
 
     const onNodeEpicsChangedLoadEpicsEpic = (action$, ...rest) =>
         nodeepic$.pipe(
@@ -75,13 +86,19 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
             // one, unless an EPIC_END action is dispatched first,
             // which would cause the old one(s) to be unsubscribed
             mergeMap(epicdict => {
-                    let {epic, end, alias } = epicdict
-                    console.log("Adding epic "+ alias)
+                    let {epic, end, alias} = epicdict
                     return epic(action$, ...rest).pipe(
                         takeUntil(action$.pipe(
                             ofType(end.request),
-                            map(end => {console.log("Ending Epic for '"+alias + "' gracefully"); return end})
-                        ))
+                            map(end => {
+                                helpers.log("===== Ending Epic for '" + alias + "' gracefully =====");
+                                return end
+                            })
+                        )),
+                        catchError((error, source) => {
+                            console.error("Error in orchestrator in " + alias + " | " + '\n', error);
+                            return source;
+                        })
                     )
                 }
             )
@@ -93,7 +110,7 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
             mergeMap(action => {
                 // TODO: mabye by buffer? First make sure old graph is destroyed
                 let {epic, end, alias, pageInit} = action.meta
-                console.log("EPIC SUCCESS")
+                helpers.log("Epic for "  + alias + " successfully registered ")
                 return [pageInit]
 
             }));
@@ -103,17 +120,17 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
         action$.pipe(
             ofType(model.registerEpic.request),
             mergeMap(action => {
-                console.log("CALLED")
                 // TODO: mabye by buffer? First make sure old graph is destroyed
                 let {epic, end, alias, pageInit} = action.meta
+
+                helpers.log("Registering Epic for " + alias)
                 try {
                     nodeepic$.next({epic: epic, end: end, alias: alias})
-                }
-                catch (e) {
-                    console.log("Failure Registering Epic of '", alias, "' with", model.alias)
+                } catch (e) {
+                    helpers.log("Failure Registering Epic of '", alias, "' with", model.alias)
 
                 }
-                return [model.registerEpic.success(action.payload,action.meta)]
+                return [model.registerEpic.success(action.payload, action.meta)]
 
             }));
 
@@ -122,14 +139,12 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
         action$.pipe(
             ofType(model.killEpic.request.toString()),
             mergeMap(action => {
-                const { end, killPage, alias} = action.payload
+                const {end, killPage, alias} = action.payload
 
-                return [killPage,model.killEpic.success({alias: alias, end: end}),]
-
+                return [killPage, model.killEpic.success({alias: alias, end: end}),]
 
 
             }));
-
 
 
     const killEpic = (action$, state$) =>
@@ -143,19 +158,15 @@ export const createHortenEpicsEpic = (model: HortenEpicsModel, selectors: Horten
             }));
 
 
-
-
-
-
-
-    return combineEpics(
+    return {
         onNodeEpicsChangedLoadEpicsEpic,
         registerEpic,
         onRegisterEpicSuccess,
         killEpicRequest,
         killEpic
-    )
-};
+    }
+}
+);
 
 export type HortenEpicsDefaultState = {
     running: any,
@@ -166,32 +177,30 @@ const initialEpicsState = {
     touched: false
 };
 
-export const createHortenEpicsReducer =  (model: HortenEpicsModel, defaultState: HortenEpicsDefaultState = initialEpicsState): Reducer => handleActions(
+export const createHortenEpicsReducer =  createHortenReducer((model: HortenEpicsModel): Reducer => (
     {
-        [model.killEpic.success.toString()]: (state, action) => {
+        [model.killEpic.success]: (state, action) => {
             let newstate = {...state, touched: true}
             //TODO: Remove Killed Epic from list
             delete newstate.running[action.meta.alias];
             return newstate
 
         },
-        [model.registerEpic.success.toString()]: (state, action) => {
+        [model.registerEpic.success]: (state, action) => {
             let newdict = {}
             newdict[action.meta.alias] = action.meta.end.request.toString()
             return {...state, touched: true, running: Object.assign(state.running,newdict)}
         },
-    },
-    defaultState
-);
+    }
+));
 
 
-export function createHortenEpics(type: HortenType): ((Alias) => HortenEpics) {
+export function createHortenEpics(definition: HortenEpicsDefinition): ((Alias) => HortenEpics) {
     let modelCreator = createHortenEpicsModel;
-    let apiCreator = createHortenEpicsApi;
     let selectorsCreator = createHordenEpicsSelectors;
     let helperCreator = createHortenEpicsHelpers;
     let epicCreator = createHortenEpicsEpic;
     let reducerCreator = createHortenEpicsReducer;
 
-    return createHorten(type, modelCreator, apiCreator, selectorsCreator, helperCreator, epicCreator, reducerCreator)
+    return createHorten2(definition, modelCreator, selectorsCreator, helperCreator, epicCreator, reducerCreator, initialEpicsState)
 }

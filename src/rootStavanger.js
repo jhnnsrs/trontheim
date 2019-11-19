@@ -16,6 +16,8 @@ import type {HortenHTTP} from "./alta/horten/http";
 import {createHortenHTTP} from "./alta/horten/http";
 import type {HortenVeil} from "./alta/horten/veil";
 import {createHortenVeil} from "./alta/horten/veil";
+import {createHortenCurtain} from "./alta/horten/curtain";
+import type {HortenCurtain} from "./alta/horten/curtain";
 
 
 export type RootStavanger = Stavanger & {
@@ -27,6 +29,7 @@ export type RootStavanger = Stavanger & {
     arnheim: HortenRestAPI,
     http: HortenHTTP,
     veil: HortenVeil,
+    curtain: HortenCurtain
 }
 
 const FakeAPI = {
@@ -37,14 +40,15 @@ const FakeAPI = {
 }
 
 export const rootStavangerCreator= createStavanger({
-    epics: createHortenEpics("epics"),
+    epics: createHortenEpics({type: "epics"}),
     api: createHortenRestAPI({type: "OSLO"}),
     fakeapi: createHortenFakeAPI({type: "NANA", map: FakeAPI }),
     oslo: createHortenOslo({type: "OSLO"}),
     arnheim: createHortenRestAPI({type: "ARNHEIM"}),
     user: createHortenUser({type: "User", url: "me"}),
     http: createHortenHTTP({type: "http"}),
-    veil: createHortenVeil({type: "veil", alienApi: "foreignnode", statusApi: "foreignnodestatus"})
+    veil: createHortenVeil({type: "veil", alienApi: "foreignnode", statusApi: "foreignnodestatus"}),
+    curtain: createHortenCurtain({type: "veil", alienApi: "foreignnode", statusApi: "foreignnodestatus"})
 })
 
 export const rootStavanger: RootStavanger = rootStavangerCreator("root")

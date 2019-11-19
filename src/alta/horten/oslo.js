@@ -76,7 +76,7 @@ export const createHortenOsloModel = createHortenModel({
     leaveRoomServer: createHaldenAction("LEAVE_ROOM_SERVER"),
 })
 
-export const createHortenOsloHelpers = createHortenHelpers()
+export const createHortenOsloHelpers = createHortenHelpers({})
 
 export const createHordenOsloSelectors = createHortenSelectors({
     getCurrentAuth: createHaldenSelector("currentAuth"),

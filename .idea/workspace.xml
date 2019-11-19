@@ -1,224 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/alta/conductor/node.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/alta/maestro/page-registry.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/edge/BioImageWatcher/Opera.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/edge/BioImageWatcher/StartButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/edge/BioImageWatcher/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/edge/BioImageWatcher/orchestrater.js" afterDir="false" />
+    <list default="true" id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/alta/horten/combiners.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/alta/horten/curtain.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/SelectionList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/SelectionShower.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/orchestrater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/LineTransformer/LineRectComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/LineTransformer/container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/LineTransformer/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/RegExSelector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/SampleShow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/orchestrater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/SelectionList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/SelectionShower.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/orchestrater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/TwoDShow/TwoDShowComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/TwoDShow/container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/TwoDShow/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/TwoDShow/orchestrater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/selectorMaestro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/updaterMaestro.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/conductor/collectorconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/collectorconductor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/conductor/foreignconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/foreignconductor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/conductor/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/conductor/graphLayoutConductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/graphLayoutConductor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/conductor/parserconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/parserconductor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/conductor/taskconductor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/conductor/taskconductor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/halden/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/halden/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/button.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/creators.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/creators.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/cube.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/cube.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/edge.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/epics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/epics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/fabric.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/fabric.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/fakeapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/fakeapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/form.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/mold.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/mold.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/nodes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/nomogram.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/nomogram.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/oauth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/oauth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/oslo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/oslo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/registry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/restapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/value.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/value.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/veil.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/veil.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/autoreset.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/autoreset.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/edge-graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/edge-graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/edge-models.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/edge-models.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/graph-edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/graph-edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/graph-node.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/item-oslo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/item-oslo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/item-restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/item-restapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/node-graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/node-graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/node-models.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/page-edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/page-edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/page-node.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/page-nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/page-nodes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/page-settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/page-settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/table-oslo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/table-oslo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/table-restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/table-restapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/oslo/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/oslo/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/oslo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/oslo/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/react/FinalForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/FinalForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/react/FinalMold.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/FinalMold.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/react/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/react/Nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/Nodes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/react/EpicRegistry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/EpicRegistry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/react/StandardOrchestration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/StandardOrchestration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/react/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/stavanger/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bioimageflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/bioimageflow/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bioimageflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/bioimageflow/stavanger/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/displayflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/displayflow/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/displayflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/displayflow/stavanger/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exhibitflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/exhibitflow/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exhibitflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/exhibitflow/stavanger/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/flow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flow/stavanger/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/flowbuilder/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flowbuilder/stavanger/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/landing/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/landing/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/nodestatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/nodestatus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fabric/LineRoi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/fabric/LineRoi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/flow/smartcomponents/NodeGridContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flow/smartcomponents/NodeGridContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/header/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/AISEvaluator/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/AISEvaluator/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/AISEvaluator/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/AISEvaluator/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/AISEvaluator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/AISEvaluator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioConverter/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioConverter/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioConverter/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioConverter/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioConverter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioConverter/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioImageWatcher/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioImageWatcher/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioImageWatcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioImageWatcher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioImageWatcher/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioImageWatcher/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioMeta/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioMeta/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioMeta/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioMeta/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioMeta/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioMeta/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioSeriesCollector/BioSeriesList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioSeriesCollector/BioSeriesList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioSeriesCollector/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioSeriesCollector/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioSeriesCollector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioSeriesCollector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioSeriesCollector/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioSeriesCollector/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioSeriesFilter/FilterOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioSeriesFilter/FilterOptions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioSeriesFilter/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioSeriesFilter/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioSeriesFilter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioSeriesFilter/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/BioSeriesFilter/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/BioSeriesFilter/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ClusterDataShow/DataShowComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ClusterDataShow/DataShowComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ClusterDataShow/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ClusterDataShow/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ClusterDataShow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ClusterDataShow/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ClusterEvaluator/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ClusterEvaluator/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ClusterEvaluator/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ClusterEvaluator/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ClusterEvaluator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ClusterEvaluator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/DisplaySelector/DisplayList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/DisplaySelector/DisplayList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/DisplaySelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/DisplaySelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/DisplaySelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/DisplaySelector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/DisplayWatcher/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/DisplayWatcher/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/DisplayWatcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/DisplayWatcher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/DisplayWatcher/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/DisplayWatcher/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitMetamorpher/ImageMutaterComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitMetamorpher/ImageMutaterComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitMetamorpher/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitMetamorpher/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitSelector/RepresentationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitSelector/RepresentationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitSelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitSelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitSelector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitShow/FlatCube.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitShow/FlatCube.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitShow/NiftiControls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitShow/NiftiControls.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitShow/NiftiCube.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitShow/NiftiCube.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitShow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitShow/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitWatcher/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitWatcher/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitWatcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitWatcher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExhibitWatcher/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExhibitWatcher/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExperimentAdder/ExperimentSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExperimentAdder/ExperimentSelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExperimentAdder/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExperimentAdder/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExperimentSelector/ExperimentList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExperimentSelector/ExperimentList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExperimentSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExperimentSelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ExperimentSelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ExperimentSelector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ForeignMasker/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ForeignMasker/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ForeignMasker/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ForeignMasker/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ForeignMasker/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ForeignMasker/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ImageMetamorpher/ImageMutaterComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ImageMetamorpher/ImageMutaterComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ImageMetamorpher/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ImageMetamorpher/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ImageMetamorpher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ImageMetamorpher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/Impulsor/ExperimentSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/Impulsor/ExperimentSelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/Impulsor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/Impulsor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/KafkaingNode/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/KafkaingNode/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/KafkaingNode/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/KafkaingNode/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/KafkaingNode/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/KafkaingNode/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/LineTransformer/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/LineTransformer/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/LineTransformer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/LineTransformer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/LockerIterator/RepresentationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/LockerIterator/RepresentationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/LockerIterator/SentBioImages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/LockerIterator/SentBioImages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/LockerIterator/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/LockerIterator/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/LockerWatcher/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/LockerWatcher/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/LockerWatcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/LockerWatcher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/LockerWatcher/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/LockerWatcher/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/MaskToTransformation/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/MaskToTransformation/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/MaskToTransformation/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/MaskToTransformation/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/MaskToTransformation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/MaskToTransformation/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/MaxISP/Documentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/MaxISP/Documentation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/MaxISP/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/MaxISP/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/MaxISP/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/MaxISP/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/NiftiMetamorpher/ImageMutaterComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/NiftiMetamorpher/ImageMutaterComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/NiftiMetamorpher/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/NiftiMetamorpher/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/NiftiMetamorpher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/NiftiMetamorpher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionMasker/ReflectionMaskerComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionMasker/ReflectionMaskerComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionMasker/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionMasker/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionMasker/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionMasker/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionShow/ReflectionShowComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionShow/ReflectionShowComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionShow/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionShow/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionShow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionShow/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionWatcher/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionWatcher/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionWatcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionWatcher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/ReflectionWatcher/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/ReflectionWatcher/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RegExtractor/RegExSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RegExtractor/RegExSelector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Node.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Registry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Show.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nodes/RegExtractor/SampleShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RegExtractor/SampleShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RepresentationGate/ExperimentSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RepresentationGate/ExperimentSelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RepresentationGate/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RepresentationGate/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RepresentationSelector/RepresentationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RepresentationSelector/RepresentationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RepresentationSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RepresentationSelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RepresentationSelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RepresentationSelector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiIterator/RepresentationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiIterator/RepresentationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiIterator/SentBioImages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiIterator/SentBioImages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiIterator/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiIterator/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiIterator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiIterator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiSelector/RoiList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiSelector/RoiList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiSelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiSelector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiShower/Rois.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiShower/Rois.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiShower/TwoDShowComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiShower/TwoDShowComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RoiShower/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RoiShower/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleFromNameUpdater/ExperimentSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleFromNameUpdater/ExperimentSelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleFromNameUpdater/ExtractedInformationDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleFromNameUpdater/ExtractedInformationDisplay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleFromNameUpdater/SampleShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleFromNameUpdater/SampleShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleSelector/ExperimentList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleSelector/ExperimentList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleSelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleSelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleSelector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleUpdater/ExperimentSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleUpdater/ExperimentSelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleUpdater/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleUpdater/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleUpdater/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleUpdater/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleWatcher/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleWatcher/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SampleWatcher/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SampleWatcher/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SliceLineTransformer/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SliceLineTransformer/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SliceLineTransformer/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SliceLineTransformer/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SliceLineTransformer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SliceLineTransformer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SlicedMaxISP/SlicedMaxISPSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SlicedMaxISP/SlicedMaxISPSettings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SlicedMaxISP/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SlicedMaxISP/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/SlicedMaxISP/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/SlicedMaxISP/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationCollector/BioSeriesList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationCollector/BioSeriesList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationCollector/Opera.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationCollector/Opera.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationCollector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationCollector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationCollector/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationCollector/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationMutater/ImageMutaterComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationMutater/ImageMutaterComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationMutater/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationMutater/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationMutater/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationMutater/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationSelector/TransformationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationSelector/TransformationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationSelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TransformationSelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TransformationSelector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TwoDShow/PopButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TwoDShow/PopButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TwoDShow/TwoDShowComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TwoDShow/TwoDShowComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/TwoDShow/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/TwoDShow/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/UserSelector/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/UserSelector/UserList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/UserSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/UserSelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/UserSelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/UserSelector/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/lib/AlienButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/lib/AlienButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/lib/NodeFrame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/lib/NodeFrame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/lib/NodeHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/lib/NodeHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/lib/NodeNonBlocker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/lib/NodeNonBlocker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/lib/NonBlockingNodeFrame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/lib/NonBlockingNodeFrame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/lib/PopButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/lib/PopButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/lib/meastros.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/lib/meastros.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sampleflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sampleflow/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sampleflow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sampleflow/stavanger/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/LockerWatcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LockerWatcher/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/LockerWatcher/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LockerWatcher/orchestrater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/SampleSelector/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/SampleSelector/orchestrater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/NodeHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NodeHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/NonBlockingNodeFrame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NonBlockingNodeFrame.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/PopButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/PopButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/nodeMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/nodeMaestro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rootStavanger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rootStavanger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -243,7 +89,7 @@
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="JsFlowSettings">
-    <service-enabled>false</service-enabled>
+    <service-enabled>true</service-enabled>
     <exe-path>$USER_HOME$/AppData/Roaming/npm/node_modules/flow-bin</exe-path>
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
@@ -253,17 +99,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/alta/maestro" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/alta/horten" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\alta\maestro" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\alta\horten" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\edge" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\alta\conductor" />
+      <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\alta\horten" />
+      <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\registry" />
+      <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\alta\maestro" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -279,44 +126,50 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
+    <configuration name="Debug Flow" type="JavascriptDebugType" uri="http://localhost:3000/lockerflow/29/locker/6">
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="" />
+      <changelist id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="" />
       <created>1572446602133</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572446602133</updated>
-      <workItem from="1572446603393" duration="9690000" />
-      <workItem from="1573722066794" duration="8304000" />
-      <workItem from="1573730574559" duration="8360000" />
+      <workItem from="1572446603393" duration="16525000" />
+      <workItem from="1573212085381" duration="44000" />
+      <workItem from="1573212172132" duration="2044000" />
+      <workItem from="1573643779758" duration="1688000" />
+      <workItem from="1573748620977" duration="8000" />
+      <workItem from="1574095388551" duration="9120000" />
+      <workItem from="1574154187413" duration="36389000" />
     </task>
-    <task id="LOCAL-00001" summary="Upgraded Nodes to Horten2&#10;FSA Compliance and Action Sanatization of Devstart">
-      <created>1573730817840</created>
+    <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
+      <created>1572457230437</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1573730817840</updated>
+      <updated>1572457230437</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="trying to make nodes work, weird epic issues">
+      <created>1572462471526</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1572462471526</updated>
+    </task>
+    <task id="LOCAL-00003" summary="got rid of the non fsa compliant devtools for checking">
+      <created>1573644052668</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1573644052668</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,23 +189,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Got rid of custom css" />
-    <MESSAGE value="Upgraded Nodes to Horten2&#10;FSA Compliance and Action Sanatization of Devstart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upgraded Nodes to Horten2&#10;FSA Compliance and Action Sanatization of Devstart" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/alta/maestro/page-nodes.js</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/alta/conductor/node.js</url>
-          <line>32</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="trying to make nodes work, weird epic issues" />
+    <MESSAGE value="got rid of the non fsa compliant devtools for checking" />
+    <option name="LAST_COMMIT_MESSAGE" value="got rid of the non fsa compliant devtools for checking" />
   </component>
 </project>

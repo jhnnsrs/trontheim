@@ -55,8 +55,8 @@ class NodeHeader extends React.Component<Props,State> {
                 <Row>
                     <Col className="col-auto mr-auto">{this.props.edge.name}</Col>
                     <Col>{this.props.edge.attention && this.props.edge.attention}</Col>
-                    {this.props.edge.isPoppable && <Col><PopButton/></Col>}
-                    {this.props.edge.isAlienable && <Col><AlienButton/></Col>}
+
+                    {this.props.isPoppable && <Col><PopButton/></Col>}
                 </Row>
             </CardHeader>)
     }
@@ -64,6 +64,7 @@ class NodeHeader extends React.Component<Props,State> {
 
 const mapStavangerToProps = (stavanger: EdgeStavanger) => ({
     edge: stavanger.node.selectors.getModel,
+    isPoppable: (_) => stavanger.node.definition.isPoppable
 });
 
 const mapStavangerToDispatch  = (stavanger: EdgeStavanger) =>  ({

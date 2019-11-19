@@ -7,6 +7,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
 
     let apiModel = rootStavanger.api.model
     let osloModel = rootStavanger.oslo.model
+    let oslo = rootStavanger.oslo
     let userModel = rootStavanger.user.model
     let httpModel = rootStavanger.http.model
 
@@ -16,9 +17,9 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
             mergeMap(action => {
                 let token = window.localStorage.getItem("token");
                 let osloconfig = window.localStorage.getItem("osloconfig")
-                console.log("OSLO" , osloconfig)
                 let config = osloconfig ? JSON.parse(osloconfig): null
-                console.log(config)
+
+                oslo.helpers.log("Connected to Oslo '" + config.name+ "' at '" + config.rooturl)
                 if (token!= null & config != null) {
                     return [
                         apiModel.setAuth.request({token: token, rooturl: config.rooturl}),

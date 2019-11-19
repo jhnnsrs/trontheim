@@ -9,7 +9,6 @@ import LoadAfterProfile from "../authentification/LoadAfterProfile";
 import FlowComponent from "./smartcomponents/FlowComponent";
 import LockerComponent from "./smartcomponents/LockerComponent";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
-import NodeGridContainer from "../flow/smartcomponents/NodeGridContainer";
 import LayoutsCard from "./smartcomponents/LayoutsCard";
 import Registry from "./smartcomponents/Registry";
 import Show from "./smartcomponents/Show";
@@ -43,4 +42,4 @@ export class Bergen extends Component {
 
 
 // dynamic:
-export  default connectOpera(lockerFlowStavanger)(orchestraterEpic)(Bergen)("!aa",rootStavanger);
+export  default connectOpera(lockerFlowStavanger)(orchestraterEpic)(Bergen)("lockerflow",rootStavanger);

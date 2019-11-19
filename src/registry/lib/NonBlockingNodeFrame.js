@@ -42,9 +42,7 @@ export default class NodeFrame extends React.Component<Props,State> {
 
 
     render() {
-        if(this.state.show) {
-            if(this.props.isGrid){
-                return (
+        return (
                 <React.Fragment>
                     <NodeHeader name={this.props.name}/>
                     <NodeNonBlocker>
@@ -55,30 +53,6 @@ export default class NodeFrame extends React.Component<Props,State> {
                 </React.Fragment>
                     )
             }
-            else return (
-                <Card className="mt-2">
-                    <CardBody>
-                        <CardTitle onClick={this.toggleShow}>{this.props.name}</CardTitle>
-                        {this.props.children}
-                    </CardBody>
-                </Card>)
-        }
-        else {
-            if(this.props.isGrid){
-                return (
-                    <React.Fragment>
-                        <NodeHeader name={this.props.name}/>
-                    </React.Fragment>
-                )
-            }
-            else return (
-                <Card inverse className="mt-2 bg-dark">
-                    <CardBody>
-                        <CardTitle onClick={this.toggleShow}>{this.props.name}</CardTitle>
-                    </CardBody>
-                </Card>
 
-            )
-        }
-    }
+
 }

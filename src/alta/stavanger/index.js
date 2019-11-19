@@ -20,8 +20,8 @@ export function createStavanger<T>(list: StavangerCreator):((Alias) => Stavanger
     return function (alias: Alias) {
         // Returns It
         let preliminaryList = {
+            page: createHortenPage({type: "page"}), //Page Can be overwritten
             ...list,
-            page: createHortenPage({type: "page"})
 
         }
         let finallist = {}

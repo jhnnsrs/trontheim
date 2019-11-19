@@ -11,15 +11,15 @@ const GraphShow = (props) =>
         <Row>
             <Dict dict={props.graph.nodes}>
                 {(node) => {
-                    return(<Col>
-                        <Card
-                            style={{backgroundColor: "#ffffff"}}>
+                    return(
+                        <Card key={node.id}
+                            style={{backgroundColor: "#ffFFff"}}>
                             <CardBody>
                                 {node.name}
                                 {node.status && <p>{node.status}</p>}
                             </CardBody>
                         </Card>
-                    </Col>)
+                    )
                 }
                 }
             </Dict>

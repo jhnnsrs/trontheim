@@ -1,31 +1,43 @@
 import {Button} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
-import type {TwoDShowStavanger} from "./index";
+import type {HortenGraph} from "../../alta/horten/graph";
+import type {HortenRegistry} from "../../alta/horten/registry";
+import type {HortenNode} from "../../alta/horten/node";
+
+export interface GraphStavanger {
+    graph: HortenGraph,
+    registry: HortenRegistry
+}
+
+
+export interface NodeStavanger {
+    parent: GraphStavanger,
+    node: HortenNode
+}
+
 
 class StartButton extends Component<any,any> {
     render() {
 
-        let node = this.props.edge
+        let type = this.props.type
         return (
             <React.Fragment>
-                {!this.props.hasPopped && <Button size="sm" outline  onClick={() => this.props.start(node)}> Pop</Button>}
-                {this.props.hasPopped && <Button size="sm" outline  onClick={() => this.props.unpop(node)}>Unpop </Button>}
+                {(type === undefined) && <Button size="sm" outline  onClick={() => this.props.start()}> Pop</Button>}
+                {(type === "pop") && <Button size="sm" outline  onClick={() => this.props.unpop()}>Unpop </Button>}
             </React.Fragment>
         );
     }
 }
 
-const mapStavangerToProps = (stavanger: TwoDShowStavanger) => ({
-    hasPopped: stavanger.node.selectors.hasPopped,
-    edge: stavanger.node.selectors.getModel
+const mapStavangerToProps = (stavanger: NodeStavanger) => ({
+    type: stavanger.parent.graph.selectors.getNodeType(stavanger.node.alias),
+    node: stavanger.node.selectors.getModel
 });
 
-const mapStavangerToDispatch  = (stavanger: TwoDShowStavanger) =>  ({
-    start: (node) => stavanger.node.model.pop.request(node),
-    unpop: (node) => stavanger.node.model.unpop.request(node),
-    alienate: (node) => stavanger.node.model.alienate.request(node),
-    homecoming: (node) => stavanger.node.model.homecoming.request(node),
+const mapStavangerToDispatch  = (stavanger: NodeStavanger) =>  ({
+    start: () => stavanger.node.model.pop.request(),
+    unpop: () => stavanger.node.model.unpop.request(),
 });
 
 

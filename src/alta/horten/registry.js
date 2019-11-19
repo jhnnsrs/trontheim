@@ -107,10 +107,9 @@ export const createHortenRegistryEpic = createHortenEpic((model: HortenRegistryM
                     let registerActions = nodes.map(node => model.register(node.instance).request.toString())
                     let actionStreams = registerActions.map(action => action$.ofType(action))
 
-                    console.log(registerActions)
                     return zip(...actionStreams).pipe(
                         mergeMap(actions => {
-                            console.log(actions)
+                            helpers.log("All Nodes Registered")
                             return [model.allNodesRegistered.request("YES")]
                         }
                     )
@@ -121,7 +120,6 @@ export const createHortenRegistryEpic = createHortenEpic((model: HortenRegistryM
             action$.pipe(
                 ofType(model.setNodesFromGraph.request),
                 mergeMap(action => {
-                    console.log("Setting Nodes from Graph", action.payload)
                     const graph = action.payload
                     let nodes = graph.nodes
 

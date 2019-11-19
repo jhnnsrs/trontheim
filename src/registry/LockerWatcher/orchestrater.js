@@ -8,6 +8,8 @@ import type {HortenGraph} from "../../alta/horten/graph";
 import type {HortenRegistry} from "../../alta/horten/registry";
 import type {HortenNodeDefinition} from "../../alta/horten/node";
 import {buildStatus, GRAPHERROR} from "../../constants/nodestatus";
+import {nodeMaestro} from "../nodeMaestro";
+import {combineOrchestrator} from "../../alta/react/EpicRegistry";
 
 
 export const orchestraterEpic = (stavanger: LockerWatcherStavanger) => {
@@ -16,54 +18,8 @@ export const orchestraterEpic = (stavanger: LockerWatcherStavanger) => {
 
     const input = stavanger.locker
     const node = stavanger.node
-    const page = stavanger.page
 
-    const graph: HortenGraph = stavanger.parent.graph
-    const registry: HortenRegistry = stavanger.parent.registry
-
-    const definition: HortenNodeDefinition = stavanger.node.definition
-
-    const onNodeInputReceived = (action$, state$) =>
-        action$.pipe(
-            ofType(graph.model.setNodeIn(stavanger.node.alias).request),
-            mergeMap((action) => {
-                    console.log(action)
-
-                    let ports =  definition.ports.ins
-                    let port = action.meta.port
-                    let type = action.meta.type
-
-                    let mappedPort = ports.find(item => item.name === port)
-                    console.log(mappedPort)
-                    // Check if Correctly Set
-                    if (mappedPort.type !== type) {
-                        return [node.model.setStatus.request(buildStatus(GRAPHERROR.connectionError,"Type mismatch on Node"))]
-                    }
-
-
-                    return [ stavanger[mappedPort.map].model.setItem.request(action.payload)]
-                }
-            )
-        )
-
-    const onPageInitRegisterNode = (action$, state$) =>
-        action$.pipe(
-            ofType(page.model.initPage.success),
-            mergeMap((action) => {
-                    console.log(action)
-                    return [registry.model.register(node.alias).request(node.alias)]
-                }
-            )
-        )
-
-    const onModelOutPutToGraph = (action$, state$) =>
-        action$.pipe(
-            ofType(node.model.setOutput.success),
-            mergeMap((action) => {
-                    return [graph.model.onNodeOutput.request(action.payload,action.meta)]
-                }
-            )
-        )
+    const addin1 = nodeMaestro(stavanger , null)
 
 
 
@@ -86,12 +42,11 @@ export const orchestraterEpic = (stavanger: LockerWatcherStavanger) => {
         apiConnector(stavanger.lockers)
     )
 
-    return combineEpics(
-        apiConnections,
-        onInputModelIsSetAndStartPressed,
-        onNodeInputReceived,
-        onModelOutPutToGraph,
-        onPageInitRegisterNode,)
+    return combineOrchestrator(stavanger, {
+            apiConnections,
+            addin1,
+            onInputModelIsSetAndStartPressed,
+        })
 }
 
 export default orchestraterEpic

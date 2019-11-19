@@ -6,7 +6,7 @@ const Loading = (props) => <div> Loading</div>
 
 export const AsyncStavanger = (nodeid, path, rootstavanger = rootStavanger) =>
     React.lazy(() => import("../../registry/" + path).then(m => {
-        console.log("loaded new "+nodeid)
+        console.log("==== Loaded '" + path + "' =====")
         let container = m.default(nodeid, rootstavanger);
         return { default: container}
     }).catch(e => console.log(e)))
@@ -16,7 +16,6 @@ export const AsyncStavanger = (nodeid, path, rootstavanger = rootStavanger) =>
 const Node = (props) =>
     <StavangerContext.Consumer>
         {parentStavanger => {
-            console.log("Node Called")
             let NanaContainer = AsyncStavanger(props.instance, props.path, parentStavanger)
             let newprops = {...props}
 

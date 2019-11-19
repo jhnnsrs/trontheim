@@ -14,7 +14,7 @@ import type {HaldenAccesor, HaldenSelector} from "../halden";
 import {
     createHaldenAccessor,
     createHaldenAction,
-    createHaldenEpic,
+    createHaldenEpic, createHaldenHelper,
     createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
@@ -33,7 +33,9 @@ export type HortenPageSelectors = HortenSelectors & {
     getProp: HaldenAccesor
 }
 
-export type HortenPageHelpers = HortenHelpers & {}
+export type HortenPageHelpers = HortenHelpers & {
+    log: (string) => void
+}
 
 export type HortenPageDefaultState = {
     props: any,
@@ -69,7 +71,6 @@ export const createHortenPageModel = createHortenModel({
 })
 
 export const createHortenPageHelpers = createHortenHelpers({
-    //TODO: make really okay
 })
 
 export const createHortenPageSelectors = createHortenSelectors({
@@ -89,7 +90,9 @@ export const createHortenPageEpic = createHortenEpic((model: HortenPageModel, se
             ofType(model.killPage.request),
             mergeMap(action => {
                 console.log(action)
-                return definition.reset ? [model.resetPage.request(action.payload,action.meta)] : [model.killPage.success(action.payload,action.meta)]
+                const meta = { ...action.meta, timestamp: Date.now()}
+                helpers.log(definition.reset)
+                return definition.reset ? [model.resetPage.request(action.payload,meta)] : [model.killPage.success(action.payload,meta)]
                 }
 
             )))

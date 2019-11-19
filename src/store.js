@@ -1,12 +1,13 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import {createEpicMiddleware, ofType} from 'redux-observable';
-import {BehaviorSubject} from 'rxjs';
-import {mergeMap, takeUntil} from 'rxjs/operators';
+import {BehaviorSubject, } from 'rxjs';
+import {mergeMap, takeUntil, catchError} from 'rxjs/operators';
 // import root epics/reducer
 import rootEpic from './rootEpic';
 import rootReducer from './rootReducer';
 import {authMiddleware} from "redux-implicit-oauth2";
 import reducerRegistry from "./routerRegistry";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 // export `history` to use in LoginApp.js, we using `createBrowserHistory`
 
@@ -20,8 +21,12 @@ const hotReloadingEpic = (action$, ...rest) =>
 			epic(action$, ...rest).pipe(
 				takeUntil(action$.pipe(
 					ofType('EPIC_END')
-				))
-			)
+				)),
+				catchError((error, source) => {
+					console.error("Root Error | " + error);
+					return source;
+					})
+						)
 		)
 	);
 
@@ -42,20 +47,10 @@ const combine = (reducers) => {
 	return combineReducers(reducers);
 };
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-
-	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-		//actionSanitizer: (action) => ({ ...action, meta: "WITH_META"}),
-		trace: true,
-		traceLimit: 25
-	}) || compose
-
 
 const store = createStore(
 	combine(rootReducer),
-	composeEnhancers(
-		applyMiddleware(authMiddleware,epicMiddleware),
-	)
+	applyMiddleware(authMiddleware,epicMiddleware)
 );
 
 epicMiddleware.run(hotReloadingEpic)

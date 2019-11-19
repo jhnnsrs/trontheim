@@ -7,7 +7,7 @@ import {Card} from "reactstrap";
 
 import {Responsive, WidthProvider} from "react-grid-layout";
 
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
+export const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 
 class NodesContainer extends React.PureComponent {

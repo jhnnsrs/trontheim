@@ -6,11 +6,12 @@ import _ from "lodash";
 import {createHaldenActions} from "../oslo";
 import type {Header} from "../oslo/api";
 import {createOsloApi} from "../oslo/api";
-import {Observable} from "rxjs";
+import {merge, Observable} from "rxjs";
 import {Action, Reducer} from "redux";
-import {combineEpics, Epic} from "redux-observable";
+import {Epic} from "redux-observable";
 import type {HortenEpics} from "./epics";
 import {handleActions} from "redux-actions";
+import {catchError} from "rxjs/operators";
 
 export type State= any
 export type Props = any
@@ -82,10 +83,30 @@ export function createHortenSelectors<T>(list: HortenSelectorsCreator): T {
 export function createHortenHelpers<T>(list: HortenHelpersCreator): T {
     return function (alias: Alias, type: HortenType, model: any, selectors: any,...restArgs) {
         // Returns It
-        return _.mapValues(list,haldenHelperCreator => haldenHelperCreator(alias,type,model,selectors, ...restArgs))
+        const preliminaryList = _.mapValues(list,haldenHelperCreator => haldenHelperCreator(model,selectors, ...restArgs))
+        return {
+            log: (...message) => console.log("Info for " + alias.substring(0,10).padEnd(10) + " | " + model.key.substring(0,10).padEnd(10) + "| ",...message),
+            ...preliminaryList
+        }
     }
 
 }
+
+//TODO: Factor this out into new file
+export const combineEpicsWithErrorHandling = (alias,key,...epics) => (...args) =>
+    merge(
+        ...epics.map(([el,epic]) =>
+            epic(...args).pipe(
+                // When epic emits error, rethrow it async and resubscribe.
+                // Otherwise, errors will cause cascading termination of all epics.
+                catchError((error, source) => {
+                    console.error( "Error at " + alias + " | " + key + " | " + el + " |"+ '\n', error)
+                    return source;
+                })
+            )
+        )
+    );
+
 
 export function createHortenEpic<M,S,H,D>( fn: (M,S,H) => HortenEpicCreator): HortenEpics {
 
@@ -94,14 +115,14 @@ export function createHortenEpic<M,S,H,D>( fn: (M,S,H) => HortenEpicCreator): Ho
         {
             let epicDict = fn(model,selectors,helpers,definition)
             let epicList = Object.keys(epicDict).map(function(key){
-                return epicDict[key];
+                return [key, epicDict[key]];
             });
 
-            return combineEpics(...epicList)
+            return combineEpicsWithErrorHandling(model.alias,model.key,...epicList)
         }
         catch (e)
         {
-            console.log("Failure with Epic in",model.alias)
+            console.log("Failure with Epic in ",model.alias, " ", e)
         }
     }
 }
@@ -110,7 +131,9 @@ export function createHortenReducer<M,D>(reducerCreator: (M) => HortenReducerCre
     return function (model: M, defaultState: D ): Reducer {
         function resetCreator(model){
             return ({
-                [model.reset.request]: (state, action) => defaultState})
+                [model.reset.request]: (state, action) => {
+                    return defaultState
+                }})
         }
 
         let extendedReducer = {...reducerCreator(model),...resetCreator(model)}

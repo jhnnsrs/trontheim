@@ -34,6 +34,7 @@ export type HortenSelectors = {
     getModel: HaldenSelector
 }
 export type HortenHelpers = {
+    log: (string) => void
     [string]: any
 }
 export type HortenDefaulState = any

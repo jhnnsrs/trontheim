@@ -23,7 +23,7 @@ export const standardOrchestrator =  (stavanger: StandardStavanger) => {
                         item => {
                             try {
                                 if (item == "parent") return null
-                                return stavanger[item].model.reset.request({})
+                                return stavanger[item].model.reset.request(action.meta)
                             }
                             catch (e){
                                 console.log(item,e)
@@ -31,7 +31,7 @@ export const standardOrchestrator =  (stavanger: StandardStavanger) => {
                             }
                         }
                     ).filter( item => item !== null)
-                    return [...actions, page.model.killPage.success(action.payload)]
+                    return [...actions, page.model.killPage.success(action.payload,action.meta)]
                 }
             ));
 

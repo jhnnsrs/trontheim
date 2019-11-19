@@ -28,7 +28,7 @@ export type  LockerWatcherStavanger = Stavanger &{
 
 export const ports = {
     ins: [
-        { name: "_watcher" , type: constants.LOCKER, map: "locker" },
+        { name: "_WATCHER" , type: constants.LOCKER, map: "locker"},
     ],
     outs: [
         {name: "Locker", type: constants.LOCKER}

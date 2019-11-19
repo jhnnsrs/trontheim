@@ -116,8 +116,8 @@ export function createHaldenEpic( fn: (ActionStream, StateStream) => any)
 
 export function createHaldenHelper(fn: any)
 {
-    return function (alias: Alias,type: HortenType, model: any) {
-        return fn(alias,type,model)
+    return function  (model: any, selectors: any) {
+        return fn(model,selectors)
     }
 }
 
