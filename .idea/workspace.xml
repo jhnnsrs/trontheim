@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/electron.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/taskMaestro.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/http.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/LineTransformer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LineTransformer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +40,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/alta/horten" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/registry" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -51,8 +49,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\alta\horten" />
       <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\registry" />
+      <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\alta\horten" />
       <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\alta\maestro" />
     </key>
   </component>
@@ -99,8 +97,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.electron" />
+        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -180,6 +178,19 @@
     <MESSAGE value="trying to make nodes work, weird epic issues" />
     <MESSAGE value="got rid of the non fsa compliant devtools for checking" />
     <MESSAGE value="Massive Implementation of new Flow Logic&#10;Error Management for Stavanger&#10;Build read (downgrade for svgo)&#10;Implementation of a few nodes&#10;&#10;STILL LACKING FOREIGN" />
-    <option name="LAST_COMMIT_MESSAGE" value="Massive Implementation of new Flow Logic&#10;Error Management for Stavanger&#10;Build read (downgrade for svgo)&#10;Implementation of a few nodes&#10;&#10;STILL LACKING FOREIGN" />
+    <MESSAGE value="Implemented the Electron build&#10;New Dependencies&#10;CHanged max width media" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the Electron build&#10;New Dependencies&#10;CHanged max width media" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js</url>
+          <line>56</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -14,6 +14,7 @@ import {createHortenEdge} from "../../alta/horten/edge";
 import {createHortenMold} from "../../alta/horten/mold";
 import type {HortenMold} from "../../alta/horten/mold";
 import type {HortenNode} from "../../alta/horten/node";
+import {createHortenNode} from "../../alta/horten/node";
 
 
 export type LineTransformer = Stavanger &{
@@ -40,7 +41,7 @@ export const ports = {
 
 
 export const lineTransformerStavanger = createStavanger({
-    node: createHortenEdge({type: constants.EDGE, ports: ports}),
+    node: createHortenNode({type: constants.NODE, ports: ports}),
     settings: createHortenMold({type:"settings"}),
     representation: createHortenItem({type: constants.REPRESENTATION, url: "representation"}),
     roi: createHortenItem({type: constants.ROI, url: "rois"}),
