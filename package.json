@@ -2,6 +2,7 @@
   "name": "trontheim",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.10.17",
     "@githubprimer/octicons-react": "^8.5.0",
@@ -14,9 +15,13 @@
     "@vx/scale": "0.0.192",
     "bootstrap": "^4.3.1",
     "broadcast-channel": "^2.3.2",
+    "concurrently": "^5.0.0",
     "d3-array": "2.0.3",
     "dat.gui": "^0.7.5",
     "dicom-parser": "^1.8.3",
+    "electron": "^7.1.1",
+    "electron-builder": "^21.2.0",
+    "electron-is-dev": "^1.1.0",
     "final-form": "^4.12.0",
     "jpeg-lossless-decoder-js": "^2.0.4",
     "jquery": "3.4.1",
@@ -73,6 +78,7 @@
     "typography": "^0.16.19",
     "uuid": "^3.3.3",
     "vx": "0.0.1",
+    "wait-on": "^3.3.0",
     "xregexp": "^4.2.4"
   },
   "scripts": {
@@ -80,7 +86,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"set BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron": "wait-on http://localhost:3000 && electron ."
   },
   "eslintConfig": {
     "extends": "react-app"
