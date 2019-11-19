@@ -2,69 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/alta/horten/combiners.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/alta/horten/curtain.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/SelectionList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/SelectionShower.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/container.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/DisplaySelector/orchestrater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/LineTransformer/LineRectComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/LineTransformer/container.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/LineTransformer/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/RegExSelector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/SampleShow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/container.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RegExtractor/orchestrater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/SelectionList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/SelectionShower.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/container.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationSelector/orchestrater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/TwoDShow/TwoDShowComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/TwoDShow/container.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/TwoDShow/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/TwoDShow/orchestrater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/selectorMaestro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/updaterMaestro.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/halden/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/halden/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/creators.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/creators.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/epics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/epics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/mold.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/mold.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/oslo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/oslo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/registry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/react/EpicRegistry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/EpicRegistry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/react/StandardOrchestration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/StandardOrchestration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/react/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/stavanger/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/nodestatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/nodestatus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fabric/LineRoi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/fabric/LineRoi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/flow/smartcomponents/NodeGridContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flow/smartcomponents/NodeGridContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/header/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lockerflow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Registry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Show.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nodes/RegExtractor/SampleShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes/RegExtractor/SampleShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/LockerWatcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LockerWatcher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/LockerWatcher/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LockerWatcher/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/SampleSelector/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/SampleSelector/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/lib/NodeHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NodeHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/lib/NonBlockingNodeFrame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NonBlockingNodeFrame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/lib/PopButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/PopButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/nodeMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/nodeMaestro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rootStavanger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rootStavanger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +84,7 @@
       <workItem from="1573643779758" duration="1688000" />
       <workItem from="1573748620977" duration="8000" />
       <workItem from="1574095388551" duration="9120000" />
-      <workItem from="1574154187413" duration="36389000" />
+      <workItem from="1574154187413" duration="38031000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -169,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573644052668</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Massive Implementation of new Flow Logic&#10;Error Management for Stavanger&#10;Build read (downgrade for svgo)&#10;Implementation of a few nodes&#10;&#10;STILL LACKING FOREIGN">
+      <created>1574191990365</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574191990365</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,6 +136,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="trying to make nodes work, weird epic issues" />
     <MESSAGE value="got rid of the non fsa compliant devtools for checking" />
-    <option name="LAST_COMMIT_MESSAGE" value="got rid of the non fsa compliant devtools for checking" />
+    <MESSAGE value="Massive Implementation of new Flow Logic&#10;Error Management for Stavanger&#10;Build read (downgrade for svgo)&#10;Implementation of a few nodes&#10;&#10;STILL LACKING FOREIGN" />
+    <option name="LAST_COMMIT_MESSAGE" value="Massive Implementation of new Flow Logic&#10;Error Management for Stavanger&#10;Build read (downgrade for svgo)&#10;Implementation of a few nodes&#10;&#10;STILL LACKING FOREIGN" />
   </component>
 </project>
