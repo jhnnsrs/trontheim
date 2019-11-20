@@ -133,20 +133,20 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                     // SUBSCRIBE TO SOCKET IF AUTHENTICATED
                     helpers.log("Trying to open External for node" ,action.payload)
 
-                    let instance = action.payload.instance
+                    let nodeid = action.payload.id
                     let path = action.payload.path
                     let defaultsettings = action.payload.defaultsettings
                     let creator = action.payload.creator
 
                     let external = {
                         data: {
-                            name: instance, // TODO: Beautify this
+                            name: nodeid, // TODO: Beautify this
                             node: path,
                             defaultsettings: JSON.stringify(defaultsettings),
                             status: "alive",
                             creator: creator,
                             ports: JSON.stringify(action.payload.ports),
-                            links: JSON.stringify(action.payload.links),
+                            links: "notset" // TODO: Replace on Backend
                         },
                         meta: {
                         }
@@ -196,7 +196,7 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                         data: {
                             data: JSON.stringify(data),
                             port: meta.port,
-                            instance: meta.instance,
+                            instance: meta.targetid, // IS the targeted instance
                             model: meta.type,
                             origin: THIS_WINDOW_ID,
                             external: meta.external,

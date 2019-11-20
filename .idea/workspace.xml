@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/registry/taskMaestro.js" afterDir="false" />
+    <list default="true" id="90cdc95b-a783-4dbe-9984-e95731491c2b" name="Default Changelist" comment="Implemented the Task Maestro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/LineTransformer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LineTransformer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/curtain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/curtain.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/graph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/smartcomponents/Registry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/LockerWatcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LockerWatcher/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/SampleSelector/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/SampleSelector/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/nodeMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/nodeMaestro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,6 +85,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="electron-dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="electron-dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="electron" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -94,9 +109,11 @@
       <item itemvalue="JavaScript Debug.Debug Flow" />
       <item itemvalue="npm.electron" />
       <item itemvalue="npm.build" />
+      <item itemvalue="npm.electron-dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.electron-dev" />
         <item itemvalue="npm.electron" />
         <item itemvalue="npm.build" />
       </list>
@@ -119,6 +136,7 @@
       <workItem from="1573748620977" duration="8000" />
       <workItem from="1574095388551" duration="9120000" />
       <workItem from="1574154187413" duration="40853000" />
+      <workItem from="1574247473741" duration="12139000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -155,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574194403209</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implemented the Task Maestro">
+      <created>1574207166040</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574207166040</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,7 +204,8 @@
     <MESSAGE value="got rid of the non fsa compliant devtools for checking" />
     <MESSAGE value="Massive Implementation of new Flow Logic&#10;Error Management for Stavanger&#10;Build read (downgrade for svgo)&#10;Implementation of a few nodes&#10;&#10;STILL LACKING FOREIGN" />
     <MESSAGE value="Implemented the Electron build&#10;New Dependencies&#10;CHanged max width media" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the Electron build&#10;New Dependencies&#10;CHanged max width media" />
+    <MESSAGE value="Implemented the Task Maestro" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the Task Maestro" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -187,7 +213,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js</url>
           <line>56</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>

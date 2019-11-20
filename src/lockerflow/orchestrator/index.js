@@ -57,7 +57,8 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
             mergeMap(action => {
                 page.helpers.log("Open External")
                 // Adding the information from the graph
-                let payload = { ...action.payload, links: graph.selectors.getLinks(state$.value)}
+                page.helpers.log("with action", action)
+                let payload = { ...action.payload}
 
 
                 return [
@@ -241,7 +242,7 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
 
                 let modelin = {
                     data: initial.data,
-                    meta: { type: constants.LOCKER, origin: "flow", port: "_WATCHER"}
+                    meta: { type: constants.LOCKER, origin: "flow", port: "_watcher"}
                 }
                 return [graph.model.setNodeIn(watcher.instance).request(modelin, modelin.meta)]
             }));

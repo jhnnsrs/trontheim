@@ -36,7 +36,7 @@ export const nodeMaestro = (stavanger: Stavanger, definition: NodeMeastroDefinit
                     let port = action.meta.port
                     let type = action.meta.type
 
-                    let mappedPort = ports.find(item => port.startsWith(item.name.toUpperCase()))
+                    let mappedPort = ports.find(item => item.name === port)
 
                     // Check if Correctly Set
                     if (!mappedPort) return [node.model.setStatus.request(buildStatus(GRAPHERROR.connectionError,"No mapped Port found for " + port + " !"))]

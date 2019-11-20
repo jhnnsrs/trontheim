@@ -30,13 +30,13 @@ export type  SampleSelectorStavanger = Stavanger &{
 }
 export const ports = {
     ins: [
-        { name: "Locker" , type: constants.LOCKER, map: "locker" },
-        { name: "Experiment" , type: constants.EXPERIMENT, map: "experiments"},
-        { name: "Creator" , type: constants.CREATOR, map: "creator"},
-        { name: "BioImage" , type: constants.BIOIMAGE, map: "bioimage"},
+        { name: "locker" , type: constants.LOCKER, map: "locker" },
+        { name: "experiment" , type: constants.EXPERIMENT, map: "experiments"},
+        { name: "creator" , type: constants.CREATOR, map: "creator"},
+        { name: "bioimage" , type: constants.BIOIMAGE, map: "bioimage"},
     ],
     outs: [
-        {name: "Sample", type: constants.SAMPLE}
+        {name: "sample", type: constants.SAMPLE}
     ]
 }
 

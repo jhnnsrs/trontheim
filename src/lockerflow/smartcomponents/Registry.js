@@ -46,9 +46,7 @@ class Registry extends React.PureComponent {
 
     onLayoutChange(layout) {
         // TODO: THIS WILL FIRE BEFORE EPICS ARE INSTANTIATED
-        console.log("UPDATING")
-        console.log("layout",layout)
-        this.props.updateLayout(layout)
+        if (this.props.layoutna) {this.props.updateLayout(layout)}
     }
 
 
@@ -57,8 +55,6 @@ class Registry extends React.PureComponent {
         let {nodes, layoutna} = this.props
         if (nodes.length == 0) return "" // ATTENTION: This is the most crucial part. For some weird reason GridLayout will not update its layout if nodes are not set at the exact same time. weird but okay
         let layoutclass = layoutna ? JSON.parse(layoutna.layout) : []
-        console.log(layoutclass)
-        console.log(this.props)
         return (
             <React.Fragment>
                 <ResponsiveReactGridLayout

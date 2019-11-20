@@ -47,6 +47,8 @@ const combine = (reducers) => {
 	return combineReducers(reducers);
 };
 
+const composeEnhancers = compose;
+
 
 const store = createStore(
 	combine(rootReducer),
