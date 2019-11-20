@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import type {HortenGraph} from "../../alta/horten/graph";
 import type {HortenRegistry} from "../../alta/horten/registry";
 import type {HortenNode} from "../../alta/horten/node";
+import ButtonToNavigate from "../../generics/ButtonToNavigate";
 
 export interface GraphStavanger {
     graph: HortenGraph,
@@ -23,8 +24,11 @@ class StartButton extends Component<any,any> {
         let type = this.props.type
         return (
             <React.Fragment>
-                {(type === undefined) && <Button size="sm" outline  onClick={() => this.props.start()}> Pop</Button>}
-                {(type === "pop") && <Button size="sm" outline  onClick={() => this.props.unpop()}>Unpop </Button>}
+                {(type.location === "local") ? <Button size="sm" outline  onClick={() => this.props.start()}> Pop</Button>
+                : <>
+                        <Button size="sm" outline  onClick={() => this.props.unpop()}>{type.location} </Button>
+                        <ButtonToNavigate outside={true} to={"http://localhost:3000/external/" + type.external}>{type.external}</ButtonToNavigate>
+                    </>}
             </React.Fragment>
         );
     }

@@ -8,6 +8,7 @@ import type {HortenItem} from "../alta/horten/item";
 import type {Stavanger} from "../alta/stavanger";
 import type {HortenMold} from "../alta/horten/mold";
 import {combineOrchestrator} from "../alta/react/EpicRegistry";
+import {userIDPortal} from "../portals";
 
 
 export interface NodeMeastroDefinition {
@@ -78,9 +79,16 @@ export const nodeMaestro = (stavanger: Stavanger, definition: NodeMeastroDefinit
             ofType(node.model.pop.request),
             mergeMap((action) => {
                     page.helpers.log("Setting Node as Popped")
-                    return [
-                        graph.model.setNodeType.request({ instance: node.alias, type: "pop"}),
+                    // TODO: Implement here
+                    let nodestate = graph.selectors.getNode(node.alias)(state$.value)
 
+
+                    return [
+                        graph.model.requestPop.request(
+                            {
+                                ...nodestate,
+                                creator: userIDPortal(state$.value)
+                            }),
                     ]
                 }
             )

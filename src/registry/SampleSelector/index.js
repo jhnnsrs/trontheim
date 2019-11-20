@@ -43,7 +43,7 @@ export const ports = {
 
 
 export const sampleSelectorStavanger = createStavanger({
-    node: createHortenNode({type: constants.NODE, ports: ports}),
+    node: createHortenNode({type: constants.NODE, ports: ports, isPoppable: true}),
     settings: createHortenMold({type: "settings"}),
     user: createHortenValue(DEF_USER),
     locker: createHortenValue(DEF_LOCKER),

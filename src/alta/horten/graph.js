@@ -26,10 +26,12 @@ export type HortenGraphModel = HortenModel & {
 
     // Initial Set
     setGraphFromFlow: HaldenActions,
+    setGraphFromExternal: HaldenActions,
     setGraphError: HaldenActions,
 
     // Node API
     setNodeIn: (NodeID) => HaldenActions,
+    onExternalIn: HaldenActions,
 
     // Out
     foreignNodeIn: HaldenActions,
@@ -43,7 +45,8 @@ export type HortenGraphModel = HortenModel & {
     onNodeOutput: HaldenActions,
     setNodeInput: HaldenActions,
 
-
+    //Veil api
+    requestPop: HaldenActions,
     // Helpers for Components
     createShowFromGraph: HaldenActions,
     setShow: HaldenActions,
@@ -55,6 +58,7 @@ export type HortenGraphModel = HortenModel & {
 export type HortenGraphSelectors = HortenSelectors & {
     getGraphShow: HaldenSelector,
     getGraph: HaldenSelector,
+    getLinks: HaldenSelector,
     getLinksForNode: (string) => HaldenSelector,
     getNodeStatus: (string) => HaldenSelector,
     getNode: (string) => HaldenSelector,
@@ -113,13 +117,16 @@ export const createHortenGraphModel = createHortenModel({
     setNodeInput: createHaldenAction("SET_NODE_INPUT"),
     setNodeIn: createHaldenAction("NODE_INPUT_SET",false, true),
     setNodeType: createHaldenAction("SET_NODE_TYPE"),
+    onExternalIn: createHaldenAction("ON_EXTERNAL_IN"),
     foreignNodeIn: createHaldenAction("SET_FOREIGN_NODE_IN"),
     setNodeSettings: createHaldenAction("SET_NODE_SETTINGS"),
     setGraphFromFlow: createHaldenAction("FROM_FLOW_SET"),
+    setGraphFromExternal: createHaldenAction("FROM_EXTERNAL_SET"),
     createShowFromGraph: createHaldenAction("CREATE_SHOW"),
     onNodeStatusUpdate: createHaldenAction("NODE_STATUS"),
     setShow: createHaldenAction("SET_SHOW"),
     setGraphError: createHaldenAction("GRAPH_ERROR"),
+    requestPop: createHaldenAction("GRAPH_REQUEST_POP")
 })
 
 export const createHortenGraphHelpers = createHortenHelpers()
@@ -127,6 +134,7 @@ export const createHortenGraphHelpers = createHortenHelpers()
 export const createHortenGraphSelectors = createHortenSelectors({
     getGraphShow: createHaldenSelector("show"),
     getGraph: createHaldenFunctionSelector((state) => state.graph),
+    getLinks: createHaldenFunctionSelector((state) => state.graph.links),
     getNodeStatus: createHaldenFunctionSelector((state, props, params) => {
         let alias = params
         let diagram = state.show
@@ -179,7 +187,6 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             mergeMap(action => {
                     // data: { representation: { data: ... , meta: ....}, biometa: {data: ..,meta:...}, meta: { instanceid:..., .... }
 
-                    const input = action.payload;
                     const data = action.payload.data;
                     const meta = action.payload.meta;
                     const type = action.payload.meta.type;
@@ -203,7 +210,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     const actions = [];
 
 
-                    let mappedchain = links.filter(item => item.sourcePort.startsWith(type.toUpperCase())); //TODO: ID comparison
+                    let mappedchain = links.filter(item => item.sourcePort.startsWith(type.toUpperCase())); //TODO: Port Comparison
 
                     helpers.log("Found the following Nodes for " + type, mappedchain)
                     mappedchain = mappedchain.filter(link => nodes.find(node => {
@@ -229,7 +236,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                                         model: type,
                                         target: nodeinstance.instance,
                                         port: link.targetPort,
-                                        origin: meta.nodeid
+                                        origin: meta.instance
                                     }
                                 }
 
@@ -238,7 +245,8 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                                 helpers.log("Node has type of : ", nodetype,)
 
                                 // Depending on Type send to Veil
-                                if (nodetype === "pop") {
+                                if (nodetype.location === "pop") {
+                                    outmodel.meta = { ...outmodel.meta, external: nodetype.external}
                                     actions.push(model.foreignNodeIn.request(outmodel))
                                     helpers.log("Pushing to foreignNode ",outmodel)
                                 } else {
@@ -246,10 +254,9 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                                 }
 
 
-                                actions.push(model.setNodeIn(nodeinstance.instance).request(outmodel,outmodel.meta))
 
 
-                                    actions.push(model.onNodeStatusUpdate.request({
+                            actions.push(model.onNodeStatusUpdate.request({
                                     instance: nodeinstance.instance,
                                     status: definition.statusIN
                                 }))
@@ -267,17 +274,17 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
         ),
     setGraphAndShowFromFlow: (action$, state$) =>
         action$.pipe(
-            ofType(model.setGraphFromFlow.request.toString()
-            ),
+            ofType(model.setGraphFromFlow.request),
             mergeMap(action => {
                 // TODO: IMPORTANT stavanger detail right now get is not adhering to normal datastucture
                 let diagram = JSON.parse(action.payload.data.diagram)
 
+                helpers.log(diagram)
                 // Instantiate the Nodes with their own instance ID
                 let nodes = diagram.nodes.map(node => {
                     const instanceid = (node.name + "-" + v4()).toLowerCase()
 
-                    return {...node, instance: instanceid, base: node.id}
+                    return {...node, instance: instanceid, base: node.id, nodetype: { location: "local"}}
                 })
 
                 // Set the Links
@@ -288,6 +295,33 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                 return [
                     model.setGraphFromFlow.success(graph),
                     model.createShowFromGraph.request(graph)]
+                }
+            )),
+    setGraphAndShowFromExternal: (action$, state$) =>
+        action$.pipe(
+            ofType(model.setGraphFromExternal.request),
+            mergeMap(action => {
+                    // TODO: IMPORTANT stavanger detail right now get is not adhering to normal datastucture
+                    let external = action.payload.data
+                    const {links, ...rest} = external
+                    // Instantiate the Nodes from external with their own instance ID
+                    let nodes = [
+                        {...rest,
+                            instance:  (external.name + "-" + v4()).toLowerCase(),
+                            path: external.node,
+                            nodetype: { location: "local", external: "self"},
+                            ports: JSON.parse(external.ports)
+
+                        }
+                    ]
+
+                    // Set the Links
+                    let linklist = JSON.parse(links)
+
+                    let graph = {links: linklist, nodes: nodes}
+                    return [
+                        model.setGraphFromFlow.success(graph),
+                        model.createShowFromGraph.request(graph)]
                 }
             )),
     onCreateShowFromGraphRequest: (action$, state$) =>
@@ -310,16 +344,37 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             )),
     onPopNodeRequestPopNode: (action$, state$) =>
         action$.pipe(
-            ofType(model.setNodeType.request),
+            ofType(model.requestPop.success),
             mergeMap(action => {
                     // TODO: Here an instantiation of the node type on veil should maybe happen?
-                    let instance = action.payload.instance
-                    let type = action.payload.type
-                    return [model.setNodeType.success(action.payload)]
+                    let instance = action.payload.name
+                    let externalid = action.payload.id
+                    return [model.setNodeType.request({ instance: instance, type: { location: "pop", external: externalid}})]
+                }
+            )),
+    onExternalRequestin: (action$, state$) =>
+        action$.pipe(
+            ofType(model.onExternalIn.request),
+            mergeMap(action => {
+                    // TODO: Here an instantiation of the node type on veil should maybe happen?
+                    let data = action.payload.data
+
+                    let datastring = data.data
+
+                    let payload = {
+                        data: JSON.parse(datastring),
+                        meta: {
+                            instance: data.instance,
+                            type: data.model,
+
+                        }
+                    }
+                    return [model.onNodeOutput.request(payload)]
                 }
             )),
     onNodeStatusChanged: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),
     setNodeSettingsPassThrough: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),
+    setNodeTypePassTrhough: createHaldenPassThroughEpicFromActions(model.setNodeType),
 }))
 
 
@@ -355,6 +410,7 @@ export const createHortenGraphReducer = createHortenReducer((model: HortenGraphM
         },
         [model.setNodeType.success]: (state, action) => {
             let nodes = {...state.show.nodes}
+            console.log(action.payload)
             nodes[action.payload.instance].nodetype = action.payload.type
             return {...state, show: {...state.show, nodes: nodes}};
         },

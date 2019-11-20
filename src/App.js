@@ -17,7 +17,7 @@ class App extends Component {
                 <BrowserRouter>
                     <div className="App">
                         <Switch>
-                            <Route path={`/nodepop/:nodeid/instance/:instanceid/channel/:channelid`} component={Headless}/>
+                            <Route path={`/external/`} component={Headless}/>
                             <Route path={"/"} component={Wrapped}/>
                         </Switch>
                     </div>

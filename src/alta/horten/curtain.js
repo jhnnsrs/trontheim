@@ -20,7 +20,21 @@ import v4 from 'uuid'
 
 export type HortenCurtainModel = HortenModel & {
     openChannel: HaldenActions,
+    openExternal: HaldenActions,
     openAlien: HaldenActions,
+
+    // Outs
+    pushExternal: HaldenActions,
+    listenToExternal: HaldenActions,
+
+
+    // In
+    // Local
+    sendToExternal: HaldenActions,
+
+    // From
+    messageFromExternal: HaldenActions,
+
     listenToAlien: HaldenActions,
     stopListenToAlien: HaldenActions,
     sendToAlien: HaldenActions,
@@ -68,11 +82,15 @@ export type HortenCurtain = {
 
 export const createHortenCurtainModel = createHortenModel({
     openChannel: createHaldenAction("OPEN_CHANNEL"),
+    openExternal: createHaldenAction("OPEN_EXTERNAL"),
+    pushExternal: createHaldenAction("PUSH_EXTERNAL"),
     openAlien: createHaldenAction("OPEN_ALIEN"),
     closeAlien: createHaldenAction("CLOSE_ALIEN"),
     sendToAlien: createHaldenAction("SEND_TO_ALIEN"),
+    sendToExternal: createHaldenAction("SEND_TO_EXTERNAL"),
     listenToAlien: createHaldenAction("LISTEN_TO_ALIEN"),
     stopListenToAlien: createHaldenAction("STOP_LISTEN_TO_ALIEN"),
+    messageFromExternal: createHaldenAction("MESSAGE_FROM_EXTERNAL"),
     channelMessage: createHaldenParamterizedAction(params => "RECEIVE_MESSAGE_ON_CHANNEL_" + params),
     alienMessage: createHaldenParamterizedAction(params => "RECEIVE_MESSAGE_ON_ALIEN_" + params),
     sendMessage: createHaldenAction("SEND_MESSAGE_TO_CHANNEL"),
@@ -87,128 +105,65 @@ export const createHordenCurtainSelectors = createHortenSelectors({
     getOpenChannels: createHaldenSelector("OPEN_CHANNELS"),
 })
 
-
-let runningChannels = {}
-
-
-function getChannelOrCreate(channel, options): BroadcastChannel {
-    if (channel in runningChannels) return runningChannels[channel]
-    else {
-        runningChannels[channel] = new BroadcastChannel(channel, options)
-        return runningChannels[channel]
-    }
-
-}
-
-
-function fromChannel(channel, options) {
-    return new Observable((observer) => {
-        const handler = (e) => {
-            console.log("received in obersble");
-            observer.next(e)
-        };
-        const errorHandler = (e) => observer.error(e)
-
-        let channels = new getChannelOrCreate(channel, options)
-        // Add the event handler to the target
-        channels.onmessage = handler
-
-        return () => {
-            // Detach the event handler from the target
-            console.log("CLOSING CHANNEL")
-        };
-    });
-}
-
-export interface ChannelMessage {
-    origin: string,
-    payload: T
-}
-
 export const THIS_WINDOW_ID = v4()
 
-export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainModel, selectors: HortenCurtainSelectors) => ({
+export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainModel, selectors: HortenCurtainSelectors, helpers: HortenCurtainHelpers) => ({
 
-    openChannelEpic: createHaldenEpic((action$, state$) =>
+    onPushedExternalSet: createHaldenEpic((action$, state$) =>
         action$.pipe(
-            ofType(model.openChannel.request),
+            ofType(model.pushExternal.success),
             mergeMap(action => {
                     // TODO: Should check if server has been chosen
                     // SUBSCRIBE TO SOCKET IF AUTHENTICATED
-                    let channel = action.payload.toString()
 
-                    console.log("DOIGN THE OPENING on channel", channel)
-                    const messages = fromChannel(channel);
-                    console.log(runningChannels)
-                    return messages.pipe(
-                        map((message: ChannelMessage) => {
-                            let received = JSON.parse(message)
-                            if (received.origin != THIS_WINDOW_ID) {
-                                return model.channelMessage(channel).request(received.payload)
-                            } else {
-                                return {type: "SELF_SEND_PING_PONG"}
-                            }
+                    let external = action.payload.data // WITH ID BECAUSE IT WAS POSTED
 
-                        }),
-                        takeUntil(action$.pipe(
-                            ofType(model.closeChannel(channel).request)
-                        ))
-                    )
-
-
+                    return [
+                        model.openExternal.success(external),
+                    ]
                 }
             )
         )
     ),
-    openAlienEpic: createHaldenEpic((action$, state$) =>
+    openExternal: createHaldenEpic((action$, state$) =>
         action$.pipe(
-            ofType(model.openAlien.request),
+            ofType(model.openExternal.request),
             mergeMap(action => {
                     // TODO: Should check if server has been chosen
                     // SUBSCRIBE TO SOCKET IF AUTHENTICATED
-                    let alien = action.payload.toString()
+                    helpers.log("Trying to open External for node" ,action.payload)
 
-                    let request = {
+                    let instance = action.payload.instance
+                    let path = action.payload.path
+                    let defaultsettings = action.payload.defaultsettings
+                    let creator = action.payload.creator
+
+                    let external = {
+                        data: {
+                            name: instance, // TODO: Beautify this
+                            node: path,
+                            defaultsettings: JSON.stringify(defaultsettings),
+                            status: "alive",
+                            creator: creator,
+                            ports: JSON.stringify(action.payload.ports),
+                            links: JSON.stringify(action.payload.links),
+                        },
                         meta: {
-                            room:
-                                {
-                                    nodeid: alien
-                                }
                         }
                     }
-                    return [model.listenToAlien.request(request)]
-                }
-            )
-        )
-    ),
-    closeAlienEpic: createHaldenEpic((action$, state$) =>
-        action$.pipe(
-            ofType(model.closeAlien.request),
-            mergeMap(action => {
-                    // TODO: Should check if server has been chosen
-                    // SUBSCRIBE TO SOCKET IF AUTHENTICATED
-                    let alien = action.payload.toString()
 
-                    let request = {
-                        meta: {
-                            room:
-                                {
-                                    nodeid: alien
-                                }
-                        }
-                    }
-                    return [model.stopListenToAlien.request(request)]
+                    return [model.pushExternal.request(external)]
                 }
             )
         )
     ),
-    messageReceivedFromAlienEpic: createHaldenEpic((action$, state$) =>
+    messageReceivedFromExternal: createHaldenEpic((action$, state$) =>
         action$.pipe(
-            ofType(model.receiveFromAlien.request),
+            ofType(model.messageFromExternal.request),
             mergeMap(action => {
                     // TODO: Should check if server has been chosen
                     // SUBSCRIBE TO SOCKET IF AUTHENTICATED
-                    console.log(action.payload)
+                    helpers.log(action.payload)
                     let message = action.payload.data
                     let itmodel = JSON.parse(message.data)
                     let origin = message.origin
@@ -216,8 +171,10 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
 
 
                     if (origin != THIS_WINDOW_ID) {
-                        return [model.alienMessage(nodeid).request(itmodel)]
+                        helpers.log("NEW MESSAGE RECEIVED")
+                        return [model.messageFromExternal.success(action.payload)]
                     } else {
+                        helpers.log("PING PONG RECEIVED")
                         return [{type: "SELF_SEND_PING_PONG"}]
                     }
 
@@ -225,48 +182,30 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
             )
         )
     ),
-    sendMessageEpic: createHaldenEpic((action$, state$) =>
+    sendToExternal: createHaldenEpic((action$, state$) =>
         action$.pipe(
-            // The Room ought to be the payload of the string
-            // action.payload = {room: $ROOM, ALIAS: $ALIAS}
-            ofType(model.sendMessage.request),
+            ofType(model.sendToExternal.request),
             mergeMap(action => {
-                    // Constructing the Necessary Room Parameters
-                    let channel = action.payload.meta.channel
-                    let alien = action.payload.meta.alien
+                    helpers.log(action.payload)
 
-                    if (channel) {
-                        console.log("SENDING MESSAGE on channel", channel)
+                    // Make a request to the external Source
+                    const data = action.payload.data
+                    const meta = action.payload.meta
 
-                        let message = {
+                    const  externalrequest = {
+                        data: {
+                            data: JSON.stringify(data),
+                            port: meta.port,
+                            instance: meta.instance,
+                            model: meta.type,
                             origin: THIS_WINDOW_ID,
-                            payload: action.payload
-                        }
-
-                        let broadcast = getChannelOrCreate(channel)
-                        broadcast.postMessage(JSON.stringify(message))
-                        console.log(runningChannels)
-                        return [model.messageSent(channel).request(message)]
+                            external: meta.external,
+                            creator: data.creator
+                        },
+                        meta: {}
                     }
-                    if (alien) {
-                        console.log("SENDING MESSAGE TO FOREIGN", alien)
 
-                        let request = {
-                            data:
-                                {
-                                    origin: THIS_WINDOW_ID,
-                                    nodeid: alien,
-                                    data: JSON.stringify(action.payload)
-
-                                },
-                            meta:
-                                {update: null}
-                        }
-
-                        return [model.sendToAlien.request(request)]
-
-
-                    }
+                    return [model.sendMessage.request(externalrequest)]
 
                 }
             ))
@@ -275,20 +214,20 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
 
 
 const defaultState = {
-    openChannels: {},
+    externals: {},
     joinedRooms: {}
 };
 
 export const createHortenCurtainReducer = createHortenReducer((model: HortenCurtainModel) => (
     {
-        [model.openChannel.success.toString()]: (state, action) => {
-            return {...state, channels: {...state.channels, [action.payload.meta.channel]: "ACTIVE"}}
+        [model.openExternal.success.toString()]: (state, action) => {
+            return {...state, externals: {...state.externals, [action.payload.instance]: "ACTIVE"}}
 
         },
     })
 );
 
-export function createHortenCurtain(definition: HortenVeilDefinition): ((Alias) => HortenVeil) {
+export function createHortenCurtain(definition: HortenVeilDefinition): ((Alias) => HortenCurtain) {
     let modelCreator = createHortenCurtainModel;
     let selectorsCreator = createHordenCurtainSelectors;
     let helperCreator = createHortenCurtainHelpers;

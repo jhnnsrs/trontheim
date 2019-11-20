@@ -1,6 +1,8 @@
 export const FILEMATCHSTRING = "filematchstring";
 export const EXCELEXPORT = "excelexport";
 export const QUESTION = "question";
+export const EXTERNAL = "external";
+export const EXTERNALREQUEST = "externalrequest";
 export const CREATOR = "user";
 export const ANIMAL = "animal";
 export const ANSWER = "answer";

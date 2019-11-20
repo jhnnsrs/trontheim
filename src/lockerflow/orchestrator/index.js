@@ -21,6 +21,8 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
     const layout = stavanger.layout
     const layoutlist = stavanger.possibleLayouts
     const graph = stavanger.graph
+    const externals = stavanger.externals
+    const externalrequests = stavanger.externalrequests
 
     const onPageInitLoadFlow = (action$, state$) =>
         action$.pipe(
@@ -31,7 +33,8 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
                 return [
                     flow.model.fetchItem.request({data: {id: flowid}}),
                     initial.model.fetchItem.request({data: {id: action.payload.match.params.lockerid}}),
-                    layoutlist.model.fetchList.request({meta: {filter: {flows: flowid}}})
+                    layoutlist.model.fetchList.request({meta: {filter: {flows: flowid}}}),
+                    externals.model.osloJoin.request({meta: {room: {creator: userIDPortal(state$.value)}}})
                 ]
             }));
 
@@ -47,15 +50,91 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
                 return graph.model.setGraphFromFlow.request(flow)
         }));
 
-    const onForeignNodeRequestPassToVeil = (action$, state$) =>
+
+    const onGraphRequestPopOpenExternal = (action$, state$) =>
+        action$.pipe(
+            ofType(graph.model.requestPop.request),
+            mergeMap(action => {
+                page.helpers.log("Open External")
+                // Adding the information from the graph
+                let payload = { ...action.payload, links: graph.selectors.getLinks(state$.value)}
+
+
+                return [
+                    curtain.model.openExternal.request(payload)
+                ]
+            }));
+
+    const onExternalOpenSetPopTrue = (action$, state$) =>
+        action$.pipe(
+            ofType(curtain.model.openExternal.success),
+            mergeMap(action => {
+                page.helpers.log("Open External Succeeded")
+                return [
+                    graph.model.requestPop.success(action.payload)
+                ]
+            }));
+
+
+    const onForeigNodeRequest = (action$, state$) =>
         action$.pipe(
             ofType(graph.model.foreignNodeIn.request),
             mergeMap(action => {
-                page.helpers.log("Foreign Node Request")
+                curtain.helpers.log("Trying to Send to foreign",action.payload)
                 return [
-                    curtain.model.sendToAlien.request(action.payload)
+                    curtain.model.sendToExternal.request(action.payload)
                 ]
             }));
+
+    const onExternalPushSendToApi = (action$, state$) =>
+        action$.pipe(
+            ofType(curtain.model.pushExternal.request),
+            mergeMap(action => {
+                externals.helpers.log("Pushing ", action.payload)
+                return [
+                    externals.model.postItem.request(action.payload)
+                ]
+            }));
+
+    const onExternalRequestSendToApi = (action$, state$) =>
+        action$.pipe(
+            ofType(curtain.model.sendMessage.request),
+            mergeMap(action => {
+                externals.helpers.log("Sending ExternalRequest ", action.payload)
+                return [
+                    externalrequests.model.postItem.request(action.payload)
+                ]
+            }));
+
+    const onApiAchievedPushExternal = (action$, state$) =>
+        action$.pipe(
+            ofType(
+                externals.model.osloItemCreate.success,
+                externals.model.osloItemUpdate.success,
+                ),
+            mergeMap(action => {
+                externals.helpers.log("External Created ", action.payload)
+
+                return [
+                    curtain.model.pushExternal.success(action.payload),
+                    externalrequests.model.osloJoin.request({meta: {room: {external: action.payload.data.id}}}) //TODO: Stopp to list when you are out
+                ]
+            }));
+
+    const onExternalRequestInSendToCurtain = (action$, state$) =>
+        action$.pipe(
+            ofType(
+                externalrequests.model.osloItemCreate.success,
+                externalrequests.model.osloItemUpdate.success,
+            ),
+            mergeMap(action => {
+                externalrequests.helpers.log("ExternalRequest in ", action.payload)
+
+                return [
+                    curtain.model.messageFromExternal.request(action.payload),
+                ]
+            }));
+
 
     const loadNodes =  (action$, state$) =>
         action$.pipe(
@@ -173,19 +252,28 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
         itemConnector(stavanger.flow),
         itemConnector(stavanger.layout),
         apiConnector(stavanger.possibleLayouts),
+        apiConnector(stavanger.externals),
+        apiConnector(stavanger.externalrequests),
+        apiConnector(stavanger.possibleLayouts),
     )
 
     return combineOrchestrator(stavanger, {
-            onPageInitLoadFlow,
-            loadFlowAndFirstItem,
-            loadNodes,
-            apiConnections,
-            onDifferentLayoutSelected,
-            onLayoutListComesSelectFirstLayout,
-            onLayoutUpdatedCreate,
-            onLayoutUpdatedUpdate,
-            allEpicsLoadedSetInitial,
-            onForeignNodeRequestPassToVeil
+        onPageInitLoadFlow,
+        loadFlowAndFirstItem,
+        loadNodes,
+        apiConnections,
+        onForeigNodeRequest,
+        onGraphRequestPopOpenExternal,
+        onExternalOpenSetPopTrue,
+        onExternalRequestSendToApi,
+        onExternalPushSendToApi,
+        onApiAchievedPushExternal,
+        onExternalRequestInSendToCurtain,
+        onDifferentLayoutSelected,
+        onLayoutListComesSelectFirstLayout,
+        onLayoutUpdatedCreate,
+        onLayoutUpdatedUpdate,
+        allEpicsLoadedSetInitial,
         }
 
     )

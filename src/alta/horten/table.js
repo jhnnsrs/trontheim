@@ -13,7 +13,7 @@ import {
 import {Epic} from "redux-observable";
 import {createHorten2} from "./index";
 import type {HaldenActions} from "../oslo";
-import {createHortenEpic, createHortenModel, createHortenReducer} from "./creators";
+import {createHortenEpic, createHortenHelpers, createHortenModel, createHortenReducer} from "./creators";
 import {createHaldenAction} from "../halden";
 
 
@@ -119,7 +119,7 @@ export const createHortenListSelectors = (alias: Alias, type: HortenType) => ({
 });
 
 
-export const createHortenListHelper = (alias: Alias, type: HortenType) => null
+export const createHortenListHelper = createHortenHelpers({})
 
 export const createHortenListEpic = createHortenEpic((hortenListModel: HortenListModel, hortenListSelector: HortenListSelectors) => ({
         selectPassThrough: createOsloPassThroughEpic(hortenListModel.selectItem),
