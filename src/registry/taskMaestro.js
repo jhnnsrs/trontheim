@@ -36,6 +36,7 @@ export const taskMaestro = (stavanger: TaskStavanger, definition: TaskMaestroDef
 
     const node: HortenNode = stavanger.node
     const page: HortenPage = stavanger.page
+    const parser: HortenTable = stavanger[definition.parser]
     const outputs: [HortenTable] = definition.outputs.map( out => stavanger[out] ? stavanger[out] : null).filter(item => item != null)
     const inputs: [HortenTable] = definition.inputs.map( item => stavanger[item] ? stavanger[item] : null).filter(item => item != null)
     const parserFunc = definition.parsing
@@ -45,8 +46,9 @@ export const taskMaestro = (stavanger: TaskStavanger, definition: TaskMaestroDef
         action$.pipe(
             ofType(page.model.initPage.success),
             mergeMap(action => {
-                    return outputs.map( out => out.model.osloJoin.request({meta: {room: {nodeid: out.model.alias}}}))
-                }
+                    const outactions = outputs.map( out => out.model.osloJoin.request({meta: {room: {nodeid: out.model.alias}}}))
+                    return [ ...outactions, parser.model.osloJoin.request({meta: {room: {nodeid: node.model.alias}}})]
+            }
             ));
 
 
@@ -65,8 +67,22 @@ export const taskMaestro = (stavanger: TaskStavanger, definition: TaskMaestroDef
             ofType(output.model.osloItemCreate.success,
                 output.model.osloItemUpdate.success),
             mergeMap(action => {
-                output.helpers.log("New Item Received")
+                output.helpers.log("New Item Received", action.payload, "on type", output.definition.type)
+                // TODO: Maybe a mape for the output key would be better here
+
                 return [node.model.setOut(output.definition.type).request(action.payload)]
+            })
+        );
+
+    const onParserUpdate = (action$, state$) =>
+        action$.pipe(
+            ofType(parser.model.osloItemCreate.success,
+                parser.model.osloItemUpdate.success),
+            mergeMap(action => {
+                parser.helpers.log("New Item Received", action.payload, "on type", parser.definition.type)
+                // TODO: Maybe a mape for the output key would be better here
+
+                return [node.helpers.setStatus(SERVER.serverProgress, action.payload.data.status)]
             })
         );
 
@@ -78,6 +94,7 @@ export const taskMaestro = (stavanger: TaskStavanger, definition: TaskMaestroDef
     return combineOrchestrator(stavanger,{
         onPageStartedListenToOutput,
         onOutPutForwarder,
+        onParserUpdate,
         onInPutForwarder
         })
 }

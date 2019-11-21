@@ -16,36 +16,33 @@ export const orchestraterEpic = (stavanger: LineTransformer) => {
     const moduleMaestro = nodeMaestro(stavanger)
 
     const addin1 = taskMaestro(stavanger, {
-        inputs: ["representation","roi"],
-        parser: "transformings",
-        outputs: ["transformations"],
+        inputs: ["bioimage"],
+        parser: "analyzings",
+        outputs: ["bioseries"],
         parsing: (action, action$, state$ ) => {
-            let representation = stavanger.representation.selectors.getData(state$.value);
+            let bioimage = stavanger.bioimage.selectors.getData(state$.value);
             let settings = stavanger.settings.selectors.getMerged(state$.value)
-            let roi = stavanger.roi.selectors.getData(state$.value)
+            let node = stavanger.node.selectors.getState(state$.value)
 
-            if (!roi) return [stavanger.node.helpers.requireUser("Please set Roi First")]
-            if (!representation) return [stavanger.node.helpers.requireUser("Please set Representation First")]
+            if (!bioimage) return [stavanger.node.helpers.requireUser("Please set Bioimage First")]
 
-            let transforming = {
+            let analyzing = {
                 data: {
                     settings: JSON.stringify(settings),
                     creator: userIDPortal(state$.value),
-                    representation: representation.id,//is initial
-                    sample: representation.sample,//is initial
-                    transformer: 1, // TODO: This is hard coded and wrong
-                    nodeid: stavanger.node.alias,
-                    roi: roi.id,
-                    override: false
+                    experiment: bioimage.experiment, //TODO: Check if this should be the standard behaviour
+                    analyzer: node.entityid,
+                    bioimage: bioimage.id,
+                    nodeid: stavanger.node.alias
                 },
                 meta:{
-                    buffer: "of course"
+                    buffer: "None"
                 }
 
-
             }
+
             return [
-                stavanger.transformings.model.postItem.request(transforming),
+                stavanger.analyzings.model.postItem.request(analyzing),
                 stavanger.node.helpers.setStatus(SERVER.serverPost,"Posting")
             ]
 
@@ -55,10 +52,8 @@ export const orchestraterEpic = (stavanger: LineTransformer) => {
 
 
     const apiConnections = combineEpics(
-        itemConnector(stavanger.roi),
-        itemConnector(stavanger.representation),
-        apiConnector(stavanger.transformations),
-        apiConnector(stavanger.transformings)
+        apiConnector(stavanger.analyzings),
+        apiConnector(stavanger.bioseries)
     )
 
     return combineOrchestrator(stavanger, {

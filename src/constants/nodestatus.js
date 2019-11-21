@@ -15,6 +15,7 @@ const attentionElse: StatusCode  = 499
 
 //WAITING
 const initialWait: StatusCode  = 100
+const initializing: StatusCode  = 101
 const waitingForInput: StatusCode  = 110
 
 //SERVER
@@ -27,11 +28,17 @@ const serverError: StatusCode  = 240
 // DONE
 const outputSend: StatusCode  = 310
 
+// NODE
+const sendOnPort: StatusCode  = 501
+
 
 export interface StatusCodeContainer {
     [string]: StatusCode
 }
 
+export const NODE = {
+    sendOnPort: sendOnPort
+}
 
 export const UNKNOWN: StatusCodeContainer = {
     notSet: 999
@@ -52,6 +59,7 @@ export const SERVER: StatusCodeContainer = {
 }
 
 export const WAITING: StatusCodeContainer = {
+    initializing: initializing,
     initialWait: initialWait,
     waitingForInput: waitingForInput
 }

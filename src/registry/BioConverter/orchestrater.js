@@ -1,5 +1,5 @@
 import {combineEpics} from "redux-observable";
-import type {LineTransformer} from "./index";
+import type {BioConverter} from "./index";
 import {createEdgeMaestro} from "../lib/meastros";
 import * as constants from "../../constants";
 import {apiConnector, itemConnector} from "../../rootMaestros";
@@ -11,54 +11,51 @@ import {taskMaestro} from "../taskMaestro";
 import {SERVER} from "../../constants/nodestatus";
 
 
-export const orchestraterEpic = (stavanger: LineTransformer) => {
+export const orchestraterEpic = (stavanger: BioConverter) => {
 
-    const moduleMaestro = nodeMaestro(stavanger)
+    const moduleMaestro = nodeMaestro(stavanger, null)
 
     const addin1 = taskMaestro(stavanger, {
-        inputs: ["representation","roi"],
-        parser: "transformings",
-        outputs: ["transformations"],
+        inputs: ["bioseries"],
+        parser: "conversings",
+        outputs: ["samples","representations"],
         parsing: (action, action$, state$ ) => {
-            let representation = stavanger.representation.selectors.getData(state$.value);
+            let bioseries = stavanger.bioseries.selectors.getData(state$.value);
             let settings = stavanger.settings.selectors.getMerged(state$.value)
-            let roi = stavanger.roi.selectors.getData(state$.value)
+            let node = stavanger.node.selectors.getState(state$.value)
 
-            if (!roi) return [stavanger.node.helpers.requireUser("Please set Roi First")]
-            if (!representation) return [stavanger.node.helpers.requireUser("Please set Representation First")]
-
-            let transforming = {
+            let conversing = {
                 data: {
                     settings: JSON.stringify(settings),
                     creator: userIDPortal(state$.value),
-                    representation: representation.id,//is initial
-                    sample: representation.sample,//is initial
-                    transformer: 1, // TODO: This is hard coded and wrong
+                    bioserie: bioseries.id,//is initial
+                    converter: node.entityid,
+                    outputvid: 0,
+                    experiment: bioseries.experiment, // TODO: Check best practice here
                     nodeid: stavanger.node.alias,
-                    roi: roi.id,
                     override: false
                 },
                 meta:{
-                    buffer: "of course"
+                    buffer: "None"
                 }
 
 
             }
+
+            stavanger.conversings.helpers.log("Posting", conversing)
+
             return [
-                stavanger.transformings.model.postItem.request(transforming),
+                stavanger.conversings.model.postItem.request(conversing),
                 stavanger.node.helpers.setStatus(SERVER.serverPost,"Posting")
             ]
-
-
         }
     })
 
 
     const apiConnections = combineEpics(
-        itemConnector(stavanger.roi),
-        itemConnector(stavanger.representation),
-        apiConnector(stavanger.transformations),
-        apiConnector(stavanger.transformings)
+        apiConnector(stavanger.conversings),
+        apiConnector(stavanger.samples),
+        apiConnector(stavanger.representations)
     )
 
     return combineOrchestrator(stavanger, {

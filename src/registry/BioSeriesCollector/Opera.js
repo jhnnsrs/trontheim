@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import StartButton from "./StartButton";
 import NodeFrame from "../lib/Frames/NodeFrame";
+import BioSeriesList from "./BioSeriesList";
 
 
 class Opera extends Component {
@@ -9,8 +9,8 @@ class Opera extends Component {
 
     render() {
                 return(
-                    <NodeFrame name={"LockerWatcher"}>
-                            <StartButton/>
+                    <NodeFrame name={"BioSeriesCollector"} isGrid={this.props.isGrid}>
+                            <BioSeriesList/>
                     </NodeFrame>)
     }
 }

@@ -117,11 +117,19 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                     // SUBSCRIBE TO SOCKET IF AUTHENTICATED
 
                     let external = action.payload.data // WITH ID BECAUSE IT WAS POSTED
+                    helpers.log("Checkign if external was created by this Window ", action.payload)
 
-                    return [
-                        model.openExternal.success(external),
-                    ]
-                }
+                    if (external.origin === THIS_WINDOW_ID) {
+                        return [
+                            model.openExternal.success(external),
+                        ]
+                    }
+                    else {
+                        return [{type: "DIFFERENT WINDOW ID", payload: "Simultanious opening of two Flows should be avoided"}
+                        ]
+
+                    }
+                    }
             )
         )
     ),
@@ -133,20 +141,21 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                     // SUBSCRIBE TO SOCKET IF AUTHENTICATED
                     helpers.log("Trying to open External for node" ,action.payload)
 
-                    let nodeid = action.payload.id
+                    let instance = action.payload.instance
                     let path = action.payload.path
                     let defaultsettings = action.payload.defaultsettings
                     let creator = action.payload.creator
 
                     let external = {
                         data: {
-                            name: nodeid, // TODO: Beautify this
+                            name: instance, // TODO: Beautify this
                             node: path,
                             defaultsettings: JSON.stringify(defaultsettings),
                             status: "alive",
                             creator: creator,
                             ports: JSON.stringify(action.payload.ports),
-                            links: "notset" // TODO: Replace on Backend
+                            links: "notset", // TODO: Replace on Backend,
+                            origin: THIS_WINDOW_ID
                         },
                         meta: {
                         }
@@ -165,13 +174,17 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                     // SUBSCRIBE TO SOCKET IF AUTHENTICATED
                     helpers.log(action.payload)
                     let message = action.payload.data
-                    let itmodel = JSON.parse(message.data)
                     let origin = message.origin
-                    let nodeid = message.nodeid
+
 
 
                     if (origin != THIS_WINDOW_ID) {
-                        helpers.log("NEW MESSAGE RECEIVED")
+
+                        let external = message.external
+                        let instance = message.instance
+
+
+                        helpers.log("Message from External Representation of Instance " + instance + " at External" + external)
                         return [model.messageFromExternal.success(action.payload)]
                     } else {
                         helpers.log("PING PONG RECEIVED")
@@ -196,11 +209,12 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                         data: {
                             data: JSON.stringify(data),
                             port: meta.port,
-                            instance: meta.targetid, // IS the targeted instance
+                            instance: meta.instance, // IS the targeted instance
                             model: meta.type,
                             origin: THIS_WINDOW_ID,
                             external: meta.external,
-                            creator: data.creator
+                            creator: data.creator,
+                            kind: meta.kind
                         },
                         meta: {}
                     }

@@ -16,7 +16,7 @@ const GraphShow = (props) =>
                             style={{backgroundColor: "#ffFFff"}}>
                             <CardBody>
                                 {node.name}
-                                {node.status && <p>{node.status}</p>}
+                                {node.status && <p>{node.status.message}</p>}
                             </CardBody>
                         </Card>
                     )

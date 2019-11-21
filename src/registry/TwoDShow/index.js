@@ -35,11 +35,11 @@ export type  TwoDShowStavanger = Stavanger &{
 
 export const ports = {
     ins: [
-        { name: "Display" , type: constants.DISPLAY, map: "display" },
+        { name: "display" , type: constants.DISPLAY, map: "display" },
     ],
     outs: [
-        {name: "Roi", type: constants.ROI},
-        {name: "Bounds", type: constants.BOUNDS}
+        {name: "roi", type: constants.ROI},
+        {name: "bounds", type: constants.BOUNDS}
     ]
 }
 

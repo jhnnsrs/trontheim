@@ -3,12 +3,13 @@ import type {HortenRegistry} from "../alta/horten/registry";
 import type {HortenNodeDefinition} from "../alta/horten/node";
 import {combineEpics, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
-import {buildStatus, DONE, GRAPHERROR} from "../constants/nodestatus";
+import {buildStatus, DONE, GRAPHERROR, WAITING} from "../constants/nodestatus";
 import type {HortenItem} from "../alta/horten/item";
 import type {Stavanger} from "../alta/stavanger";
 import type {HortenMold} from "../alta/horten/mold";
 import {combineOrchestrator} from "../alta/react/EpicRegistry";
 import {userIDPortal} from "../portals";
+import type {NodeStavanger} from "./lib/types";
 
 
 export interface NodeMeastroDefinition {
@@ -16,7 +17,7 @@ export interface NodeMeastroDefinition {
 }
 
 
-export const nodeMaestro = (stavanger: Stavanger, definition: NodeMeastroDefinition) => {
+export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDefinition) => {
 
     const node: HortenNode = stavanger.node
     const page = stavanger.page
@@ -56,7 +57,7 @@ export const nodeMaestro = (stavanger: Stavanger, definition: NodeMeastroDefinit
         action$.pipe(
             ofType(node.model.setStatus.request),
             mergeMap((action) => {
-                    return [graph.model.onNodeStatusUpdate.request({ instance: node.alias, status: action.payload.message, statuscode: action.payload.code}), node.model.setStatus.success(action.payload)]
+                    return [graph.model.onNodeStatusUpdate.request({ instance: node.alias, status: action.payload}), node.model.setStatus.success(action.payload)]
                 }
             )
         )
@@ -67,8 +68,7 @@ export const nodeMaestro = (stavanger: Stavanger, definition: NodeMeastroDefinit
             mergeMap((action) => {
                     return [
                         registry.model.register(node.alias).request(node.alias),
-
-
+                        node.model.setStatus.request(buildStatus(WAITING.initialWait, "Initialized"))
                     ]
                 }
             )
@@ -84,11 +84,11 @@ export const nodeMaestro = (stavanger: Stavanger, definition: NodeMeastroDefinit
 
 
                     return [
-                        graph.model.requestPop.request(
-                            {
+                        graph.model.requestPop.request({
                                 ...nodestate,
                                 creator: userIDPortal(state$.value)
-                            }),
+                        }),
+                        node.model.pop.success(true)
                     ]
                 }
             )
@@ -99,11 +99,12 @@ export const nodeMaestro = (stavanger: Stavanger, definition: NodeMeastroDefinit
             ofType(page.model.initPage.success),
             mergeMap((action) => {
 
-                    let defaultSettings = graph.selectors.getNode(node.alias)(state$.value).defaultsettings
-
+                    let nodeState = graph.selectors.getNode(node.alias)(state$.value)
+                    let defaultSettings = nodeState.defaultsettings
 
                     return [
                         settings.model.setInitial.request(defaultSettings),
+                        node.model.setState.request(nodeState),
 
                     ]
                 }

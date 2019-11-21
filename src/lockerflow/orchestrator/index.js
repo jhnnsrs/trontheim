@@ -77,13 +77,25 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
             }));
 
 
-    const onForeigNodeRequest = (action$, state$) =>
+    const onForeigNodeInRequest = (action$, state$) =>
         action$.pipe(
             ofType(graph.model.foreignNodeIn.request),
             mergeMap(action => {
-                curtain.helpers.log("Trying to Send to foreign",action.payload)
+                curtain.helpers.log("Trying to Send to External " + action.payload.meta.external + " the Model " ,action.payload)
+                let request = {...action.payload, meta: {...action.payload.meta, kind: "in", instance: action.payload.meta.target}}
                 return [
-                    curtain.model.sendToExternal.request(action.payload)
+                    curtain.model.sendToExternal.request(request)
+                ]
+            }));
+
+    const onForeigNodeOutRequest = (action$, state$) =>
+        action$.pipe(
+            ofType(graph.model.foreignNodeOut.request),
+            mergeMap(action => {
+                curtain.helpers.log("Trying to Send to External " + action.payload.meta.external + " the Model " ,action.payload)
+                let request = {...action.payload, meta: {...action.payload.meta, kind: "out", instance: action.payload.meta.instance}}
+                return [
+                    curtain.model.sendToExternal.request(request)
                 ]
             }));
 
@@ -101,7 +113,7 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
         action$.pipe(
             ofType(curtain.model.sendMessage.request),
             mergeMap(action => {
-                externals.helpers.log("Sending ExternalRequest ", action.payload)
+                externalrequests.helpers.log("Sending ExternalRequest ", action.payload)
                 return [
                     externalrequests.model.postItem.request(action.payload)
                 ]
@@ -114,7 +126,7 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
                 externals.model.osloItemUpdate.success,
                 ),
             mergeMap(action => {
-                externals.helpers.log("External Created ", action.payload)
+
 
                 return [
                     curtain.model.pushExternal.success(action.payload),
@@ -134,6 +146,23 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
                 return [
                     curtain.model.messageFromExternal.request(action.payload),
                 ]
+            }));
+
+    const onNewMessageFromExternalForWardToGraph = (action$, state$) =>
+        action$.pipe(
+            ofType(curtain.model.messageFromExternal.success),
+            mergeMap(action => {
+                externalrequests.helpers.log("Forwarding external request", action.payload)
+                let kind = action.payload.data.kind
+
+                if (kind === "in")
+                    return [graph.model.onExternalIn.request(action.payload)]
+                if (kind === "out")
+                    return [graph.model.onExternalOut.request(action.payload)]
+                else {
+                    curtain.helpers.log("No matching Kind for Operation Found")
+                    return [graph.model.setGraphError.request("Wrong Kind of ExternalRequest")]
+                }
             }));
 
 
@@ -263,7 +292,9 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
         loadFlowAndFirstItem,
         loadNodes,
         apiConnections,
-        onForeigNodeRequest,
+        onNewMessageFromExternalForWardToGraph,
+        onForeigNodeInRequest,
+        onForeigNodeOutRequest,
         onGraphRequestPopOpenExternal,
         onExternalOpenSetPopTrue,
         onExternalRequestSendToApi,

@@ -15,14 +15,15 @@ import {createHortenMold} from "../../alta/horten/mold";
 import type {HortenMold} from "../../alta/horten/mold";
 import type {HortenNode} from "../../alta/horten/node";
 import {createHortenNode} from "../../alta/horten/node";
+import {DEF_ANALYZING, DEF_BIOIMAGE, DEF_BIOSERIES} from "../../constants/definitions";
+import {createHortenValue} from "../../alta/horten/value";
+import type {HortenValue} from "../../alta/horten/value";
 
 
 export type LineTransformer = Stavanger &{
-    samples: HortenTable,
-    representation: HortenItem,
-    roi: HortenItem,
-    transformings: HortenTable,
-    transformations: HortenTable,
+    bioimage: HortenValue,
+    analyzings: HortenTable,
+    bioseries: HortenTable,
     node: HortenNode,
     settings: HortenMold
 
@@ -31,11 +32,10 @@ export type LineTransformer = Stavanger &{
 
 export const ports = {
     ins: [
-        { name: "roi" , type: constants.ROI, map: "roi" },
-        { name: "representation" , type: constants.REPRESENTATION, map: "representation" },
+        { name: "bioimage" , type: constants.BIOIMAGE, map: "bioimage" },
     ],
     outs: [
-        {name: "transformation", type: constants.TRANSFORMATION}
+        {name: "bioseries", type: constants.BIOSERIES}
     ]
 }
 
@@ -43,10 +43,9 @@ export const ports = {
 export const lineTransformerStavanger = createStavanger({
     node: createHortenNode({type: constants.NODE, ports: ports}),
     settings: createHortenMold({type:"settings"}),
-    representation: createHortenItem({type: constants.REPRESENTATION, url: "representation"}),
-    roi: createHortenItem({type: constants.ROI, url: "rois"}),
-    transformings: createHortenTable({type: constants.TRANSFORMING, url: "transformings"}),
-    transformations:  createHortenTable({type:constants.TRANSFORMATION, url:"transformation"}),
+    bioimage: createHortenValue(DEF_BIOIMAGE),
+    analyzings: createHortenTable(DEF_ANALYZING),
+    bioseries:  createHortenTable(DEF_BIOSERIES),
 })
 
 

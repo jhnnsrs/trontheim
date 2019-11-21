@@ -7,6 +7,7 @@ import 'react-block-ui/style.css';
 import 'loaders.css/loaders.min.css';
 import {SERVER, WAITING} from "../../constants/nodestatus";
 import {CardBody} from "reactstrap";
+import type {NodeStavanger} from "./types";
 
 type Props = {
     name: string,
@@ -35,8 +36,8 @@ class NodeBlocker extends React.Component<Props,State> {
 
 
 
-    getBlockState(edge) {
-        let {code, message} = edge.status
+    getBlockState(status) {
+        let {code, message} = status
         message = message ? message: ""
         let standard = "ball-grid-pulse"
         let standardcolor = "#02a17c"
@@ -59,17 +60,16 @@ class NodeBlocker extends React.Component<Props,State> {
 
 
     render() {
-            let edge = this.props.edge
-            if (edge) {
-                let { state, message, loader, color} = this.getBlockState(edge)
-                let hasPopped = edge.hasPopped
+            let {status, isPopped} = this.props
+            if (status) {
+                let { state, message, loader, color} = this.getBlockState(status)
 
                 return (
-                    <div><BlockUi tag="div" blocking={state} message={message}
-                                 loader={<Loader active type={loader}
-                                                 color={color}/>} keepInView>
-                        {hasPopped ? <CardBody><div  class="mx-auto">Node has Popped</div></CardBody> : this.props.children}
-                    </BlockUi>
+                    <div>
+                        <BlockUi tag="div" blocking={state} message={message}
+                                 loader={<Loader active type={loader} color={color}/>} keepInView>
+                        {isPopped ? <CardBody><div  class="mx-auto">Node has Popped</div></CardBody> : this.props.children}
+                        </BlockUi>
                     </div>
                 )
             }
@@ -77,8 +77,9 @@ class NodeBlocker extends React.Component<Props,State> {
     }
 }
 
-const mapStavangerToProps = (stavanger: EdgeStavanger) => ({
-    edge: stavanger.node.selectors.getModel,
+const mapStavangerToProps = (stavanger: NodeStavanger) => ({
+    status: stavanger.node.selectors.getStatus,
+    isPopped: stavanger.node.selectors.isPopped
 });
 
 const mapStavangerToDispatch  = (stavanger: EdgeStavanger) =>  ({

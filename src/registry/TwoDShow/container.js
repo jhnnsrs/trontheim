@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import TwoDShowComponent from "./TwoDShowComponent";
-import NonBlockingNodeFrame from "../lib/NonBlockingNodeFrame";
+import NonBlockingNodeFrame from "../lib/Frames/NonBlockingNodeFrame";
 
 
 export class TwoDShow extends Component {

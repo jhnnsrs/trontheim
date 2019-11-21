@@ -44,7 +44,7 @@ export const orchestraterEpic = (stavanger: NodeItemsStavanger) => {
                         nodeclass: data.nodeclass.value,
                         channel: null,
                         inputmodel: JSON.stringify(data.inputmodel.map(item => item.value)),
-                        outputmodel: JSON.stringify(data.inputmodel.map(item => item.value)),
+                        outputmodel: JSON.stringify(data.outputmodel.map(item => item.value)),
                         creator: userIDPortal(state$.value)
                     },
                     meta: {

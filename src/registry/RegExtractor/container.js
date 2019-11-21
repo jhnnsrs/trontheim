@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import RegExSelector from "./RegExSelector";
-import NodeFrame from "../lib/NodeFrame";
+import NodeFrame from "../lib/Frames/NodeFrame";
 import SampleShow from "./SampleShow";
 
 

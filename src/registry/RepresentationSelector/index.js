@@ -15,7 +15,7 @@ import {
     DEF_DISPLAY,
     DEF_LOCKER,
     DEF_REPRESENTATION,
-    DEF_SAMPLE,
+    DEF_SAMPLE, DEF_SETTINGS,
     DEF_USER
 } from "../../constants/definitions";
 import type {HortenValue} from "../../alta/horten/value";
@@ -36,10 +36,10 @@ export type  RepresentationSelector = Stavanger &{
 }
 export const ports = {
     ins: [
-        { name: "Sample" , type: constants.SAMPLE, map: "sample" },
+        { name: "sample" , type: constants.SAMPLE, map: "sample" },
     ],
     outs: [
-        {name: "Representation", type: constants.REPRESENTATION}
+        {name: "representation", type: constants.REPRESENTATION}
     ]
 }
 
@@ -47,7 +47,7 @@ export const ports = {
 
 export const representationSelectorStavanger = createStavanger({
     node: createHortenNode({type: constants.NODE, ports: ports}),
-    settings: createHortenMold({type: "settings"}),
+    settings: createHortenMold(DEF_SETTINGS),
     sample: createHortenValue(DEF_SAMPLE),
 
     // Out

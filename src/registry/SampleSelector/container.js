@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RepresentationList from "./ExperimentList";
-import NodeFrame from "../lib/NodeFrame";
+import NodeFrame from "../lib/Frames/NodeFrame";
 import SelectionShower from "./SelectionShower";
 
 

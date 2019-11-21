@@ -1,26 +1,26 @@
 import {combineEpics} from "redux-observable";
-import type {RepresentationSelector} from "./index";
+import type {BioImageSelector} from "./index";
 import {apiConnector} from "../../rootMaestros";
 import {nodeMaestro} from "../nodeMaestro";
 import {selectorMeastro} from "../selectorMaestro";
 import {combineOrchestrator} from "../../alta/react/EpicRegistry";
 
 
-export const orchestraterEpic = (stavanger: RepresentationSelector) => {
+export const orchestraterEpic = (stavanger: BioImageSelector) => {
 
 
     const addin =  nodeMaestro(stavanger, null)
 
     const addin2 = selectorMeastro(stavanger, {
-        filters: ["sample",],
-        out: "representations",
-        outport: "representation",
+        filters: ["locker",],
+        out: "bioimages",
+        outport: "bioimage",
         filterActions: (actions, action$, state$) => {
 
-            let sample = stavanger.sample.selectors.getData(state$.value)
+            let locker = stavanger.locker.selectors.getData(state$.value)
 
             let filter = {
-                sample: sample === null ? undefined : sample.id,
+                locker: locker === null ? undefined : locker.id,
             }
 
 
@@ -32,7 +32,7 @@ export const orchestraterEpic = (stavanger: RepresentationSelector) => {
 
 
     const apiConnections = combineEpics(
-        apiConnector(stavanger.representations)
+        apiConnector(stavanger.bioimages)
     )
 
     return combineOrchestrator(stavanger, {

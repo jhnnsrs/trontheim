@@ -20,7 +20,7 @@ import {
 } from "../halden";
 import {Action, Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
-import {ATTENTION, buildStatus} from "../../constants/nodestatus";
+import {ATTENTION, buildStatus, NODE} from "../../constants/nodestatus";
 import type {StatusCode} from "../../constants/nodestatus";
 
 export type OutName = string
@@ -40,17 +40,17 @@ export type HortenNodeModel = HortenModel & {
     setIsAlien: HaldenActions, //For the Node that has been opened
     setProgress: HaldenActions,
     setStatus: HaldenActions,
+    setState: HaldenActions,
     requireUser: HaldenActions,
     fetchLinks: HaldenActions
 }
 
 export type HortenNodeSelectors = HortenSelectors & {
     getLinks: HaldenSelector,
-    hasPopped: HaldenSelector,
     isPopped: HaldenSelector,
-    isAlien: HaldenSelector,
-    hasAlien: HaldenSelector,
-    getInput: HaldenSelector
+    getInput: HaldenSelector,
+    getState: HaldenSelector,
+    getStatus: HaldenSelector,
 
 }
 
@@ -111,6 +111,7 @@ export const createHortenNodeModel = createHortenModel({
     homecoming: createHaldenAction("SET_HOME"),
     setIsPopped: createHaldenAction("SET_IS_POPPED"),
     setIsAlien: createHaldenAction("SET_IS_ALIEN"),
+    setState: createHaldenAction("SET_STATE"),
     requireUser: createHaldenAction("REQUIRE_USER"),
 })
 
@@ -122,21 +123,19 @@ export const createHortenNodeHelpers = createHortenHelpers({
 export const createHortenNodeSelectors = createHortenSelectors({
     getInput: createHaldenSelector("input"),
     isPopped: createHaldenSelector("isPopped"), //For the Node that is being Popped
-    hasAlien: createHaldenSelector("hasAlien"), //For the Node that causes the Pop
-    isAlien: createHaldenSelector("isAlien"), //For the Node that causes the Pop
-    hasPopped: createHaldenSelector("hasPopped"), //For the Node that causes the Pop
-    getLinks: createHaldenSelector("links")
+    getState: createHaldenSelector("state"), //For the Node that is being Popped
+    getStatus: createHaldenSelector("status"), //For the Node that is being Popped
 })
 
 
-export const createHortenNodeEpic = createHortenEpic((model: HortenNodeModel, selectors: HortenNodeSelectors , helpers, definition) => {
+export const createHortenNodeEpic = createHortenEpic((model: HortenNodeModel, selectors: HortenNodeSelectors , helpers: HortenNodeHelpers, definition) => {
     // We are Building Now According to the constructed Models and setting the Out with the Required Information
 
     const outepics = definition.ports.outs.map(
         out => {
             return (action$, state$) => action$.pipe(
                 ofType(model.setOut(out.name).request),
-                map(action => {
+                mergeMap(action => {
                         let output = {
                             data: action.payload.data,
                             meta: {
@@ -146,7 +145,12 @@ export const createHortenNodeEpic = createHortenEpic((model: HortenNodeModel, se
                                 port: out.name
                             }
                         }
-                        return model.setOutput.success(output,output.meta)
+                        return [
+                            model.setOutput.success(output,output.meta),
+                            helpers.setStatus({
+                                code: NODE.sendOnPort,
+                                message: "Input out on " + out.name,
+                            })]
                     }
                 )
             )
@@ -157,7 +161,8 @@ export const createHortenNodeEpic = createHortenEpic((model: HortenNodeModel, se
         progressPassThrough: createHaldenPassThroughEpicFromActions(model.setProgress),
         requireUserThrough: createHaldenPassThroughEpicFromActions(model.requireUser),
         setModelPassThrough: createHaldenPassThroughEpicFromActions(model.setModel),
-        setStatePassThrough: createHaldenPassThroughEpicFromActions(model.setStatus),
+        setStatusPassThrough: createHaldenPassThroughEpicFromActions(model.setStatus),
+        setStatePassThrough: createHaldenPassThroughEpicFromActions(model.setState),
         setOutput: combineEpics(...outepics)
 
 
@@ -182,14 +187,11 @@ const defaultState = {
     isPoppable: false,
     isAlienable: false,
     status: 999,
+    state: false
 };
 
 export const createHortenNodeReducer = createHortenReducer((model: HortenNodeModel) => (
     {
-        [model.setProgress.success]: (state, action) => {
-            return {...state, progress: action.payload}
-
-        },
         [model.fetchLinks.success]: (state, action) => {
             return {...state, links: action.payload}
 
@@ -200,27 +202,14 @@ export const createHortenNodeReducer = createHortenReducer((model: HortenNodeMod
         [model.setStatus.success]: (state, action) => {
             return {...state, status: action.payload}
         },
+        [model.setState.success]: (state, action) => {
+            return {...state, state: action.payload}
+        },
         [model.pop.success]: (state, action) => {
-            return {...state, hasPopped: action.payload}
-        },
-        [model.unpop.success]: (state, action) => {
-            return {...state, hasPopped: false}
-        },
-        [model.alienate.success]: (state, action) => {
-            return {...state, hasAlien: action.payload}
-        },
-        [model.homecoming.success]: (state, action) => {
-            return {...state, hasAlien: false}
-        },
-        [model.setIsAlien.success]: (state, action) => {
-            return {...state, isAlien: action.payload}
-        },
-        [model.setIsPopped.success]: (state, action) => {
             return {...state, isPopped: action.payload}
         },
-        [model.requireUser.success]: (state, action) => {
-            return {...state, attention: action.payload}
-
+        [model.unpop.success]: (state, action) => {
+            return {...state, isPopped: false}
         },
     })
 );

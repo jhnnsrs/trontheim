@@ -10,7 +10,14 @@ import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import type {HortenEdge} from "../../alta/horten/edge";
 import {createHortenEdge} from "../../alta/horten/edge";
-import {DEF_BIOIMAGE, DEF_DISPLAY, DEF_LOCKER, DEF_SAMPLE, DEF_USER} from "../../constants/definitions";
+import {
+    DEF_BIOIMAGE,
+    DEF_DISPLAY,
+    DEF_LOCKER,
+    DEF_REPRESENTATION,
+    DEF_SAMPLE,
+    DEF_USER
+} from "../../constants/definitions";
 import type {HortenValue} from "../../alta/horten/value";
 import {createHortenValue} from "../../alta/horten/value";
 import {createHortenNode} from "../../alta/horten/node";
@@ -19,34 +26,34 @@ import type {HortenNode} from "../../alta/horten/node";
 import type {HortenMold} from "../../alta/horten/mold";
 
 
-export type  DisplaySelectorStavanger = Stavanger &{
-    sample: HortenValue,
+export type  BioImageSelector = Stavanger &{
+    locker: HortenValue,
     node: HortenNode,
     settings: HortenMold,
-    displays: HortenTable
+    bioimages: HortenTable
 
 
 }
 export const ports = {
     ins: [
-        { name: "sample" , type: constants.SAMPLE, map: "sample" },
+        { name: "locker" , type: constants.LOCKER, map: "locker" },
     ],
     outs: [
-        {name: "display", type: constants.DISPLAY}
+        {name: "bioimage", type: constants.BIOIMAGE}
     ]
 }
 
 
 
-export const displaySelectorStavanger = createStavanger({
+export const bioImageSelectorStavanger = createStavanger({
     node: createHortenNode({type: constants.NODE, ports: ports}),
     settings: createHortenMold({type: "settings"}),
-    sample: createHortenValue(DEF_SAMPLE),
+    locker: createHortenValue(DEF_LOCKER),
 
     // Out
-    displays: createHortenTable(DEF_DISPLAY)
+    bioimages: createHortenTable(DEF_BIOIMAGE)
 })
 
 
 
-export default connectOpera(displaySelectorStavanger)(orchestraterEpic)(ImageMutater);
+export default connectOpera(bioImageSelectorStavanger)(orchestraterEpic)(ImageMutater);

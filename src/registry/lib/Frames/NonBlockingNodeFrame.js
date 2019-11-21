@@ -1,9 +1,9 @@
 import {Card, CardBody, CardTitle} from "reactstrap";
 import React from "react";
-import type {HortenEdge} from "../../alta/horten/edge";
+import type {HortenEdge} from "../../../alta/horten/edge";
 import NodeHeader from "./NodeHeader";
 import {Loader} from 'react-loaders';
-import NodeBlocker from "./NodeBlocker";
+import NodeNonBlocker from "../NodeNonBlocker";
 
 type Props = {
     name: string,
@@ -24,43 +24,25 @@ type EdgeStavanger = {
 
 export default class NodeFrame extends React.Component<Props,State> {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {
-            show: true
-        }
-        this.toggleShow = this.toggleShow.bind(this)
-
-    }
-
-    toggleShow() {
-        this.setState({
-            show: !this.state.show
-        })
     }
 
 
 
     render() {
-        if(this.state.show) {
-                return (
+        return (
                 <React.Fragment>
                     <NodeHeader name={this.props.name}/>
-                    <NodeBlocker>
+                    <NodeNonBlocker>
                         <CardBody className="overflow-auto">
                         {this.props.children}
                         </CardBody>
-                    </NodeBlocker>
+                    </NodeNonBlocker>
                 </React.Fragment>
                     )
 
-        }
-        else {
-           return (
-                    <React.Fragment>
-                        <NodeHeader name={this.props.name}/>
-                    </React.Fragment>
-                )
-        }
     }
+
+
 }

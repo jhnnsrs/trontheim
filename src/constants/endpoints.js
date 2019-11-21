@@ -1,6 +1,8 @@
 
 
-const redirectui =  window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port +"/callback" : "http://" + window.location.hostname + ":" + window.location.port + "/callback";
+
+export const THIS_ROOT_URL = window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port : "http://" + window.location.hostname + ":" + window.location.port
+export const redirectui =  window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port +"/callback" : "http://" + window.location.hostname + ":" + window.location.port + "/callback";
 
 
 export const osloEndpoints = [

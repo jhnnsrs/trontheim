@@ -52,20 +52,48 @@ export const orchestraterEpic = (stavanger: ExternalStavanger) => {
             ofType(curtain.model.messageFromExternal.success),
             mergeMap(action => {
                 externalrequests.helpers.log("Forwarding external request", action.payload)
+                let kind = action.payload.data.kind
 
-                return [
-                    graph.model.onExternalIn.request(action.payload)
-                ]
+                if (kind === "in")
+                    return [graph.model.onExternalIn.request(action.payload)]
+                if (kind === "out")
+                    return [graph.model.onExternalOut.request(action.payload)]
+                else {
+                    curtain.helpers.log("No matching Kind for Operation Found")
+                    return [graph.model.setGraphError.request("Wrong Kind of ExternalRequest")]
+                }
             }));
 
 
-    const onForeignNodeRequestPassToVeil = (action$, state$) =>
+    const onForeigNodeInRequest = (action$, state$) =>
         action$.pipe(
             ofType(graph.model.foreignNodeIn.request),
             mergeMap(action => {
-                page.helpers.log("Foreign Node Request")
+                curtain.helpers.log("Trying to Send to External " + action.payload.meta.external + " the Model " ,action.payload)
+                let request = {...action.payload, meta: {...action.payload.meta, kind: "in", instance: action.payload.meta.target}}
                 return [
-                    curtain.model.sendToAlien.request(action.payload)
+                    curtain.model.sendToExternal.request(request)
+                ]
+            }));
+
+    const onForeigNodeOutRequest = (action$, state$) =>
+        action$.pipe(
+            ofType(graph.model.foreignNodeOut.request),
+            mergeMap(action => {
+                curtain.helpers.log("Trying to Send to External " + action.payload.meta.external + " the Model " ,action.payload)
+                let request = {...action.payload, meta: {...action.payload.meta, kind: "out", instance: action.payload.meta.instance}}
+                return [
+                    curtain.model.sendToExternal.request(request)
+                ]
+            }));
+
+    const onExternalRequestSendToApi = (action$, state$) =>
+        action$.pipe(
+            ofType(curtain.model.sendMessage.request),
+            mergeMap(action => {
+                externalrequests.helpers.log("Sending ExternalRequest ", action.payload)
+                return [
+                    externalrequests.model.postItem.request(action.payload)
                 ]
             }));
 
@@ -98,9 +126,11 @@ export const orchestraterEpic = (stavanger: ExternalStavanger) => {
             onPageInitLoadFlow,
             loadNodes,
             loadGraphFromExternal,
+            onForeigNodeOutRequest,
             onExternalRequestInSendToCurtain,
             apiConnections,
-            onForeignNodeRequestPassToVeil,
+            onForeigNodeInRequest,
+            onExternalRequestSendToApi,
             onNewMessageFromExternalForWardToGraph
         }
 

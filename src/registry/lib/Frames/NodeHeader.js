@@ -1,9 +1,9 @@
 import {CardHeader, Col, Row} from "reactstrap";
 import React from "react";
-import {connectInstrument} from "../../alta/react";
-import type {HortenEdge} from "../../alta/horten/edge";
-import PopButton from "./PopButton";
-import AlienButton from "./AlienButton";
+import {connectInstrument} from "../../../alta/react";
+import type {HortenEdge} from "../../../alta/horten/edge";
+import PopButton from "../PopButton";
+import AlienButton from "../AlienButton";
 
 type Props = {
     name: string,
@@ -36,12 +36,9 @@ class NodeHeader extends React.Component<Props,State> {
 
 
     getclassName() {
-        let progress = this.props.edge.progress ? "text-success" : "text-secondary"
-        progress = this.props.edge.attention ? "text-danger" : progress
 
         let elements = [
             "MyHandle",
-            progress
         ]
 
         return elements.join(" ")
@@ -51,19 +48,17 @@ class NodeHeader extends React.Component<Props,State> {
 
 
     render() {
-            return(<CardHeader className={this.getclassName()}>
-                <Row>
-                    <Col className="col-auto mr-auto">{this.props.edge.name}</Col>
-                    <Col>{this.props.edge.attention && this.props.edge.attention}</Col>
-
-                    {this.props.isPoppable && <Col><PopButton/></Col>}
-                </Row>
-            </CardHeader>)
+            return(
+                <CardHeader className={this.getclassName()}>
+                    <Row>
+                        {this.props.isPoppable && <Col className="col-auto ml-auto"><PopButton/></Col>}
+                    </Row>
+                </CardHeader>
+            )
     }
 }
 
 const mapStavangerToProps = (stavanger: EdgeStavanger) => ({
-    edge: stavanger.node.selectors.getModel,
     isPoppable: (_) => stavanger.node.definition.isPoppable
 });
 

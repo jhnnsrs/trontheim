@@ -47,12 +47,13 @@ const combine = (reducers) => {
 	return combineReducers(reducers);
 };
 
-const composeEnhancers = compose;
+const dev = false
+const composeEnhancers = dev ? (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ) || compose : (item) => item
 
 
 const store = createStore(
 	combine(rootReducer),
-	applyMiddleware(authMiddleware,epicMiddleware)
+	composeEnhancers(applyMiddleware(authMiddleware,epicMiddleware))
 );
 
 epicMiddleware.run(hotReloadingEpic)

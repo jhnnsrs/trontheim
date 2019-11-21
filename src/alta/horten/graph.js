@@ -20,6 +20,7 @@ import {
 import {Reducer} from "redux";
 import type {HaldenActions} from "../oslo";
 import v4 from "uuid"
+import {WAITING} from "../../constants/nodestatus";
 export type NodeID = string
 
 export type HortenGraphModel = HortenModel & {
@@ -31,7 +32,9 @@ export type HortenGraphModel = HortenModel & {
 
     // Node API
     setNodeIn: (NodeID) => HaldenActions,
+
     onExternalIn: HaldenActions,
+    onExternalOut: HaldenActions,
 
     // Out
     foreignNodeIn: HaldenActions,
@@ -120,6 +123,7 @@ export const createHortenGraphModel = createHortenModel({
     setNodeIn: createHaldenAction("NODE_INPUT_SET",false, true),
     setNodeType: createHaldenAction("SET_NODE_TYPE"),
     onExternalIn: createHaldenAction("ON_EXTERNAL_IN"),
+    onExternalOut: createHaldenAction("ON_EXTERNAL_OUT"),
     foreignNodeIn: createHaldenAction("SET_FOREIGN_NODE_IN"),
     foreignNodeOut: createHaldenAction("SET_FOREIGN_NODE_OUT"),
     setNodeSettings: createHaldenAction("SET_NODE_SETTINGS"),
@@ -191,15 +195,29 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             mergeMap(action => {
                     // data: { representation: { data: ... , meta: ....}, biometa: {data: ..,meta:...}, meta: { instanceid:..., .... }
 
-                    helpers.log(action.payload)
+                    helpers.log("Node Output received ",action.payload)
                     const data = action.payload.data;
                     const meta = action.payload.meta;
                     const type = action.payload.meta.type;
-
                     const instance = action.payload.meta.instance
+                    const port = action.payload.meta.port
 
                     let instancenodetype = selectors.getNodeType(instance)(state$.value)
-                    if (instancenodetype.location == "external" ) return [model.foreignNodeOut.request(action.payload)]
+                    if (instancenodetype.location == "external" ) {
+                        helpers.log("Node itself is an external Node ")
+
+                        let outmodel = {
+                            data: data,
+                            meta: {
+                                ...meta,
+                                external: instancenodetype.external,
+                                instance: instance,
+                                port: port,
+                            }
+                        }
+
+                        return [model.foreignNodeOut.request(outmodel)]
+                    }
 
                     let nodes = []
                     // node.id refers to the unique Diagram ID provided by the Storm-Diagram
@@ -217,13 +235,15 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
 
                     const actions = [];
 
-                    let node = nodes.find(node => node.instance === instance)
+                    let originnode = nodes.find(node => node.instance === instance)
+                    let originNodeSourceId = originnode.ports.find(item => item.label === port && !item.in).id
 
 
-                    helpers.log("Found the following Node for Instance '" + instance + "': ", node)
+                    helpers.log("Found the following Node for Origin of Instance '" + instance + "': ", originnode)
+                    helpers.log("Found the following PortId for the Port Output '" + originNodeSourceId)
 
                     links = links.filter(link => {
-                        return link.source === node.id
+                        return link.source === originnode.id && link.sourcePort === originNodeSourceId
                     }); //TODO: Port Comparison
 
                     helpers.log("Filtered and ended up with the these Links", links)
@@ -264,9 +284,10 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                                 outmodel.meta = { ...outmodel.meta, external: targetnodetype.external}
 
                                 actions.push(model.foreignNodeIn.request(outmodel))
-                                helpers.log("Pushing to foreignNode ",outmodel)
+                                helpers.log("Pushing to external Representation of Instance " + targetnode.instance +  " at External " + targetnodetype.external + " the Model ",outmodel)
                             }
                             else {
+                                helpers.log("Pushing to local Representation of Instance " + targetnode.instance + " the Model",outmodel)
                                 actions.push(model.setNodeIn(targetnode.instance).request(outmodel,outmodel.meta))
 
                                 actions.push(model.onNodeStatusUpdate.request({
@@ -299,7 +320,14 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                 let nodes = diagram.nodes.map(node => {
                     const instanceid = (node.name + "-" + v4()).toLowerCase()
 
-                    return {...node, instance: instanceid, base: node.id, nodetype: { location: "local"}}
+                    return {...node,
+                        instance: instanceid,
+                        base: node.id,
+                        nodetype: { location: "local"},
+                        status: {
+                            code: WAITING.initializing,
+                            message: "Initializing.."
+                        }}
                 })
 
                 // Set the Links
@@ -324,7 +352,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                         {...rest,
                             instance:  external.name,
                             path: external.node,
-                            nodetype: { location: "external", external: "self"},
+                            nodetype: { location: "external", external: external.id},
                             ports: JSON.parse(external.ports)
 
                         }
@@ -361,12 +389,10 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             ofType(model.requestPop.success),
             mergeMap(action => {
                     // TODO: Here an instantiation of the node type on veil should maybe happen?
-                    let id = action.payload.name // NodeID in Flow
+                    let instance = action.payload.name // Node instance in Flow
                     let externalid = action.payload.id // ExternalID
 
-                    let node = selectors.getNodes(state$.value).find(node => node.id === id)
-
-                    return [model.setNodeType.request({ instance: node.instance, type: { location: "pop", external: externalid}})]
+                    return [model.setNodeType.request({ instance: instance, type: { location: "pop", external: externalid}})]
                 }
             )),
     onExternalRequestin: (action$, state$) =>
@@ -374,19 +400,47 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             ofType(model.onExternalIn.request),
             mergeMap(action => {
                     // TODO: Here an instantiation of the node type on veil should maybe happen?
-                    let data = action.payload.data
-                    helpers.log(action.payload)
-                    let datastring = data.data
+
+                    helpers.log("Mapping External In Request to mapped Node" , action.payload)
+
+                    let externalrequest = action.payload.data
+                    let modeldata = JSON.parse(externalrequest.data)
 
                     let payload = {
-                        data: JSON.parse(datastring),
+                        data: modeldata,
                         meta: {
-                            instance: data.instance,
-                            type: data.model,
+                            target: externalrequest.instance,
+                            model: externalrequest.model,
+                            type: externalrequest.model,
+                            port: externalrequest.port
 
                         }
                     }
-                    return [model.setNodeIn("ss").request(payload)]
+
+                    return [model.setNodeIn(externalrequest.instance).request(payload,payload.meta)]
+                }
+            )),
+    onExternalOut: (action$, state$) =>
+        action$.pipe(
+            ofType(model.onExternalOut.request),
+            mergeMap(action => {
+                    // TODO: Here an instantiation of the node type on veil should maybe happen?
+
+                    helpers.log("Mapping External Out Request to Graph" , action.payload)
+
+                    let externalrequest = action.payload.data
+                    let modeldata = JSON.parse(externalrequest.data)
+
+                    let payload = {
+                        data: modeldata,
+                        meta: {
+                            instance: externalrequest.instance,
+                            type: externalrequest.model,
+                            port: externalrequest.port
+                        }
+                    }
+
+                    return [model.onNodeOutput.request(payload)]
                 }
             )),
     onNodeStatusChanged: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),

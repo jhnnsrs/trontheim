@@ -129,7 +129,7 @@ export class TwoDShowComponent extends Component<any,any> {
                 <div id="theid">
                     <ParentSize>
                         {parent => {
-                            if (!display.data) return ""
+                            if (!display.data) return "Waiting for Initial Input"
                             let shape = [1024,1024,2]
                             if (display) {
                                 if (display.data.shape) {

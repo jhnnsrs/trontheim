@@ -1,34 +1,23 @@
 import {Button} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
-import type {HortenGraph} from "../../alta/horten/graph";
-import type {HortenRegistry} from "../../alta/horten/registry";
-import type {HortenNode} from "../../alta/horten/node";
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
-
-export interface GraphStavanger {
-    graph: HortenGraph,
-    registry: HortenRegistry
-}
-
-
-export interface NodeStavanger {
-    parent: GraphStavanger,
-    node: HortenNode
-}
+import type {NodeStavanger} from "./types";
+import {THIS_ROOT_URL} from "../../constants/endpoints";
 
 
 class StartButton extends Component<any,any> {
     render() {
-
         let type = this.props.type
+        console.log("rerendered")
         return (
             <React.Fragment>
-                {(type.location === "local") ? <Button size="sm" outline  onClick={() => this.props.start()}> Pop</Button>
-                : <>
+                {(type.location === "local") && <Button size="sm" outline  onClick={() => this.props.start()}> Pop</Button>}
+                {(type.location === "pop") && <>
                         <Button size="sm" outline  onClick={() => this.props.unpop()}>{type.location} </Button>
-                        <ButtonToNavigate outside={true} to={"http://localhost:3000/external/" + type.external}>{type.external}</ButtonToNavigate>
+                        <ButtonToNavigate outside={true} to={THIS_ROOT_URL + "/external/" + type.external}>{type.external}</ButtonToNavigate>
                     </>}
+                {(type.location === "external") && ""}
             </React.Fragment>
         );
     }

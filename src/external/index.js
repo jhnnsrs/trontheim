@@ -16,20 +16,11 @@ export class Bergen extends Component {
     render() {
         console.log("Rerender Major Template")
         return (
-            <Container id="test">
+            <div id="test">
                 <LoadAfterProfile>
-                    <Container>
-                        <Row>
-                            <Sidebar>
-                                <ExternalComponent/>
-                            </Sidebar>
-                            <MainContainer>
-                                <NodeHost/>
-                            </MainContainer>
-                        </Row>
-                    </Container>
+                    <NodeHost/>
                 </LoadAfterProfile>
-            </Container>
+            </div>
         );
     }
 }

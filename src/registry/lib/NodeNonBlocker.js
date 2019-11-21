@@ -33,14 +33,14 @@ class NodeBlocker extends React.PureComponent<Props,State> {
     render() {
             return (
                     <div>
-                        {this.props.hasPopped ? <CardBody><div  class="mx-auto">Node has Popped</div></CardBody> : this.props.children}
+                        {this.props.isPopped ? <CardBody><div  class="mx-auto">Node has Popped</div></CardBody> : this.props.children}
                     </div>
                 )
             }
 }
 
 const mapStavangerToProps = (stavanger: EdgeStavanger) => ({
-    hasPopped: stavanger.node.selectors.hasPopped,
+    isPopped: stavanger.node.selectors.isPopped,
 });
 
 const mapStavangerToDispatch  = (stavanger: EdgeStavanger) =>  ({
