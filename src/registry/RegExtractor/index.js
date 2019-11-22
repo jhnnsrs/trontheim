@@ -1,4 +1,3 @@
-import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
 import ExperimentAdder from "./container";
 import {connectOpera} from "../../alta/react";
@@ -8,8 +7,6 @@ import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
 import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
-import type {HortenEdge} from "../../alta/horten/edge";
-import {createHortenEdge} from "../../alta/horten/edge";
 import {
     DEF_ANIMAL,
     DEF_EXPERIMENT,
@@ -17,13 +14,11 @@ import {
     DEF_FILEMATCHSTRING,
     DEF_SAMPLE
 } from "../../constants/definitions";
-import type {HortenMold} from "../../alta/horten/mold";
-import {createHortenMold} from "../../alta/horten/mold";
-import {createHortenNode} from "../../alta/horten/node";
-import type {HortenNode} from "../../alta/horten/node";
+import {createNodeConductor} from "../../conductors/createNodeConductor";
+import type {NodeStavanger} from "../lib/types";
 
 
-export type  NameExtractorStavanger = Stavanger &{
+export type  NameExtractorStavanger = NodeStavanger &{
     experiments: HortenTable,
     sample: HortenItem,
     extractedInformation: HortenItem,
@@ -32,8 +27,6 @@ export type  NameExtractorStavanger = Stavanger &{
     animals: HortenTable,
     experimentalgroups: HortenTable,
     sampleout: HortenItem,
-    node: HortenNode,
-    settings: HortenMold
 
 
 }
@@ -51,12 +44,10 @@ const ports = {
     ]
 }
 
+const nodeConductor = createNodeConductor({ports: ports})
 
 export const nameExtractorStavanger = createStavanger({
-    node: createHortenNode({type: constants.NODE, ports: ports}),
-    settings: createHortenMold({type: "settings", validator: null}),
-
-
+    ...nodeConductor,
     extractedInformation: createHortenItem({type: "information", url: "null"}),
 
     // FileMatchString

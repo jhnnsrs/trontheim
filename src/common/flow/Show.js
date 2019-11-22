@@ -1,10 +1,9 @@
-import type {LockerFlowStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";
 import React from "react"
-import {Card, CardBody, Col, Container, Row} from "reactstrap";
+import {Card, CardBody, Container, Row} from "reactstrap";
 
 import Dict from "../../generics/Dict";
-import {STATUSIN, STATUSOUT} from "../../alta/horten/nomogram";
+import type {FlowStavanger} from "../../maestros/flowMeastro";
 
 const GraphShow = (props) =>
     <Container>
@@ -26,11 +25,11 @@ const GraphShow = (props) =>
         </Row>
     </Container>
 
-const mapStavangerToProps = (stavanger: LockerFlowStavanger) => ({
+const mapStavangerToProps = (stavanger: FlowStavanger) => ({
     graph: stavanger.graph.selectors.getGraphShow,
 });
 
-const mapStavangerToDispatch  = (stavanger: LockerFlowStavanger) =>  ({
+const mapStavangerToDispatch  = (stavanger: FlowStavanger) =>  ({
 });
 
 

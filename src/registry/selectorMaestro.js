@@ -2,7 +2,7 @@ import type {HortenGraph} from "../alta/horten/graph";
 import type {HortenRegistry} from "../alta/horten/registry";
 import type {HortenNode, HortenNodeDefinition} from "../alta/horten/node";
 import {ActionsObservable, combineEpics, ofType, StateObservable} from "redux-observable";
-import {zip} from "rxjs";
+import {zip, of} from "rxjs";
 import {mergeMap, switchMap} from "rxjs/operators";
 import {ATTENTION, buildStatus, GRAPHERROR, NODEERROR, SERVER} from "../constants/nodestatus";
 import type {HortenItem} from "../alta/horten/item";
@@ -46,7 +46,8 @@ export const selectorMeastro = (stavanger: Stavanger, definition: NodeMeastroDef
     const buildZip = (ports,action$) => {
 
         const filters = buildFilters(ports)
-
+        stavanger.page.helpers.log("Will wait for these inputs", filters)
+        if (filters.length === 0) return  of(1)
         const actionStreams = filters.map(staname => action$.ofType(stavanger[staname].model.setItem.success))
 
         return zip(...actionStreams)

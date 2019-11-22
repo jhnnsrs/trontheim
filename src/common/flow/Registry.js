@@ -8,6 +8,7 @@ import type {HortenRegistry} from "../../alta/horten/registry";
 import type {HortenItem} from "../../alta/horten/item";
 import Node from "./Node";
 import {ResponsiveReactGridLayout} from "../../flow/smartcomponents/NodeGridContainer";
+import type {FlowStavanger} from "../../maestros/flowMeastro";
 
 
 export interface RegistryStavanger  {
@@ -15,7 +16,7 @@ export interface RegistryStavanger  {
 }
 
 export interface LayoutStavanger {
-    layout: HortenItem
+    selectedLayout: HortenItem
 }
 
 export type LayRegSta = RegistryStavanger & LayoutStavanger
@@ -79,15 +80,15 @@ class Registry extends React.PureComponent {
 }
 
 
-const mapStavangerToProps = (stavanger: LayRegSta) => ({
+const mapStavangerToProps = (stavanger: FlowStavanger) => ({
     nodes: stavanger.registry.selectors.getComponents,
-    layoutna: stavanger.layout.selectors.getData,
+    layoutna: stavanger.selectedLayout.selectors.getData,
 });
 
-const mapStavangerToDispatch  = (stavanger: LayRegSta) =>  ({
-    updateLayout: (layout) => stavanger.layout.model.dynamic("SET_LAYOUT").request(layout),
-    updateOnServer: () => stavanger.layout.model.dynamic("UPDATE_LAYOUT").request(),
-    createOnServer: () => stavanger.layout.model.dynamic("CREATE_LAYOUT").request()
+const mapStavangerToDispatch  = (stavanger: FlowStavanger) =>  ({
+    updateLayout: (layout) => stavanger.selectedLayout.model.dynamic("SET_LAYOUT").request(layout),
+    updateOnServer: () => stavanger.selectedLayout.model.dynamic("UPDATE_LAYOUT").request(),
+    createOnServer: () => stavanger.selectedLayout.model.dynamic("CREATE_LAYOUT").request()
 });
 
 

@@ -24,12 +24,12 @@ import {createHortenNode} from "../../alta/horten/node";
 import {createHortenMold} from "../../alta/horten/mold";
 import type {HortenNode} from "../../alta/horten/node";
 import type {HortenMold} from "../../alta/horten/mold";
+import {createNodeConductor} from "../../conductors/createNodeConductor";
+import type {NodeStavanger} from "../lib/types";
 
 
-export type  RepresentationSelector = Stavanger &{
+export type  RepresentationSelector = NodeStavanger &{
     sample: HortenValue,
-    node: HortenNode,
-    settings: HortenMold,
     representations: HortenTable
 
 
@@ -43,11 +43,10 @@ export const ports = {
     ]
 }
 
-
+const nodeConductor = createNodeConductor({ports: ports})
 
 export const representationSelectorStavanger = createStavanger({
-    node: createHortenNode({type: constants.NODE, ports: ports}),
-    settings: createHortenMold(DEF_SETTINGS),
+    ...nodeConductor,
     sample: createHortenValue(DEF_SAMPLE),
 
     // Out

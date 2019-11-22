@@ -6,12 +6,12 @@ import {lockerFlowStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
-import FlowComponent from "./smartcomponents/FlowComponent";
+import FlowComponent from "../common/flow/FlowComponent";
 import LockerComponent from "./smartcomponents/LockerComponent";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
-import LayoutsCard from "./smartcomponents/LayoutsCard";
-import Registry from "./smartcomponents/Registry";
-import Show from "./smartcomponents/Show";
+import LayoutsCard from "../common/flow/LayoutsCard";
+import Registry from "../common/flow/Registry";
+import Show from "../common/flow/Show";
 
 export class Bergen extends Component {
 

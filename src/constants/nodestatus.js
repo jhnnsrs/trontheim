@@ -37,7 +37,8 @@ export interface StatusCodeContainer {
 }
 
 export const NODE = {
-    sendOnPort: sendOnPort
+    sendOnPort: sendOnPort,
+    waitingForInput: waitingForInput
 }
 
 export const UNKNOWN: StatusCodeContainer = {

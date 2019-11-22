@@ -3,103 +3,131 @@ import type {HortenRegistry} from "../alta/horten/registry";
 import type {HortenNode, HortenNodeDefinition} from "../alta/horten/node";
 import {ActionsObservable, combineEpics, ofType, StateObservable} from "redux-observable";
 import {zip} from "rxjs";
-import {mergeMap, switchMap} from "rxjs/operators";
-import {ATTENTION, buildStatus, GRAPHERROR, NODEERROR, SERVER} from "../constants/nodestatus";
+import {filter, mergeMap, switchMap} from "rxjs/operators";
+import {ATTENTION, buildStatus, GRAPHERROR, NODEERROR, SERVER, WAITING} from "../constants/nodestatus";
 import type {HortenItem} from "../alta/horten/item";
 import type {Stavanger} from "../alta/stavanger";
 import {Action} from "redux";
 import type {HortenList} from "../alta/horten/list";
 import type {HortenPage} from "../alta/horten/page";
 import {combineOrchestrator} from "../alta/react/EpicRegistry";
+import type {HortenEdge} from "../alta/horten/edge";
+import type {HortenMold} from "../alta/horten/mold";
+import type {HortenValue} from "../alta/horten/value";
+import type {NodeStavanger} from "./lib/types";
 
 
-export interface NodeMeastroDefinition {
-    outport: string,
-    out: string,
+export interface NodeUpdaterDefinition {
+    updaters: [string],
+    output:string,
+    updateFunc: Epic,
     filters: [string],
     filterActions: ([Action], ActionsObservable, StateObservable) => any
 }
 
 
-export const updaterMaestro = (stavanger: Stavanger, definition: NodeMeastroDefinition) => {
+export const updaterMaestro = (stavanger: NodeStavanger, definition: NodeUpdaterDefinition) => {
 
-    const node: HortenNode = stavanger.node
-    const page: HortenPage = stavanger.page
+    let edge: HortenEdge = stavanger.node
+    let page: HortenPage = stavanger.page
+    let settings: HortenMold = stavanger.settings
 
-    const filters = definition.filters ? definition.filters : []
-    const filterActions = definition.filterActions ? definition.filterActions : []
-    const out: HortenList = stavanger[definition.out]
+    let output: HortenItem =  stavanger[definition.output]
+    let updaters: [HortenValue] = definition.updaters.map( item => stavanger[item] ? stavanger[item] : null).filter(item => item != null)
+    let updateFunc = definition.updateFunc
 
-    const graph: HortenGraph = stavanger.parent.graph
-    const registry: HortenRegistry = stavanger.parent.registry
+    const getInputsOrNull = (state$) => {
+        let links = edge.selectors.getLinks(state$.value)
+        console.log(output.definition.type,links)
+        let ins = edge.definition.ins
 
-    const nodeDefinition: HortenNodeDefinition = stavanger.node.definition
+        let checkAbleInputs = links.flatMap(link => ins.filter(map => {
+            return link.targetPort.startsWith(map.in.toUpperCase() + "_IN") || link.targetPort.startsWith("*")
+        }).map(map => map.map))
 
-
-    const buildFilters = (ports) => {
-
-        const connectedInPorts = ports.filter(item => item.links.length > 0 && item.in).map(item => item.label)
-        const connectedFilters = filters.filter( item => connectedInPorts.includes(item))
-        return connectedFilters
+        return checkAbleInputs
     }
 
-    const buildZip = (ports,action$) => {
-
-        const filters = buildFilters(ports)
-
-        const actionStreams = filters.map(staname => action$.ofType(stavanger[staname].model.setItem.success))
-
-        return zip(...actionStreams)
-    }
-
-    const waitForAllConnectionsToFilter = (action$, state$) =>
+    const onPageStartedListenToOutput = (action$, state$) =>
         action$.pipe(
             ofType(page.model.initPage.success),
-            switchMap( action => {
-                let ports = graph.selectors.getNode(node.alias)(state$.value).ports
-                return buildZip(ports,action$).pipe(
-                    mergeMap(actions =>
-                    {
-                        return [out.model.fetchList.request({meta: {filter: filterActions(actions, action$, state$)}})]
-                    })
-                )
-            })
-        )
+            mergeMap(action => {
+                    return [output.model.osloJoin.request({meta: {room: {nodeid: output.model.alias}}}), edge.model.fetchLinks.request()]
+                }
+            ));
 
 
-    const waitForListToArriveAndSendOnIfOnlyOnItem = (action$, state$) =>
+    const onModelInAskForWhatBuilder = (updaters) =>(action$, state$) =>
         action$.pipe(
-            ofType(out.model.fetchList.success),
-            mergeMap( action => {
-                const list = out.selectors.getList(state$.value)
-                switch (list.length) {
-                    case 0: return [node.model.setStatus.request(buildStatus(NODEERROR.functionFailed, "Filtered List contains zero items"))]
-                    case 1: return [node.model.setOut(definition.outport).request(list[0])]
-                    default: return [node.model.setStatus.request(buildStatus(ATTENTION.requireUserOnInput, "Please select an Item from the List"))]
+            ofType(updaters.model.setItem.success),
+            mergeMap(action => {
+
+                // CHECK FOR CONNECTED LINKS
+                let links = edge.selectors.getLinks(state$.value)
+                let ins = edge.definition.ins
+
+                let checkAbleInputs = links.flatMap(link => ins.filter(map => {
+                    return link.targetPort.startsWith(map.in.toUpperCase() + "_IN") || link.targetPort.startsWith("*")
+                }).map(map => map.map))
+
+                console.log(checkAbleInputs)
+
+                // CHECK IF EVERY INPUT HAS BEEN SEET
+
+                let data = checkAbleInputs.map(name => stavanger[name].selectors.getData(state$.value))
+
+                if (data.includes(null)) return [edge.model.setStatus.request(buildStatus(WAITING.waitingForInput))]
+
+                else return updateFunc(action$,state$)
+            })
+        );
+
+    const onLinksFetchedSetProps = (action$, state$) =>
+        action$.pipe(
+            ofType(edge.model.fetchLinks.success),
+            mergeMap(action => {
+                return [page.model.setProp.request({key: "links", value: getInputsOrNull(state$)})]
+            })
+        );
+
+    const onOutPutForward =  (action$, state$) =>
+        action$.pipe(
+            ofType(output.model.osloItemCreate.success,
+                output.model.osloItemUpdate.success),
+            filter(action => action.payload.data.nodeid === output.model.alias),
+            mergeMap(action => {
+                console.log("called")
+                let modelin = action.payload;
+                let send = {
+                    data: modelin.data,
+                    meta:{
+                        model: output.definition.type,
+                        nodeid: output.model.alias
+                    }
+
                 }
 
+                // TODO: Implement Reset Here
+
+                let linklist = page.selectors.getProp(state => state.links)(state$.value)
+                let resetlist = linklist
+                let settings = settings.selectors.getMerged(state$.value)
+                console.log(settings)
+                if (settings.locked) {
+                    // Updating with Reset List
+                    resetlist = linklist.filter(item => settings.locked.map(item => item.value).indexOf(item) === -1)
+                    console.log(resetlist)
+                }
+
+                let actionList = resetlist.map(staname => stavanger[staname].model.reset.request())
+                actionList.push(edge.model.setOutput.request(send))
+
+                return actionList
             })
-        )
+        );
 
-    const onUserSelectsItemForward = (action$, state$) =>
-        action$.pipe(
-            ofType(out.model.selectItem.request),
-            mergeMap( action => {
+    const onUpdatersForward = combineEpics(...updaters.map(input => onModelInAskForWhatBuilder(input)))
 
-               return [
-                   node.model.setOut(definition.outport).request(action.payload),
-                    ]
+    return combineEpics(onPageStartedListenToOutput,onOutPutForward,onUpdatersForward,onLinksFetchedSetProps)
 
-            })
-        )
-
-
-
-
-
-    return combineOrchestrator(stavanger,{
-            waitForAllConnectionsToFilter,
-            waitForListToArriveAndSendOnIfOnlyOnItem,
-            onUserSelectsItemForward
-        })
 }

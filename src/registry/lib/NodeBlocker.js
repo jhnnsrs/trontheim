@@ -68,7 +68,7 @@ class NodeBlocker extends React.Component<Props,State> {
                     <div>
                         <BlockUi tag="div" blocking={state} message={message}
                                  loader={<Loader active type={loader} color={color}/>} keepInView>
-                        {isPopped ? <CardBody><div  class="mx-auto">Node has Popped</div></CardBody> : this.props.children}
+                        {isPopped ? <CardBody><div  className="mx-auto">Node has Popped</div></CardBody> : this.props.children}
                         </BlockUi>
                     </div>
                 )

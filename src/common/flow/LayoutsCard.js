@@ -3,6 +3,7 @@ import type {BioImageFlowStavanger} from "../../flow/stavanger";
 import {connectInstrument} from "../../alta/react";
 import React from "react";
 import LayoutSelector from "./LayoutSelector";
+import type {FlowStavanger} from "../../maestros/flowMeastro";
 
 class LayoutList extends React.Component {
     render() {
@@ -23,15 +24,15 @@ class LayoutList extends React.Component {
     }
 }
 
-const mapStavangerToProps = (stavanger: BioImageFlowStavanger) => ({
-    layout: stavanger.layout.selectors.getData,
-    possibleLayouts: stavanger.possibleLayouts.selectors.getList,
+const mapStavangerToProps = (stavanger: FlowStavanger) => ({
+    layout: stavanger.selectedLayout.selectors.getData,
+    possibleLayouts: stavanger.availableLayouts.selectors.getList,
 });
 
-const mapStavangerToDispatch  = (stavanger: BioImageFlowStavanger) =>  ({
-    selectLayout: (layout) => stavanger.possibleLayouts.model.selectItem.request(layout),
-    updateOnServer: () => stavanger.layout.model.dynamic("UPDATE_LAYOUT").request(),
-    createOnServer: () => stavanger.layout.model.dynamic("CREATE_LAYOUT").request()
+const mapStavangerToDispatch  = (stavanger: FlowStavanger) =>  ({
+    selectLayout: (layout) => stavanger.availableLayouts.model.selectItem.request(layout),
+    updateOnServer: () => stavanger.selectedLayout.model.dynamic("UPDATE_LAYOUT").request(),
+    createOnServer: () => stavanger.selectedLayout.model.dynamic("CREATE_LAYOUT").request()
 });
 
 

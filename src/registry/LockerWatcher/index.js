@@ -15,13 +15,13 @@ import type {HortenMold} from "../../alta/horten/mold";
 import {createHortenMold} from "../../alta/horten/mold";
 import {createHortenNode} from "../../alta/horten/node";
 import type {HortenNode} from "../../alta/horten/node";
+import {createNodeConductor} from "../../conductors/createNodeConductor";
+import type {NodeStavanger} from "../lib/types";
 
 
-export type  LockerWatcherStavanger = Stavanger &{
+export type  LockerWatcherStavanger = NodeStavanger &{
     locker: HortenItem,
     lockers: HortenTable,
-    node: HortenNode,
-    settings: HortenMold
 
 
 }
@@ -34,11 +34,10 @@ export const ports = {
         {name: "locker", type: constants.LOCKER}
     ]
 }
-
+const nodeConductor = createNodeConductor({ports: ports})
 
 export const lockerWatcherStavanger = createStavanger({
-    node: createHortenNode({type: constants.NODE, ports: ports}),
-    settings: createHortenMold({type: "settings"}),
+    ...nodeConductor,
     locker: createHortenItem(DEF_LOCKER),
     lockers: createHortenTable(DEF_LOCKER),
 })

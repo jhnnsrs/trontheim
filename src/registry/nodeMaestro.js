@@ -10,6 +10,7 @@ import type {HortenMold} from "../alta/horten/mold";
 import {combineOrchestrator} from "../alta/react/EpicRegistry";
 import {userIDPortal} from "../portals";
 import type {NodeStavanger} from "./lib/types";
+import * as constants from "../constants";
 
 
 export interface NodeMeastroDefinition {
@@ -42,7 +43,7 @@ export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDef
                     // Check if Correctly Set
                     if (!mappedPort) return [node.model.setStatus.request(buildStatus(GRAPHERROR.connectionError,"No mapped Port found for " + port + " !"))]
                     page.helpers.log("Mapping Incoming of Type '"+ type +"' to '" + mappedPort.map)
-                    if (mappedPort.type !== type) {
+                    if (mappedPort.type !== type && type !== constants.STAR) {
                         return [node.model.setStatus.request(buildStatus(GRAPHERROR.connectionError,"Type mismatch on Node"))]
                     }
 

@@ -1,13 +1,7 @@
 import {combineEpics, ofType} from "redux-observable";
 import type {LockerWatcherStavanger} from "./index";
-import {createEdgeMaestro} from "../lib/meastros";
 import {apiConnector, itemConnector} from "../../rootMaestros";
-import {watcherConductor} from "../../alta/conductor/watcherconductor";
 import {mergeMap, withLatestFrom} from "rxjs/operators";
-import type {HortenGraph} from "../../alta/horten/graph";
-import type {HortenRegistry} from "../../alta/horten/registry";
-import type {HortenNodeDefinition} from "../../alta/horten/node";
-import {buildStatus, GRAPHERROR} from "../../constants/nodestatus";
 import {nodeMaestro} from "../nodeMaestro";
 import {combineOrchestrator} from "../../alta/react/EpicRegistry";
 
@@ -22,8 +16,6 @@ export const orchestraterEpic = (stavanger: LockerWatcherStavanger) => {
     const addin1 = nodeMaestro(stavanger , null)
 
 
-
-
     //TODO: Set Node Output to FlowDiagram
     const onInputModelIsSetAndStartPressed = (action$, state$) =>
         action$.pipe(
@@ -31,7 +23,7 @@ export const orchestraterEpic = (stavanger: LockerWatcherStavanger) => {
             withLatestFrom(action$.ofType(input.model.setItem.request)),
             mergeMap((actions) => {
                     let dataStructure = actions[1].payload;
-                    return [node.model.setOut("Locker").request(dataStructure)]
+                    return [node.model.setOut("locker").request(dataStructure)]
                 }
                 )
             )

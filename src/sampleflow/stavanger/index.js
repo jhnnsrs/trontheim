@@ -1,34 +1,20 @@
-import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
-import type {HortenNodes} from "../../alta/horten/nodes";
-import {createHortenNodes} from "../../alta/horten/nodes";
-import * as constants from "../../constants"
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
-import type {HortenNomogram, HortenNomogramNode} from "../../alta/horten/nomogram";
-import {createHortenNomogram} from "../../alta/horten/nomogram";
-import type {HortenTable} from "../../alta/horten/table";
-import {createHortenTable} from "../../alta/horten/table";
+import {DEF_FLOW, DEF_LOCKER, DEF_SAMPLE} from "../../constants/definitions";
+import type {FlowStavanger} from "../../maestros/flowMeastro";
+import {createFlowConductor} from "../../conductors/createFlowConductor";
 
 
-export type SampleFlowStavanger = Stavanger & {
-    nodes: HortenNodes,
-    graph: HortenNomogram,
-    flow: HortenItem,
+export type SampleFlowStavanger = FlowStavanger & {
     sample: HortenItem,
-    layout: HortenItem,
-    possibleLayouts: HortenTable,
 }
 
+const flowConductor = createFlowConductor()
+
 export const sampleFlowStavanger: SampleFlowStavanger = createStavanger({
-    nodes: createHortenNodes({type: "NODES"}),
-    graph: createHortenNomogram({type: "GRAPH",
-        start: (nodes) => nodes.find( (node: HortenNomogramNode) => node.type === "watcher")
-    }),
-    flow: createHortenItem({type: constants.FLOW, url: "filterflows"}),
-    sample: createHortenItem({type: constants.SAMPLE, url: "samples"}),
-    layout: createHortenItem({type: constants.LAYOUT, url: "layouts"}),
-    possibleLayouts: createHortenTable({type: constants.LAYOUT, url: "layouts"})
+    ...flowConductor,
+    sample: createHortenItem(DEF_SAMPLE),
 })
 
 // You Should decide upfront if this is
