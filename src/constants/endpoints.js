@@ -92,4 +92,16 @@ export const osloEndpoints = [
         width: 400, // Width (in pixels) of login popup window. Optional, default: 400
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },
+    {
+        name: "HeiCloud Ip",
+        image: "/images/jhnnsrslogo.png",
+        rooturl: 'http://129.206.5.200/api',
+        url: "http://129.206.5.200/o/authorize",
+        websocket: "wss://129.206.5.200/oslo?token=",
+        client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
+        redirect: redirectui,
+        scope: "write",
+        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
+        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
+    },
 ]
