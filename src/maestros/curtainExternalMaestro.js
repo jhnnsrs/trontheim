@@ -64,7 +64,7 @@ export const curtainExternalMaestro = (stavanger: CurtainExternalStavanger, defi
 
                 return [
                     curtain.model.pushExternal.success(action.payload),
-                    externalrequests.model.osloJoin.request({meta: {room: {external: action.payload.data.id}}}) //TODO: Stopp to list when you are out
+                    externalrequests.model.osloJoin.request({meta: {room: {external: action.payload.data.id}, multialias: true}}) //TODO: Stopp to list when you are out
                 ]
             }));
 

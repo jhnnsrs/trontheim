@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/curtain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/curtain.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/node.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/maestro/table-oslo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/table-oslo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/flow/Registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/flow/Registry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/flow/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/flow/Show.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/endpoints.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/endpoints.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generics/Fields.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/generics/Fields.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/ClusterDataShow/ReflectionShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/ClusterDataShow/ReflectionShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/ClusterEvaluator/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/ClusterEvaluator/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/MaskToTransformation/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/MaskToTransformation/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/SliceLineTransformer/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/SliceLineTransformer/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/SliceLineTransformer/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/SliceLineTransformer/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sampleflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sampleflow/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maestros/curtainExternalMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/maestros/curtainExternalMaestro.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +160,7 @@
       <workItem from="1574356477105" duration="534000" />
       <workItem from="1574422348134" duration="11573000" />
       <workItem from="1574766996244" duration="32000" />
-      <workItem from="1576320871499" duration="7966000" />
+      <workItem from="1576320871499" duration="8379000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -229,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574433858354</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated Alias to have multiple aliases if needed">
+      <created>1576345432625</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1576345432626</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,9 +252,14 @@
     <MESSAGE value="Implemented the Task Maestro" />
     <MESSAGE value="Implementet BioMeta, BioConverter&#10;Taskmaestro, sleectoMaestro..." />
     <MESSAGE value="Implementet more Nodes and Bioimage and Sampleflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementet more Nodes and Bioimage and Sampleflow" />
+    <MESSAGE value="Updated Alias to have multiple aliases if needed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Alias to have multiple aliases if needed" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1576345432008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576345432008" />
     <state width="1899" height="208" key="GridCell.Tab.0.bottom" timestamp="1576343917926">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
