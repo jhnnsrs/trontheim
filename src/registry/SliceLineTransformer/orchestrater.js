@@ -22,6 +22,12 @@ export const orchestraterEpic = (stavanger: SliceLineTransformer) => {
             let settings = stavanger.settings.selectors.getMerged(state$.value)
             let roi = stavanger.roi.selectors.getData(state$.value)
 
+            if (settings.initiators) {
+                let labelincoming = action.payload.meta.port
+                let initiators = settings.initiators.find(port => port.value == labelincoming)
+                if (!initiators) return [stavanger.node.helpers.requireUser("This is not an initiating Item")]
+            }
+
 
 
             if (!roi) return [stavanger.node.helpers.requireUser("Please set Roi First")]

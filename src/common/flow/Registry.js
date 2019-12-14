@@ -27,7 +27,7 @@ class Registry extends React.PureComponent {
     static defaultProps = {
         className: "layout",
         cols: { lg: 8, md: 4, sm: 4, xs: 4, xxs: 4 },
-        rowHeight: 200
+        rowHeight: 100
     };
 
     constructor(props) {

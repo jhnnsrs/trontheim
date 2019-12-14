@@ -46,36 +46,12 @@ export const osloEndpoints = [
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },
     {
-        name: "Network Johannes",
-        image: "/images/jhnnsrslogo.png",
-        rooturl: 'http://192.168.0.116:80/api',
-        url: "http://192.168.0.116:80/o/authorize",
-        websocket: "ws://192.168.0.116.171:80/oslo?token=",
-        client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
-        redirect: redirectui,
-        scope: "write",
-        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
-        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
-    },
-    {
         name: "Uni Heidelberg",
         image: "/images/jhnnsrslogo.png",
         rooturl: 'http://192.168.0.38:80/api',
         url: "http://192.168.0.38:80/o/authorize",
         websocket: "ws://192.168.0.38:80/oslo?token=",
         client: "CFMouZimB500wLY0XHywlRXGR4tjJFwEkOu8UNt8",
-        redirect: redirectui,
-        scope: "write",
-        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
-        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
-    },
-    {
-        name: "SFN Ipad",
-        image: "/images/jhnnsrslogo.png",
-        rooturl: 'http://192.168.137.1:80/api',
-        url: "http://192.168.137.1:80/o/authorize",
-        websocket: "ws://192.168.137.1:80/oslo?token=",
-        client: "QWDRidApthbv0T3fP8pi2k6ePBGxw0L3SwpuA3cQ",
         redirect: redirectui,
         scope: "write",
         width: 400, // Width (in pixels) of login popup window. Optional, default: 400
@@ -90,18 +66,6 @@ export const osloEndpoints = [
         client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
         redirect: redirectui,
         scope: "write read read_starred profile",
-        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
-        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
-    },
-    {
-        name: "HeiCloud Ip",
-        image: "/images/jhnnsrslogo.png",
-        rooturl: 'http://129.206.5.200/api',
-        url: "http://129.206.5.200/o/authorize",
-        websocket: "wss://129.206.5.200/oslo?token=",
-        client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
-        redirect: redirectui,
-        scope: "write",
         width: 400, // Width (in pixels) of login popup window. Optional, default: 400
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },

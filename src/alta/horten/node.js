@@ -51,6 +51,7 @@ export type HortenNodeSelectors = HortenSelectors & {
     getInput: HaldenSelector,
     getState: HaldenSelector,
     getStatus: HaldenSelector,
+    getPorts: HaldenSelector
 
 }
 

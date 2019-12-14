@@ -31,7 +31,7 @@ export const orchestraterEpic = (stavanger: MaskRevampingStavanger) => {
                     revamper: node.entityid,
                     experiment: transformation.experiment,
                     mask: mask.id,
-                    nodeid: node.nodeid,
+                    nodeid: stavanger.node.alias,
                 },
                 meta:{
                     buffer: "None"

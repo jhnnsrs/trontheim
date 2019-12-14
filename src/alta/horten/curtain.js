@@ -125,6 +125,7 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                         ]
                     }
                     else {
+                        helpers.log("Simultanous opening of two Flows should be avoided")
                         return [{type: "DIFFERENT WINDOW ID", payload: "Simultanious opening of two Flows should be avoided"}
                         ]
 

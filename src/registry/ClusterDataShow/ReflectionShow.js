@@ -26,7 +26,7 @@ class ReflectionShow extends Component<any,any> {
 
 const mapStavangerToProps = (stavanger: ReflectionShowStavanger) => ({
     reflection: stavanger.reflection.selectors.getData,
-    data: stavanger.clusterdata.selectors.getModel,
+    data: stavanger.clusterdata.selectors.getData,
 });
 
 const mapStavangerToDispatch  = (stavanger: ReflectionShowStavanger) =>  ({

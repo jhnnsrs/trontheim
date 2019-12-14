@@ -91,6 +91,30 @@ export const renderMultiSelectBuilder = (options) =>  ({input, label, placeholde
     )
 }
 
+export const renderMultiSelect = (options: [{value: any, label: string}]) =>  ({input, label, placeholder, type, description, meta: {touched, error, initial}, ...custom}) => {
+
+    let selectoptions = options
+
+    return (
+        <FormGroup>
+            <Label for="multiSelection">{label}</Label>
+            <Select
+                defaultValue={initial}
+                value={input.value}
+                isMulti
+                onChange={ (selectedOption) => input.onChange(selectedOption)}
+                options={selectoptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                id="multiSelection"
+            />
+            <FormText color="muted">
+                {description && description}
+            </FormText>
+        </FormGroup>
+    )
+}
+
 export const renderSingleSelectBuilder = (options) =>  ({input, label, placeholder, type, description, meta: {touched, error, initial}, ...custom}) => {
 
     let selectoptions = options.map( option => ({value: option, label: `${option[0].toUpperCase()}${option.slice(1).toLowerCase()}`}))

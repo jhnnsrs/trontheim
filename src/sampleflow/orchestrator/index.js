@@ -47,6 +47,7 @@ export const orchestraterEpic = (stavanger: SampleFlowStavanger) => {
                 let initial = actions[2].payload
 
                 let watcher = graphrep.nodes.find(item => item.name === "SampleWatcher")
+                if (!watcher) return [graph.model.setGraphError.request("No Watcher for this Graph")]
 
                 let modelin = {
                     data: initial.data,

@@ -34,7 +34,7 @@ export const orchestraterEpic = (stavanger: LineTransformer) => {
                     experiment: transformation.experiment,
                     error: "false",
                     override: false,
-                    nodeid: node.nodeid,
+                    nodeid: stavanger.node.alias,
                 },
                 meta:{
                     buffer: "of course"

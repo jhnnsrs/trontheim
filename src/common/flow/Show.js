@@ -14,9 +14,8 @@ const GraphShow = (props) =>
                         <Card key={node.id}
                             style={{backgroundColor: node.color}}>
                             <CardBody>
-                                {node.name}
+                                {node.name} {node.nodetype.location == "external" && "External"}
                                 {node.status && <p>{node.status.message}</p>}
-                                <Button onClick={() => props.resend(node.instance)}>Resend</Button>}
                             </CardBody>
                         </Card>
                     )
