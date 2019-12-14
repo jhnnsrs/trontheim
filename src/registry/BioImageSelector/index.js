@@ -1,4 +1,3 @@
-import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
 import {ImageMutater} from "./container";
 import {connectOpera} from "../../alta/react";
@@ -9,16 +8,12 @@ import {createHortenTable} from "../../alta/horten/table";
 import {DEF_BIOIMAGE, DEF_LOCKER} from "../../constants/definitions";
 import type {HortenValue} from "../../alta/horten/value";
 import {createHortenValue} from "../../alta/horten/value";
-import type {HortenNode} from "../../alta/horten/node";
-import {createHortenNode} from "../../alta/horten/node";
-import type {HortenMold} from "../../alta/horten/mold";
-import {createHortenMold} from "../../alta/horten/mold";
+import {createNodeConductor} from "../../conductors/createNodeConductor";
+import type {NodeStavanger} from "../lib/types";
 
 
-export type  BioImageSelector = Stavanger &{
+export type  BioImageSelector = NodeStavanger &{
     locker: HortenValue,
-    node: HortenNode,
-    settings: HortenMold,
     bioimages: HortenTable
 
 
@@ -33,10 +28,10 @@ export const ports = {
 }
 
 
+const nodeConductor = createNodeConductor({ports: ports, isPoppable: false})
 
 export const bioImageSelectorStavanger = createStavanger({
-    node: createHortenNode({type: constants.NODE, ports: ports}),
-    settings: createHortenMold({type: "settings"}),
+    ...nodeConductor,
     locker: createHortenValue(DEF_LOCKER),
 
     // Out

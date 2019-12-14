@@ -1,8 +1,6 @@
 import {combineEpics} from "redux-observable";
 import type {BioSeriesCollectorStavanger} from "./index";
-import {createEdgeMaestro} from "../lib/meastros";
 import {apiConnector, itemConnector} from "../../rootMaestros";
-import {collectorConductor} from "../../alta/conductor/collectorconductor";
 import {nodeMaestro} from "../nodeMaestro";
 import {collectorMaestro} from "../collectorMaestro";
 import {combineOrchestrator} from "../../alta/react/EpicRegistry";

@@ -1,8 +1,8 @@
-//@flow
+
 import type {Alias, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
 import {createHorten2} from "./index";
 import {Epic, ofType} from "redux-observable";
-import {mergeMap} from "rxjs/operators";
+import {mergeMap, switchMap, withLatestFrom, map, take, tap, exhaustMap} from "rxjs/operators";
 import {
     createHortenEpic,
     createHortenHelpers,
@@ -10,6 +10,8 @@ import {
     createHortenReducer,
     createHortenSelectors
 } from "./creators";
+
+import { of } from 'rxjs';
 import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
@@ -29,6 +31,9 @@ export type HortenGraphModel = HortenModel & {
     setGraphFromFlow: HaldenActions,
     setGraphFromExternal: HaldenActions,
     setGraphError: HaldenActions,
+
+    // Show Api:
+    resend: HaldenActions,
 
     // Node API
     setNodeIn: (NodeID) => HaldenActions,
@@ -133,7 +138,8 @@ export const createHortenGraphModel = createHortenModel({
     onNodeStatusUpdate: createHaldenAction("NODE_STATUS"),
     setShow: createHaldenAction("SET_SHOW"),
     setGraphError: createHaldenAction("GRAPH_ERROR"),
-    requestPop: createHaldenAction("GRAPH_REQUEST_POP")
+    requestPop: createHaldenAction("GRAPH_REQUEST_POP"),
+    resend: createHaldenAction("GRAPH_RESEND")
 })
 
 export const createHortenGraphHelpers = createHortenHelpers()
@@ -288,6 +294,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                             }
                             else {
                                 helpers.log("Pushing to local Representation of Instance " + targetnode.instance + " the Model",outmodel)
+                                helpers.log(model.setNodeIn(targetnode.instance).request)
                                 actions.push(model.setNodeIn(targetnode.instance).request(outmodel,outmodel.meta))
 
                                 actions.push(model.onNodeStatusUpdate.request({

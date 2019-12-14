@@ -5,9 +5,7 @@ import {orchestraterEpic} from "./orchestrater";
 import * as constants from "../../constants"
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
-import type {HortenEdge} from "../../alta/horten/edge";
 import {DEF_IMPULS} from "../../constants/definitions";
-import type {HortenMold} from "../../alta/horten/mold";
 import {createNodeConductor} from "../../conductors/createNodeConductor";
 import type {NodeStavanger} from "../lib/types";
 import {createHortenValue} from "../../alta/horten/value";
@@ -16,8 +14,6 @@ import {createHortenValue} from "../../alta/horten/value";
 export type  ImpulsorStavanger = NodeStavanger &{
     impulsin: HortenItem,
     impulsout: HortenItem,
-    edge: HortenEdge,
-    settings: HortenMold
 
 
 }

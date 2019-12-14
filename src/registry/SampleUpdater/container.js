@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-
-import ExperimentSelector from "./ExperimentSelector";
 import ItemShow from "./ItemShow";
 import NodeFrame from "../lib/Frames/NodeFrame";
 

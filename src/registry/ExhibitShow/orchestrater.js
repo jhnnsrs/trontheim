@@ -13,7 +13,7 @@ export const orchestraterEpic = (stavanger: ExhibitShowStavanger) => {
             ofType(stavanger.cube.model.postSlice.success),
             mergeMap(action => {
                 let slice = action.payload;
-
+                stavanger.cube.helpers.log("Sending Slice",slice)
                 return [stavanger.node.model.setOut("slice").request(slice)]
             })
         );

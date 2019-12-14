@@ -10,6 +10,6 @@ export interface GraphStavanger {
 
 export interface NodeStavanger {
     parent: GraphStavanger,
-    node: HortenNode
+    node: HortenNode,
     settings: HortenMold
 }

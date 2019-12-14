@@ -3,7 +3,6 @@ import React from "react";
 import {connectInstrument} from "../../../alta/react";
 import type {HortenEdge} from "../../../alta/horten/edge";
 import PopButton from "../PopButton";
-import AlienButton from "../AlienButton";
 
 type Props = {
     name: string,

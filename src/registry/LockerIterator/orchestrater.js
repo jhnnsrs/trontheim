@@ -1,7 +1,7 @@
 import {combineEpics, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
 import type {LockerIterator} from "./index";
-import {apiConnector, itemConnector} from "../../rootMaestros";
+import {apiConnector} from "../../rootMaestros";
 import {combineOrchestrator} from "../../alta/react/EpicRegistry";
 import {nodeMaestro} from "../nodeMaestro";
 import {NODE} from "../../constants/nodestatus";

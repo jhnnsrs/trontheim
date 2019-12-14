@@ -1,7 +1,6 @@
 import {combineEpics, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
 import type {NameExtractorStavanger} from "./index";
-import {createEdgeMaestro} from "../lib/meastros";
 import {apiConnector, itemConnector} from "../../rootMaestros";
 import {userIDPortal} from "../../portals";
 import {nodeMaestro} from "../nodeMaestro";

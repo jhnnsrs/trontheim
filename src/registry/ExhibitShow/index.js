@@ -9,12 +9,11 @@ import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import type {HortenCube} from "../../alta/horten/cube";
 import {createHortenCube} from "../../alta/horten/cube";
-import {createHortenMold} from "../../alta/horten/mold";
 import type {NodeStavanger} from "../lib/types";
-import {createHortenNode} from "../../alta/horten/node";
-import {DEF_CUBE, DEF_EXHIBIT, DEF_ROI, DEF_SETTINGS} from "../../constants/definitions";
+import {DEF_CUBE, DEF_EXHIBIT, DEF_ROI} from "../../constants/definitions";
 import type {HortenValue} from "../../alta/horten/value";
 import {createHortenValue} from "../../alta/horten/value";
+import {createNodeConductor} from "../../conductors/createNodeConductor";
 
 
 export type  ExhibitShowStavanger = NodeStavanger &{
@@ -30,15 +29,15 @@ export const ports = {
         { name: "exhibit" , type: constants.EXHIBIT, map: "exhibitin" },
     ],
     outs: [
-        {name: "exhibit", type: constants.EXHIBIT}
+        {name: "slice", type: constants.SLICE}
     ]
 }
 
 
+const nodeConductor = createNodeConductor({ports: ports, isPoppable: true})
 
 export const exhibitShowStavanger = createStavanger({
-    node: createHortenNode({type: constants.NODE, ports: ports, isPoppable: true}),
-    settings: createHortenMold(DEF_SETTINGS),
+    ...nodeConductor,
     exhibitin: createHortenValue(DEF_EXHIBIT),
     exhibit: createHortenItem(DEF_EXHIBIT),
     rois: createHortenTable(DEF_ROI),

@@ -1,7 +1,7 @@
 import type {HortenGraph} from "../alta/horten/graph";
 import type {HortenRegistry} from "../alta/horten/registry";
 import type {HortenNodeDefinition} from "../alta/horten/node";
-import {combineEpics, ofType} from "redux-observable";
+import {ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
 import {buildStatus, DONE, GRAPHERROR, WAITING} from "../constants/nodestatus";
 import type {HortenItem} from "../alta/horten/item";

@@ -1,15 +1,8 @@
-import type {HortenGraph} from "../alta/horten/graph";
-import type {HortenRegistry} from "../alta/horten/registry";
-import type {HortenNode, HortenNodeDefinition} from "../alta/horten/node";
-import {combineEpics, ofType} from "redux-observable";
+import type {HortenNode} from "../alta/horten/node";
+import {ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
-import {buildStatus, DONE, GRAPHERROR, WAITING} from "../constants/nodestatus";
 import type {HortenItem} from "../alta/horten/item";
-import type {Stavanger} from "../alta/stavanger";
-import type {HortenMold} from "../alta/horten/mold";
 import {combineOrchestrator} from "../alta/react/EpicRegistry";
-import {userIDPortal} from "../portals";
-import type {HortenEdge} from "../alta/horten/edge";
 import type {HortenTable} from "../alta/horten/table";
 import type {NodeStavanger} from "./lib/types";
 

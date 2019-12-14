@@ -1,4 +1,4 @@
-import {Card, CardBody, CardTitle} from "reactstrap";
+import {CardBody} from "reactstrap";
 import React from "react";
 import type {HortenEdge} from "../../../alta/horten/edge";
 import NodeHeader from "./NodeHeader";

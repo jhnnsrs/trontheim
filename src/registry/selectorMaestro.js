@@ -1,33 +1,35 @@
 import type {HortenGraph} from "../alta/horten/graph";
 import type {HortenRegistry} from "../alta/horten/registry";
 import type {HortenNode, HortenNodeDefinition} from "../alta/horten/node";
-import {ActionsObservable, combineEpics, ofType, StateObservable} from "redux-observable";
-import {zip, of} from "rxjs";
+import {ActionsObservable, ofType, StateObservable} from "redux-observable";
+import {of, zip} from "rxjs";
 import {mergeMap, switchMap} from "rxjs/operators";
-import {ATTENTION, buildStatus, GRAPHERROR, NODEERROR, SERVER} from "../constants/nodestatus";
-import type {HortenItem} from "../alta/horten/item";
+import {ATTENTION, buildStatus, NODEERROR} from "../constants/nodestatus";
 import type {Stavanger} from "../alta/stavanger";
 import {Action} from "redux";
 import type {HortenList} from "../alta/horten/list";
 import type {HortenPage} from "../alta/horten/page";
 import {combineOrchestrator} from "../alta/react/EpicRegistry";
+import type {NodeStavanger} from "./lib/types";
 
 
 export interface NodeMeastroDefinition {
     outport: string,
     out: string,
     filters: [string],
-    filterActions: ([Action], ActionsObservable, StateObservable) => any
+    filterActions: ([Action], ActionsObservable, StateObservable) => any,
+    roomAction: ([Action], ActionsObservable, StateObservable) => any
 }
 
 
-export const selectorMeastro = (stavanger: Stavanger, definition: NodeMeastroDefinition) => {
+export const selectorMeastro = (stavanger: NodeStavanger, definition: NodeMeastroDefinition) => {
 
     const node: HortenNode = stavanger.node
     const page: HortenPage = stavanger.page
 
     const filters = definition.filters ? definition.filters : []
     const filterActions = definition.filterActions ? definition.filterActions : []
+    const roomAction = definition.roomAction ?  definition.roomAction : null
     const out: HortenList = stavanger[definition.out]
 
     const graph: HortenGraph = stavanger.parent.graph
@@ -61,7 +63,9 @@ export const selectorMeastro = (stavanger: Stavanger, definition: NodeMeastroDef
                 return buildZip(ports,action$).pipe(
                     mergeMap(actions =>
                     {
-                        return [out.model.fetchList.request({meta: {filter: filterActions(actions, action$, state$)}})]
+                        const fetchList =  [out.model.fetchList.request({meta: {filter: filterActions(actions, action$, state$)}})]
+                        if (roomAction) fetchList.push(out.model.osloJoin.request({meta: {room: roomAction(actions, action$, state$)}}))
+                        return fetchList
                     })
                 )
             })

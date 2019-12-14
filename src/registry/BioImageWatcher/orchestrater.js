@@ -1,13 +1,7 @@
 import {combineEpics, ofType} from "redux-observable";
 import type {BioImageWatcher} from "./index";
-import {createEdgeMaestro} from "../lib/meastros";
 import {apiConnector, itemConnector} from "../../rootMaestros";
-import {watcherConductor} from "../../alta/conductor/watcherconductor";
 import {mergeMap, withLatestFrom} from "rxjs/operators";
-import type {HortenGraph} from "../../alta/horten/graph";
-import type {HortenRegistry} from "../../alta/horten/registry";
-import type {HortenNodeDefinition} from "../../alta/horten/node";
-import {buildStatus, GRAPHERROR} from "../../constants/nodestatus";
 import {nodeMaestro} from "../nodeMaestro";
 import {combineOrchestrator} from "../../alta/react/EpicRegistry";
 

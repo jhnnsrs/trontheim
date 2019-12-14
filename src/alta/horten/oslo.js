@@ -95,7 +95,7 @@ export function objToString (obj) {
     return str.slice(0, -1);
 }
 
-export const createHortenOsloEpic = createHortenEpic((model: HortenOsloModel, selectors: HortenOsloSelectors) => ({
+export const createHortenOsloEpic = createHortenEpic((model: HortenOsloModel, selectors: HortenOsloSelectors, helpers: HortenOsloHelpers) => ({
 
     startOsloEpic: createHaldenEpic((action$, state$) =>
         action$.pipe(
@@ -124,6 +124,7 @@ export const createHortenOsloEpic = createHortenEpic((model: HortenOsloModel, se
 
                                     let stream = payload.stream;
                                     if (joinedRoom.stream.toUpperCase() == stream.toUpperCase()) {
+                                        helpers.log("New Item on Stream", stream)
                                         if (method == "update") return joinedRoom.updateAction.request(sendpayload)
                                         if (method == "delete") return joinedRoom.deleteAction.request(sendpayload)
                                         if (method == "create") return joinedRoom.createAction.request(sendpayload)
@@ -164,10 +165,11 @@ export const createHortenOsloEpic = createHortenEpic((model: HortenOsloModel, se
                 try {
                     let room = objToString(action.payload.meta.room)
                     input.next(JSON.stringify({"command":"sub","room":room,"alias":action.payload.meta.alias}));
+                    helpers.log("Listening to Stream", room, "with alias", action.payload.meta.alias)
                     return [model.joinRoom.success(action.payload)]
                 }
                 catch (e) {
-                    console.log("Joining the room for '" +action.payload.meta.alias+ '" failed');
+                    helpers.log("Joining the room for '" +action.payload.meta.alias+ '" failed');
                     return [model.joinRoom.failure("Join Room Failure")]
 
                 }

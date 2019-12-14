@@ -1,6 +1,6 @@
 import {connectInstrument} from "../../alta/react";
 import React from "react"
-import {Card, CardBody, Container, Row} from "reactstrap";
+import {Button, Card, CardBody, Container, Row} from "reactstrap";
 
 import Dict from "../../generics/Dict";
 import type {FlowStavanger} from "../../maestros/flowMeastro";
@@ -12,10 +12,11 @@ const GraphShow = (props) =>
                 {(node) => {
                     return(
                         <Card key={node.id}
-                            style={{backgroundColor: "#ffFFff"}}>
+                            style={{backgroundColor: node.color}}>
                             <CardBody>
                                 {node.name}
                                 {node.status && <p>{node.status.message}</p>}
+                                <Button onClick={() => props.resend(node.instance)}>Resend</Button>}
                             </CardBody>
                         </Card>
                     )
@@ -30,6 +31,7 @@ const mapStavangerToProps = (stavanger: FlowStavanger) => ({
 });
 
 const mapStavangerToDispatch  = (stavanger: FlowStavanger) =>  ({
+    resend: (alias) => stavanger.graph.model.resend.request(alias)
 });
 
 

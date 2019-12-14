@@ -1,8 +1,6 @@
 import {combineEpics, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
 import type {TwoDShowStavanger} from "./index";
-import * as constants from "../../constants";
-import {createEdgeMaestro} from "../lib/meastros";
 import {randomColor} from "randomcolor";
 import {apiConnector, itemConnector} from "../../rootMaestros";
 import {userIDPortal} from "../../portals";

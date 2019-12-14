@@ -4,6 +4,7 @@
 export const THIS_ROOT_URL = window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port : "http://" + window.location.hostname + ":" + window.location.port
 export const redirectui =  window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port +"/callback" : "http://" + window.location.hostname + ":" + window.location.port + "/callback";
 
+console.log("The redirectui is " + redirectui)
 
 export const osloEndpoints = [
     {
@@ -81,14 +82,14 @@ export const osloEndpoints = [
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },
     {
-        name: "HeiCloud",
+        name: "Arnheim Heidcloud",
         image: "/images/jhnnsrslogo.png",
-        rooturl: 'https://johannesroos.de/api',
-        url: "http://johannesroos.de/o/authorize",
-        websocket: "wss://johannesroos.de/oslo?token=",
-        client: "aPopyevoYspf98H2v3jaVETdtMOYPWsVIyhg7uAa",
+        rooturl: 'https://arnheim.online/api',
+        url: "http://arnheim.online/o/authorize",
+        websocket: "wss://arnheim.online/oslo?token=",
+        client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
         redirect: redirectui,
-        scope: "write",
+        scope: "write read read_starred profile",
         width: 400, // Width (in pixels) of login popup window. Optional, default: 400
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },
