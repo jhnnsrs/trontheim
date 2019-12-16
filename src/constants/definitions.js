@@ -26,6 +26,7 @@ export const DEF_FILEMATCHSTRING = {type: constants.FILEMATCHSTRING, url: "filem
 export const DEF_ROI = {type: constants.ROI, url: "rois"};
 export const DEF_CUBE = {type: constants.CUBE, url: "null"};
 export const DEF_TRANSFORMATION = {type: constants.TRANSFORMATION, url: "transformations"};
+export const DEF_STRAINING = {type: constants.STRAINING, url: "strainings"};
 export const DEF_EVALUATING = {type: constants.EVALUATING, url: "evaluatings"};
 export const DEF_DISPLAY = {type: constants.DISPLAY, url: "displays"};
 export const DEF_REPRESENTATION = {type: constants.REPRESENTATION, url: "representations"};

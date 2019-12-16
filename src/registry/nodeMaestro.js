@@ -42,8 +42,9 @@ export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDef
 
                     // Check if Correctly Set
                     if (!mappedPort) return [node.model.setStatus.request(buildStatus(GRAPHERROR.connectionError,"No mapped Port found for " + port + " !"))]
+                    page.helpers.log("Mapping Port " + port + " to " + mappedPort.name)
                     page.helpers.log("Mapping Incoming of Type '"+ type +"' to '" + mappedPort.map)
-                    if (mappedPort.type !== type && type !== constants.STAR) {
+                    if (mappedPort.type !== type && mappedPort.type !== constants.STAR) {
                         return [node.model.setStatus.request(buildStatus(GRAPHERROR.connectionError,"Type mismatch on Node"))]
                     }
 

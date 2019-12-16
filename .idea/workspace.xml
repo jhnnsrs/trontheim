@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
+    <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="Updated Alias to have multiple aliases if needed">
+      <change afterPath="$PROJECT_DIR$/src/registry/BioSeriesFilter/FilterOptions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/BioSeriesFilter/availableFilters.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/BioSeriesFilter/container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/BioSeriesFilter/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/BioSeriesFilter/orchestrater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/IntensityProfiler/LineRectComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/IntensityProfiler/container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/IntensityProfiler/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/IntensityProfiler/orchestrater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationGate/GateOpener.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationGate/container.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationGate/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/RepresentationGate/orchestrater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/registry/lib/Frames/frame.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/maestro/table-oslo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/table-oslo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maestros/curtainExternalMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/maestros/curtainExternalMaestro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/definitions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/definitions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/LockerIterator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LockerIterator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/Frames/NodeHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/Frames/NodeHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/PopButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/PopButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/nodeMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/nodeMaestro.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +34,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -44,6 +64,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/registry" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -51,19 +72,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\conductors" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow\stavanger" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow\orchestrator" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Trontheim\trontheim\src\common\flow" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\Frames" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\types.js" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\common\flow" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\Frames" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\RepresentationGate" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\BioseriesFilter" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\conductors" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.Debug Flow">
@@ -119,8 +140,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.electron" />
         <item itemvalue="npm.electron-dev" />
       </list>
@@ -160,7 +181,8 @@
       <workItem from="1574356477105" duration="534000" />
       <workItem from="1574422348134" duration="11573000" />
       <workItem from="1574766996244" duration="32000" />
-      <workItem from="1576320871499" duration="8379000" />
+      <workItem from="1576320871499" duration="8583000" />
+      <workItem from="1576509353536" duration="9631000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -225,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576345432626</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Updated Alias to have multiple aliases if needed">
+      <created>1576345826876</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1576345826877</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,34 +285,38 @@
     <option name="LAST_COMMIT_MESSAGE" value="Updated Alias to have multiple aliases if needed" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1576345432008">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1576513318808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576345432008" />
-    <state width="1899" height="208" key="GridCell.Tab.0.bottom" timestamp="1576343917926">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576513318808" />
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1576509432120">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576343917926" />
-    <state width="1899" height="208" key="GridCell.Tab.0.center" timestamp="1576343917926">
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576509432120" />
+    <state width="1899" height="208" key="GridCell.Tab.0.bottom" timestamp="1576526248968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576343917926" />
-    <state width="1899" height="208" key="GridCell.Tab.0.left" timestamp="1576343917926">
+    <state width="1899" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576526248968" />
+    <state width="1899" height="208" key="GridCell.Tab.0.center" timestamp="1576526248968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576343917926" />
-    <state width="1899" height="208" key="GridCell.Tab.0.right" timestamp="1576343917926">
+    <state width="1899" height="208" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576526248968" />
+    <state width="1899" height="208" key="GridCell.Tab.0.left" timestamp="1576526248967">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576343917926" />
-    <state x="672" y="235" key="MultipleFileMergeDialog" timestamp="1576320892126">
+    <state width="1899" height="208" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576526248967" />
+    <state width="1899" height="208" key="GridCell.Tab.0.right" timestamp="1576526248968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="672" y="235" key="MultipleFileMergeDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576320892126" />
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576320882972">
+    <state width="1899" height="208" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576526248968" />
+    <state x="672" y="235" key="MultipleFileMergeDialog" timestamp="1576509417090">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576320882972" />
+    <state x="672" y="235" key="MultipleFileMergeDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576509417090" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576509426281">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576509426281" />
     <state x="616" y="242" key="run.anything.popup" timestamp="1576320880825">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -298,7 +331,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js</url>
-          <line>54</line>
+          <line>56</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

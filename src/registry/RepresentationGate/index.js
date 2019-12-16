@@ -6,41 +6,39 @@ import * as constants from "../../constants"
 import type {HortenItem} from "../../alta/horten/item";
 import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
-import {DEF_BIOIMAGE, DEF_IMPULS, DEF_LOCKER} from "../../constants/definitions";
+import {DEF_BIOIMAGE, DEF_IMPULS, DEF_LOCKER, DEF_REPRESENTATION} from "../../constants/definitions";
 import {createHortenValue} from "../../alta/horten/value";
 import type {NodeStavanger} from "../lib/types";
 import {createNodeConductor} from "../../conductors/createNodeConductor";
+import type {HortenValue} from "../../alta/horten/value";
 
 
-export type  LockerIterator = NodeStavanger &{
-    locker: HortenItem,
+export type  RepresentationGate = NodeStavanger &{
+    representation: HortenValue,
     impuls: HortenItem,
-    bioimages: HortenTable,
-    sentBioimages: HortenTable,
-
+    representations: HortenTable,
 
 }
 
 export const ports = {
     ins: [
-        { name: "locker" , type: constants.LOCKER, map: "locker"},
+        { name: "representation" , type: constants.REPRESENTATION, map: "representation"},
         { name: "impuls" , type: constants.STAR, map: "impuls"},
     ],
     outs: [
-        {name: "bioimage", type: constants.BIOIMAGE}
+        {name: "representation", type: constants.REPRESENTATION}
     ]
 }
 
 const nodeConductor = createNodeConductor({ports: ports})
 
-export const lockerIteratorStavanger = createStavanger({
+export const representationGateStavanger = createStavanger({
     ...nodeConductor,
-    locker: createHortenValue(DEF_LOCKER),
+    representation: createHortenValue(DEF_REPRESENTATION),
     impuls: createHortenValue(DEF_IMPULS),
-    bioimages:  createHortenTable(DEF_BIOIMAGE),
-    sentBioimages:  createHortenTable(DEF_BIOIMAGE),
+    representations:  createHortenTable(DEF_REPRESENTATION),
 })
 
 
 
-export default connectOpera(lockerIteratorStavanger)(orchestraterEpic)(ImageMutater);
+export default connectOpera(representationGateStavanger)(orchestraterEpic)(ImageMutater);

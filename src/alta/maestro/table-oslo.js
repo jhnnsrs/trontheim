@@ -13,7 +13,7 @@ export const tableOsloMaestro = (oslo: HortenOslo) => (list: HortenTable): Epic 
             mergeMap(action => {
                 let {meta, data} = action.payload
                 // Allow multiple Rooms to listen to
-                const alias = meta.multialias ?  list.definition.type + "-" + list.key + "-" + v4() :  list.definition.type + "-" + list.key
+                const alias = meta.singlealias ?  list.definition.type + "-" + list.key : list.definition.type + "-" + list.key + "-" + v4()
 
                 meta = { ...meta,
                         stream: list.definition.type,

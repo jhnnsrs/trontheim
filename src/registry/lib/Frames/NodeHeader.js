@@ -1,8 +1,10 @@
-import {CardHeader, Col, Row} from "reactstrap";
+import {CardHeader, Col, Container, Row} from "reactstrap";
 import React from "react";
+import "./frame.css"
 import {connectInstrument} from "../../../alta/react";
 import type {HortenEdge} from "../../../alta/horten/edge";
 import PopButton from "../PopButton";
+import type {HortenNode} from "../../../alta/horten/node";
 
 type Props = {
     name: string,
@@ -15,7 +17,7 @@ type State = {
 }
 
 type EdgeStavanger = {
-    node: HortenEdge
+    node: HortenNode
 }
 
 
@@ -48,17 +50,21 @@ class NodeHeader extends React.Component<Props,State> {
 
     render() {
             return(
-                <CardHeader className={this.getclassName()}>
+                <CardHeader className="MyHandle small">
+                    <Container fluid={true}>
                     <Row>
-                        {this.props.isPoppable && <Col className="col-auto ml-auto"><PopButton/></Col>}
+                        <Col className="col-auto mr-auto title">{this.props.node.name}</Col>
+                        <Col className="col-auto title">{this.props.isPoppable && <PopButton/>}</Col>
                     </Row>
+                    </Container>
                 </CardHeader>
             )
     }
 }
 
 const mapStavangerToProps = (stavanger: EdgeStavanger) => ({
-    isPoppable: (_) => stavanger.node.definition.isPoppable
+    isPoppable: (_) => stavanger.node.definition.isPoppable,
+    node: stavanger.node.selectors.getState
 });
 
 const mapStavangerToDispatch  = (stavanger: EdgeStavanger) =>  ({
