@@ -20,6 +20,8 @@ export const orchestraterEpic = (stavanger: LineTransformer) => {
             let representation = stavanger.representation.selectors.getData(state$.value);
             let settings = stavanger.settings.selectors.getMerged(state$.value)
             let roi = stavanger.roi.selectors.getData(state$.value)
+            let node = stavanger.node.selectors.getState(state$.value)
+
 
             if (!roi) return [stavanger.node.helpers.requireUser("Please set Roi First")]
             if (!representation) return [stavanger.node.helpers.requireUser("Please set Representation First")]
@@ -30,7 +32,7 @@ export const orchestraterEpic = (stavanger: LineTransformer) => {
                     creator: userIDPortal(state$.value),
                     representation: representation.id,//is initial
                     sample: representation.sample,//is initial
-                    transformer: 1, // TODO: This is hard coded and wrong
+                    transformer: node.entityid, // TODO: This is hard coded and wrong
                     nodeid: stavanger.node.alias,
                     roi: roi.id,
                     override: false
