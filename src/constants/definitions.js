@@ -41,6 +41,7 @@ export const DEF_LAYOUT = {type: constants.LAYOUT, url: "layouts"};
 export const DEF_EXTERNAL = {type: constants.EXTERNAL, url: "externals"};
 export const DEF_EXTERNALREQUEST = {type: constants.EXTERNALREQUEST, url: "externalrequests"};
 export const DEF_VOLUMEDATA = {type: constants.VOLUMEDATA, url: "volumedata"};
+export const DEF_LENGTHDATA = {type: constants.LENGTHDATA, url: "lengthdata"};
 export const DEF_IMPULS = {type: constants.IMPULS, url: "null"};
 export const DEF_CLUSTERDATA = {type: constants.CLUSTERDATA, url: "clusterdata"};
 export const DEF_LOCKER = {type: constants.LOCKER, url: "lockers"};

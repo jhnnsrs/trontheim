@@ -38,6 +38,7 @@ export const UNKNOWN = "unknown"
 export const BIOSERIES = "bioseries";
 export const BIOIMAGE = "bioimage";
 export const VOLUMEDATA = "volumedata";
+export const LENGTHDATA = "lengthdata";
 export const DATA = "data";
 export const MUTATING = "mutating";
 export const ANALYZING = "analyzing";

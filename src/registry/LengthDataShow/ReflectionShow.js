@@ -11,9 +11,8 @@ class ReflectionShow extends Component<any,any> {
                 <React.Fragment>
                     <CardText>
                         { reflection && <CardImg src={reflection.image}/>}
-                        { data && <small><b>ClusterNumber </b>{data.clusternumber}</small>}<br/>
-                        { data && <small><b>ClusterArea Pixels</b>{data.clusterarea}</small>}<br/>
-                        { data && <small><b>ClusterArea </b>{data.clusterarea} {data.spatialunit}</small>}<br/>
+                        { data && <small><b>Length </b>{data.physicallength}</small>}<br/>
+                        { data && <small><b>DistanceToStart </b>{data.physicaldistancetostart}</small>}<br/>
                     </CardText>
                 </React.Fragment>);
         }
@@ -26,7 +25,7 @@ class ReflectionShow extends Component<any,any> {
 
 const mapStavangerToProps = (stavanger: ReflectionShowStavanger) => ({
     reflection: stavanger.reflection.selectors.getData,
-    data: stavanger.clusterdata.selectors.getData,
+    data: stavanger.lengthdata.selectors.getData,
 });
 
 const mapStavangerToDispatch  = (stavanger: ReflectionShowStavanger) =>  ({
