@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/registry/ForeignLength/ExperimentSelector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/ForeignLength/container.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/ForeignLength/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/ForeignLength/orchestrater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/LengthDataShow/ReflectionShow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/LengthDataShow/container.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/LengthDataShow/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/LengthDataShow/orchestrater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/definitions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/definitions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/models.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/ClusterDataShow/ReflectionShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/ClusterDataShow/ReflectionShow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/IntensityProfiler/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/IntensityProfiler/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/IntensityProfiler/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/IntensityProfiler/orchestrater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/header/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/RoiSelector/SelectionList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/RoiSelector/SelectionList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/RoiSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/RoiSelector/container.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/TwoDShow/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/TwoDShow/orchestrater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/Frames/NodeFrame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/Frames/NodeFrame.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/NodeBlocker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NodeBlocker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/smallheader/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/smallheader/orchestrator/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +21,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -57,7 +50,6 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/registry" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -65,19 +57,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\RepresentationGate" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\BioseriesFilter" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\conductors" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Trontheim\trontheim\src\common\flow" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\Frames" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\types.js" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\common\flow" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\Frames" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\registry" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\conductors" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow\stavanger" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.Debug Flow">
@@ -126,9 +118,9 @@
     </configuration>
     <list>
       <item itemvalue="JavaScript Debug.Debug Flow" />
-      <item itemvalue="npm.electron" />
       <item itemvalue="npm.build" />
       <item itemvalue="npm.electron-dev" />
+      <item itemvalue="npm.electron" />
       <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
@@ -172,11 +164,19 @@
       <workItem from="1574247473741" duration="12139000" />
       <workItem from="1574355291737" duration="7000" />
       <workItem from="1574356477105" duration="534000" />
-      <workItem from="1574422348134" duration="11573000" />
-      <workItem from="1574766996244" duration="32000" />
-      <workItem from="1576320871499" duration="8583000" />
-      <workItem from="1576509353536" duration="9745000" />
-      <workItem from="1576575728398" duration="7773000" />
+      <workItem from="1574422348134" duration="11416000" />
+      <workItem from="1574695339706" duration="5000" />
+      <workItem from="1574696629230" duration="275000" />
+      <workItem from="1575643504629" duration="1047000" />
+      <workItem from="1575906951918" duration="1869000" />
+      <workItem from="1576248859005" duration="17077000" />
+      <workItem from="1576319764255" duration="794000" />
+      <workItem from="1576359615309" duration="599000" />
+      <workItem from="1576427107560" duration="2029000" />
+      <workItem from="1576494582004" duration="488000" />
+      <workItem from="1576503226582" duration="217000" />
+      <workItem from="1576599986344" duration="755000" />
+      <workItem from="1576679243876" duration="2734000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -227,33 +227,33 @@
       <option name="project" value="LOCAL" />
       <updated>1574354534029</updated>
     </task>
-    <task id="LOCAL-00008" summary="Implementet more Nodes and Bioimage and Sampleflow">
-      <created>1574433858353</created>
+    <task id="LOCAL-00008" summary="Made Trontheim Heidelberg ID">
+      <created>1575643672051</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1574433858354</updated>
+      <updated>1575643672051</updated>
     </task>
-    <task id="LOCAL-00009" summary="Updated Alias to have multiple aliases if needed">
-      <created>1576345432625</created>
+    <task id="LOCAL-00009" summary="Added Modules for the External Requests">
+      <created>1576319952935</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1576345432626</updated>
+      <updated>1576319952935</updated>
     </task>
-    <task id="LOCAL-00010" summary="Updated Alias to have multiple aliases if needed">
-      <created>1576345826876</created>
+    <task id="LOCAL-00010" summary="Added Modules for the External Requests">
+      <created>1576427271164</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1576345826877</updated>
+      <updated>1576427271164</updated>
     </task>
-    <task id="LOCAL-00011" summary="Implementet Strainers as new API Point&#10;Made modifications to multialias joining&#10;Implemented BioseriesFilter,  Intensity pRofiler,&#10;&#10;Changed Faulty Lockeriterator&#10;Updated Frame.css for lower Frame Impact&#10;Changed node Mapped port Finding">
-      <created>1576526810908</created>
+    <task id="LOCAL-00011" summary="CHanged entitity id on line transformer">
+      <created>1576503261007</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1576526810908</updated>
+      <updated>1576503261007</updated>
     </task>
     <option name="localTasksCounter" value="12" />
     <servers />
@@ -281,63 +281,35 @@
     <MESSAGE value="Implemented the Electron build&#10;New Dependencies&#10;CHanged max width media" />
     <MESSAGE value="Implemented the Task Maestro" />
     <MESSAGE value="Implementet BioMeta, BioConverter&#10;Taskmaestro, sleectoMaestro..." />
-    <MESSAGE value="Implementet more Nodes and Bioimage and Sampleflow" />
-    <MESSAGE value="Updated Alias to have multiple aliases if needed" />
-    <MESSAGE value="Implementet Strainers as new API Point&#10;Made modifications to multialias joining&#10;Implemented BioseriesFilter,  Intensity pRofiler,&#10;&#10;Changed Faulty Lockeriterator&#10;Updated Frame.css for lower Frame Impact&#10;Changed node Mapped port Finding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementet Strainers as new API Point&#10;Made modifications to multialias joining&#10;Implemented BioseriesFilter,  Intensity pRofiler,&#10;&#10;Changed Faulty Lockeriterator&#10;Updated Frame.css for lower Frame Impact&#10;Changed node Mapped port Finding" />
+    <MESSAGE value="Made Trontheim Heidelberg ID" />
+    <MESSAGE value="Added Modules for the External Requests" />
+    <MESSAGE value="CHanged entitity id on line transformer" />
+    <option name="LAST_COMMIT_MESSAGE" value="CHanged entitity id on line transformer" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1576513318808">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="482" y="146" key="CommitChangelistDialog2" timestamp="1576503259734">
+      <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576513318808" />
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1576526810231">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503259734" />
+    <state x="570" y="267" key="MultipleFileMergeDialog" timestamp="1576600141147">
+      <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576526810231" />
-    <state width="1899" height="208" key="GridCell.Tab.0.bottom" timestamp="1576578395486">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="570" y="267" key="MultipleFileMergeDialog/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576600141147" />
+    <state x="450" y="272" key="Vcs.Push.Dialog.v2" timestamp="1576503264848">
+      <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576578395486" />
-    <state width="1899" height="208" key="GridCell.Tab.0.center" timestamp="1576578395486">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503264848" />
+    <state x="666" y="468" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576600127778">
+      <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576578395486" />
-    <state width="1899" height="208" key="GridCell.Tab.0.left" timestamp="1576578395485">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576578395485" />
-    <state width="1899" height="208" key="GridCell.Tab.0.right" timestamp="1576578395486">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576578395486" />
-    <state x="672" y="235" key="MultipleFileMergeDialog" timestamp="1576509417090">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="672" y="235" key="MultipleFileMergeDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576509417090" />
-    <state x="552" y="241" key="Vcs.Push.Dialog.v2" timestamp="1576526819165">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="241" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576526819165" />
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576589242040">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576589242040" />
-    <state x="616" y="242" key="run.anything.popup" timestamp="1576320880825">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="242" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576320880825" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1576322203871">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576322203871" />
+    <state x="666" y="468" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576600127778" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js</url>
-          <line>56</line>
+          <line>57</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

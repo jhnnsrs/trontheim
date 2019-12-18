@@ -65,7 +65,7 @@ class NodeBlocker extends React.Component<Props,State> {
                 let { state, message, loader, color} = this.getBlockState(status)
 
                 return (
-                    <div>
+                    <div className={this.props.bodyClassName}>
                         <BlockUi tag="div" blocking={state} message={message}
                                  loader={<Loader active type={loader} color={color}/>} keepInView>
                         {isPopped ? <CardBody><div  className="mx-auto">Node has Popped</div></CardBody> : this.props.children}

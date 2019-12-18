@@ -35,8 +35,8 @@ export default class NodeFrame extends React.Component<Props,State> {
         return (
                 <React.Fragment>
                     <NodeHeader name={this.props.name}/>
-                    <NodeBlocker>
-                        <CardBody className="overflow-auto">
+                    <NodeBlocker bodyClassName={this.props.bodyClassName ? this.props.bodyClassName : "overflow-auto"}>
+                        <CardBody >
                         {this.props.children}
                         </CardBody>
                     </NodeBlocker>

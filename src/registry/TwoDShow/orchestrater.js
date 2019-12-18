@@ -60,7 +60,7 @@ export const orchestraterEpic = (stavanger: TwoDShowStavanger) => {
                 return [
                     stavanger.displayedDisplay.model.fetchItem.request(display),
                     stavanger.rois.model.fetchList.request({filter: {representation: display.data.representation}}),
-                    stavanger.rois.model.osloJoin.request({meta: {room: {nodeid: stavanger.rois.model.alias}}}),
+                    stavanger.rois.model.osloJoin.request({meta: {room: {sample: display.data.sample}, singlealias: true}}),
                     stavanger.node.helpers.requireUser("Start marking Rois")
                 ]
                 }

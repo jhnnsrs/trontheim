@@ -1,11 +1,12 @@
-import {combineEpics} from "redux-observable";
+import {combineEpics, ofType} from "redux-observable";
 import type {LineTransformer} from "./index";
 import {apiConnector, itemConnector} from "../../rootMaestros";
 import {userIDPortal} from "../../portals";
 import {nodeMaestro} from "../nodeMaestro";
 import {combineOrchestrator} from "../../alta/react/EpicRegistry";
 import {taskMaestro} from "../taskMaestro";
-import {SERVER} from "../../constants/nodestatus";
+import {DONE, SERVER} from "../../constants/nodestatus";
+import {mergeMap} from "rxjs/operators";
 
 
 export const orchestraterEpic = (stavanger: LineTransformer) => {

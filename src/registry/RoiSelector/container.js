@@ -14,7 +14,7 @@ export class ImageMutater extends Component {
 
     render() {
                 return(
-                    <NodeFrame isGrid={this.props.isGrid} name={"DisplaySelector"}>
+                    <NodeFrame isGrid={this.props.isGrid} name={"DisplaySelector"} bodyClassName={"overflow-auto"}>
                         <SelectionShower/>
                         <RepresentationList/>
                     </NodeFrame>)

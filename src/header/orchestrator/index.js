@@ -15,7 +15,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
         action$.pipe(
             ofType(stavanger.page.model.initPage.success),
             mergeMap(action => {
-                let token = window.localStorage.getItem("token");
+                let token = window.localStorage.getItem("tokenit");
                 let osloconfig = window.localStorage.getItem("osloconfig")
                 let config = osloconfig ? JSON.parse(osloconfig): null
 
@@ -52,7 +52,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
                 let token = action.payload.token
                 let config = stavanger.oauth.selectors.getCurrentEndpoint(state$.value)
 
-                window.localStorage.setItem("tokenit",token);
+                window.localStorage.setItem("tokenit", token);
                 window.localStorage.setItem("osloconfig",JSON.stringify(config));
 
                 return [

@@ -15,8 +15,8 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
         action$.pipe(
             ofType(stavanger.page.model.initPage.request),
             mergeMap(action => {
-                let token = window.localStorage.getItem("token");
-                let config = osloEndpoints[0] // TODO: Read out Config from Store OH OH OH SO DIRTY :D
+                let token = window.localStorage.getItem("oslotoken");
+                let config = JSON.parse(window.localStorage.getItem("osloconfig"));
                 if (token!= null & config != null) {
                     return [
                         apiModel.setAuth.request({token: token, rooturl: config.rooturl}),
@@ -48,6 +48,8 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
 
                 let token = action.payload.token
                 let config = stavanger.oauth.selectors.getCurrentEndpoint(state$.value)
+                window.localStorage.setItem("oslotoken", token);
+                window.localStorage.setItem("osloconfig",JSON.stringify(config));
 
                 return [
                     apiModel.setAuth.request({token: token, rooturl: config.rooturl}),
