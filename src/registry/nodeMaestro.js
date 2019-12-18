@@ -114,13 +114,14 @@ export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDef
             )
         )
 
+
     const onSettingsSubmittedPublishToGraph = (action$, state$) =>
         action$.pipe(
             ofType(settings.model.submitForm.success),
             mergeMap((action) => {
                     return [
                         settings.model.setInitial.request(action.payload),
-                        graph.model.setNodeSettings.request(action.payload),
+                        graph.model.setNodeSettings.request({instance: node.alias, settings:action.payload}),
 
                     ]
                 }

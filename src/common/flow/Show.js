@@ -7,8 +7,12 @@ import type {FlowStavanger} from "../../maestros/flowMeastro";
 
 const GraphShow = (props) =>
     <Container>
+         <Card>
+             <Button onClick={() => props.saveSettings()}> Save Settings</Button>
+         </Card>
+
         <Row>
-            <Dict dict={props.graph.nodes}>
+             <Dict dict={props.graph.nodes}>
                 {(node) => {
                     return(
                         <Card key={node.id}
@@ -30,7 +34,8 @@ const mapStavangerToProps = (stavanger: FlowStavanger) => ({
 });
 
 const mapStavangerToDispatch  = (stavanger: FlowStavanger) =>  ({
-    resend: (alias) => stavanger.graph.model.resend.request(alias)
+    resend: (alias) => stavanger.graph.model.resend.request(alias),
+    saveSettings: () => stavanger.graph.model.saveSettings.request()
 });
 
 

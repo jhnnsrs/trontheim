@@ -65,6 +65,10 @@ export type HortenGraphModel = HortenModel & {
     setNodeType: HaldenActions,
     setNodeSettings: HaldenActions,
 
+    //Settings
+    saveSettings: HaldenActions,
+    loadSettings: HaldenActions,
+
     // Node APIS
     onNodeStatusUpdate: HaldenActions,
     onNodeOutput: HaldenActions,
@@ -185,6 +189,8 @@ export const createHortenGraphModel = createHortenModel({
     onNodeOutput: createHaldenAction("NODE_OUTPUT", true),
     setNodeInput: createHaldenAction("SET_NODE_INPUT"),
     setNodeIn: createHaldenAction("NODE_INPUT_SET",false, true),
+    saveSettings: createHaldenAction("SAVE_SETTINGS"),
+    loadSettings: createHaldenAction("LOAD_SETTINGS"),
     setNodeType: createHaldenAction("SET_NODE_TYPE"),
     onExternalIn: createHaldenAction("ON_EXTERNAL_IN"),
     onExternalOut: createHaldenAction("ON_EXTERNAL_OUT"),
@@ -528,8 +534,40 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     return [model.onNodeOutput.request(payload)]
                 }
             )),
+    onSaveSettings: (action$, state$) =>
+        action$.pipe(
+            ofType(model.saveSettings.request),
+            mergeMap(action => {
+                    // TODO: Here an instantiation of the node type on veil should maybe happen?
+
+                    let graphstate = selectors.getGraphShow(state$.value)
+
+                    helpers.log("Graphstate" ,graphstate)
+
+
+
+                    return [model.saveSettings.success(graphstate)]
+                }
+            )),
+    onLoadSettings: (action$, state$) =>
+        action$.pipe(
+            ofType(model.loadSettings.request),
+            mergeMap(action => {
+                    // TODO: Here an instantiation of the node type on veil should maybe happen?
+
+                    const graphstate = action.payload
+
+
+
+
+
+
+
+                    return [model.saveSettings.success(graphstate)]
+                }
+            )),
     onNodeStatusChanged: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),
-    setNodeSettingsPassThrough: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),
+    setNodeSettingsPassThrough: createHaldenPassThroughEpicFromActions(model.setNodeSettings),
     setNodeTypePassTrhough: createHaldenPassThroughEpicFromActions(model.setNodeType),
 }))
 

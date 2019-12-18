@@ -14,6 +14,7 @@ import {
 import {connectInstrument} from "../../alta/react";
 import type {RoiSelectorStavanger} from "./index";
 import * as _ from "lodash";
+import Badge from "react-bootstrap/Badge";
 
 class SelectionList extends Component {
 
@@ -23,12 +24,12 @@ class SelectionList extends Component {
             return (
                 <ListGroup>
                     {list.data.map((item, index) =>
-                        <ListGroupItem style={{backgroundColor: item.data.color, color: "#FFFFFF"}} key={_.uniqueId()}>
+                        <ListGroupItem key={_.uniqueId()}>
                             <Container fluid={true}>
                                 <Row>
-                            <Col className="col-auto mr-auto">Roi {item.data.id}</Col>
+                            <Col className="col-auto mr-auto">Roi <Badge color="secondary" style={{backgroundColor: item.data.color, color: "#FFFFFF"}}>{item.data.id}</Badge></Col>
                             <Col className="col-auto"><ButtonGroup>
-                                <Button size="sm"  outline  style={{borderColor: "#FFFFFF", color: "#FFFFFF"}}
+                                <Button size="sm"  outline
                                         onClick={() => this.props.selectItem(item)}>Select</Button>
                                 <Button size="sm" outline color="danger"
                                         onClick={() => this.props.deleteItem(item)}>Delete</Button>

@@ -1,7 +1,7 @@
 import type {BioImageFlowStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";
 import React from "react"
-import {Card, CardBody, Col, Container, Row} from "reactstrap";
+import {Button, Card, CardBody, Col, Container, Row} from "reactstrap";
 
 import Dict from "../../generics/Dict";
 import {STATUSIN, STATUSOUT} from "../../alta/horten/nomogram";
@@ -34,6 +34,7 @@ const mapStavangerToProps = (stavanger: BioImageFlowStavanger) => ({
 });
 
 const mapStavangerToDispatch  = (stavanger: BioImageFlowStavanger) =>  ({
+    saveSettings: () => stavanger.graph.model.saveSettings.request()
 });
 
 
