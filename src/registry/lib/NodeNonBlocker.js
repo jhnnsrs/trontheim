@@ -33,7 +33,7 @@ class NodeBlocker extends React.PureComponent<Props,State> {
     render() {
             return (
                     <div>
-                        {this.props.isPopped ? <CardBody><div  class="mx-auto">Node has Popped</div></CardBody> : this.props.children}
+                        {this.props.isPopped ? <CardBody><div  className="mx-auto">Node has Popped</div></CardBody> : this.props.children}
                     </div>
                 )
             }

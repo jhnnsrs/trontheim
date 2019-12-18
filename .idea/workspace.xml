@@ -3,14 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/header/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/graph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/flow/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/flow/Show.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/flow/smartcomponents/GraphShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flow/smartcomponents/GraphShow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/flow/stavanger/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/flow/stavanger/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/registry/RoiSelector/SelectionList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/RoiSelector/SelectionList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/RoiSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/RoiSelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/TwoDShow/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/TwoDShow/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/lib/Frames/NodeFrame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/Frames/NodeFrame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/lib/NodeBlocker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NodeBlocker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/smallheader/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/smallheader/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/RoiSelector/SelectionShower.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/RoiSelector/SelectionShower.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/NodeNonBlocker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NodeNonBlocker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/nodeMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/nodeMaestro.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,19 +57,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\common\flow" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\Frames" />
-    </key>
-    <key name="es6.move.members.recent.items">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\types.js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\registry" />
       <recent name="C:\Program Files\Trontheim\trontheim\src\registry" />
       <recent name="C:\Program Files\Trontheim\trontheim\src\conductors" />
       <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow" />
       <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow\stavanger" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\types.js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Trontheim\trontheim\src\common\flow" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\Frames" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.Debug Flow">
@@ -176,7 +176,7 @@
       <workItem from="1576494582004" duration="488000" />
       <workItem from="1576503226582" duration="217000" />
       <workItem from="1576599986344" duration="755000" />
-      <workItem from="1576679243876" duration="2734000" />
+      <workItem from="1576679243876" duration="6749000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -255,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576503261007</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Changed RoiSelector to have nicer list&#10;made token and config readtout&#10;&#10;Most likely smallheader is interfering with the state! Cirtical bug discovered">
+      <created>1576682159486</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1576682159486</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,25 +291,32 @@
     <MESSAGE value="Made Trontheim Heidelberg ID" />
     <MESSAGE value="Added Modules for the External Requests" />
     <MESSAGE value="CHanged entitity id on line transformer" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHanged entitity id on line transformer" />
+    <MESSAGE value="Changed RoiSelector to have nicer list&#10;made token and config readtout&#10;&#10;Most likely smallheader is interfering with the state! Cirtical bug discovered" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed RoiSelector to have nicer list&#10;made token and config readtout&#10;&#10;Most likely smallheader is interfering with the state! Cirtical bug discovered" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="482" y="146" key="CommitChangelistDialog2" timestamp="1576503259734">
+    <state x="482" y="146" key="CommitChangelistDialog2" timestamp="1576682158466">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503259734" />
+    <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103@0.0.1714.1103" timestamp="1576682158466" />
     <state x="570" y="267" key="MultipleFileMergeDialog" timestamp="1576600141147">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="570" y="267" key="MultipleFileMergeDialog/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576600141147" />
-    <state x="450" y="272" key="Vcs.Push.Dialog.v2" timestamp="1576503264848">
+    <state x="450" y="272" key="Vcs.Push.Dialog.v2" timestamp="1576682161855">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503264848" />
+    <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103@0.0.1714.1103" timestamp="1576682161855" />
     <state x="666" y="468" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576600127778">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="666" y="468" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576600127778" />
+    <state x="520" y="241" width="672" height="678" key="search.everywhere.popup" timestamp="1576685015006">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state x="520" y="241" width="672" height="678" key="search.everywhere.popup/0.0.1714.1103@0.0.1714.1103" timestamp="1576685015006" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

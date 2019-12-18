@@ -13,7 +13,7 @@ import {createHortenItem} from "../../alta/horten/item";
 
 export type BioImageFlowStavanger = Stavanger & {
     nodes: HortenNodes,
-    graph: HortenNomogram,
+    graph: HortenGraph,
     flows: HortenTable,
     layout: HortenItem,
     possibleLayouts: HortenTable,
