@@ -1,8 +1,8 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {NodeBuilderStavanger} from "../stavanger";
-import * as constants from "../../constants";
-import {apiConnector, userSelector} from "../../rootMaestros";
+import {apiConnector} from "../../rootMaestros";
+import {userIDPortal} from "../../portals";
 
 export const orchestraterEpic = (stavanger: NodeBuilderStavanger) => {
 
@@ -35,7 +35,7 @@ export const orchestraterEpic = (stavanger: NodeBuilderStavanger) => {
 
                 console.log(variety)
 
-                let meta =  {
+                let meta = {
                     rooturl: variety.rooturl,
                     suburl: variety.url
                 }
@@ -49,11 +49,11 @@ export const orchestraterEpic = (stavanger: NodeBuilderStavanger) => {
         action$.pipe(
             ofType(stavanger.entities.model.selectItem.request),
             mergeMap(action => {
-                let {data, meta}= action.payload
+                let {data, meta} = action.payload
 
                 let entity = {...data, defaultsettings: JSON.parse(data.defaultsettings)}
                 return [
-                    stavanger.selectedEntity.model.setItem.request({ data: entity, meta: meta}),
+                    stavanger.selectedEntity.model.setItem.request({data: entity, meta: meta}),
                     stavanger.nodeform.model.setInitial.request(entity),
                 ]
             }));
@@ -64,7 +64,7 @@ export const orchestraterEpic = (stavanger: NodeBuilderStavanger) => {
             mergeMap(action => {
                 let values = {
                     ...action.payload,
-                    creator: userSelector(state$.value),
+                    creator: userIDPortal(state$.value),
                     defaultsettings: JSON.stringify(action.payload.defaultsettings),
                     variety: stavanger.varieties.selectors.getSelected(state$.value).data.id,
                     entityid: action.payload.id,
@@ -72,11 +72,10 @@ export const orchestraterEpic = (stavanger: NodeBuilderStavanger) => {
 
                 console.log(values)
                 return [
-                    stavanger.nodes.model.postItem.request({ data: values, meta: ""}),
+                    stavanger.nodes.model.postItem.request({data: values, meta: ""}),
 
                 ]
             }));
-
 
 
     let entitiesConnection = apiConnector(stavanger.entities)

@@ -1,8 +1,7 @@
 import React, {Component} from "react";
-import type {AnswersStavanger, SampleStavanger} from "../stavanger";
-import {Button, Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
+import type {AnswersStavanger} from "../stavanger";
+import {Card, CardBody, CardText, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
 import LockerFormModal from "./QuestionFormModal";
 
 class UserDetailCard extends Component {

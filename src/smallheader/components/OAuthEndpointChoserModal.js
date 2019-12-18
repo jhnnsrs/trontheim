@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import connect from "react-redux/es/connect/connect";
 import {Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row} from "reactstrap";
 import _ from "lodash"
-import sta  from "../stavanger";
 import type {HeaderStavanger} from "../stavanger";
-import {userSelector} from "../../rootMaestros";
 import {connectInstrument} from "../../alta/react";
 
 class OAuthEndpointChoserModal extends Component {

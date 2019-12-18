@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import TwoDShowComponent from "./TwoDShowComponent";
-import NodeFrame from "../lib/NodeFrame";
 import NonBlockingNodeFrame from "../lib/NonBlockingNodeFrame";
 
 

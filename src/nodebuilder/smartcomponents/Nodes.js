@@ -1,4 +1,4 @@
-import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardText, CardTitle} from "reactstrap";
+import {Button, Card, CardBody, CardSubtitle, CardTitle} from "reactstrap";
 import type {NodeBuilderStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";
 import React from "react";

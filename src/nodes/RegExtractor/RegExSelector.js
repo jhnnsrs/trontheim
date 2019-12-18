@@ -1,6 +1,6 @@
-import {Button, ButtonDropdown, ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap"
+import {ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
-import React, {Component} from "react";
+import React from "react";
 import type {RegExtractorStavanger} from "./index";
 
 class LayoutSelector extends React.Component {

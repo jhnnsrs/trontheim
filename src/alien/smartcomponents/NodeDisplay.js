@@ -1,11 +1,12 @@
-import React, {Component} from "react";
-import type {BioImageFlowStavanger, AlienStavanger, SampleFlowStavanger} from "../stavanger";
+import React from "react";
+import type {AlienStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";
-import {NodeContainer, NodeTestContainer} from "../../alta/react/Nodes";
-import {Button, Card} from "reactstrap";
+import {NodeTestContainer} from "../../alta/react/Nodes";
+import {Card} from "reactstrap";
 
 
-import { Responsive, WidthProvider } from "react-grid-layout";
+import {Responsive, WidthProvider} from "react-grid-layout";
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 

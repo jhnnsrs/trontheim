@@ -19,6 +19,7 @@ export const getModels = () => {
         {model: constants.USER, isServerside: true,},
         {model: constants.LOCKER, isServerside: true,},
         {model: constants.VOLUMEDATA, isServerside: true,},
+        {model: constants.LENGTHDATA, isServerside: true,},
         {model: constants.REFLECTION, isServerside: true,},
         {model: constants.STAR, isServerside: false,},
         {model: constants.IMPULS, isServerside: false,},

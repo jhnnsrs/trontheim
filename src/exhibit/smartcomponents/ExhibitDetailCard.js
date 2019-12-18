@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import type {ExhibitStavanger} from "../stavanger";
-import {Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
+import {Card, CardBody, CardText, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
 
 class ExhibitDetailCard extends Component {

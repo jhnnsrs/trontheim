@@ -1,10 +1,10 @@
-import {Button, ButtonGroup, CardBody, CardText} from "reactstrap"
+import {Button, ButtonGroup} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
 import Form from "../../alta/react/FinalForm";
 import type {BioConverterStavanger} from "./index";
 import {Field} from "react-final-form";
-import {renderCheckInput, renderInputField} from "../../generics/Fields";
+import {renderCheckInput} from "../../generics/Fields";
 
 class ImageMutaterComponent extends Component<any,any> {
     render() {

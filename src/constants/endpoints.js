@@ -1,7 +1,10 @@
 
 
-const redirectui =  window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port +"/callback" : "http://" + window.location.hostname + ":" + window.location.port + "/callback";
 
+export const THIS_ROOT_URL = window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port : "http://" + window.location.hostname + ":" + window.location.port
+export const redirectui =  window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port +"/callback" : "http://" + window.location.hostname + ":" + window.location.port + "/callback";
+
+console.log("The redirectui is " + redirectui)
 
 export const osloEndpoints = [
     {
@@ -43,18 +46,6 @@ export const osloEndpoints = [
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },
     {
-        name: "Network Johannes",
-        image: "/images/jhnnsrslogo.png",
-        rooturl: 'http://192.168.0.116:80/api',
-        url: "http://192.168.0.116:80/o/authorize",
-        websocket: "ws://192.168.0.116.171:80/oslo?token=",
-        client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
-        redirect: redirectui,
-        scope: "write",
-        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
-        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
-    },
-    {
         name: "Uni Heidelberg",
         image: "/images/jhnnsrslogo.png",
         rooturl: 'http://192.168.0.38:80/api',
@@ -67,26 +58,14 @@ export const osloEndpoints = [
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },
     {
-        name: "SFN Ipad",
+        name: "Arnheim Heidcloud",
         image: "/images/jhnnsrslogo.png",
-        rooturl: 'http://192.168.137.1:80/api',
-        url: "http://192.168.137.1:80/o/authorize",
-        websocket: "ws://192.168.137.1:80/oslo?token=",
-        client: "QWDRidApthbv0T3fP8pi2k6ePBGxw0L3SwpuA3cQ",
+        rooturl: 'https://arnheim.online/api',
+        url: "http://arnheim.online/o/authorize",
+        websocket: "wss://arnheim.online/oslo?token=",
+        client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
         redirect: redirectui,
-        scope: "write",
-        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
-        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
-    },
-    {
-        name: "HeiCloud",
-        image: "/images/jhnnsrslogo.png",
-        rooturl: 'https://johannesroos.de/api',
-        url: "http://johannesroos.de/o/authorize",
-        websocket: "wss://johannesroos.de/oslo?token=",
-        client: "aPopyevoYspf98H2v3jaVETdtMOYPWsVIyhg7uAa",
-        redirect: redirectui,
-        scope: "write",
+        scope: "write read read_starred profile",
         width: 400, // Width (in pixels) of login popup window. Optional, default: 400
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },

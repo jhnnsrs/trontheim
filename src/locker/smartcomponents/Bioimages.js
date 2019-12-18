@@ -1,18 +1,7 @@
 import React, {Component} from "react";
-import type {LockerStavanger, SampleStavanger} from "../stavanger";
-import {
-    Button, ButtonGroup,
-    Card,
-    CardBody,
-    CardImg,
-    CardImgOverlay,
-    CardSubtitle,
-    CardText,
-    CardTitle,
-    Container
-} from "reactstrap";
+import type {LockerStavanger} from "../stavanger";
+import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardTitle, Container} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
 import * as _ from "lodash"
 import BioSeriesForBioImages from "./BioSeriesForBioImages";
 import ButtonToNavigate from "../../generics/ButtonToNavigate";

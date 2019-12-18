@@ -1,8 +1,6 @@
 import React from "react";
 import {Field} from "react-final-form";
 import {Button, ButtonGroup, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import AddExperimentForm from "../../myhome/smartcomponents/AddExperiment/AddExperimentForm";
-import type {BioConverterStavanger} from "../../nodes/BioConverter";
 import {connectInstrument} from "../../alta/react";
 import type {NodeItemsStavanger} from "../stavanger";
 import Form from "../../alta/react/FinalMold";

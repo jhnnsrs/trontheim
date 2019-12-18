@@ -1,8 +1,8 @@
 // @flow
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components'
-import { grid, borderRadius } from './constants';
-import type { Id, Task as TaskType } from './types';
+import {borderRadius, grid} from './constants';
+import type {Id, Task as TaskType} from './types';
 import {Draggable, DraggableProvided, DraggableStateSnapshot} from "react-beautiful-dnd";
 
 // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button

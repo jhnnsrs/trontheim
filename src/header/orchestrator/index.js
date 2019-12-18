@@ -1,25 +1,25 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {HeaderStavanger} from "../stavanger";
 import {rootStavanger} from "../../rootStavanger";
-import {osloEndpoints} from "../../constants/endpoints";
 
 export const orchestraterEpic = (stavanger: HeaderStavanger) => {
 
     let apiModel = rootStavanger.api.model
     let osloModel = rootStavanger.oslo.model
+    let oslo = rootStavanger.oslo
     let userModel = rootStavanger.user.model
     let httpModel = rootStavanger.http.model
 
     const onLoginSetApiPoint = (action$, state$) =>
         action$.pipe(
-            ofType(stavanger.page.model.initPage.request),
+            ofType(stavanger.page.model.initPage.success),
             mergeMap(action => {
-                let token = window.localStorage.getItem("token");
+                let token = window.localStorage.getItem("tokenit");
                 let osloconfig = window.localStorage.getItem("osloconfig")
-                console.log("OSLO" , osloconfig)
                 let config = osloconfig ? JSON.parse(osloconfig): null
-                console.log(config)
+
+                oslo.helpers.log("Connected to Oslo '" + config.name+ "' at '" + config.rooturl)
                 if (token!= null & config != null) {
                     return [
                         apiModel.setAuth.request({token: token, rooturl: config.rooturl}),
@@ -29,7 +29,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
                     ]
                 }
                 else return [
-                    stavanger.page.model.initPage.success("Uh Have to login first darling"),]
+                    stavanger.page.model.dynamic("LOGIN_REQUIRED").success("Uh Have to login first darling"),]
             })
         );
 
@@ -52,7 +52,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
                 let token = action.payload.token
                 let config = stavanger.oauth.selectors.getCurrentEndpoint(state$.value)
 
-                window.localStorage.setItem("tokenit",token);
+                window.localStorage.setItem("tokenit", token);
                 window.localStorage.setItem("osloconfig",JSON.stringify(config));
 
                 return [

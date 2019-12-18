@@ -1,6 +1,5 @@
 import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
-import type {HortenList} from "../../alta/horten/list";
 import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import type {HortenItem} from "../../alta/horten/item";

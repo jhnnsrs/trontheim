@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import LoginMenu from "./LoginMenu";
 
 
-
 export class NavigationBar extends Component<{ open: boolean }> {
     render() {
         return <Collapse isOpen={this.props.open} navbar>

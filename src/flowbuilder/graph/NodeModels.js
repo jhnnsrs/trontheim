@@ -1,7 +1,6 @@
 import * as _ from "lodash";
 import {DefaultPortModel, NodeModel} from "storm-react-diagrams";
 import * as constants from "../../constants"
-import v4 from 'uuid'
 import {randomColor} from "randomcolor";
 
 export type JSONString = string

@@ -4,7 +4,6 @@ import React from "react";
 import {StavangerContext} from "./index";
 import type {Alias} from "../horten/types";
 import type {Stavanger} from "../stavanger";
-import v4 from "uuid"
 
 const Loading = (props) => <div> Loading</div>
 

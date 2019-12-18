@@ -1,17 +1,6 @@
 import React, {Component} from "react";
-import {
-    Button,
-    ButtonGroup,
-    Card,
-    CardBody,
-    CardImg,
-    CardImgOverlay,
-    CardSubtitle,
-    CardText,
-    CardTitle
-} from "reactstrap";
+import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
 import type {DisplaySelectorStavanger} from "./index";
 import * as _ from "lodash";
 

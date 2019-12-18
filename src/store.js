@@ -1,27 +1,32 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import {createEpicMiddleware, ofType} from 'redux-observable';
-import {BehaviorSubject} from 'rxjs';
-import {mergeMap, takeUntil} from 'rxjs/operators';
+import {BehaviorSubject, } from 'rxjs';
+import {mergeMap, takeUntil, catchError} from 'rxjs/operators';
 // import root epics/reducer
 import rootEpic from './rootEpic';
 import rootReducer from './rootReducer';
 import {authMiddleware} from "redux-implicit-oauth2";
-import {composeWithDevTools} from "redux-devtools-extension";
 import reducerRegistry from "./routerRegistry";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 // export `history` to use in LoginApp.js, we using `createBrowserHistory`
 
 // Build the middleware for intercepting and dispatching navigation sta
 
 const epic$ = new BehaviorSubject(rootEpic);
+
 const hotReloadingEpic = (action$, ...rest) =>
 	epic$.pipe(
 		mergeMap(epic =>
 			epic(action$, ...rest).pipe(
 				takeUntil(action$.pipe(
 					ofType('EPIC_END')
-				))
-			)
+				)),
+				catchError((error, source) => {
+					console.error("Root Error | " + error);
+					return source;
+					})
+						)
 		)
 	);
 
@@ -42,30 +47,16 @@ const combine = (reducers) => {
 	return combineReducers(reducers);
 };
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+const dev = false
+const composeEnhancers = dev ? (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ) || compose : (item) => item
 
-	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-		trace: true,
-		traceLimit: 25
-	}) || compos
+
 const store = createStore(
 	combine(rootReducer),
-		applyMiddleware(authMiddleware,epicMiddleware),
-	);
+	composeEnhancers(applyMiddleware(authMiddleware,epicMiddleware))
+);
 
 epicMiddleware.run(hotReloadingEpic)
-
-if (module.hot) {
-	module.hot.accept('./rootEpic', () => {
-		const nextRootEpic = require('./rootEpic').rootEpic;
-		// First kill any running epics
-		store.dispatch({ type: 'EPIC_END' });
-		// Now setup the new one
-		epic$.next(nextRootEpic);
-	});
-}
-
-
 
 
 // store = createStore(reducer, initialState);

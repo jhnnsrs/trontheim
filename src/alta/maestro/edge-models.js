@@ -1,5 +1,5 @@
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {filter, mergeMap, map} from "rxjs/operators";
+import {filter, map, mergeMap} from "rxjs/operators";
 import type {HortenDetail} from "../horten/detail";
 import * as _ from "lodash"
 import type {HortenEdge} from "../horten/edge";

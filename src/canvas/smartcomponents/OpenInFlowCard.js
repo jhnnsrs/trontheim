@@ -1,6 +1,5 @@
-import {Component} from "react";
-import React from "react";
-import {Button, Card, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
+import React, {Component} from "react";
+import {Button, Card, CardText, CardTitle} from "reactstrap";
 import {push} from "react-router-redux";
 import connect from "react-redux/es/connect/connect";
 

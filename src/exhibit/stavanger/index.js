@@ -1,14 +1,12 @@
+import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
 import type {HortenDetail} from "../../alta/horten/detail";
-import {createHortenDetail} from "../../alta/horten/detail";
 import * as constants from "../../constants"
-import type {Stavanger} from "../../alta/stavanger";
-import {createHortenList} from "../../alta/horten/list";
 import type {HortenList} from "../../alta/horten/list";
 import {createHortenItem} from "../../alta/horten/item";
 import {createHortenTable} from "../../alta/horten/table";
-import {createHortenCube} from "../../alta/horten/cube";
 import type {HortenCube} from "../../alta/horten/cube";
+import {createHortenCube} from "../../alta/horten/cube";
 
 
 export type ExhibitStavanger = Stavanger & {

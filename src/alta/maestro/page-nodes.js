@@ -1,9 +1,6 @@
 import {combineEpics, Epic, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
-import type {GraphStavanger} from "./graph-node";
-import type {HortenNode} from "../horten/node";
 import type {HortenPage} from "../horten/page";
-import type {HortenForm} from "../horten/form";
 import type {HortenNodes} from "../horten/nodes";
 
 export interface NodesStavanger {

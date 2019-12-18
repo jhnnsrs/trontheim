@@ -1,6 +1,6 @@
 // @flow
-import type { Quote, QuoteMap } from './types';
-import type { DraggableLocation } from '../../src/types';
+import type {Quote, QuoteMap} from './types';
+import type {DraggableLocation} from '../../src/types';
 
 // a little function to help us with reordering the result
 const reorder = (list: any[], startIndex: number, endIndex: number): any[] => {

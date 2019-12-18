@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle, Col, Container, Row} from "reactstrap";
+import {Card, CardImg, CardImgOverlay, CardText, CardTitle, Col, Container, Row} from "reactstrap";
 import {nodeBuilderStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";

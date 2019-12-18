@@ -1,16 +1,10 @@
-import {Button, Card, CardBody, CardHeader} from "reactstrap";
+import {Button} from "reactstrap";
 import React, {Component} from "react";
-import type {ReflectionMaskerStavanger, TwoDShowStavanger} from "./index";
+import type {ReflectionMaskerStavanger} from "./index";
 import {connectInstrument} from "../../alta/react";
 import {ParentSize} from "@vx/responsive";
 import {POSITION_NONE, ReactSVGPanZoom} from "react-svg-pan-zoom";
-import _ from "lodash";
-import {LinearGradient} from "@vx/gradient";
-import {colorPalette} from "../../canvas/utils";
-import {LineRoi} from "../../canvas/smartcomponents/LineRoi";
-import {DraggingPath} from "../../canvas/smartcomponents/DraggingPath";
-import DisplayImage from "../../canvas/smartcomponents/DisplayImage";
-import {DrawingMask, Mask, Reflection} from "../../fabric/elements";
+import {DrawingMask, Reflection} from "../../fabric/elements";
 
 export class ReflectionMaskerComponent extends Component<any,any> {
 

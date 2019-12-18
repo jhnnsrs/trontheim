@@ -1,12 +1,6 @@
 import {combineEpics, Epic, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
-import {NODE} from "../constants"
-import type {HortenNode, HortenNodeModel} from "../horten/node";
-import type {HortenGraph} from "../horten/graph";
-import {createHortenNodeModel} from "../horten/node";
 import type {HortenRestAPI} from "../horten/restapi";
-import type {HortenList} from "../horten/list";
-import type {HortenTable} from "../horten/table";
 import type {HortenItem} from "../horten/item";
 
 
@@ -19,10 +13,11 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
             ofType(item.model.postItem.request),
             mergeMap(action => {
                 let {data, meta} = action.payload
+                if (!meta) meta = {}
                 meta = {
                     actions: item.model.postItem,
                     method: "POST",
-                    suburl: item.definition.url,
+                    suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
                     responseType: 'json',
                     ...meta,
                 }
@@ -34,10 +29,11 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
             ofType(item.model.fetchItem.request),
             mergeMap(action => {
                 let {data, meta} = action.payload
+                if (!meta) meta = {}
                 meta = {
                     actions: item.model.fetchItem,
                     method: "GET_ITEM",
-                    suburl: item.definition.url,
+                    suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
                     ...meta,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
@@ -48,10 +44,11 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
             ofType(item.model.updateItem.request),
             mergeMap(action => {
                 let {data, meta} = action.payload
+                if (!meta) meta = {}
                 meta = { ...meta,
                     actions: item.model.updateItem,
                     method: "UPDATE",
-                    suburl: item.definition.url
+                    suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
             }));
@@ -64,7 +61,7 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
                 meta = { ...meta,
                     actions: item.model.deleteItem,
                     method: "DELETE",
-                    suburl: item.definition.url
+                    suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
             }));

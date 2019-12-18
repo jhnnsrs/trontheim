@@ -1,28 +1,24 @@
 //@flow
-import type {Alias,Horten, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
-import {createHorten, createHorten2} from "./index";
-import {combineEpics, Epic, ofType} from "redux-observable";
-import {catchError, map, mergeMap, takeUntil} from "rxjs/operators";
+import type {Alias, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
+import {createHorten2} from "./index";
+import {Epic, ofType} from "redux-observable";
+import {catchError, map, mergeMap} from "rxjs/operators";
 import {
-    createHortenApi, createHortenEpic,
-    createHortenEpics,
+    createHortenEpic,
     createHortenHelpers,
-    createHortenModel, createHortenReducer,
+    createHortenModel,
+    createHortenReducer,
     createHortenSelectors
 } from "./creators";
+import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
-    createHaldenApi,
-    createHaldenEpic,
-    createHaldenFunctionSelector, createHaldenPassThroughEpicFromActions,
+    createHaldenEpic, createHaldenHelper,
+    createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
-import type {HaldenSelector} from "../halden";
-import {handleActions} from "redux-actions";
 import {Action, Reducer} from "redux";
 import {ajax} from "rxjs/ajax";
-import * as qs from "querystring";
-import {Observable} from "rxjs";
 import type {HaldenActions} from "../oslo";
 
 export type HortenHTTPModel = HortenModel &{
@@ -71,8 +67,7 @@ export const createHortenHTTPModel = createHortenModel({
 })
 
 export const createHortenHTTPHelpers = createHortenHelpers({
-    makeHttpRequest: (s, s1, hortenModel: HortenHTTPModel, hortenSelectors) => (data: any, meta, actions: HaldenActions) => {
-
+    makeHttpRequest: createHaldenHelper((hortenModel: HortenHTTPModel, hortenSelectors) => (data: any, meta, actions: HaldenActions) => {
 
         let request = { data: data,
             meta: {...meta, actions: actions}
@@ -81,6 +76,7 @@ export const createHortenHTTPHelpers = createHortenHelpers({
 
         return hortenModel.requestHttp.request(request)
     }
+    )
 
 
 })

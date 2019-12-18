@@ -1,13 +1,9 @@
 //@flow
-import {Button, Card, CardBody, CardHeader} from "reactstrap";
 import React, {Component} from "react";
 import type {TwoDShowStavanger} from "./index";
 import {connectInstrument} from "../../alta/react";
 import {ParentSize} from "@vx/responsive";
-import {POSITION_NONE, POSITION_RIGHT, ReactSVGPanZoom} from "react-svg-pan-zoom";
-import _ from "lodash";
-import {LinearGradient} from "@vx/gradient";
-import {colorPalette} from "../../canvas/utils";
+import {POSITION_RIGHT, ReactSVGPanZoom} from "react-svg-pan-zoom";
 import {LineRoi} from "../../fabric/LineRoi";
 import {DraggingPath} from "../../canvas/smartcomponents/DraggingPath";
 import DisplayImage from "../../canvas/smartcomponents/DisplayImage";

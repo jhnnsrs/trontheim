@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import type {ExperimentStavanger} from "../stavanger";
-import {Button, Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
+import {Button, Card, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
 import Octicon, {Plus} from "@githubprimer/octicons-react";
 import ExperimentalGroupForm from "./ExperimentalGroupForm";

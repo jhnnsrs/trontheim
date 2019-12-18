@@ -1,8 +1,6 @@
 import {Container, Navbar, NavbarBrand, NavbarToggler} from "reactstrap";
 import React, {Component} from "react";
 import {NavigationBar} from "./NavigationBar";
-import type {HomeStavanger} from "../../myhome/stavanger";
-import {userSelector} from "../../rootMaestros";
 import {connectInstrument} from "../../alta/react";
 import type {HeaderStavanger} from "../stavanger";
 

@@ -1,9 +1,8 @@
-
 import {combineEpics, ofType} from "redux-observable";
-import type {DisplayNodeStavanger, SampleWatcherStavanger} from "./index";
-import {createEdgeMaestro, createModuleMaestro} from "../lib/meastros";
+import type {SampleWatcherStavanger} from "./index";
+import {createEdgeMaestro} from "../lib/meastros";
 import * as constants from "../../constants";
-import {audit, filter, map, mergeMap, switchMap, take} from "rxjs/operators";
+import {mergeMap, switchMap, take} from "rxjs/operators";
 import {apiConnector, itemConnector} from "../../rootMaestros";
 
 

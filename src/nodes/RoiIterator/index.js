@@ -6,22 +6,22 @@ import {orchestraterEpic} from "./orchestrater";
 import * as constants from "../../constants"
 import type {HortenForm} from "../../alta/horten/form";
 import {createHortenForm} from "../../alta/horten/form";
-import type {HortenItem} from "../../alta/horten/item";
-import {createHortenItem} from "../../alta/horten/item";
 import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import type {HortenEdge} from "../../alta/horten/edge";
 import {createHortenEdge} from "../../alta/horten/edge";
 import {
-    DEF_BIOIMAGE, DEF_DISPLAY,
-    DEF_EXPERIMENT, DEF_EXPERIMENTALGROUP,
+    DEF_DISPLAY,
+    DEF_EXPERIMENT,
+    DEF_EXPERIMENTALGROUP,
     DEF_IMPULS,
-    DEF_LOCKER,
-    DEF_REPRESENTATION, DEF_ROI,
-    DEF_SAMPLE, DEF_USER
+    DEF_REPRESENTATION,
+    DEF_ROI,
+    DEF_SAMPLE,
+    DEF_USER
 } from "../../constants/definitions";
-import {createHortenValue} from "../../alta/horten/value";
 import type {HortenValue} from "../../alta/horten/value";
+import {createHortenValue} from "../../alta/horten/value";
 
 
 export type  RoiIteratorStavanger = Stavanger &{

@@ -1,7 +1,7 @@
-import {Button, ButtonGroup, Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap"
+import {CardImg, CardText} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
-import type {DataShowStavanger, ReflectionShowStavanger} from "./index";
+import type {ReflectionShowStavanger} from "./index";
 
 class ReflectionShowComponent extends Component<any,any> {
     render() {

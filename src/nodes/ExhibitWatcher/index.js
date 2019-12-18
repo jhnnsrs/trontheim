@@ -4,15 +4,15 @@ import {connectOpera} from "../../alta/react";
 import {orchestraterEpic} from "./orchestrater";
 import * as constants from "../../constants"
 import Opera from "./Opera";
-import {createHortenItem} from "../../alta/horten/item";
 import type {HortenItem} from "../../alta/horten/item";
-import {createHortenEdge} from "../../alta/horten/edge";
+import {createHortenItem} from "../../alta/horten/item";
 import type {HortenEdge} from "../../alta/horten/edge";
-import {createHortenTable} from "../../alta/horten/table";
+import {createHortenEdge} from "../../alta/horten/edge";
 import type {HortenTable} from "../../alta/horten/table";
-import {DEF_DISPLAY, DEF_EXHIBIT} from "../../constants/definitions";
-import {createHortenMold} from "../../alta/horten/mold";
+import {createHortenTable} from "../../alta/horten/table";
+import {DEF_EXHIBIT} from "../../constants/definitions";
 import type {HortenMold} from "../../alta/horten/mold";
+import {createHortenMold} from "../../alta/horten/mold";
 
 
 export type  ExhibitWatcherStavanger = Stavanger &{

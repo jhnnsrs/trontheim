@@ -1,16 +1,11 @@
 //@flow
-import {Button, Card, CardBody, CardHeader} from "reactstrap";
 import React, {Component} from "react";
 import type {RoiShowStavanger} from "./index";
 import {connectInstrument} from "../../alta/react";
 import {ParentSize} from "@vx/responsive";
 import {POSITION_NONE, ReactSVGPanZoom} from "react-svg-pan-zoom";
-import _ from "lodash";
-import {LinearGradient} from "@vx/gradient";
-import {colorPalette} from "../../canvas/utils";
 import {DraggingPath} from "../../canvas/smartcomponents/DraggingPath";
 import DisplayImage from "../../canvas/smartcomponents/DisplayImage";
-import {LineRoi} from "../../fabric/LineRoi";
 import Rois from "./Rois";
 
 export class TwoDShowComponent extends Component<any,any> {

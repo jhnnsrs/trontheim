@@ -1,13 +1,12 @@
 import type {HortenEdge} from "../horten/edge";
 import type {HortenNomogram} from "../horten/nomogram";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {combineLatest, mergeMap, switchMap, take, withLatestFrom, zipAll} from "rxjs/operators";
+import {mergeMap, switchMap, take, withLatestFrom} from "rxjs/operators";
 import type {HortenItem} from "../horten/item";
 import type {HortenTable} from "../horten/table";
 import type {HortenPage} from "../horten/page";
 import {userIDPortal} from "../../portals";
 import {generateName} from "../../utils";
-import {graphNodeMaestro} from "../maestro/graph-node";
 import {graphEdgeMaestro} from "../maestro/graph-edge";
 import type {HortenNodes} from "../horten/nodes";
 import {autoResetMaestro} from "../maestro/autoreset";
@@ -85,9 +84,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
     const onFlowAndLayoutLoaded = (action$, state$) =>
         action$.pipe(
             ofType(flow.model.fetchItem.success),
-            withLatestFrom(layout.model.setItem.success),
-            mergeMap(actionpack => {
-                let action = actionpack.payload
+            mergeMap(action => {
                 return [
                     graph.model.setGraphFromFlow.request(action.payload),]
             }));
@@ -215,7 +212,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
             }));
 
 
-    let addin = graphNodeMaestro(stavanger)
+    let addin = graphEdgeMaestro(stavanger)
     let addin2 = graphEdgeMaestro(stavanger)
 
     return combineEpics(

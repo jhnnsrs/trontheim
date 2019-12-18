@@ -1,8 +1,5 @@
 import React from "react";
-import {
-    Route,
-    Redirect,
-} from "react-router-dom";
+import {Route,} from "react-router-dom";
 import {connectInstrument} from "../alta/react";
 import {hasUserPortal} from "../portals";
 import type {RootStavanger} from "../rootStavanger";

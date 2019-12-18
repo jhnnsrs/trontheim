@@ -1,4 +1,4 @@
-import {Button, Container} from "reactstrap"
+import {Container} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
 import type {SampleFromNameUpdaterStavanger} from "./index";

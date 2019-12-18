@@ -1,11 +1,9 @@
 import React from "react";
 import {connectInstrument} from "../../alta/react";
 import type {HortenEdge} from "../../alta/horten/edge";
-import BlockUi from "react-block-ui";
 import {Loader} from 'react-loaders';
 import 'react-block-ui/style.css';
 import 'loaders.css/loaders.min.css';
-import {SERVER, WAITING} from "../../constants/nodestatus";
 import {CardBody} from "reactstrap";
 
 type Props = {

@@ -1,16 +1,13 @@
 import {combineEpics, Epic, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
-import {NODE} from "../constants"
-import type {HortenNode, HortenNodeModel} from "../horten/node";
-import type {HortenGraph} from "../horten/graph";
-import {createHortenNodeModel} from "../horten/node";
+import type {HortenEdgeModel} from "../horten/edge";
 import {createHortenEdgeModel} from "../horten/edge";
 import {EDGE} from "../../constants";
-import type {HortenEdgeModel} from "../horten/edge";
+import type {HortenNomogram} from "../horten/nomogram";
 
 
 export interface GraphStavanger {
-    graph: HortenGraph
+    graph: HortenNomogram
 }
 
 export const graphEdgeMaestro = (graphStavanger: GraphStavanger): Epic  => {

@@ -1,7 +1,5 @@
 import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
-import type {HortenDetail} from "../../alta/horten/detail";
-import type {HortenList} from "../../alta/horten/list";
 import {
     DEF_CLUSTERDATA,
     DEF_REFLECTION,
@@ -9,10 +7,10 @@ import {
     DEF_TRANSFORMATION,
     DEF_VOLUMEDATA
 } from "../../constants/definitions";
-import {createHortenItem} from "../../alta/horten/item";
-import {createHortenTable} from "../../alta/horten/table";
-import type {HortenTable} from "../../alta/horten/table";
 import type {HortenItem} from "../../alta/horten/item";
+import {createHortenItem} from "../../alta/horten/item";
+import type {HortenTable} from "../../alta/horten/table";
+import {createHortenTable} from "../../alta/horten/table";
 
 
 export type LatestRoiStavanger = Stavanger & {

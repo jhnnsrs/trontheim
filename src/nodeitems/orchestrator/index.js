@@ -1,7 +1,7 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {NodeItemsStavanger} from "../stavanger";
-import {apiConnector, itemConnector, userSelector} from "../../rootMaestros";
+import {apiConnector} from "../../rootMaestros";
 import {userIDPortal} from "../../portals";
 
 export const orchestraterEpic = (stavanger: NodeItemsStavanger) => {
@@ -44,7 +44,7 @@ export const orchestraterEpic = (stavanger: NodeItemsStavanger) => {
                         nodeclass: data.nodeclass.value,
                         channel: null,
                         inputmodel: JSON.stringify(data.inputmodel.map(item => item.value)),
-                        outputmodel: JSON.stringify(data.inputmodel.map(item => item.value)),
+                        outputmodel: JSON.stringify(data.outputmodel.map(item => item.value)),
                         creator: userIDPortal(state$.value)
                     },
                     meta: {

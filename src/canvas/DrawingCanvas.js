@@ -5,7 +5,6 @@ import {POSITION_NONE, ReactSVGPanZoom} from "react-svg-pan-zoom";
 import {DraggingPath} from "/smartcomponents/DraggingPath";
 import {connectInstrument} from "../alta/react";
 import type {Stavanger} from "../alta/stavanger";
-import type {HortenTable} from "../alta/horten/table";
 import type {HortenCanvas} from "../alta/horten/canvas";
 
 export class DrawingCanvas extends Component<any,any> {

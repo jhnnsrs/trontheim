@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
-
-import {Button, Card, CardBody, CardHeader, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
-import Octicon, {ArrowRight, Plus} from "@githubprimer/octicons-react";
 import LineRectComponent from "./LineRectComponent";
 import NodeFrame from "../lib/NodeFrame";
 import Documentation from "./Documentation";
-import Container from "../BioMeta";
 import {ContainerQuery} from "react-container-query";
 
 

@@ -1,7 +1,6 @@
 /** Imports **/
 import HelpersProgressBar from '../helpers/helpers.progressbar';
 import EventEmitter from 'events';
-import * as URL from 'url'
 
 /**
  *

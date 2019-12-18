@@ -105,6 +105,7 @@ export const createHortenMoldEpic = createHortenEpic((model: HortenMoldModel, se
             ofType(model.submitForm.request),
             mergeMap(action => {
                 let { resolve, reject } = action.meta || {};
+                helpers.log("Submitting for with", action.payload)
                 return of(1).pipe(
                     mergeMap(res => {
                         // pretend that the server does this verification
@@ -125,7 +126,7 @@ export const createHortenMoldEpic = createHortenEpic((model: HortenMoldModel, se
             ofType(model.setInitial.request),
             switchMap((action) => {
                     if (selectors.isInitialized(state$.value)) {
-                        console.log("Was already initialized")
+                        helpers.log("Was already initialized, updating")
                         return [model.setInitial.success(action.payload)]
                     }
                     else {
@@ -133,6 +134,7 @@ export const createHortenMoldEpic = createHortenEpic((model: HortenMoldModel, se
                             ofType(model.initialized.request),
                             take(1),
                             mergeMap(() => {
+                                    helpers.log("Setting initial values to ",action.payload)
                                     // WILL WAIT FOR THE INITIALIZATION OF THE FORM
                                     return [model.setInitial.success(action.payload)]
                                 }

@@ -1,9 +1,8 @@
 import React, {Component} from "react";
-import {Button, Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
+import {Card, CardBody, CardText, CardTitle} from "reactstrap";
 import {Link} from "react-router-dom";
 import {connectInstrument} from "../../alta/react";
 import type {HomeStavanger} from "../stavanger";
-import {userSelector} from "../../rootMaestros";
 import {userIDPortal} from "../../portals";
 
 class QuickLinksCard extends Component {

@@ -1,36 +1,20 @@
-import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
-import type {HortenNodes} from "../../alta/horten/nodes";
-import {createHortenNodes} from "../../alta/horten/nodes";
-import type {HortenGraph} from "../../alta/horten/graph";
-import * as constants from "../../constants"
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
-import type {HortenNomogramNode} from "../../alta/horten/nomogram";
-import {createHortenNomogram} from "../../alta/horten/nomogram";
-import type {HortenTable} from "../../alta/horten/table";
-import {createHortenTable} from "../../alta/horten/table";
-import {DEF_BIOIMAGE, DEF_LAYOUT} from "../../constants/definitions";
+import {DEF_BIOIMAGE, DEF_FLOW, DEF_LOCKER} from "../../constants/definitions";
+import type {FlowStavanger} from "../../maestros/flowMeastro";
+import {createFlowConductor} from "../../conductors/createFlowConductor";
 
 
-export type BioImageFlowStavanger = Stavanger & {
-    nodes: HortenNodes,
-    graph: HortenGraph,
-    flow: HortenItem,
+export type BioImageFlowStavanger = FlowStavanger & {
     bioimage: HortenItem,
-    layout: HortenItem,
-    possibleLayouts: HortenTable,
 }
 
-export const bioimageFlowStavanger: BioImageFlowStavanger = createStavanger({
-    nodes: createHortenNodes("NODES"),
-    graph: createHortenNomogram({type: "GRAPH",
-        start: (nodes) => nodes.find( (node: HortenNomogramNode) => node.type === "watcher")
-    }),
-    flow: createHortenItem({type: constants.FLOW, url: "filterflows"}),
+const flowConductor = createFlowConductor()
+
+export const bioImageFlowStavanger: BioImageFlowStavanger = createStavanger({
+    ...flowConductor,
     bioimage: createHortenItem(DEF_BIOIMAGE),
-    layout: createHortenItem(DEF_LAYOUT),
-    possibleLayouts: createHortenTable(DEF_LAYOUT)
 })
 
 // You Should decide upfront if this is

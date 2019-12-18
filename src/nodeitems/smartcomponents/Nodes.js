@@ -1,19 +1,7 @@
 import React, {Component} from "react";
-import type {NodeItemsStavanger, SampleStavanger} from "../stavanger";
-import {
-    Button, ButtonGroup,
-    Card,
-    CardBody,
-    CardImg,
-    CardImgOverlay,
-    CardSubtitle,
-    CardText,
-    CardTitle, Col,
-    Container, Row
-} from "reactstrap";
+import type {NodeItemsStavanger} from "../stavanger";
+import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardTitle, Col, Row} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
-import * as _ from "lodash"
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
 import {Link} from "react-router-dom";
 

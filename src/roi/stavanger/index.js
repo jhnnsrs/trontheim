@@ -1,9 +1,5 @@
 import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
-import type {HortenDetail} from "../../alta/horten/detail";
-import {createHortenDetail} from "../../alta/horten/detail";
-import * as constants from "../../constants"
-import type {HortenList} from "../../alta/horten/list";
 import {
     DEF_CLUSTERDATA,
     DEF_REFLECTION,
@@ -13,8 +9,8 @@ import {
 } from "../../constants/definitions";
 import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
-import {createHortenItem} from "../../alta/horten/item";
 import type {HortenItem} from "../../alta/horten/item";
+import {createHortenItem} from "../../alta/horten/item";
 
 
 export type RoiStavanger = Stavanger & {

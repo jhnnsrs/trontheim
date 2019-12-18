@@ -1,15 +1,8 @@
-import {Button, Card, CardBody, CardHeader, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardBody, CardTitle} from "reactstrap";
 import React from "react";
-import {Link} from "react-router-dom";
-import Octicon, {ArrowRight, Plus, X} from "@githubprimer/octicons-react";
-import {connectInstrument} from "../../alta/react";
 import type {HortenEdge} from "../../alta/horten/edge";
-import {ContainerQuery} from 'react-container-query';
-import classnames from 'classnames';
 import NodeHeader from "./NodeHeader";
-import BlockUi from "react-block-ui";
-import { Loader, Types } from 'react-loaders';
-import NodeBlocker from "./NodeBlocker";
+import {Loader} from 'react-loaders';
 import NodeNonBlocker from "./NodeNonBlocker";
 
 type Props = {

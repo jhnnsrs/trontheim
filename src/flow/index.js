@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Button, Card, CardBody, Col, Container, Row} from "reactstrap";
+import {Container, Row} from "reactstrap";
 import {bioImageFlowStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
 import FlowsComponent from "./smartcomponents/FlowsComponent";
 import NodeGridContainer from "./smartcomponents/NodeGridContainer";
-import NodeListContainer from "./smartcomponents/NodeListContainer";
 import GraphShow from "./smartcomponents/GraphShow";
 import LayoutList from "./smartcomponents/LayoutList";
 

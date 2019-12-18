@@ -1,7 +1,6 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import {connect} from "react-redux";
-import React from "react";
-import {Button, ButtonGroup, Card, CardBody, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Button, ButtonGroup, Card, CardTitle} from "reactstrap";
 import * as sta from "../actions"
 import _ from 'lodash'
 import {push} from "react-router-redux";
