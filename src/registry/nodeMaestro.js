@@ -119,9 +119,11 @@ export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDef
         action$.pipe(
             ofType(settings.model.submitForm.success),
             mergeMap((action) => {
+                    let instance = graph.selectors.getInstanceForAlias(node.alias)(state$.value)
+
                     return [
                         settings.model.setInitial.request(action.payload),
-                        graph.model.setNodeSettings.request({instance: node.alias, settings:action.payload}),
+                        graph.model.setNodeSettings.request({instance: instance, settings:action.payload}),
 
                     ]
                 }
