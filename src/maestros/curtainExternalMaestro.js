@@ -38,9 +38,12 @@ export const curtainExternalMaestro = (stavanger: CurtainExternalStavanger, defi
             ofType(curtain.model.pushExternal.request),
             mergeMap(action => {
                 externals.helpers.log("Pushing ", action.payload)
+                let external_model= action.payload
 
                 const external = {
-                    ...action.payload, meta: { ...action.payload.meta, restaction: "new"}
+                    data: { ...external_model.data,
+                            creator: userIDPortal(state$.value)},
+                    meta: { ...external_model.meta, restaction: "new"} // This is the api endpoint for generating External base on user salt
                 }
                 return [
                     externals.model.postItem.request(external)

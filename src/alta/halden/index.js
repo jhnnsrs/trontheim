@@ -13,7 +13,7 @@ export type HaldenActionParameter= string;
 export type HaldenAction = (Alias,HortenType,string) => HaldenActions;
 export type HaldenParameterAction = (any) => (Alias,HortenType,string) => HaldenActions;
 export type HaldenApiCreator = (Alias,HortenType) => HortenApiCall;
-export type HaldenSelector = (State,Props) => any;
+export type HaldenSelector<T> = (State,Props) => T;
 export type HaldenAccesor = (any) => (State,Props) => any;
 
 

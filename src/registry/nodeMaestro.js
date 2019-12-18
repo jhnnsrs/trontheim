@@ -59,7 +59,11 @@ export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDef
         action$.pipe(
             ofType(node.model.setStatus.request),
             mergeMap((action) => {
-                    return [graph.model.onNodeStatusUpdate.request({ instance: node.alias, status: action.payload}), node.model.setStatus.success(action.payload)]
+
+                    let instance = graph.selectors.getInstanceForAlias(node.alias)(state$.value)
+                    return [
+                        graph.model.onNodeStatusUpdate.request({ instance: instance, status: action.payload}),
+                        node.model.setStatus.success(action.payload)]
                 }
             )
         )
@@ -82,14 +86,11 @@ export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDef
             mergeMap((action) => {
                     page.helpers.log("Setting Node as Popped")
                     // TODO: Implement here
-                    let nodestate = graph.selectors.getNode(node.alias)(state$.value)
+                    let instance = graph.selectors.getInstanceForAlias(node.alias)(state$.value)
 
 
                     return [
-                        graph.model.requestPop.request({
-                                ...nodestate,
-                                creator: userIDPortal(state$.value)
-                        }),
+                        graph.model.requestPop.request(instance),
                         node.model.pop.success(true)
                     ]
                 }
@@ -101,8 +102,8 @@ export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDef
             ofType(page.model.initPage.success),
             mergeMap((action) => {
 
-                    let nodeState = graph.selectors.getNode(node.alias)(state$.value)
-                    let defaultSettings = nodeState.defaultsettings
+                    let nodeState = graph.selectors.getNodeForAlias(node.alias)(state$.value) // Loads the initial state from the graph
+                    let defaultSettings = nodeState.settings
 
                     return [
                         settings.model.setInitial.request(defaultSettings),
@@ -130,8 +131,16 @@ export const nodeMaestro = (stavanger: NodeStavanger, definition: NodeMeastroDef
         action$.pipe(
             ofType(node.model.setOutput.success),
             mergeMap((action) => {
+
+                    let instance = graph.selectors.getInstanceForAlias(node.alias)(state$.value)
+
+                    let item = {
+                        ...action.payload, meta: { ...action.payload.meta, instance: instance}
+                    }
+
+
                     return [
-                        graph.model.onNodeOutput.request(action.payload,action.meta),
+                        graph.model.onNodeOutput.request(item,item.meta),
                         node.model.setStatus.request(buildStatus(DONE.ouputSend, "Item was forwarded"))]
                 }
             )

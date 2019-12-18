@@ -45,13 +45,14 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
                 let graphrep = actions[1].payload
                 let initial = actions[2].payload
 
-                let watcher = graphrep.nodes.find(item => item.name === "LockerWatcher")
+                let watcher = graph.selectors.getNodeByName("LockerWatcher")(state$.value)
+
 
                 let modelin = {
                     data: initial.data,
                     meta: { type: constants.LOCKER, origin: "flow", port: "_watcher"}
                 }
-                return [graph.model.setNodeIn(watcher.instance).request(modelin, modelin.meta)]
+                return [graph.model.setNodeIn(watcher.alias).request(modelin, modelin.meta)]
             }));
 
 

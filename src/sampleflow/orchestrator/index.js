@@ -46,14 +46,14 @@ export const orchestraterEpic = (stavanger: SampleFlowStavanger) => {
                 let graphrep = actions[1].payload
                 let initial = actions[2].payload
 
-                let watcher = graphrep.nodes.find(item => item.name === "SampleWatcher")
+                let watcher = graph.selectors.getNodeByName("SampleWatcher")(state$.value)
                 if (!watcher) return [graph.model.setGraphError.request("No Watcher for this Graph")]
 
                 let modelin = {
                     data: initial.data,
                     meta: { type: constants.SAMPLE, origin: "flow", port: "_watcher"}
                 }
-                return [graph.model.setNodeIn(watcher.instance).request(modelin, modelin.meta)]
+                return [graph.model.setNodeIn(watcher.alias).request(modelin, modelin.meta)]
             }));
 
 

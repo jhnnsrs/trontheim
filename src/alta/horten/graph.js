@@ -24,6 +24,22 @@ import type {HaldenActions} from "../oslo";
 import v4 from "uuid"
 import {WAITING} from "../../constants/nodestatus";
 export type NodeID = string
+export type External = {
+    id: string,
+    name: NodeInstance,
+    path: string,
+    ports: any,
+
+}
+
+export type ExternalRequest = {
+    id: string,
+    instance: NodeInstance,
+    data: string, //
+    model: string, // Represenenting the type of Model
+
+}
+
 
 export type HortenGraphModel = HortenModel & {
 
@@ -55,7 +71,7 @@ export type HortenGraphModel = HortenModel & {
     setNodeInput: HaldenActions,
 
     //Veil api
-    requestPop: HaldenActions,
+    requestPop: HaldenActions<External>,
     // Helpers for Components
     createShowFromGraph: HaldenActions,
     setShow: HaldenActions,
@@ -70,23 +86,65 @@ export type HortenGraphSelectors = HortenSelectors & {
     getLinks: HaldenSelector,
     getNodes: HaldenSelector,
     getLinksForNode: (string) => HaldenSelector,
+    // Name Like Retrieval
+    getNodeByName: (string) => HaldenSelector,
+
+    // This is for Instance Based Retrieval
     getNodeStatus: (string) => HaldenSelector,
-    getNodeId: (string) => HaldenSelector,
     getNode: (string) => HaldenSelector,
-    hasNodePopped: (string) => HaldenSelector,
     getNodeType: (string) => HaldenSelector,
     getNodeSettings: (string) => HaldenSelector,
+    getAliasForInstance: (NodeInstance) => HaldenSelector<Alias>,
+
+    // This is For Alias Base Retrieval
+    getInstanceForAlias: (Alias) => HaldenSelector<NodeInstance>,
+    getNodeSettingsForAlias: (Alias) => HaldenSelector<NodeInstance>,
+    getNodeStatusForAlias: (Alias) => HaldenSelector<NodeStatus>,
+    getNodeTypeForAlias: (Alias) => HaldenSelector<NodeType>,
+    getNodeForAlias: (Alias) => HaldenSelector<HortenGraphNode>,
 
 }
 export type HortenGraphHelpers = HortenHelpers & {}
-export type HortenGraphDefaultState = {
-    [string]: any
+
+export type NodeType = {
+    location: string,
+    external: string
 }
+
 export type HortenGraphNode = {
+    alias: Alias,
+    instance: NodeInstance,
+    settings: NodeSettings,
+    path: string,
     nodeid: string,
-    type: string,
+    type: NodeType,
     requiresUser: string,
 }
+
+export type HortenGraphDefaultState = {
+    graph: {
+        nodes: [HortenGraphNode],
+        links: [any],
+    },
+    show: {
+        nodes: { [NodeInstance]: HortenGraphNode },
+        aliasInstanceMap: { [Alias]: NodeInstance },
+        links: []
+    }
+}
+
+export type NodeSettings = {
+    [string]: any
+}
+
+export type NodeStatus = {
+    code: number,
+    message: string
+}
+
+export type NodeInstance = string
+
+
 export type HortenGraphDefinition = {
     type: HortenType,
     start: (Array<HortenGraphNode>) => HortenGraphNode,
@@ -143,61 +201,70 @@ export const createHortenGraphModel = createHortenModel({
     resend: createHaldenAction("GRAPH_RESEND")
 })
 
-export const createHortenGraphHelpers = createHortenHelpers()
+export const createHortenGraphHelpers = createHortenHelpers(
+
+
+
+
+)
 
 export const createHortenGraphSelectors = createHortenSelectors({
     getGraphShow: createHaldenSelector("show"),
     getGraph: createHaldenFunctionSelector((state) => state.graph),
     getLinks: createHaldenFunctionSelector((state) => state.graph.links),
     getNodes: createHaldenFunctionSelector((state) => state.graph.nodes),
-    getNodeStatus: createHaldenFunctionSelector((state, props, params) => {
-        let alias = params
-        let diagram = state.show
-
-        let links = diagram.links
-        let nodes = diagram.nodes
-        return nodes[alias]
+    getNodeStatus: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params: NodeInstance) => {
+        let node = state.show.nodes[params]
+        return  node.status
     }, true),
-    getNode: createHaldenFunctionSelector((state, props, params) => {
-        let alias = params
-        let diagram = state.show
-
-        let links = diagram.links
-        let nodes = diagram.nodes
-        return nodes[alias]
+    getNodeByName: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params: NodeInstance) => {
+        let graphnode = state.graph.nodes.find(item => item.name === params)
+        let node = state.show.nodes[graphnode.instance]
+        return  node
     }, true),
-    hasNodePopped: createHaldenFunctionSelector((state, props, params) => {
-        let alias = params
-        let diagram = state.show
-
-        let links = diagram.links
-        let nodes = diagram.nodes
-        return nodes[alias].hasPopped
+    getNode: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params: NodeInstance) => {
+        let node = state.show.nodes[params]
+        return  node
     }, true),
-    getNodeType: createHaldenFunctionSelector((state, props, params) => {
-        let alias = params
-        let diagram = state.show
-
-        let links = diagram.links
-        let nodes = diagram.nodes
-        return nodes[alias].nodetype
+    getNodeType: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params: NodeInstance) => {
+        let node = state.show.nodes[params]
+        return  node.type
     }, true),
-    getNodeId: createHaldenFunctionSelector((state, props, params) => {
-        let alias = params
-        let diagram = state.show
-
-        let links = diagram.links
-        let nodes = diagram.nodes
-        return nodes[alias].id
+    getNodeSettings: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params: NodeInstance) => {
+        let node = state.show.nodes[params]
+        return  node.settings
     }, true),
-    getNodeSettings: createHaldenFunctionSelector((state, props, params) => {
-        let alias = params
-        let diagram = state.show
-
-        let links = diagram.links
-        let nodes = diagram.nodes
-        return nodes[alias].defaultsettings
+    getInstanceForAlias: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
+        let instance = state.show.aliasInstanceMap[params]
+        return instance
     }, true),
+    getAliasForInstance: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
+        let node = state.show.nodes[params]
+        return  node.alias
+    }, true),
+    getNodeSettingForAlias: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
+        let instance = state.show.aliasInstanceMap[params]
+        let node = state.show.nodes[instance]
+        return node.settings
+    }, true),
+    getNodeStatusForAlias: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
+        let instance = state.show.aliasInstanceMap[params]
+        let node = state.show.nodes[instance]
+        return node.status
+    }, true),
+    getNodeTypeForAlias: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
+        let instance = state.show.aliasInstanceMap[params]
+        let node = state.show.nodes[instance]
+        return node.type
+    }, true),
+    getNodeForAlias: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
+        let instance = state.show.aliasInstanceMap[params]
+        let node = state.show.nodes[instance]
+        return node
+    }, true),
+
+
+
 })
 
 
@@ -213,21 +280,25 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     helpers.log("Node Output received ",action.payload)
                     const data = action.payload.data;
                     const meta = action.payload.meta;
+
+
                     const type = action.payload.meta.type;
                     const instance = action.payload.meta.instance
                     const port = action.payload.meta.port
 
-                    let instancenodetype = selectors.getNodeType(instance)(state$.value)
-                    if (instancenodetype.location == "external" ) {
+
+                    let originNode = selectors.getNode(instance)(state$.value)
+
+                    let instancenodetype = originNode.type
+                    if (instancenodetype.location === "external" ) {
                         helpers.log("Node itself is an external Node ")
-                        let instancenodid = selectors.getNodeId(instance)(state$.value)
 
                         let outmodel = {
                             data: data,
                             meta: {
                                 ...meta,
                                 external: instancenodetype.external,
-                                instance: instancenodid,
+                                instance: instance,
                                 port: port,
                             }
                         }
@@ -235,55 +306,42 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                         return [model.foreignNodeOut.request(outmodel)]
                     }
 
-                    let nodes = []
                     // node.id refers to the unique Diagram ID provided by the Storm-Diagram
                     // node.instanceid refers to the unique InstanceID of the Node
-                    let links = []
-
-                    try {
-                        let graph = selectors.getGraph(state$.value)
-                        helpers.log(graph)
-                        nodes = graph.nodes;
-                        links = graph.links;
-                    } catch (e) {
-                        return [model.setGraphError.request({graph: {text: "Lacking Graph"}})]
-                    }
+                    let links = selectors.getLinks(state$.value)
+                    let nodes = selectors.getNodes(state$.value)
 
                     const actions = [];
 
-                    let originnode = nodes.find(node => node.instance === instance)
-                    let originNodeSourceId = originnode.ports.find(item => item.label === port && !item.in).id
+                    let originNodePortSourceID = originNode.ports.find(item => item.label === port && !item.in).id
 
 
-                    helpers.log("Found the following Node for Origin of Instance '" + instance + "': ", originnode)
-                    helpers.log("Found the following PortId for the Port Output '" + originNodeSourceId)
+                    helpers.log("Found the following Node for Origin of Instance '" + instance + "': ", originNode)
+                    helpers.log("Found the following PortId for the Port Output '" + originNodePortSourceID)
 
                     links = links.filter(link => {
-                        return link.source === originnode.id && link.sourcePort === originNodeSourceId
+                        return link.source === originNode.id && link.sourcePort === originNodePortSourceID
                     }); //TODO: Port Comparison
 
                     helpers.log("Filtered and ended up with the these Links", links)
                     links.map(link => {
 
                         // Find the Attached Nodes
-                        let targetnode = nodes.find(node => {
-                            return node.id === link.target
-                        });
+                        let targetnodeinstance = link.target // This is only working because the link target is the id of the flow
+                        let targetNode = selectors.getNode(targetnodeinstance)(state$.value)
 
-                        if (targetnode) {
+
+                        if (targetNode) {
                             // Checks if Diagram is correctly connected
 
-                            let chosenport = targetnode.ports.find(port => port.id === link.targetPort)
-
-
+                            let chosenport = targetNode.ports.find(port => port.id === link.targetPort)
 
                             let outmodel = {
                                 data: data,
                                 meta: {
                                     ...meta,
                                     model: type,
-                                    target: targetnode.instance,
-                                    targetid: targetnode.id,
+                                    target: targetNode.instance,
                                     port: chosenport.label,
                                     portid: chosenport.id,
                                     origin: meta.instance
@@ -291,8 +349,8 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                             }
 
                             // Checks if Node is external or Local
-                            let targetnodetype = selectors.getNodeType(targetnode.instance)(state$.value)
-                            helpers.log("Node has type of : ", targetnodetype,)
+                            let targetnodetype = targetNode.type
+                            helpers.log("Targeting Node has type of : ", targetnodetype)
 
                             // Depending on Type send to Veil
                             if (targetnodetype.location === "pop") {
@@ -300,15 +358,16 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                                 outmodel.meta = { ...outmodel.meta, external: targetnodetype.external}
 
                                 actions.push(model.foreignNodeIn.request(outmodel))
-                                helpers.log("Pushing to external Representation of Instance " + targetnode.instance +  " at External " + targetnodetype.external + " the Model ",outmodel)
+                                helpers.log("Pushing to external Representation of Instance " + targetNode.instance +  " at External " + targetnodetype.external + " the Model ",outmodel)
                             }
                             else {
-                                helpers.log("Pushing to local Representation of Instance " + targetnode.instance + " the Model",outmodel)
-                                helpers.log(model.setNodeIn(targetnode.instance).request)
-                                actions.push(model.setNodeIn(targetnode.instance).request(outmodel,outmodel.meta))
+                                helpers.log("Pushing to local Representation of Instance " + targetNode.instance + " at Alias " + targetNode.alias + " the Model",outmodel)
+
+
+                                actions.push(model.setNodeIn(targetNode.alias).request(outmodel,outmodel.meta))
 
                                 actions.push(model.onNodeStatusUpdate.request({
-                                    instance: targetnode.instance,
+                                    instance: targetNode.instance,
                                     status: definition.statusIN
                                 }))
 
@@ -316,7 +375,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
 
                         }
                         else {
-                                actions.push(model.setGraphError.request("Check Connections of " + targetnode.instance + " of Class " + targetnode.nodeid))
+                                actions.push(model.setGraphError.request("Check Connections of " + targetNode.instance + " of Class " + targetNode.nodeid))
                         }
 
                     });
@@ -335,12 +394,13 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                 helpers.log(diagram)
                 // Instantiate the Nodes with their own instance ID
                 let nodes = diagram.nodes.map(node => {
-                    const instanceid = (node.name + "-" + v4()).toLowerCase()
+                    const alias = (node.name + "-" + v4()).toLowerCase()
 
                     return {...node,
-                        instance: instanceid,
-                        base: node.id,
-                        nodetype: { location: "local"},
+                        instance: node.id, // This is the id of the node (correspondes to the graph-id)
+                        alias: alias,
+                        type: { location: "local", external: null},
+                        settings: node.defaultsettings,
                         status: {
                             code: WAITING.initializing,
                             message: "Initializing.."
@@ -364,12 +424,15 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     // TODO: IMPORTANT stavanger detail right now get is not adhering to normal datastucture
                     let external = action.payload.data
                     const {links, ...rest} = external
+
+                    const alias = (external.node + "-" + v4()).toLowerCase()
                     // Instantiate the Nodes from external with their own instance ID
                     let nodes = [
                         {...rest,
-                            instance:  (external.node + "-" + v4()).toLowerCase(),
-                            base: external.name,
+                            instance: external.name, // This is the id of the node (correspondes to the graph-id) external-name is right now the holder of this TODO: should be instance
+                            alias:  alias,
                             path: external.node,
+                            settings: external.defaultsettings,
                             nodetype: { location: "external", external: external.id},
                             ports: JSON.parse(external.ports)
 
@@ -377,7 +440,6 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     ]
 
                     // Set the Links
-
                     let graph = {links: [], nodes: nodes}
                     return [
                         model.setGraphFromFlow.success(graph),
@@ -392,14 +454,16 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     // TODO: IMPORTANT stavanger detail right now get is not adhering to normal datastucture
                     let diagram = action.payload
                     let nodes: Array<HortenGraphNode> = diagram.nodes
-                    let nodeDict = {}
+                    let nodeDictByAlias = {}
+                    let nodeDictByInstance = {}
 
                     nodes.map(node => {
-                        nodeDict[node.instance] = node
+                        nodeDictByAlias[node.alias] = node.instance
+                        nodeDictByInstance[node.instance] = node
                     })
 
 
-                    return [model.setShow.success({nodes: nodeDict, links: null})]
+                    return [model.setShow.success({aliasInstanceMap: nodeDictByAlias, nodes: nodeDictByInstance})]
                 }
             )),
     onPopNodeRequestPopNode: (action$, state$) =>
@@ -407,10 +471,11 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             ofType(model.requestPop.success),
             mergeMap(action => {
                     // TODO: Here an instantiation of the node type on veil should maybe happen?
-                    let instance = action.payload.name // Node instance in Flow
-                    let externalid = action.payload.id // ExternalID
+                    let external: External = action.payload
 
-                    return [model.setNodeType.request({ instance: instance, type: { location: "pop", external: externalid}})]
+                    return [model.setNodeType.request(
+                        { instance: external.name,
+                            type: {location: "pop", external: external.id}})]
                 }
             )),
     onExternalRequestin: (action$, state$) =>
@@ -424,12 +489,11 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     let externalrequest = action.payload.data
                     let modeldata = JSON.parse(externalrequest.data)
 
-                    let nodeinstance = selectors.getGraphShow(state$.value).nodes.find(item => item.id === externalrequest.instance)
+                    let alias = selectors.getAliasForInstance(externalrequest.instance)
 
                     let payload = {
                         data: modeldata,
                         meta: {
-                            target: nodeinstance.instance,
                             model: externalrequest.model,
                             type: externalrequest.model,
                             port: externalrequest.port
@@ -437,7 +501,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                         }
                     }
 
-                    return [model.setNodeIn(externalrequest.instance).request(payload,payload.meta)]
+                    return [model.setNodeIn(alias).request(payload,payload.meta)]
                 }
             )),
     onExternalOut: (action$, state$) =>
@@ -451,12 +515,11 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     let externalrequest = action.payload.data
                     let modeldata = JSON.parse(externalrequest.data)
 
-                    let nodeinstance = selectors.getGraphShow(state$.value).nodes.find(item => item.id === externalrequest.instance)
 
                     let payload = {
                         data: modeldata,
                         meta: {
-                            instance: nodeinstance.instance,
+                            instance: externalrequest.instance,
                             type: externalrequest.model,
                             port: externalrequest.port
                         }
@@ -475,6 +538,7 @@ const defaultState = {
     graph: null,
     show: {
         nodes: {},
+        aliasInstanceMap: {},
         graph: {
             error: null,
             working: false
@@ -494,23 +558,22 @@ export const createHortenGraphReducer = createHortenReducer((model: HortenGraphM
             return {...state, graph: action.payload};
         },
         [model.setShow.success]: (state, action) => {
-            return {...state, show: {...state.show, nodes: action.payload.nodes, links: action.payload.links}};
+            return {...state, show: {...state.show, ...action.payload}};
         },
         [model.onNodeStatusUpdate.success]: (state, action) => {
             let nodes = {...state.show.nodes}
-            nodes[action.payload.instance]["status"] = action.payload.status
+
+            nodes[action.payload.instance].status = action.payload.status
             return {...state, show: {...state.show, nodes: nodes}};
         },
         [model.setNodeType.success]: (state, action) => {
             let nodes = {...state.show.nodes}
-            console.log(action.payload)
-            nodes[action.payload.instance].nodetype = action.payload.type
+            nodes[action.payload.instance].type = action.payload.type
             return {...state, show: {...state.show, nodes: nodes}};
         },
         [model.setNodeSettings.success]: (state, action) => {
             let nodes = {...state.show.nodes}
-            //TODO: Change defaultsettings to a settings parameter in stormdiagram
-            nodes[action.payload.instance].defaultsettings = action.payload.settings
+            nodes[action.payload.instance].settings = action.payload.settings
             return {...state, show: {...state.show, nodes: nodes}};
         },
     })

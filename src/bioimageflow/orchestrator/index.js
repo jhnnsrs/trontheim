@@ -43,16 +43,17 @@ export const orchestraterEpic = (stavanger: BioImageFlowStavanger) => {
             mergeMap(actions => {
                 graph.helpers.log("____________________")
                 graph.helpers.log("=== Flow Started ===")
-                let graphrep = actions[1].payload
                 let initial = actions[2].payload
 
-                let watcher = graphrep.nodes.find(item => item.name === "BioImageWatcher")
+                let watcher = graph.selectors.getNodeByName("BioImageWatcher")(state$.value)
+
+                graph.helpers.log(watcher)
 
                 let modelin = {
                     data: initial.data,
                     meta: { type: constants.BIOIMAGE, origin: "flow", port: "_watcher"}
                 }
-                return [graph.model.setNodeIn(watcher.instance).request(modelin, modelin.meta)]
+                return [graph.model.setNodeIn(watcher.alias).request(modelin, modelin.meta)]
             }));
 
 

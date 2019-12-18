@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
+    <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="Implemtation of Graph Settings save">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/halden/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/halden/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/curtain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/curtain.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alta/horten/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/item-restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/item-restapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/maestro/table-restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/table-restapi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/node.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/registry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bioimageflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/bioimageflow/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/flow/Registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/flow/Registry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/flow/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/flow/Show.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/maestros/curtainExternalMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/maestros/curtainExternalMaestro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maestros/graphCurtainMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/maestros/graphCurtainMaestro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/NodeNonBlocker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NodeNonBlocker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/PopButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/PopButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/nodeMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/nodeMaestro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/selectorMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/selectorMaestro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sampleflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sampleflow/orchestrator/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +81,7 @@
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.Debug Flow">
-    <configuration name="Debug Flow" type="JavascriptDebugType" uri="http://localhost:3000/lockerflow/29/locker/6">
+    <configuration name="Debug Flow" type="JavascriptDebugType" uri="http://localhost:3000/samplesflow/20/sample/239">
       <method v="2" />
     </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -173,8 +184,8 @@
       <workItem from="1576494582004" duration="488000" />
       <workItem from="1576503226582" duration="217000" />
       <workItem from="1576599986344" duration="755000" />
-      <workItem from="1576679243876" duration="2734000" />
-      <workItem from="1576689056631" duration="2420000" />
+      <workItem from="1576679243876" duration="6904000" />
+      <workItem from="1576699022574" duration="11401000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -253,7 +264,21 @@
       <option name="project" value="LOCAL" />
       <updated>1576503261007</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Changed RoiSelector to have nicer list&#10;made token and config readtout&#10;&#10;Most likely smallheader is interfering with the state! Cirtical bug discovered">
+      <created>1576682159486</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1576682159486</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Implemtation of Graph Settings save">
+      <created>1576686190340</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1576686190340</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,44 +307,134 @@
     <MESSAGE value="Made Trontheim Heidelberg ID" />
     <MESSAGE value="Added Modules for the External Requests" />
     <MESSAGE value="CHanged entitity id on line transformer" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHanged entitity id on line transformer" />
+    <MESSAGE value="Changed RoiSelector to have nicer list&#10;made token and config readtout&#10;&#10;Most likely smallheader is interfering with the state! Cirtical bug discovered" />
+    <MESSAGE value="Implemtation of Graph Settings save" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemtation of Graph Settings save" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="482" y="146" key="CommitChangelistDialog2" timestamp="1576503259734">
+    <state x="312" y="206" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576709811181">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state x="312" y="206" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1576709811181" />
+    <state x="482" y="146" key="CommitChangelistDialog2" timestamp="1576707101657">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503259734" />
-    <state x="570" y="267" key="MultipleFileMergeDialog" timestamp="1576600141147">
+    <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103@0.0.1714.1103" timestamp="1576707101657" />
+    <state x="164" y="92" key="DiffContextDialog" timestamp="1576700454260">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state x="164" y="92" key="DiffContextDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1576700454260" />
+    <state width="1693" height="285" key="GridCell.Tab.0.bottom" timestamp="1576710270116">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="285" key="GridCell.Tab.0.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1576710270116" />
+    <state width="1693" height="285" key="GridCell.Tab.0.center" timestamp="1576710270116">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="285" key="GridCell.Tab.0.center/0.0.1714.1103@0.0.1714.1103" timestamp="1576710270116" />
+    <state width="1693" height="285" key="GridCell.Tab.0.left" timestamp="1576710270116">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="285" key="GridCell.Tab.0.left/0.0.1714.1103@0.0.1714.1103" timestamp="1576710270116" />
+    <state width="1693" height="285" key="GridCell.Tab.0.right" timestamp="1576710270116">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="285" key="GridCell.Tab.0.right/0.0.1714.1103@0.0.1714.1103" timestamp="1576710270116" />
+    <state width="1693" height="309" key="GridCell.Tab.1.bottom" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.1.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.1.center" timestamp="1576710266160">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.1.center/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266160" />
+    <state width="1693" height="309" key="GridCell.Tab.1.left" timestamp="1576710266160">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.1.left/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266160" />
+    <state width="1693" height="309" key="GridCell.Tab.1.right" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.1.right/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.2.bottom" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.2.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.2.center" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.2.center/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.2.left" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.2.left/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.2.right" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.2.right/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.3.bottom" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.3.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.3.center" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.3.center/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.3.left" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.3.left/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state width="1693" height="309" key="GridCell.Tab.3.right" timestamp="1576710266161">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state width="1693" height="309" key="GridCell.Tab.3.right/0.0.1714.1103@0.0.1714.1103" timestamp="1576710266161" />
+    <state x="570" y="267" key="MultipleFileMergeDialog" timestamp="1576700464310">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="570" y="267" key="MultipleFileMergeDialog/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576600141147" />
-    <state x="450" y="272" key="Vcs.Push.Dialog.v2" timestamp="1576503264848">
+    <state x="570" y="267" key="MultipleFileMergeDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1576700464310" />
+    <state x="450" y="272" key="Vcs.Push.Dialog.v2" timestamp="1576686199143">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503264848" />
-    <state x="666" y="468" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576600127778">
+    <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103@0.0.1714.1103" timestamp="1576686199143" />
+    <state x="666" y="468" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576699732611">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="666" y="468" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576600127778" />
+    <state x="666" y="468" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1714.1103@0.0.1714.1103" timestamp="1576699732611" />
+    <state x="639" y="264" key="git4idea.branch.GitSmartOperationDialog" timestamp="1576700459603">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state x="639" y="264" key="git4idea.branch.GitSmartOperationDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1576700459603" />
+    <state x="514" y="257" width="672" height="677" key="run.anything.popup" timestamp="1576708357348">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state x="514" y="257" width="672" height="677" key="run.anything.popup/0.0.1714.1103@0.0.1714.1103" timestamp="1576708357348" />
+    <state x="520" y="241" width="672" height="678" key="search.everywhere.popup" timestamp="1576709841245">
+      <screen x="0" y="0" width="1714" height="1103" />
+    </state>
+    <state x="520" y="241" width="672" height="678" key="search.everywhere.popup/0.0.1714.1103@0.0.1714.1103" timestamp="1576709841245" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js</url>
-          <line>58</line>
+          <line>57</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/constants/nodestatus.js</url>
-          <line>35</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/bioimageflow/index.js</url>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/src/bioimageflow/orchestrator/index.js</url>
+          <line>44</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="javascript-exception" />
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>

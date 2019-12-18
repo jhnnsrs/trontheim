@@ -1,6 +1,6 @@
 import {Button} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
-import React, {Component} from "react";
+import React, {Component, PureComponent} from "react";
 import type {NodeStavanger} from "./types";
 import {THIS_ROOT_URL} from "../../constants/endpoints";
 import {withRouter} from "react-router-dom";
@@ -29,7 +29,7 @@ const PopLinkComponent = (props) =>
 
 const PopLink = withRouter(PopLinkComponent);
 
-class StartButton extends Component<any,any> {
+class StartButton extends PureComponent<any,any> {
     render() {
         let type = this.props.type
         console.log("rerendered")
@@ -46,8 +46,7 @@ class StartButton extends Component<any,any> {
 }
 
 const mapStavangerToProps = (stavanger: NodeStavanger) => ({
-    type: stavanger.parent.graph.selectors.getNodeType(stavanger.node.alias),
-    node: stavanger.node.selectors.getModel
+    type: stavanger.parent.graph.selectors.getNodeTypeForAlias(stavanger.node.alias),
 });
 
 const mapStavangerToDispatch  = (stavanger: NodeStavanger) =>  ({

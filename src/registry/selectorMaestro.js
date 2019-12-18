@@ -59,7 +59,7 @@ export const selectorMeastro = (stavanger: NodeStavanger, definition: NodeMeastr
         action$.pipe(
             ofType(page.model.initPage.success),
             switchMap( action => {
-                let ports = graph.selectors.getNode(node.alias)(state$.value).ports
+                let ports = graph.selectors.getNodeForAlias(node.alias)(state$.value).ports
                 return buildZip(ports,action$).pipe(
                     mergeMap(actions =>
                     {

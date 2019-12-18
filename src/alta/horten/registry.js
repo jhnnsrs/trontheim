@@ -27,7 +27,7 @@ export type HortenRegistryModel = HortenModel & {
     setNodes: HaldenActions,
     setNodesFromGraph: HaldenActions,
     onModelIn: HaldenActions,
-    registerNode: HaldenActions,
+    registerNode: HaldenActions<Node>,
     register: (NodeID) => HaldenActions,
     allNodesRegistered: HaldenActions,
     setError: HaldenActions
@@ -72,16 +72,6 @@ export const createHortenRegistryHelpers = createHortenHelpers()
 export const createHordenRegistrySelectors = createHortenSelectors({
     getComponents: createHaldenSelector("nodes"),
     getRunning: createHaldenSelector("running"),
-    getNodeInit: createHaldenFunctionSelector( (state, props, params) => {
-        let alias = params.alias
-        let nodes = state.nodes
-        let alllinks = state.links
-        let node = nodes.find(node => node.nodeid == alias)
-        let links = alllinks.find(link => node.nodeid == alias) //TODO: Correct here
-
-        // Read: Return the Node InitialState
-        return {node: node, links: links}
-    }, true)
 })
 
 
@@ -104,7 +94,7 @@ export const createHortenRegistryEpic = createHortenEpic((model: HortenRegistryM
 
                     let nodes = selectors.getComponents(state$.value)
 
-                    let registerActions = nodes.map(node => model.register(node.instance).request.toString())
+                    let registerActions = nodes.map(node => model.register(node.alias).request.toString())
                     let actionStreams = registerActions.map(action => action$.ofType(action))
 
                     return zip(...actionStreams).pipe(
@@ -122,7 +112,6 @@ export const createHortenRegistryEpic = createHortenEpic((model: HortenRegistryM
                 mergeMap(action => {
                     const graph = action.payload
                     let nodes = graph.nodes
-
                     // Parse item
                     let newnodes = [];
                     for (let node in nodes) {
@@ -138,15 +127,14 @@ export const createHortenRegistryEpic = createHortenEpic((model: HortenRegistryM
 ));
 
 export type Node = {
-    instanceid: string,
-    nodeid: string,
-
+    alias: string,
+    base: string,
 }
 
 export type HortenRegistryState = {
     running: any,
     nodes: {
-        [instanceid: string]: Node
+        [alias: string]: Node
     },
 }
 
@@ -165,9 +153,9 @@ export const createHortenRegistryReducer = createHortenReducer((model: HortenReg
         [model.registerNode.success]: (state: HortenRegistryState, action) => {
             let newdict = {}
             console.log("Registering node")
-            console.log(action.payload.nodeid)
+            console.log(action.payload.alias)
             //TODO: Nameing sceme shoud be simmilar
-            newdict[action.payload.nodeid] = action.payload
+            newdict[action.payload.alias] = action.payload
             return {...state, running: Object.assign(state.running, newdict)}
         },
     }

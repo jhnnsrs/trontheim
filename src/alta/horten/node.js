@@ -55,9 +55,12 @@ export type HortenNodeSelectors = HortenSelectors & {
 
 }
 
+export type PortName = string
+
 export type HortenNodeHelpers = HortenHelpers & {
     setStatus: (StatusCode, string) => Action,
-    requireUser: (string) => Action
+    requireUser: (string) => Action,
+    sendOut: (PortName, any) => Action
 
 }
 
@@ -78,8 +81,8 @@ export type HortenNodeDefinition = {
     type: HortenType,
     ins: Array<NodeMap>,
     ports: {
-        ins: [ {name: string, map?: string, type: string }],
-        outs: [ {name: string, map?: string, type: string }]
+        ins: [ {name: PortName, map?: string, type: string }],
+        outs: [ {name: PortName, map?: string, type: string }]
     }
 
 }
@@ -118,7 +121,8 @@ export const createHortenNodeModel = createHortenModel({
 
 export const createHortenNodeHelpers = createHortenHelpers({
     setStatus: createHaldenHelper( (model) => (statuscode, message) => model.setStatus.request(buildStatus(statuscode, message))),
-    requireUser: createHaldenHelper( (model) => (message) => model.setStatus.request(buildStatus(ATTENTION.requireUserOnInput, message)))
+    requireUser: createHaldenHelper( (model) => (message) => model.setStatus.request(buildStatus(ATTENTION.requireUserOnInput, message))),
+    sendOut: createHaldenHelper( (model) => (out,model) => model.setOut(out).request(model))
     })
 
 export const createHortenNodeSelectors = createHortenSelectors({

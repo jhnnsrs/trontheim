@@ -69,7 +69,7 @@ class Registry extends React.PureComponent {
 
                     {this.props.nodes.map( node =>
                         <Card key={node.id} style={{width: "300", height: "parent", overflow: "hidden", borderColor: node.color}} className="mb-2">
-                            <Node instance={node.instance} path={node.path} />
+                            <Node instance={node.alias} path={node.path} />
                         </Card>
                     )}
                 </ResponsiveReactGridLayout>

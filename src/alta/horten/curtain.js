@@ -17,6 +17,7 @@ import {Observable} from "rxjs";
 import BroadcastChannel from 'broadcast-channel'
 
 import v4 from 'uuid'
+import type {HortenGraphNode} from "./graph";
 
 export type HortenCurtainModel = HortenModel & {
     openChannel: HaldenActions,
@@ -125,7 +126,7 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                         ]
                     }
                     else {
-                        helpers.log("This flow may have different listeneres")
+                        helpers.log("This flow was recreated and may have different listeneres, beware of this")
                         return [
                             model.openExternal.success(external),
                         ]
@@ -142,22 +143,20 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                     // TODO: Should check if server has been chosen
                     // SUBSCRIBE TO SOCKET IF AUTHENTICATED
                     helpers.log("Trying to open External for node" ,action.payload)
-
-                    let instance = action.payload.instance
-                    let path = action.payload.path
-                    let defaultsettings = action.payload.defaultsettings
-                    let creator = action.payload.creator
+                    let node: HortenGraphNode = action.payload
+                    let instance = node.instance
+                    let path = node.path
+                    let defaultsettings = node.settings
 
                     let external = {
                         data: {
-                            name: instance, // TODO: Beautify this
+                            name: instance, // TODO: This should be correctly named instance
                             node: path,
                             defaultsettings: JSON.stringify(defaultsettings),
                             status: "alive",
-                            creator: creator,
                             ports: JSON.stringify(action.payload.ports),
                             links: "notset", // TODO: Replace on Backend,
-                            origin: "OSLO of" + creator
+                            origin: THIS_WINDOW_ID
                         },
                         meta: {
                         }
@@ -237,7 +236,7 @@ const defaultState = {
 export const createHortenCurtainReducer = createHortenReducer((model: HortenCurtainModel) => (
     {
         [model.openExternal.success.toString()]: (state, action) => {
-            return {...state, externals: {...state.externals, [action.payload.instance]: "ACTIVE"}}
+            return {...state, externals: {...state.externals, [action.payload.id]: "ACTIVE"}}
 
         },
     })
