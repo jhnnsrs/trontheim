@@ -125,8 +125,9 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                         ]
                     }
                     else {
-                        helpers.log("Simultanous opening of two Flows should be avoided")
-                        return [{type: "DIFFERENT WINDOW ID", payload: "Simultanious opening of two Flows should be avoided"}
+                        helpers.log("This flow may have different listeneres")
+                        return [
+                            model.openExternal.success(external),
                         ]
 
                     }
@@ -156,7 +157,7 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                             creator: creator,
                             ports: JSON.stringify(action.payload.ports),
                             links: "notset", // TODO: Replace on Backend,
-                            origin: THIS_WINDOW_ID
+                            origin: "OSLO of" + creator
                         },
                         meta: {
                         }

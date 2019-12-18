@@ -13,10 +13,12 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
             ofType(list.model.postItem.request),
             mergeMap(action => {
                 let {data, meta} = action.payload
+
+                if (!meta) meta = {}
                 meta = {
                     actions: list.model.postItem,
                     method: "POST",
-                    suburl: list.definition.url,
+                    suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
                     responseType: 'json',
                     ...meta,
                 }
@@ -28,10 +30,12 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
             ofType(list.model.fetchList.request),
             mergeMap(action => {
                 let {filter, meta, data} = action.payload
+
+                if (!meta) meta = {}
                 meta = {
                     actions: list.model.fetchList,
                     method: "GET_LIST",
-                    suburl: list.definition.url,
+                    suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
                     filter: filter,
                     ...meta,
                 }
@@ -43,10 +47,12 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
             ofType(list.model.fetchItem.request),
             mergeMap(action => {
                 let {data, meta} = action.payload
+
+                if (!meta) meta = {}
                 meta = {
                     actions: list.model.fetchItem,
                     method: "GET_ITEM",
-                    suburl: list.definition.url,
+                    suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
                     ...meta,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
@@ -57,10 +63,12 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
             ofType(list.model.updateItem.request),
             mergeMap(action => {
                 let {data, meta} = action.payload
+
+                if (!meta) meta = {}
                 meta = { ...meta,
                     actions: list.model.updateItem,
                     method: "UPDATE",
-                    suburl: list.definition.url
+                    suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
             }));
@@ -70,10 +78,12 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
             ofType(list.model.deleteItem.request),
             mergeMap(action => {
                 let {data, meta} = action.payload
+
+                if (!meta) meta = {}
                 meta = { ...meta,
                     actions: list.model.deleteItem,
                     method: "DELETE",
-                    suburl: list.definition.url
+                    suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
             }));

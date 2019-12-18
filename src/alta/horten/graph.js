@@ -71,6 +71,7 @@ export type HortenGraphSelectors = HortenSelectors & {
     getNodes: HaldenSelector,
     getLinksForNode: (string) => HaldenSelector,
     getNodeStatus: (string) => HaldenSelector,
+    getNodeId: (string) => HaldenSelector,
     getNode: (string) => HaldenSelector,
     hasNodePopped: (string) => HaldenSelector,
     getNodeType: (string) => HaldenSelector,
@@ -181,6 +182,14 @@ export const createHortenGraphSelectors = createHortenSelectors({
         let nodes = diagram.nodes
         return nodes[alias].nodetype
     }, true),
+    getNodeId: createHaldenFunctionSelector((state, props, params) => {
+        let alias = params
+        let diagram = state.show
+
+        let links = diagram.links
+        let nodes = diagram.nodes
+        return nodes[alias].id
+    }, true),
     getNodeSettings: createHaldenFunctionSelector((state, props, params) => {
         let alias = params
         let diagram = state.show
@@ -211,13 +220,14 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     let instancenodetype = selectors.getNodeType(instance)(state$.value)
                     if (instancenodetype.location == "external" ) {
                         helpers.log("Node itself is an external Node ")
+                        let instancenodid = selectors.getNodeId(instance)(state$.value)
 
                         let outmodel = {
                             data: data,
                             meta: {
                                 ...meta,
                                 external: instancenodetype.external,
-                                instance: instance,
+                                instance: instancenodid,
                                 port: port,
                             }
                         }
@@ -357,7 +367,8 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     // Instantiate the Nodes from external with their own instance ID
                     let nodes = [
                         {...rest,
-                            instance:  external.name,
+                            instance:  (external.node + "-" + v4()).toLowerCase(),
+                            base: external.name,
                             path: external.node,
                             nodetype: { location: "external", external: external.id},
                             ports: JSON.parse(external.ports)
@@ -413,10 +424,12 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     let externalrequest = action.payload.data
                     let modeldata = JSON.parse(externalrequest.data)
 
+                    let nodeinstance = selectors.getGraphShow(state$.value).nodes.find(item => item.id === externalrequest.instance)
+
                     let payload = {
                         data: modeldata,
                         meta: {
-                            target: externalrequest.instance,
+                            target: nodeinstance.instance,
                             model: externalrequest.model,
                             type: externalrequest.model,
                             port: externalrequest.port
@@ -438,10 +451,12 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     let externalrequest = action.payload.data
                     let modeldata = JSON.parse(externalrequest.data)
 
+                    let nodeinstance = selectors.getGraphShow(state$.value).nodes.find(item => item.id === externalrequest.instance)
+
                     let payload = {
                         data: modeldata,
                         meta: {
-                            instance: externalrequest.instance,
+                            instance: nodeinstance.instance,
                             type: externalrequest.model,
                             port: externalrequest.port
                         }

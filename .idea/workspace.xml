@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/header/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/orchestrator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/RoiSelector/SelectionList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/RoiSelector/SelectionList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/RoiSelector/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/RoiSelector/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/TwoDShow/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/TwoDShow/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/lib/Frames/NodeFrame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/Frames/NodeFrame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/lib/NodeBlocker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NodeBlocker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/smallheader/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/smallheader/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/curtain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/curtain.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/graph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/maestro/item-restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/item-restapi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/maestro/table-restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/maestro/table-restapi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maestros/curtainExternalMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/maestros/curtainExternalMaestro.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,6 +174,7 @@
       <workItem from="1576503226582" duration="217000" />
       <workItem from="1576599986344" duration="755000" />
       <workItem from="1576679243876" duration="2734000" />
+      <workItem from="1576689056631" duration="2420000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -309,7 +307,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/registry/LineTransformer/orchestrater.js</url>
-          <line>57</line>
+          <line>58</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

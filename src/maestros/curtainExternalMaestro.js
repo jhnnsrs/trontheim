@@ -38,8 +38,12 @@ export const curtainExternalMaestro = (stavanger: CurtainExternalStavanger, defi
             ofType(curtain.model.pushExternal.request),
             mergeMap(action => {
                 externals.helpers.log("Pushing ", action.payload)
+
+                const external = {
+                    ...action.payload, meta: { ...action.payload.meta, restaction: "new"}
+                }
                 return [
-                    externals.model.postItem.request(action.payload)
+                    externals.model.postItem.request(external)
                 ]
             }));
 
@@ -60,7 +64,7 @@ export const curtainExternalMaestro = (stavanger: CurtainExternalStavanger, defi
                 externals.model.osloItemUpdate.success,
             ),
             mergeMap(action => {
-
+                externals.helpers.log("External created", action.payload)
 
                 return [
                     curtain.model.pushExternal.success(action.payload),
