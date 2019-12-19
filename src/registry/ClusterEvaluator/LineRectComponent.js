@@ -2,7 +2,7 @@ import {Button, ButtonGroup, Container} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
 import Form from "../../alta/react/FinalMold";
-import type {LineTransformer} from "./index";
+import type {CLusterEvaluator} from "./index";
 import {Field} from "react-final-form";
 
 class LineRectComponent extends Component<any,any> {
@@ -32,11 +32,11 @@ class LineRectComponent extends Component<any,any> {
     }
 }
 
-const mapStavangerToProps = (stavanger: LineTransformer) => ({
+const mapStavangerToProps = (stavanger: CLusterEvaluator) => ({
     transformation: stavanger.transformation.selectors.getData,
 });
 
-const mapStavangerToDispatch  = (stavanger: LineTransformer) =>  ({
+const mapStavangerToDispatch  = (stavanger: CLusterEvaluator) =>  ({
 });
 
 

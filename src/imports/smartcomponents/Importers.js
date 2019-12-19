@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {Button, Card, CardBody, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
+import {LARVIKDONE, LARVIKERROR, LAVRIKPROGRESS} from "../../constants/larvikstatus";
 
 class Flows extends Component {
 
     render() {
-        const {importers, importings, locker} = this.props;
+        const {importers, importings, locker, importingmeta} = this.props;
         if (importers && locker) {
             return (
                 <React.Fragment>
@@ -14,14 +15,15 @@ class Flows extends Component {
                             <CardBody>
                                 <CardTitle>{importer.data.name}</CardTitle>
                                 <Button onClick={() => this.props.import({importer: importer, locker: locker})}>Import into {locker.name}  with {importer.data.name}</Button>
-                                {importings.filter(item => item.data.visualizer == importer.data.id && item.data.status != "DONE").map(
+                                {importings.filter(item => item.data.importer == importer.data.id && item.data.status != "DONE").map(
                                     item => {
-                                        if (item.data.status == "DONE") return <p>Done</p>
-                                        if (item.data.status == "WORKING") return <p>Working</p>
-                                        if (item.data.status == "ERROR") return <p>Error!!</p>
-                                        else return  <p color="danger">Error: {item.data.status}</p>
+                                        if (item.data.statuscode == LARVIKDONE) return <p>Done</p>
+                                        if (item.data.statuscode == LAVRIKPROGRESS) return <p>{item.data.statusmessage} %</p>
+                                        if (item.data.statuscode == LARVIKERROR) return <p>Error!! {item.data.statusmessage}</p>
+                                        else return ""
                                     }
                                 )}
+                                { importingmeta.error && <div>{importingmeta.error}</div>}
                             </CardBody>
 
                         </Card>)}
@@ -38,6 +40,7 @@ const mapStavangerToProps = (stavanger: ImportsStavanger) => ({
     importers: stavanger.importers.selectors.getList,
     locker: stavanger.selectedLocker.selectors.getData,
     importings: stavanger.importings.selectors.getList,
+    importingmeta: stavanger.importings.selectors.getMeta,
 });
 
 const mapStavangerToDispatch  = (stavanger: ImportsStavanger) =>  ({

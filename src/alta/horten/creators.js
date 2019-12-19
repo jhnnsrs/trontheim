@@ -85,7 +85,7 @@ export function createHortenHelpers<T>(list: HortenHelpersCreator): T {
         // Returns It
         const preliminaryList = _.mapValues(list,haldenHelperCreator => haldenHelperCreator(model,selectors, ...restArgs))
         return {
-            log: (...message) => console.log("Info for " + alias.substring(0,10).padEnd(10) + " | " + model.key.substring(0,10).padEnd(10) + "| ",...message),
+            log: (...message) => process.env.NODE_ENV === "development" && console.log("Info for " + alias.substring(0,10).padEnd(10) + " | " + model.key.substring(0,10).padEnd(10) + "| ",...message),
             ...preliminaryList
         }
     }

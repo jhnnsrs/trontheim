@@ -37,10 +37,13 @@ export const graphCurtainMaestro = (stavanger: GraphCurtainStavanger, definition
             mergeMap(action => {
                 page.helpers.log("Open External")
                 let node = graph.selectors.getNode(action.payload)(state$.value)
+                let graphname = graph.selectors.getGraphName(state$.value)
                 // Adding the information from the graph
+
+                let sendnode = { ...node, graphname: graphname}
                 page.helpers.log("Of Node", node)
                 return [
-                    curtain.model.openExternal.request(node)
+                    curtain.model.openExternal.request(sendnode)
                 ]
             }));
 

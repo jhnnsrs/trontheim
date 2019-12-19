@@ -188,7 +188,7 @@ export const createHortenRestAPIEpic = createHortenEpic((model: HortenRestAPIMod
                     map(response => actions.success(response)),
                     catchError(error => {
                         console.log(error)
-                        return [actions.failure(error)]
+                        return [actions.failure(error.response)]
                     })
                 )
             })

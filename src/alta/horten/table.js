@@ -61,7 +61,8 @@ export type HortenListDefaultState = {
     data: any[],
     meta: { status: any, statuscode: any, error: any },
     newItem: { data: any, meta: { error: any, status: any } },
-    deletedItem: { data: any, meta: { error: any, status: any } }
+    deletedItem: { data: any, meta: { error: any, status: any } },
+    latestError: any
 }
 
 
@@ -143,7 +144,7 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             return { ...state, data: datalist, meta: {...state.meta, loading:false, error: null} };
         },
         [hortenListModel.fetchList.failure]: (state, action) => {
-            let error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
+            let error = action.payload.detail
             return { ...state, meta: { ...state.meta, error: error, loading: false} };
         },
         [hortenListModel.fetchList.abort]: (state, action) => {
@@ -162,7 +163,7 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             return { ...state, data: datalist, meta: {...state.meta, loading:false, error: null} };
         },
         [hortenListModel.setList.failure]: (state, action) => {
-            let error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
+            let error = action.payload.detail
             return { ...state, meta: { ...state.meta, error: error, loading: false} };
         },
         [hortenListModel.setList.abort]: (state, action) => {
@@ -187,11 +188,11 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             return {...state, newItem: {data: action.payload.response, meta : {error:null, loading: false, status: action.payload.status}}}
         },
         [hortenListModel.postItem.failure]: (state, action) => {
-            let error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
-            return {...state, newItem: {data:null, meta : { error:error, loading: false}}}
+            let error = action.payload.detail
+            return {...state, newItem: {data:null, meta : { error:error, loading: false}}, meta: { ...state.meta, error: error, loading: false}}
         },
         [hortenListModel.postItem.abort]: (state, action) => {
-            return {...state,  newItem:{data:null, meta : {error:null, loading: false}}}
+            return {...state,  newItem:{data:null, meta : {error:null, loading: false}} }
         },
 
         // SELECT OPTIONS
@@ -210,8 +211,8 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             //return {...state, deletedItem: {item: action.payload, error:null, loading: false}}
         },
         [hortenListModel.deleteItem.failure]: (state, action) => {
-            let error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
-            return {...state, deletedItem: {item:null, error:error, loading: false}}
+            let error = action.payload.detail
+            return {...state, deletedItem: {item:null, error:error, loading: false}, meta: { ...state.meta, error: error, loading: false}}
         },
         [hortenListModel.deleteItem.abort]: (state, action) => {
             return {...state,  deletedItem:{item:null, error:null, loading: false}}

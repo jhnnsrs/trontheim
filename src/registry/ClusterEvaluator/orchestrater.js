@@ -1,5 +1,5 @@
 import {combineEpics} from "redux-observable";
-import type {LineTransformer} from "./index";
+import type {CLusterEvaluator} from "./index";
 import {apiConnector, itemConnector} from "../../rootMaestros";
 import {userIDPortal} from "../../portals";
 import {nodeMaestro} from "../nodeMaestro";
@@ -8,7 +8,7 @@ import {taskMaestro} from "../taskMaestro";
 import {SERVER} from "../../constants/nodestatus";
 
 
-export const orchestraterEpic = (stavanger: LineTransformer) => {
+export const orchestraterEpic = (stavanger: CLusterEvaluator) => {
 
     const moduleMaestro = nodeMaestro(stavanger)
 

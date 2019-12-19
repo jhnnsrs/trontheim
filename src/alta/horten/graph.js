@@ -87,6 +87,7 @@ export type HortenGraphModel = HortenModel & {
 export type HortenGraphSelectors = HortenSelectors & {
     getGraphShow: HaldenSelector,
     getGraph: HaldenSelector,
+    getGraphName: HaldenSelector,
     getLinks: HaldenSelector,
     getNodes: HaldenSelector,
     getLinksForNode: (string) => HaldenSelector,
@@ -217,6 +218,7 @@ export const createHortenGraphHelpers = createHortenHelpers(
 export const createHortenGraphSelectors = createHortenSelectors({
     getGraphShow: createHaldenSelector("show"),
     getGraph: createHaldenFunctionSelector((state) => state.graph),
+    getGraphName: createHaldenFunctionSelector((state) => state.graph.name),
     getLinks: createHaldenFunctionSelector((state) => state.graph.links),
     getNodes: createHaldenFunctionSelector((state) => state.graph.nodes),
     getNodeStatus: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params: NodeInstance) => {
@@ -246,6 +248,7 @@ export const createHortenGraphSelectors = createHortenSelectors({
     }, true),
     getAliasForInstance: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
         let node = state.show.nodes[params]
+        console.log(params,node,state.show)
         return  node.alias
     }, true),
     getNodeSettingForAlias: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
@@ -396,6 +399,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             mergeMap(action => {
                 // TODO: IMPORTANT stavanger detail right now get is not adhering to normal datastucture
                 let diagram = JSON.parse(action.payload.data.diagram)
+                let flowname = action.payload.data.name
 
                 helpers.log(diagram)
                 // Instantiate the Nodes with their own instance ID
@@ -417,7 +421,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                 let links = diagram.links.map(link => link)
 
 
-                let graph = {links: links, nodes: nodes}
+                let graph = {links: links, nodes: nodes, name: flowname}
                 return [
                     model.setGraphFromFlow.success(graph),
                     model.createShowFromGraph.request(graph)]
@@ -435,12 +439,18 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     // Instantiate the Nodes from external with their own instance ID
                     let nodes = [
                         {...rest,
+                            id: external.name, //ATTENTION: May cause bugs along the way, because we are using instance as id
                             instance: external.name, // This is the id of the node (correspondes to the graph-id) external-name is right now the holder of this TODO: should be instance
                             alias:  alias,
                             path: external.node,
                             settings: external.defaultsettings,
-                            nodetype: { location: "external", external: external.id},
-                            ports: JSON.parse(external.ports)
+                            type: { location: "external", external: external.id},
+                            ports: JSON.parse(external.ports),
+                            status: {
+                                code: WAITING.initializing,
+                                message: "Initializing.."
+                            },
+                            name: "External of " + external.node
 
                         }
                     ]
@@ -454,14 +464,14 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
             )),
     onCreateShowFromGraphRequest: (action$, state$) =>
         action$.pipe(
-            ofType(model.createShowFromGraph.request.toString()
-            ),
+            ofType(model.createShowFromGraph.request.toString()),
             mergeMap(action => {
                     // TODO: IMPORTANT stavanger detail right now get is not adhering to normal datastucture
                     let diagram = action.payload
                     let nodes: Array<HortenGraphNode> = diagram.nodes
                     let nodeDictByAlias = {}
                     let nodeDictByInstance = {}
+                    helpers.log(nodes)
 
                     nodes.map(node => {
                         nodeDictByAlias[node.alias] = node.instance
@@ -495,7 +505,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                     let externalrequest = action.payload.data
                     let modeldata = JSON.parse(externalrequest.data)
 
-                    let alias = selectors.getAliasForInstance(externalrequest.instance)
+                    let alias = selectors.getAliasForInstance(externalrequest.instance)(state$.value)
 
                     let payload = {
                         data: modeldata,
@@ -573,7 +583,11 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
 
 
 const defaultState = {
-    graph: null,
+    graph: {
+        links: [],
+        nodes: [],
+        name: ""
+    },
     show: {
         nodes: {},
         aliasInstanceMap: {},

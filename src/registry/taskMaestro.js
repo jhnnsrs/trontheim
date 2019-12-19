@@ -75,6 +75,9 @@ export const taskMaestro = (stavanger: TaskStavanger, definition: TaskMaestroDef
             mergeMap(action => {
                 parser.helpers.log("New Item Received", action.payload, "on type", parser.definition.type)
                 // TODO: Maybe a mape for the output key would be better here
+                let parsing = action.payload.data
+
+                if (parsing.statuscode) return [node.helpers.setStatus(parsing.statuscode,parsing.statusmessage)]
 
                 return [node.helpers.setStatus(SERVER.serverProgress, action.payload.data.status)]
             })

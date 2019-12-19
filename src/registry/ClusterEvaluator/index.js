@@ -12,7 +12,7 @@ import type {NodeStavanger} from "../lib/types";
 import {DEF_CLUSTERDATA, DEF_EVALUATING, DEF_TRANSFORMATION} from "../../constants/definitions";
 
 
-export type LineTransformer = NodeStavanger &{
+export type CLusterEvaluator = NodeStavanger &{
     transformation: HortenItem,
     evaluatings: HortenTable,
     clusterdata: HortenTable,

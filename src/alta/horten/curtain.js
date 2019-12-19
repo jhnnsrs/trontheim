@@ -147,6 +147,7 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                     let instance = node.instance
                     let path = node.path
                     let defaultsettings = node.settings
+                    let graphname = node.graphname
 
                     let external = {
                         data: {
@@ -156,7 +157,8 @@ export const createHortenCurtainEpic = createHortenEpic((model: HortenCurtainMod
                             status: "alive",
                             ports: JSON.stringify(action.payload.ports),
                             links: "notset", // TODO: Replace on Backend,
-                            origin: THIS_WINDOW_ID
+                            origin: THIS_WINDOW_ID,
+                            graphname: graphname
                         },
                         meta: {
                         }
