@@ -1,8 +1,9 @@
 
 
-
+export const isHashRouter = false
 export const THIS_ROOT_URL = window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port : "http://" + window.location.hostname + ":" + window.location.port
-export const redirectui =  window.location.hostname === 'localhost' ? "http://localhost:" + window.location.port +"/callback" : "http://" + window.location.hostname + ":" + window.location.port + "/callback";
+export const redirectui =  THIS_ROOT_URL
+export const THIS_BASE_URL = isHashRouter ? THIS_ROOT_URL + "/#/": THIS_ROOT_URL +  "/"
 
 console.log("The redirectui is " + redirectui)
 
@@ -70,3 +71,6 @@ export const osloEndpoints = [
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },
 ]
+
+
+export const OsloString = "noingfvoinüsubnrgpugisnpinipnp"

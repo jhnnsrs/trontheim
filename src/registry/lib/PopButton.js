@@ -2,7 +2,7 @@ import {Button} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component, PureComponent} from "react";
 import type {NodeStavanger} from "./types";
-import {THIS_ROOT_URL} from "../../constants/endpoints";
+import {isHashRouter, THIS_BASE_URL, THIS_ROOT_URL} from "../../constants/endpoints";
 import {withRouter} from "react-router-dom";
 import styled from 'styled-components';
 import Octicon, {Project, Zap} from '@githubprimer/octicons-react'
@@ -37,7 +37,7 @@ class StartButton extends PureComponent<any,any> {
             <React.Fragment>
                 {(type.location === "local") && <Popper size="sm" outline onClick={() => this.props.start()}><Octicon icon={Project}/> </Popper>}
                 {(type.location === "pop") && <>
-                        <PopLink outside={true} to={THIS_ROOT_URL + "/external/" + type.external}>{type.external}</PopLink>
+                        <PopLink outside={true} to={THIS_BASE_URL + "external/" + type.external}>{type.external}</PopLink>
                     </>}
                 {(type.location === "external") && ""}
             </React.Fragment>

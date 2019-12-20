@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/constants/larvikstatus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/ForeignMasking/ExperimentSelector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/ForeignMasking/container.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/ForeignMasking/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/ForeignMasking/orchestrater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registry/lib/blockuiextenders.css" afterDir="false" />
+    <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="Render of Server Side Status through Larvik Consumers&#10;Frontend Implementation&#10;&#10;Changed log only for debug mode&#10;Graphname displayed on Masker&#10;Updated Item to get post errors&#10;&#10;Updated Block Ui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/creators.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/creators.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/curtain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/curtain.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/restapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/restapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alta/horten/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/external/smartcomponents/NodeHost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/external/smartcomponents/NodeHost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imports/smartcomponents/Importers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/imports/smartcomponents/Importers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maestros/graphCurtainMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/maestros/graphCurtainMaestro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/ClusterEvaluator/LineRectComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/ClusterEvaluator/LineRectComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/ClusterEvaluator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/ClusterEvaluator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/ClusterEvaluator/orchestrater.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/ClusterEvaluator/orchestrater.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/lib/NodeBlocker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/NodeBlocker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registry/taskMaestro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/taskMaestro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/oslo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/oslo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/oslo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/oslo/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bioimageflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/bioimageflow/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/endpoints.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/endpoints.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/header/data/availableOslos.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/header/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lockerflow/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registry/lib/PopButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registry/lib/PopButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sampleflow/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sampleflow/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/smallheader/data/availableOslos.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/smallheader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/smallheader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/smallheader/orchestrator/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/smallheader/stavanger/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +56,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/registry" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/constants/endpoints.js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -71,19 +65,20 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Trontheim\trontheim\src\common\flow" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\Frames" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="C:\Program Files\Trontheim\trontheim\src\constants\endpoints.js" />
+      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\types.js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Program Files\Trontheim\trontheim\src\registry" />
       <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\registry" />
       <recent name="C:\Program Files\Trontheim\trontheim\src\conductors" />
       <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow" />
       <recent name="C:\Program Files\Trontheim\trontheim\src\bioimageflow\stavanger" />
-    </key>
-    <key name="es6.move.members.recent.items">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\types.js" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Program Files\Trontheim\trontheim\src\common\flow" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\Frames" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.Debug Flow">
@@ -192,7 +187,8 @@
       <workItem from="1576503226582" duration="217000" />
       <workItem from="1576599986344" duration="755000" />
       <workItem from="1576679243876" duration="2734000" />
-      <workItem from="1576747984326" duration="15173000" />
+      <workItem from="1576747984326" duration="15463000" />
+      <workItem from="1576837267952" duration="5215000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -271,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576503261007</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Render of Server Side Status through Larvik Consumers&#10;Frontend Implementation&#10;&#10;Changed log only for debug mode&#10;Graphname displayed on Masker&#10;Updated Item to get post errors&#10;&#10;Updated Block Ui">
+      <created>1576777203582</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1576777203583</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,40 +304,45 @@
     <MESSAGE value="Added Modules for the External Requests" />
     <MESSAGE value="CHanged entitity id on line transformer" />
     <MESSAGE value="Flow Renewal 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Flow Renewal 3" />
+    <MESSAGE value="Render of Server Side Status through Larvik Consumers&#10;Frontend Implementation&#10;&#10;Changed log only for debug mode&#10;Graphname displayed on Masker&#10;Updated Item to get post errors&#10;&#10;Updated Block Ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Render of Server Side Status through Larvik Consumers&#10;Frontend Implementation&#10;&#10;Changed log only for debug mode&#10;Graphname displayed on Masker&#10;Updated Item to get post errors&#10;&#10;Updated Block Ui" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="540" y="138" key="CommitChangelistDialog2" timestamp="1576691716481">
+    <state x="540" y="88" key="CommitChangelistDialog2" timestamp="1576777357311">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503259734" />
-    <state x="540" y="138" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576691716481" />
-    <state width="1899" height="208" key="GridCell.Tab.0.bottom" timestamp="1576750433694">
+    <state x="540" y="88" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576777357311" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1576855094510">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576750433694" />
-    <state width="1899" height="208" key="GridCell.Tab.0.center" timestamp="1576750433693">
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576855094510" />
+    <state width="1899" height="208" key="GridCell.Tab.0.bottom" timestamp="1576777372080">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576750433693" />
-    <state width="1899" height="208" key="GridCell.Tab.0.left" timestamp="1576750433693">
+    <state width="1899" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576777372080" />
+    <state width="1899" height="208" key="GridCell.Tab.0.center" timestamp="1576777372079">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576750433693" />
-    <state width="1899" height="208" key="GridCell.Tab.0.right" timestamp="1576750433694">
+    <state width="1899" height="208" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576777372079" />
+    <state width="1899" height="208" key="GridCell.Tab.0.left" timestamp="1576777372078">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="208" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576750433694" />
+    <state width="1899" height="208" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576777372078" />
+    <state width="1899" height="208" key="GridCell.Tab.0.right" timestamp="1576777372079">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="208" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576777372079" />
     <state x="639" y="252" key="MultipleFileMergeDialog" timestamp="1576748031201">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="570" y="267" key="MultipleFileMergeDialog/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576600141147" />
     <state x="639" y="252" key="MultipleFileMergeDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576748031201" />
-    <state x="504" y="256" key="Vcs.Push.Dialog.v2" timestamp="1576691719583">
+    <state x="504" y="256" key="Vcs.Push.Dialog.v2" timestamp="1576777205767">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503264848" />
-    <state x="504" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576691719583" />
+    <state x="504" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576777205767" />
     <state x="746" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576748022505">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -344,9 +352,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="741" y="232" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576748009966" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1576771468362">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1576854842062">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576771468362" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1576854842062" />
   </component>
 </project>

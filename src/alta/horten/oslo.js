@@ -22,6 +22,7 @@ import {Reducer} from "redux";
 import websocketConnect from "rxjs-websockets";
 import {QueueingSubject} from "queueing-subject";
 import type {HaldenActions} from "../oslo";
+import {OsloString} from "../../constants/endpoints";
 
 export type HortenOsloModel = HortenModel &{
     setAuth: HaldenActions,
@@ -90,7 +91,8 @@ export function objToString (obj) {
     let str = '';
     for (let key of Object.keys(obj)) {
         let value = obj[key];
-        str += key.toString() + '_' + value + "_";
+        if (value === OsloString) { str += key.toString() + "_" }
+        else { str += key.toString() + '_' + value + "_" };
     }
     return str.slice(0, -1);
 }

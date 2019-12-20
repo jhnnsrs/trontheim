@@ -68,6 +68,10 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
         action$.pipe(
             ofType(stavanger.oauth.model.logout.success),
             mergeMap(action => {
+
+                window.localStorage.setItem("tokenit", null);
+                window.localStorage.setItem("osloconfig",null);
+
                 return [
                     apiModel.reset.request({}),
                     httpModel.reset.request({}),

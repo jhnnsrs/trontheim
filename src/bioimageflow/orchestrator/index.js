@@ -7,6 +7,7 @@ import {userIDPortal} from "../../portals";
 import {combineOrchestrator} from "../../alta/react/EpicRegistry";
 import {flowMaestro} from "../../maestros/flowMeastro";
 import {createFlowApi} from "../../conductors/createFlowConductor";
+import {OsloString} from "../../constants/endpoints";
 
 export const orchestraterEpic = (stavanger: BioImageFlowStavanger) => {
 
@@ -31,7 +32,7 @@ export const orchestraterEpic = (stavanger: BioImageFlowStavanger) => {
                     flow.model.fetchItem.request({data: {id: flowid}}),
                     initial.model.fetchItem.request({data: {id: bioimageid}}),
                     layoutlist.model.fetchList.request({meta: {filter: {flows: flowid}}}),
-                    externals.model.osloJoin.request({meta: {room: {creator: userIDPortal(state$.value)}}})
+                    externals.model.osloJoin.request({meta: {room: {creator: userIDPortal(state$.value), subset: OsloString}}})
                 ]
             }));
 

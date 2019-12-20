@@ -2,7 +2,6 @@
 
 import {createAction} from "redux-actions";
 
-
 export interface DataStructure<M> { data: M, meta: any}
 export type OsloPayload<M> = any
 export type OsloAction<M> = { payload: DataStructure<M>, meta: any, type: string}
