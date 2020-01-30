@@ -1,4 +1,4 @@
-# Oslo
+# Trontheim
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7096184f-28d9-4309-a194-dea2d1d71799/deploy-status)](https://app.netlify.com/sites/arnheim/deploys)
 
 ### Idea
