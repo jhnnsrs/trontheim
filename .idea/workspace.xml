@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd6eee-cef2-4b5a-ac97-5794ca5ed683" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/alta/horten/portal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/portals.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/horten/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/horten/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alta/react/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/alta/react/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/PrivateRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/header/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/landing/orchestrator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/landing/orchestrator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rootStavanger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rootStavanger.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +49,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/constants/index.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/alta/horten" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -58,11 +66,11 @@
       <recent name="C:\Program Files\Trontheim\trontheim\src\registry\lib\types.js" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\alta\horten" />
       <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\flowbuilder\smartcomponents" />
       <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src\registry" />
       <recent name="C:\Users\jhnns\WebstormProjects\trontheim\src" />
       <recent name="C:\Users\jhnns\WebstormProjects\trontheim" />
-      <recent name="C:\Program Files\Trontheim\trontheim\src\registry" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.Debug Flow">
@@ -129,8 +137,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.electron" />
         <item itemvalue="npm.electron-dev" />
@@ -203,7 +211,7 @@
       <workItem from="1580065061561" duration="33000" />
       <workItem from="1580227964297" duration="1937000" />
       <workItem from="1580308673789" duration="1004000" />
-      <workItem from="1580316254043" duration="12463000" />
+      <workItem from="1580316254043" duration="14771000" />
     </task>
     <task id="LOCAL-00001" summary="trying to make nodes work, weird epic issues">
       <created>1572457230437</created>
@@ -317,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580396469203</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added netlify.toml">
+      <created>1580398153577</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1580398153577</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +365,8 @@
     <MESSAGE value="Implemtation of Graph Settings save" />
     <MESSAGE value="Working implementation of Graph without External Testing yet" />
     <MESSAGE value="settings correction?" />
-    <option name="LAST_COMMIT_MESSAGE" value="settings correction?" />
+    <MESSAGE value="added netlify.toml" />
+    <option name="LAST_COMMIT_MESSAGE" value="added netlify.toml" />
   </component>
   <component name="WindowStateProjectService">
     <state x="312" y="206" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576709811181">
@@ -361,11 +377,11 @@
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="1044" y="357" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1714.1103@0.0.1714.1103" timestamp="1580398051589" />
-    <state x="482" y="146" key="CommitChangelistDialog2" timestamp="1580396468305">
+    <state x="482" y="146" key="CommitChangelistDialog2" timestamp="1580398153105">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503259734" />
-    <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103@0.0.1714.1103" timestamp="1580396468305" />
+    <state x="482" y="146" key="CommitChangelistDialog2/0.0.1714.1103@0.0.1714.1103" timestamp="1580398153105" />
     <state x="164" y="92" width="1371" height="911" key="DiffContextDialog" timestamp="1576710802575">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
@@ -374,30 +390,30 @@
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="638" y="306" key="FileChooserDialogImpl/0.0.1714.1103@0.0.1714.1103" timestamp="1580393962998" />
-    <state width="1693" height="322" key="GridCell.Tab.0.bottom" timestamp="1580396362749">
+    <state width="846" height="322" key="GridCell.Tab.0.bottom" timestamp="1580400141490">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state width="1693" height="322" key="GridCell.Tab.0.bottom/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1580063327411" />
     <state width="2517" height="322" key="GridCell.Tab.0.bottom/0.0.1714.1103/3000.0.2560.1400@3000.0.2560.1400" timestamp="1579786471364" />
-    <state width="1693" height="322" key="GridCell.Tab.0.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1580396362749" />
-    <state width="1693" height="322" key="GridCell.Tab.0.center" timestamp="1580396362748">
+    <state width="846" height="322" key="GridCell.Tab.0.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1580400141490" />
+    <state width="846" height="322" key="GridCell.Tab.0.center" timestamp="1580400141489">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state width="1693" height="322" key="GridCell.Tab.0.center/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1580063327411" />
     <state width="2517" height="322" key="GridCell.Tab.0.center/0.0.1714.1103/3000.0.2560.1400@3000.0.2560.1400" timestamp="1579786471364" />
-    <state width="1693" height="322" key="GridCell.Tab.0.center/0.0.1714.1103@0.0.1714.1103" timestamp="1580396362748" />
-    <state width="1693" height="322" key="GridCell.Tab.0.left" timestamp="1580396362747">
+    <state width="846" height="322" key="GridCell.Tab.0.center/0.0.1714.1103@0.0.1714.1103" timestamp="1580400141489" />
+    <state width="846" height="322" key="GridCell.Tab.0.left" timestamp="1580400141489">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state width="1693" height="322" key="GridCell.Tab.0.left/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1580063327411" />
     <state width="2517" height="322" key="GridCell.Tab.0.left/0.0.1714.1103/3000.0.2560.1400@3000.0.2560.1400" timestamp="1579786471364" />
-    <state width="1693" height="322" key="GridCell.Tab.0.left/0.0.1714.1103@0.0.1714.1103" timestamp="1580396362747" />
-    <state width="1693" height="322" key="GridCell.Tab.0.right" timestamp="1580396362749">
+    <state width="846" height="322" key="GridCell.Tab.0.left/0.0.1714.1103@0.0.1714.1103" timestamp="1580400141489" />
+    <state width="846" height="322" key="GridCell.Tab.0.right" timestamp="1580400141490">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state width="1693" height="322" key="GridCell.Tab.0.right/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1580063327411" />
     <state width="2517" height="322" key="GridCell.Tab.0.right/0.0.1714.1103/3000.0.2560.1400@3000.0.2560.1400" timestamp="1579786471364" />
-    <state width="1693" height="322" key="GridCell.Tab.0.right/0.0.1714.1103@0.0.1714.1103" timestamp="1580396362749" />
+    <state width="846" height="322" key="GridCell.Tab.0.right/0.0.1714.1103@0.0.1714.1103" timestamp="1580400141490" />
     <state width="1693" height="309" key="GridCell.Tab.1.bottom" timestamp="1576712312170">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
@@ -451,11 +467,11 @@
     </state>
     <state x="570" y="267" key="MultipleFileMergeDialog/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576600141147" />
     <state x="570" y="267" key="MultipleFileMergeDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577094836235" />
-    <state x="450" y="272" key="Vcs.Push.Dialog.v2" timestamp="1580396471964">
+    <state x="450" y="272" key="Vcs.Push.Dialog.v2" timestamp="1580398155404">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1576503264848" />
-    <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103@0.0.1714.1103" timestamp="1580396471964" />
+    <state x="450" y="272" key="Vcs.Push.Dialog.v2/0.0.1714.1103@0.0.1714.1103" timestamp="1580398155404" />
     <state x="93" y="93" width="1528" height="917" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1576710710208">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
@@ -479,12 +495,12 @@
     </state>
     <state x="3768" y="326" width="1004" height="860" key="run.anything.popup/0.0.1714.1103/3000.0.2560.1400@3000.0.2560.1400" timestamp="1579788505559" />
     <state x="514" y="257" width="672" height="677" key="run.anything.popup/0.0.1714.1103@0.0.1714.1103" timestamp="1578735263467" />
-    <state x="520" y="241" width="672" height="678" key="search.everywhere.popup" timestamp="1580395645304">
+    <state x="520" y="241" width="672" height="678" key="search.everywhere.popup" timestamp="1580400177973">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="520" y="241" width="672" height="678" key="search.everywhere.popup/0.0.1714.1103/3000.0.2560.1400@0.0.1714.1103" timestamp="1579777954362" />
     <state x="3777" y="306" width="1004" height="861" key="search.everywhere.popup/0.0.1714.1103/3000.0.2560.1400@3000.0.2560.1400" timestamp="1579790242631" />
-    <state x="520" y="241" width="672" height="678" key="search.everywhere.popup/0.0.1714.1103@0.0.1714.1103" timestamp="1580395645304" />
+    <state x="520" y="241" width="672" height="678" key="search.everywhere.popup/0.0.1714.1103@0.0.1714.1103" timestamp="1580400177973" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
