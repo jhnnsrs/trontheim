@@ -16,12 +16,14 @@ export type SampleStavanger = Stavanger & {
     displayflows: HortenTable,
     sampleflows: HortenTable,
     exhibitflows: HortenTable,
+    repflows: HortenTable,
 }
 
 export const sampleStavanger: SampleStavanger = createStavanger({
     sample: createHortenItem(DEF_SAMPLE),
     selectedRepresentation: createHortenItem(DEF_REPRESENTATION),
     representations: createHortenTable(DEF_REPRESENTATION),
+    repflows: createHortenTable(DEF_FLOW),
     displayflows: createHortenTable(DEF_FLOW),
     sampleflows: createHortenTable(DEF_FLOW),
     exhibitflows: createHortenTable(DEF_FLOW),

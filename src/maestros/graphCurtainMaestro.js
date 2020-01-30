@@ -19,8 +19,15 @@ export interface GraphCurtainStavanger extends Stavanger {
 
 }
 
+export interface SingeFlowParamMap {
+    flowid: number,
+    initialid: number
+}
+
 
 export interface GraphCurtainDefinition {
+    initial: HortenItem,
+    paramsMap: (params: any) => SingeFlowParamMap
 
 }
 

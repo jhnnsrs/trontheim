@@ -22,6 +22,7 @@ class LineRectComponent extends Component<any,any> {
                         <label>Overwrite</label>
                         <Field name="overwrite" component="input" type="checkbox" />
                     </div>
+                        {this.props.nodeid}
                     <ButtonGroup>
                         <Button type="submit" outline  size={"sm"}  className={"mx-auto"}>Save</Button>
                     </ButtonGroup>
@@ -34,6 +35,7 @@ class LineRectComponent extends Component<any,any> {
 
 const mapStavangerToProps = (stavanger: MaxISP) => ({
     representation: stavanger.representation.selectors.getData,
+    nodeid : () => stavanger.node.alias,
 });
 
 const mapStavangerToDispatch  = (stavanger: MaxISP) =>  ({

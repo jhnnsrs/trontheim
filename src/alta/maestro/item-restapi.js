@@ -18,6 +18,7 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
                     actions: item.model.postItem,
                     method: "POST",
                     suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : item.definition.urlaction,
                     responseType: 'json',
                     ...meta,
                 }
@@ -30,10 +31,13 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
             mergeMap(action => {
                 let {data, meta} = action.payload
                 if (!meta) meta = {}
+
+                let urlaction = meta.urlaction
                 meta = {
                     actions: item.model.fetchItem,
                     method: "GET_ITEM",
                     suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : item.definition.urlaction,
                     ...meta,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
@@ -49,6 +53,7 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
                     actions: item.model.updateItem,
                     method: "UPDATE",
                     suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : item.definition.urlaction,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
             }));
@@ -62,6 +67,7 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
                     actions: item.model.deleteItem,
                     method: "DELETE",
                     suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : item.definition.urlaction,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
             }));

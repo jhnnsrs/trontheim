@@ -93,6 +93,7 @@ export type HortenGraphSelectors = HortenSelectors & {
     getLinksForNode: (string) => HaldenSelector,
     // Name Like Retrieval
     getNodeByName: (string) => HaldenSelector,
+    getWatcherForModel: (string) => HaldenSelector,
 
     // This is for Instance Based Retrieval
     getNodeStatus: (string) => HaldenSelector,
@@ -271,6 +272,10 @@ export const createHortenGraphSelectors = createHortenSelectors({
         let node = state.show.nodes[instance]
         return node
     }, true),
+    getWatcherForModel: createHaldenFunctionSelector((state: HortenGraphDefaultState, props, params) => {
+        let nodes = state.graph.nodes.filter(item => item.variety === "watcher")
+        return nodes
+    }, true),
 
 
 
@@ -404,7 +409,7 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
                 helpers.log(diagram)
                 // Instantiate the Nodes with their own instance ID
                 let nodes = diagram.nodes.map(node => {
-                    const alias = (node.name + "-" + v4()).toLowerCase()
+                    const alias = (node.path + "-" + v4()).toLowerCase()
 
                     return {...node,
                         instance: node.id, // This is the id of the node (correspondes to the graph-id)
@@ -574,6 +579,17 @@ export const createHortenGraphEpic = createHortenEpic((model: HortenGraphModel, 
 
 
                     return [model.saveSettings.success(graphstate)]
+                }
+            )),
+    onGraphError: (action$, state$) =>
+        action$.pipe(
+            ofType(model.setGraphError.request),
+            mergeMap(action => {
+                    // TODO: Here an instantiation of the node type on veil should maybe happen?
+
+                    const graphstate = action.payload
+                    helpers.log("ERROR: ", graphstate)
+                    return [model.setGraphError.success(graphstate)]
                 }
             )),
     onNodeStatusChanged: createHaldenPassThroughEpicFromActions(model.onNodeStatusUpdate),

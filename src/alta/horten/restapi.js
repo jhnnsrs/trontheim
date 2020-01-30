@@ -105,6 +105,7 @@ export type Request = {
     headers: any,
     suburl: string,
     rooturl: string,
+    urlaction: string,
     filter: any,
     data: any
 }
@@ -115,10 +116,16 @@ export const getResponseFromApi = (request: Request): Observable<any> => {
         if (request.filter) {
             q = "?" + qs.stringify(request.filter);
         }
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request,q), request.headers)
+        }
         return ajax
             .getJSON(`${request.rooturl}/${request.suburl}/${q}`, request.headers);
     }
     if (request.method === "POST") {
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request), request.headers)
+        }
         return ajax
             .post(`${request.rooturl}/${request.suburl}/`, request.data, request.headers);
     }
@@ -131,10 +138,16 @@ export const getResponseFromApi = (request: Request): Observable<any> => {
                 q = encodeURIComponent(request.data);
             }
         }
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request,q), request.headers)
+        }
         return ajax.getJSON(`${request.rooturl}/${request.suburl}/${q}`, request.headers);
     }
     if (request.method === "UPDATE") {
         const q = encodeURIComponent(request.data.id);
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request,q), request.headers)
+        }
         return ajax
             .put(`${request.rooturl}/${request.suburl}/${q}/`, request.data , request.headers);
 
@@ -142,6 +155,9 @@ export const getResponseFromApi = (request: Request): Observable<any> => {
 
     if (request.method === "DELETE") {
         const q = encodeURIComponent(request.data.id);
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request,q), request.headers)
+        }
         return ajax.delete(`${request.rooturl}/${request.suburl}/${q}/`, request.headers);
     }
 
@@ -164,6 +180,7 @@ export const createHortenRestAPIEpic = createHortenEpic((model: HortenRestAPIMod
                 let method = meta.method
                 let rooturl = meta.rooturl ? meta.rooturl : currentAuth.rooturl
                 let suburl = meta.suburl
+                let urlaction = meta.urlaction
                 let filter = meta.filter
 
 
@@ -176,6 +193,7 @@ export const createHortenRestAPIEpic = createHortenEpic((model: HortenRestAPIMod
                 let request = {
                     rooturl,
                     suburl,
+                    urlaction,
                     headers,
                     filter,
                     method,

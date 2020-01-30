@@ -19,6 +19,7 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
                     actions: list.model.postItem,
                     method: "POST",
                     suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : list.definition.urlaction,
                     responseType: 'json',
                     ...meta,
                 }
@@ -36,6 +37,7 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
                     actions: list.model.fetchList,
                     method: "GET_LIST",
                     suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : list.definition.urlaction,
                     filter: filter,
                     ...meta,
                 }
@@ -53,6 +55,7 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
                     actions: list.model.fetchItem,
                     method: "GET_ITEM",
                     suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : list.definition.urlaction,
                     ...meta,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
@@ -69,6 +72,7 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
                     actions: list.model.updateItem,
                     method: "UPDATE",
                     suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : list.definition.urlaction,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
             }));
@@ -84,6 +88,7 @@ export const tableRestAPIMaestro = (restAPI: HortenRestAPI) => (list: HortenTabl
                     actions: list.model.deleteItem,
                     method: "DELETE",
                     suburl: meta.restaction ? list.definition.url + "/" + meta.restaction : list.definition.url,
+                    urlaction: meta.urlaction ? meta.urlaction : list.definition.urlaction,
                 }
                 return [restAPI.model.ApiRequest.request({data: data, meta: meta})]
             }));

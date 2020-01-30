@@ -30,6 +30,8 @@ export const DEF_STRAINING = {type: constants.STRAINING, url: "strainings"};
 export const DEF_EVALUATING = {type: constants.EVALUATING, url: "evaluatings"};
 export const DEF_DISPLAY = {type: constants.DISPLAY, url: "displays"};
 export const DEF_REPRESENTATION = {type: constants.REPRESENTATION, url: "representations"};
+export const DEF_ZARR = {type: constants.ZARR, url: "zarrs"};
+export const DEF_ZARR_CHANNEL = {type: constants.ZARR_CHANNEL, url: "zarrs", urlaction: (request) => `${request.rooturl}/${request.suburl}/${request.data.id}/channels`};
 export const DEF_METAMORPHING = {type: constants.METAMORPHING, url: "metamorphings"};
 export const DEF_FILTERING = {type: constants.FILTERING, url: "filterings"};
 export const DEF_EXHIBIT = {type: constants.EXHIBIT, url: "exhibits"};

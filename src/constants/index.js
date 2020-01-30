@@ -51,6 +51,9 @@ export const STRAINING = "straining";
 export const STRAINER = "strainer";
 export const EXHIBIT = "exhibit";
 export const REPRESENTATION = "representation";
+export const ZARR = "zarr";
+export const ZARR_CHANNEL= "zarr_channel";
+export const CHANNELMAP= "channelmap";
 export const TRANSFORMATION = "transformation";
 export const EXPERIMENT = "experiment";
 export const SAMPLE = "sample";
@@ -96,4 +99,20 @@ export const FLOWTYPES = {
     SAMPLE: "sample",
     ROI: "roi",
     LOCKER: "locker",
+}
+
+
+export const VARIETYDESCRIPTION = {
+    collector: {
+        name: "Collectors",
+        description: "collect incoming Data and forward on demand"
+    },
+    watcher: {
+        name: "Watchers",
+        description: "A watcher is the initial node that receives input in a Flow"
+    },
+    consumer: {
+        name: "Generic Consumers",
+        description: "Generic Consumers do not fit in any category"
+    },
 }

@@ -20,6 +20,7 @@ export const orchestraterEpic = (stavanger: SampleStavanger) => {
                     stavanger.displayflows.model.fetchList.request({meta: {filter: {type: constants.FLOWTYPES.DISPLAY}}}),
                     stavanger.exhibitflows.model.fetchList.request({meta: {filter: {type: constants.FLOWTYPES.EXHIBIT}}}),
                     stavanger.sampleflows.model.fetchList.request({meta: {filter: {type: constants.FLOWTYPES.SAMPLE}}}),
+                    stavanger.repflows.model.fetchList.request({meta: {filter: {type: constants.FLOWTYPES.REPRESENTATION}}}),
                 ]
             }));
 

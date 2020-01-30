@@ -145,6 +145,7 @@ export class TwoDShowComponent extends Component<any,any> {
                             }
                             let scaleFactorX = viewerValue ? viewerValue.a: 1;
                             let scaleFactorY = viewerValue ? viewerValue.d: 1;
+                            console.log(shape)
                             return (
                                 <ReactSVGPanZoom
                                     width={parent.width} height={parent.height}

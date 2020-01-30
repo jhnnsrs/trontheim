@@ -211,7 +211,7 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             //return {...state, deletedItem: {item: action.payload, error:null, loading: false}}
         },
         [hortenListModel.deleteItem.failure]: (state, action) => {
-            let error = action.payload.detail
+            let error = action.payload ? action.payload.detail : "Massive Server Error"
             return {...state, deletedItem: {item:null, error:error, loading: false}, meta: { ...state.meta, error: error, loading: false}}
         },
         [hortenListModel.deleteItem.abort]: (state, action) => {

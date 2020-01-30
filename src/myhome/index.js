@@ -9,6 +9,7 @@ import ExperimentList from "./smartcomponents/ExperimentList";
 import AddExperimentCard from "./smartcomponents/AddExperiment/AddExperimentCard";
 import QuickLinksCard from "./smartcomponents/QuickLinksCard";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
+import {Neuroglancer}from "@janelia-flyem/react-neuroglancer";
 
 
 export class Representation extends Component {

@@ -14,57 +14,20 @@ export const osloEndpoints = [
         rooturl: 'http://localhost:80/api',
         url: "http://localhost:80/o/authorize",
         websocket: "ws://localhost:80/oslo?token=",
-        client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
-        secret: "gUfYlWp8gUDgY0P8OCB60H4AfwHvDr53yjFIrzIw04GohW5lYOUbq5JOZrf4Glwus0YWEwCrgEDXQvj1bVYjBW3UOFvfsGqDG8ia0wAE6Nls4I2iz4cIbtOn0fNhFcPr",
+        client: "6fjbBosPdI7q9pDLcAFPhYdhmGWtukEEiALQbY3i",
+        secret: "Hesgcg9BXHOv3iphEh9CtPKCdcpWIX2SFb2TzjcdzhXkiM5Pb5htBBp5QcQMJ1aEelVfa13CVBlpdH6wlfhedW4YbdB01U7eyPmDIuprN3sT0fV1KJ5TeWvnwPbcXG45",
         redirect: redirectui,
         scope: "write read read_starred profile",
         width: 400, // Width (in pixels) of login popup window. Optional, default: 400
         height: 400 // Height (in pixels) of login popup window. Optional, default: 400
     },
     {
-        name: "Localhost Johannes",
-        image: "/images/oslologo.png",
-        rooturl: 'http://localhost:80/api',
-        url: "http://localhost:80/o/authorize",
-        websocket: "ws://localhost:80/oslo?token=",
-        client: "QWDRidApthbv0T3fP8pi2k6ePBGxw0L3SwpuA3cQ",
-        secret: "1ZLMiMjAF7mfa7xcWGcSmIX4QATyInqfXkl2ekCyN3CPAidM9qkWpnSmfIQ7iampgz40euvqlTgMXjiFogrkfl9gIhudzwCw7DssEJmnImxZOlCvrx89jiPViGdG3okO",
-        redirect: redirectui,
-        scope: "write",
-        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
-        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
-    },
-    {
-        name: "Network",
-        image: "/images/jhnnsrslogo.png",
-        rooturl: 'http://129.206.173.171:80/api',
-        url: "http://129.206.173.171:80/o/authorize",
-        websocket: "ws://129.206.173.171:80/oslo?token=",
-        client: "8bwFvpziMTeKrnznoBnbwl0gHTIzKoRiY79bterv",
-        redirect: redirectui,
-        scope: "write",
-        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
-        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
-    },
-    {
-        name: "Uni Heidelberg",
-        image: "/images/jhnnsrslogo.png",
-        rooturl: 'http://192.168.0.38:80/api',
-        url: "http://192.168.0.38:80/o/authorize",
-        websocket: "ws://192.168.0.38:80/oslo?token=",
-        client: "CFMouZimB500wLY0XHywlRXGR4tjJFwEkOu8UNt8",
-        redirect: redirectui,
-        scope: "write",
-        width: 400, // Width (in pixels) of login popup window. Optional, default: 400
-        height: 400 // Height (in pixels) of login popup window. Optional, default: 400
-    },
-    {
-        name: "Arnheim Heidcloud",
+        name: "Arnheim Online",
         image: "/images/jhnnsrslogo.png",
         rooturl: 'https://arnheim.online/api',
-        url: "http://arnheim.online/o/authorize",
+        url: "https://arnheim.online/o/authorize",
         websocket: "wss://arnheim.online/oslo?token=",
-        client: "xMOFVsejWOSccNg7xYMJfOMXC78GRejjbQiQG8xl",
+        client: "MhKo3IPJrY7XAWRCdv6FJKrYih9g28XAA8h6kGA9",
         redirect: redirectui,
         scope: "write read read_starred profile",
         width: 400, // Width (in pixels) of login popup window. Optional, default: 400

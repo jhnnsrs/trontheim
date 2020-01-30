@@ -6,6 +6,7 @@
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.10.17",
     "@githubprimer/octicons-react": "^8.5.0",
+    "@janelia-flyem/react-neuroglancer": "^1.2.2",
     "@vx/axis": "0.0.192",
     "@vx/curve": "0.0.192",
     "@vx/drag": "0.0.192",
@@ -86,6 +87,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "deploy": "netlify deploy --dir build --prod",
     "electron-dev": "concurrently \"set BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron": "wait-on http://localhost:3000 && electron ."
   },

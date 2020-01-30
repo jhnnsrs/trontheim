@@ -220,7 +220,7 @@ export default class ModelsSeries extends ModelsBase {
   }
 
   /**
-   * Study description getter
+   * Study VARIETYDESCRIPTION getter
    *
    * @return {*}
    */
@@ -256,7 +256,7 @@ export default class ModelsSeries extends ModelsBase {
   }
 
   /**
-   * Series description getter
+   * Series VARIETYDESCRIPTION getter
    *
    * @return {*}
    */

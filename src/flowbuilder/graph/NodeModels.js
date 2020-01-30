@@ -11,6 +11,7 @@ export type Node = {
         type: string,
         nodeclass: string,
         path: string,
+        hash: string,
         channel: string,
         inputmodel: JSONString,
         outputmodel: JSONString,
@@ -26,6 +27,7 @@ export class NodeSpawnModel extends NodeModel {
     path = "Container"
     filterid ;
     ports;
+    hash = ""
 
     constructor(type, node: Node) {
         super(type);
@@ -40,6 +42,7 @@ export class NodeSpawnModel extends NodeModel {
             this.color = data.color ? data.color : randomColor(this.color);
             this.entityid = data.entityid ? data.entityid : this.entityid;
             this.variety = data.variety ? data.variety : this.entity;
+            this.unique = data.hash ? data.hash: this.hash;
             this.path = data.path ? data.path : this.path;
             this.inputmodel = data.inputmodel ? JSON.parse(data.inputmodel): this.getInputModel();
             this.outputmodel = data.outputmodel ? JSON.parse(data.outputmodel): this.getOutputModel();
@@ -76,9 +79,12 @@ export class NodeSpawnModel extends NodeModel {
         this.nodeid = object.nodeid
         this.name = object.name;
         this.color = object.color;
+        this.hash = object.hash;
         this.entityid = object.entityid;
         this.path = object.path;
         this.variety = object.variety;
+        this.inputmodel = object.inputmodel;
+        this.outputmodel = object.outputmodel;
         this.defaultsettings = object.defaultsettings;
         this.baseid = object.baseid
     }
@@ -89,7 +95,10 @@ export class NodeSpawnModel extends NodeModel {
             color: this.color,
             entityid: this.entityid,
             nodeid: this.nodeid,
+            hash: this.hash,
             path: this.path,
+            inputmodel: this.inputmodel,
+            outputmodel: this.outputmodel,
             variety: this.variety,
             defaultsettings: this.defaultsettings,
             baseid: this.baseid,
