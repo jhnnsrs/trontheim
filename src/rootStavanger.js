@@ -18,6 +18,8 @@ import type {HortenVeil} from "./alta/horten/veil";
 import {createHortenVeil} from "./alta/horten/veil";
 import {createHortenCurtain} from "./alta/horten/curtain";
 import type {HortenCurtain} from "./alta/horten/curtain";
+import type {HortenPortal} from "./alta/horten/portal";
+import {createHortenPortal} from "./alta/horten/portal";
 
 
 export type RootStavanger = Stavanger & {
@@ -29,7 +31,8 @@ export type RootStavanger = Stavanger & {
     arnheim: HortenRestAPI,
     http: HortenHTTP,
     veil: HortenVeil,
-    curtain: HortenCurtain
+    curtain: HortenCurtain,
+    portal: HortenPortal,
 }
 
 const FakeAPI = {
@@ -48,7 +51,8 @@ export const rootStavangerCreator= createStavanger({
     user: createHortenUser({type: "User", url: "me"}),
     http: createHortenHTTP({type: "http"}),
     veil: createHortenVeil({type: "veil", alienApi: "foreignnode", statusApi: "foreignnodestatus"}),
-    curtain: createHortenCurtain({type: "veil", alienApi: "foreignnode", statusApi: "foreignnodestatus"})
+    curtain: createHortenCurtain({type: "veil", alienApi: "foreignnode", statusApi: "foreignnodestatus"}),
+    portal: createHortenPortal({type: "portal"})
 })
 
 export const rootStavanger: RootStavanger = rootStavangerCreator("root")

@@ -3,6 +3,7 @@ import {Route,} from "react-router-dom";
 import {connectInstrument} from "../alta/react";
 import {hasUserPortal} from "../portals";
 import type {RootStavanger} from "../rootStavanger";
+import Landing from "../landing"
 
 const PrivateRoute = ({ component: Component, hasUser,  ...rest }) => {
 
@@ -14,7 +15,7 @@ const PrivateRoute = ({ component: Component, hasUser,  ...rest }) => {
                 hasUser ? (
                     <Component {...props} />
                 ) : (
-                    ""
+                    <Landing/>
                 )
             }
         />

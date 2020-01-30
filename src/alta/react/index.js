@@ -47,7 +47,6 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
         }
 
         componentWillUnmount(): void {
-            console.log("Unmounting called ")
             let {isRunning, children, registerEpic, killEpic, killPage, ...restProps} = this.props
             this.props.killPage(restProps)
         }

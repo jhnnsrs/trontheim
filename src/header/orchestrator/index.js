@@ -2,6 +2,7 @@ import {combineEpics, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
 import type {HeaderStavanger} from "../stavanger";
 import {rootStavanger} from "../../rootStavanger";
+import {OPEN_OSLO_MODAL} from "../../constants/portals";
 
 export const orchestraterEpic = (stavanger: HeaderStavanger) => {
 
@@ -10,6 +11,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
     let oslo = rootStavanger.oslo
     let userModel = rootStavanger.user.model
     let httpModel = rootStavanger.http.model
+    let portal = rootStavanger.portal
 
     const onLoginSetApiPoint = (action$, state$) =>
         action$.pipe(
@@ -19,9 +21,13 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
                 let osloconfig = window.localStorage.getItem("osloconfig")
                 let config = osloconfig ? JSON.parse(osloconfig): null
 
-                oslo.helpers.log("Connected to Oslo '" + config.name+ "' at '" + config.rooturl)
+                let modalOpenAction = stavanger.page.model.setProp.request({key: "modalOpen", value: true})
+                oslo.helpers.log(modalOpenAction)
                 if (token!= null & config != null) {
+
+                    oslo.helpers.log("Connected to Oslo '" + config.name+ "' at '" + config.rooturl)
                     return [
+                        portal.model.setPortal.request({id: "OSLO_MODAL_OPEN", action:  modalOpenAction}),
                         apiModel.setAuth.request({token: token, rooturl: config.rooturl}),
                         osloModel.setAuth.request({token: token, websocket: config.websocket}),
                         httpModel.setAuth.request({token: token, rooturl: config.rooturl}),
@@ -29,6 +35,7 @@ export const orchestraterEpic = (stavanger: HeaderStavanger) => {
                     ]
                 }
                 else return [
+                    portal.model.setPortal.request({id: OPEN_OSLO_MODAL, action:  modalOpenAction}),
                     stavanger.page.model.dynamic("LOGIN_REQUIRED").success("Uh Have to login first darling"),]
             })
         );

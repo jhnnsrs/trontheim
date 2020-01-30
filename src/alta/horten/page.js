@@ -89,7 +89,6 @@ export const createHortenPageEpic = createHortenEpic((model: HortenPageModel, se
         action$.pipe(
             ofType(model.killPage.request),
             mergeMap(action => {
-                console.log(action)
                 const meta = { ...action.meta, timestamp: Date.now()}
                 helpers.log(definition.reset)
                 return definition.reset ? [model.resetPage.request(action.payload,meta)] : [model.killPage.success(action.payload,meta)]
