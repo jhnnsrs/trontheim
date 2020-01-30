@@ -5,7 +5,7 @@ import {RoisCreator} from "../../canvas/Rois";
 import {DisplayCreator} from "../../canvas/Display";
 import {RoiCreator} from "../../canvas/Roi";
 
-const Canvas = CanvasCreator(stavanger => stavanger.canvas)
+const Canvas = CanvasCreator(stavanger => stavanger.canvas, stavanger => stavanger.display)
 const Display = DisplayCreator(stavanger => stavanger.display)
 const Rois = RoisCreator(stavanger => stavanger.rois)
 const Roi = RoiCreator(stavanger => stavanger.selectedRoi)
@@ -28,8 +28,7 @@ const Stage = (props) => {
                 </CardTitle>
                 <Canvas detectWheel={false}>
                     <Display/>
-                    {showAll && <Rois/>}
-                    <Roi/>
+                    {showAll ? <Rois/> : <Roi/>}
                 </Canvas>
             </CardBody>
         </Card>

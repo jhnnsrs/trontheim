@@ -1,14 +1,13 @@
 import type {Stavanger} from "../../alta/stavanger";
 import {createStavanger} from "../../alta/stavanger";
-import {DEF_ANIMAL, DEF_EXPERIMENT, DEF_EXPERIMENTALGROUP, DEF_SAMPLE} from "../../constants/definitions";
-import {createHortenItem} from "../../alta/horten/item";
-import {createHortenTable} from "../../alta/horten/table";
+import {DEF_ANIMAL, DEF_EXPERIMENT, DEF_SAMPLE} from "../../constants/definitions";
 import type {HortenItem} from "../../alta/horten/item";
+import {createHortenItem} from "../../alta/horten/item";
 import type {HortenTable} from "../../alta/horten/table";
+import {createHortenTable} from "../../alta/horten/table";
 import type {HortenMold} from "../../alta/horten/mold";
-import {createHortenMold} from "../../alta/horten/mold";
-import {createHortenDraggable} from "../../alta/horten/draggable";
 import type {HortenDraggable} from "../../alta/horten/draggable";
+import {createHortenDraggable} from "../../alta/horten/draggable";
 
 
 export type OrganizerStavanger = Stavanger & {

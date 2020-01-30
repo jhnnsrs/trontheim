@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import type {OrganizerStavanger} from "../stavanger";
-import {Button, Card, CardBody, CardImg, CardImgOverlay, CardSubtitle, CardText, CardTitle} from "reactstrap";
+import {Card, CardBody, CardSubtitle, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
 import {push} from "react-router-redux"
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
 

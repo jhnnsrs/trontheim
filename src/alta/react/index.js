@@ -1,6 +1,6 @@
 import {combineEpics} from "redux-observable";
 import {connect} from "react-redux";
-import type {EpicCreator, Node, StavangerCreator} from "../../test/lib/connectors";
+import type {EpicCreator, StavangerCreator} from "../../test/lib/connectors";
 import {registerStavangerReducers} from "./ReducerRegistry";
 import React from "react";
 import _ from "lodash";
@@ -9,9 +9,7 @@ import {combineStavangersToEpic} from "./EpicRegistry";
 import {rootStavanger} from "../../rootStavanger";
 import {Container} from "reactstrap";
 import type {Stavanger} from "../stavanger";
-import Loadable from "react-loadable";
-import {createHaldenOsloActions} from "../halden";
-import routerRegistry from "../../routerRegistry";
+import standardOrchestrator from "./StandardOrchestration";
 
 export const StavangerContext = React.createContext(null);
 
@@ -26,28 +24,32 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
     // TODO Normal rootStavanger should be set to newStanger.parent here, as new operas should only live in their parents
     // but well fuck my life and so on
 
-    let killEpicPayload = {
+
+
+    let killEpicMeta = {
         alias: alias,
-        end: createHaldenOsloActions(rootStavanger.epics.model.alias, alias + "_EPIC", "END")
+        end: rootStavanger.epics.model.dynamic(alias + "_END"),
     }
 
-    let registerEpicPayload = {
+    let registerEpicMeta = (props) => ({
         epic: epic,
         alias: alias,
-        end: createHaldenOsloActions(rootStavanger.epics.model.alias, alias + "_EPIC", "END")
-    }
+        pageInit: newStavanger.page.model.initPage.success(props),
+        end: rootStavanger.epics.model.dynamic(alias + "_END"),
+    })
 
 
     class WrappedComponentWrappper extends React.Component {
 
         componentDidMount(): void {
-            this.props.registerEpic()
-            this.props.pageInit(this.props)
+            let {isRunning, children, registerEpic, killEpic, killPage, ...restProps} = this.props
+            this.props.initPage(restProps)
         }
 
         componentWillUnmount(): void {
-            this.props.pageKill(this.props)
-            this.props.killEpic()
+            console.log("Unmounting called ")
+            let {isRunning, children, registerEpic, killEpic, killPage, ...restProps} = this.props
+            this.props.killPage(restProps)
         }
 
         render() {
@@ -67,10 +69,8 @@ export const WrappedComponent = (CurriedComponent,alias,epic,newStavanger: Stava
 
 
     let mapDispatchToProps = {
-        registerEpic: () =>  rootStavanger.epics.model.registerEpic.request(registerEpicPayload),
-        killEpic: () => rootStavanger.epics.model.killEpic.request(killEpicPayload),
-        pageInit: (props) => newStavanger.page.model.initPage.request(props),
-        pageKill: (props) => newStavanger.page.model.killPage.request(props)
+        initPage: (props) =>  rootStavanger.epics.model.registerEpic.request(props, registerEpicMeta(props)), // First it registeres the Epics, then it inits the page
+        killPage: (props) => newStavanger.page.model.killPage.request(props,killEpicMeta), // First it waits for the Page to be killed
     }
 
     return connect(mapStateToProps,mapDispatchToProps)(WrappedComponentWrappper)
@@ -103,8 +103,9 @@ export function connectOpera<T>(stavanger: StavangerCreator<T>) {
                     try {
                         const stavangerEnsembleEpics = combineStavangersToEpic(ensembleStavanger, alias)
                         const stavangerOrchestraEpic = orchestrater(rootStavanger)
+                        const standardOrchestration = standardOrchestrator(rootStavanger)
 
-                        const combinedEpic = combineEpics(stavangerEnsembleEpics,stavangerOrchestraEpic)
+                        const combinedEpic = combineEpics(stavangerEnsembleEpics,stavangerOrchestraEpic,standardOrchestration)
                         // Maybe it should also return the epics
                         const Wrapper = WrappedComponent(Component,alias,combinedEpic,rootStavanger, ensembleStavanger)
 
@@ -114,7 +115,7 @@ export function connectOpera<T>(stavanger: StavangerCreator<T>) {
                             </StavangerContext.Provider>)
                     }
                     catch (e) {
-                        console.log("Failure with Epic", alias)
+                        console.log("Failure with Epic ", alias, "| ", e)
                         return ((props) => "")
                     }
 

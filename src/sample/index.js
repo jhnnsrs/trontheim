@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Card, Col, Container, Row} from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 import {sampleStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
 import Representations from "./smartcomponents/Representations";
 import SampleDetailCard from "./smartcomponents/SampleDetailCard";
-import RepresentationDetailCard from "./smartcomponents/RepresentationDetailCard";
-import Displays from "./smartcomponents/Displays";
 import Flows from "./smartcomponents/Flows";
 
 export class Experiment extends Component {

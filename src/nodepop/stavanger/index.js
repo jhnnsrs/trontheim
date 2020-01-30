@@ -1,18 +1,12 @@
-import {createStavanger} from "../../alta/stavanger";
-import type {HortenDetail} from "../../alta/horten/detail";
-import {createHortenDetail} from "../../alta/horten/detail";
-import * as constants from "../../constants"
 import type {Stavanger} from "../../alta/stavanger";
-import {createHortenList} from "../../alta/horten/list";
-import type {HortenList} from "../../alta/horten/list";
-import {createHortenTable} from "../../alta/horten/table";
-import type {HortenTable} from "../../alta/horten/table";
+import {createStavanger} from "../../alta/stavanger";
+import * as constants from "../../constants"
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
-import {createHortenNodes} from "../../alta/horten/nodes";
 import type {HortenNodes} from "../../alta/horten/nodes";
-import {createHortenNomogram} from "../../alta/horten/nomogram";
+import {createHortenNodes} from "../../alta/horten/nodes";
 import type {HortenNomogram} from "../../alta/horten/nomogram";
+import {createHortenNomogram} from "../../alta/horten/nomogram";
 
 
 export type NodeTesterStavanger = Stavanger & {
@@ -22,7 +16,7 @@ export type NodeTesterStavanger = Stavanger & {
 }
 
 export const nodetestStavanger: NodeTesterStavanger = createStavanger({
-    nodes: createHortenNodes("NODES"),
+    nodes: createHortenNodes({type: "NODES"}),
     graph: createHortenNomogram({type: "graph"}),
     node: createHortenItem({type: constants.NODE, url: "nodes"}),
 })

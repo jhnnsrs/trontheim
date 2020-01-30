@@ -1,7 +1,7 @@
-import {createStavanger} from "../../alta/stavanger";
 import type {Stavanger} from "../../alta/stavanger";
-import {createHortenOAuth} from "../../alta/horten/oauth";
+import {createStavanger} from "../../alta/stavanger";
 import type {HortenOAuth} from "../../alta/horten/oauth";
+import {createHortenOAuth} from "../../alta/horten/oauth";
 
 
 export type HeaderStavanger = Stavanger & {

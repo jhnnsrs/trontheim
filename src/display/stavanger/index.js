@@ -5,9 +5,9 @@ import {createHortenItem} from "../../alta/horten/item";
 import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import {DEF_DISPLAY, DEF_ROI, DEF_TRANSFORMATION} from "../../constants/definitions";
+import type {HortenCanvas} from "../../alta/horten/canvas";
 import {createHortenCanvas} from "../../alta/horten/canvas";
 import * as constants from "../../constants";
-import type {HortenCanvas} from "../../alta/horten/canvas";
 
 
 export type DisplayStavanger = Stavanger & {

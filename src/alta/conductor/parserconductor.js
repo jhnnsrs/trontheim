@@ -1,7 +1,7 @@
 import type {HortenEdge} from "../horten/edge";
 import type {HortenNomogram} from "../horten/nomogram";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {filter, mergeMap, switchMap, take} from "rxjs/operators";
+import {filter, mergeMap} from "rxjs/operators";
 import type {HortenItem} from "../horten/item";
 import type {HortenTable} from "../horten/table";
 import type {HortenPage} from "../horten/page";
@@ -56,7 +56,7 @@ export const parserConductor = (nodeStavanger: EdgeStavanger, configuration: Par
 
     const onPageStartedListenToOutput = (action$, state$) =>
         action$.pipe(
-            ofType(page.model.initPage.request),
+            ofType(page.model.initPage.success),
             mergeMap(action => {
                     return outputs.map( out => out.model.osloJoin.request({meta: {room: {nodeid: out.model.alias}}}))
                 }

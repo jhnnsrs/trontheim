@@ -1,12 +1,13 @@
-import React, {Component} from "react";
-import type {BioImageFlowStavanger, SampleFlowStavanger} from "../stavanger";
+import React from "react";
+import type {BioImageFlowStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";
-import {NodeContainer, NodeTestContainer} from "../../alta/react/Nodes";
-import {Button, Card} from "reactstrap";
+import {NodeTestContainer} from "../../alta/react/Nodes";
+import {Card} from "reactstrap";
 
 
-import { Responsive, WidthProvider } from "react-grid-layout";
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
+import {Responsive, WidthProvider} from "react-grid-layout";
+
+export const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 
 class NodesContainer extends React.PureComponent {
@@ -30,15 +31,19 @@ class NodesContainer extends React.PureComponent {
         });
     }
 
+
     onLayoutChange(layout) {
         this.props.updateLayout(layout)
     }
 
 
 
+
     render() {
         let {nodes, layoutna} = this.props
         let layoutclass = layoutna ? JSON.parse(layoutna.layout) : {}
+        console.log(layoutclass)
+        console.log(this.props)
         return (
             <React.Fragment>
                 <ResponsiveReactGridLayout

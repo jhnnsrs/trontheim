@@ -1,5 +1,5 @@
 import {Button, FormGroup, FormText, Input, InputGroup, InputGroupAddon, Label} from "reactstrap";
-import React, {useState} from "react";
+import React from "react";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
@@ -78,6 +78,54 @@ export const renderMultiSelectBuilder = (options) =>  ({input, label, placeholde
                 defaultValue={initial}
                 value={input.value}
                 isMulti
+                onChange={ (selectedOption) => input.onChange(selectedOption)}
+                options={selectoptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                id="multiSelection"
+            />
+            <FormText color="muted">
+                {description && description}
+            </FormText>
+        </FormGroup>
+    )
+}
+
+export const renderMultiSelect = (options: [{value: any, label: string}]) =>  ({input, label, placeholder, type, description, meta: {touched, error, initial}, ...custom}) => {
+
+    let selectoptions = options
+
+    return (
+        <FormGroup>
+            <Label for="multiSelection">{label}</Label>
+            <Select
+                defaultValue={initial}
+                value={input.value}
+                isMulti
+                onChange={ (selectedOption) => input.onChange(selectedOption)}
+                options={selectoptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                id="multiSelection"
+            />
+            <FormText color="muted">
+                {description && description}
+            </FormText>
+        </FormGroup>
+    )
+}
+
+
+export const renderSingleSelect = (options: [{value: any, label: string}]) =>  ({input, label, placeholder, type, description, meta: {touched, error, initial}, ...custom}) => {
+
+    let selectoptions = options
+
+    return (
+        <FormGroup>
+            <Label for="multiSelection">{label}</Label>
+            <Select
+                defaultValue={initial}
+                value={input.value}
                 onChange={ (selectedOption) => input.onChange(selectedOption)}
                 options={selectoptions}
                 className="basic-multi-select"

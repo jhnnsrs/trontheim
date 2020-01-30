@@ -1,10 +1,8 @@
-import type {DisplayNodeStavanger} from "../../nodestest/DisplayNode";
 import {mapBuilder, StavangerContext} from "./index";
-import React, {Component}from "react";
-import {Field, Form, reduxForm} from "redux-form";
+import React, {Component} from "react";
+import {Form, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import type {HortenForm} from "../horten/form";
-import {rootStavanger} from "../../rootStavanger";
 
 
 export type FormProps = {

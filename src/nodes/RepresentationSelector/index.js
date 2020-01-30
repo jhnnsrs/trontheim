@@ -4,14 +4,14 @@ import {ImageMutater} from "./container";
 import {connectOpera} from "../../alta/react";
 import {orchestraterEpic} from "./orchestrater";
 import * as constants from "../../constants"
-import {createHortenForm} from "../../alta/horten/form";
 import type {HortenForm} from "../../alta/horten/form";
-import {createHortenItem} from "../../alta/horten/item";
-import {createHortenTable} from "../../alta/horten/table";
-import type {HortenTable} from "../../alta/horten/table";
+import {createHortenForm} from "../../alta/horten/form";
 import type {HortenItem} from "../../alta/horten/item";
-import {createHortenEdge} from "../../alta/horten/edge";
+import {createHortenItem} from "../../alta/horten/item";
+import type {HortenTable} from "../../alta/horten/table";
+import {createHortenTable} from "../../alta/horten/table";
 import type {HortenEdge} from "../../alta/horten/edge";
+import {createHortenEdge} from "../../alta/horten/edge";
 import {DEF_REPRESENTATION, DEF_SAMPLE} from "../../constants/definitions";
 
 

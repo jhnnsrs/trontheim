@@ -210,7 +210,7 @@ export default class ParsersDicom extends ParsersVolume {
   }
 
   /**
-   * Study description
+   * Study VARIETYDESCRIPTION
    *
    * @return {*}
    */
@@ -228,7 +228,7 @@ export default class ParsersDicom extends ParsersVolume {
   }
 
   /**
-   * Series description
+   * Series VARIETYDESCRIPTION
    *
    * @return {*}
    */

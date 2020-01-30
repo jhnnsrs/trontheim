@@ -1,4 +1,4 @@
-import {Button, ButtonGroup, CardBody, CardText, Container} from "reactstrap"
+import {Button, ButtonGroup, Container} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
 import Form from "../../alta/react/FinalMold";

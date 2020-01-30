@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import type {SampleStavanger} from "../stavanger";
 import {Card, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
 

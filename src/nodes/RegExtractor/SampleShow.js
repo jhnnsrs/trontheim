@@ -1,9 +1,7 @@
-import {Button, ButtonGroup, CardBody, CardText, Container} from "reactstrap"
+import {Button, Container} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
-import Form from "../../alta/react/FinalMold";
-import type {RegExtractorStavanger, SliceLineTransformer} from "./index";
-import {Field} from "react-final-form";
+import type {RegExtractorStavanger} from "./index";
 import List from "../../generics/List";
 import SeperatingLine from "../../generics/SeperatingLine";
 
@@ -14,15 +12,15 @@ class LineRectComponent extends Component<any,any> {
                 {this.props.sample && <Container>Trying to Match {this.props.sample.name}</Container>}
                 <SeperatingLine name={"Animals"}/>
                 <List list={this.props.animals}>
-                    {item => <Button onClick={() => this.props.selectAnimal(item)}>{item.data.name}</Button>}
+                    {item => <Button key={item.data.id} onClick={() => this.props.selectAnimal(item)}>{item.data.name}</Button>}
                 </List>
                 <SeperatingLine name={"Experiments"}/>
                 <List list={this.props.experiments}>
-                    {item => <Button onClick={() => this.props.selectExperiment(item)}>{item.data.name}</Button>}
+                    {item => <Button key={item.data.id} onClick={() => this.props.selectExperiment(item)}>{item.data.name}</Button>}
                 </List>
                 <SeperatingLine name={"Groups"}/>
                 <List list={this.props.experimentalgroups}>
-                    {item => <Button onClick={() => this.props.selectExperimentalGroup(item)}>{item.data.name}</Button>}
+                    {item => <Button key={item.data.id} onClick={() => this.props.selectExperimentalGroup(item)}>{item.data.name}</Button>}
                 </List>
              </React.Fragment>
         );

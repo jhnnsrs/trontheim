@@ -1,7 +1,7 @@
 import React from 'react';
 import FileDrop from 'react-file-drop';
-import {Card, CardBody, CardHeader, CardTitle, CardText} from "reactstrap";
-import type {LockerStavanger, SampleStavanger} from "../stavanger";
+import {Card, CardText, CardTitle} from "reactstrap";
+import type {LockerStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";
 
 class BioImageUploadCard extends React.Component {

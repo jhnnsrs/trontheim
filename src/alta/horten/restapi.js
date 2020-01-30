@@ -1,24 +1,22 @@
 //@flow
-import type {Alias,Horten, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
-import {createHorten, createHorten2} from "./index";
-import {combineEpics, Epic, ofType} from "redux-observable";
-import {catchError, map, mergeMap, takeUntil} from "rxjs/operators";
+import type {Alias, HortenApi, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
+import {createHorten2} from "./index";
+import {Epic, ofType} from "redux-observable";
+import {catchError, map, mergeMap} from "rxjs/operators";
 import {
-    createHortenApi, createHortenEpic,
-    createHortenEpics,
+    createHortenEpic,
     createHortenHelpers,
-    createHortenModel, createHortenReducer,
+    createHortenModel,
+    createHortenReducer,
     createHortenSelectors
 } from "./creators";
+import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
-    createHaldenApi,
     createHaldenEpic,
-    createHaldenFunctionSelector, createHaldenPassThroughEpicFromActions,
+    createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
-import type {HaldenSelector} from "../halden";
-import {handleActions} from "redux-actions";
 import {Reducer} from "redux";
 import {ajax} from "rxjs/ajax";
 import * as qs from "querystring";
@@ -107,6 +105,7 @@ export type Request = {
     headers: any,
     suburl: string,
     rooturl: string,
+    urlaction: string,
     filter: any,
     data: any
 }
@@ -117,10 +116,16 @@ export const getResponseFromApi = (request: Request): Observable<any> => {
         if (request.filter) {
             q = "?" + qs.stringify(request.filter);
         }
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request,q), request.headers)
+        }
         return ajax
             .getJSON(`${request.rooturl}/${request.suburl}/${q}`, request.headers);
     }
     if (request.method === "POST") {
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request), request.headers)
+        }
         return ajax
             .post(`${request.rooturl}/${request.suburl}/`, request.data, request.headers);
     }
@@ -133,10 +138,16 @@ export const getResponseFromApi = (request: Request): Observable<any> => {
                 q = encodeURIComponent(request.data);
             }
         }
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request,q), request.headers)
+        }
         return ajax.getJSON(`${request.rooturl}/${request.suburl}/${q}`, request.headers);
     }
     if (request.method === "UPDATE") {
         const q = encodeURIComponent(request.data.id);
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request,q), request.headers)
+        }
         return ajax
             .put(`${request.rooturl}/${request.suburl}/${q}/`, request.data , request.headers);
 
@@ -144,6 +155,9 @@ export const getResponseFromApi = (request: Request): Observable<any> => {
 
     if (request.method === "DELETE") {
         const q = encodeURIComponent(request.data.id);
+        if (request.urlaction) {
+            return ajax.getJSON(request.urlaction(request,q), request.headers)
+        }
         return ajax.delete(`${request.rooturl}/${request.suburl}/${q}/`, request.headers);
     }
 
@@ -166,6 +180,7 @@ export const createHortenRestAPIEpic = createHortenEpic((model: HortenRestAPIMod
                 let method = meta.method
                 let rooturl = meta.rooturl ? meta.rooturl : currentAuth.rooturl
                 let suburl = meta.suburl
+                let urlaction = meta.urlaction
                 let filter = meta.filter
 
 
@@ -178,6 +193,7 @@ export const createHortenRestAPIEpic = createHortenEpic((model: HortenRestAPIMod
                 let request = {
                     rooturl,
                     suburl,
+                    urlaction,
                     headers,
                     filter,
                     method,
@@ -190,7 +206,7 @@ export const createHortenRestAPIEpic = createHortenEpic((model: HortenRestAPIMod
                     map(response => actions.success(response)),
                     catchError(error => {
                         console.log(error)
-                        return [actions.failure(error)]
+                        return [actions.failure(error.response)]
                     })
                 )
             })

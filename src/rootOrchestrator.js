@@ -1,5 +1,5 @@
 import {combineEpics, ofType} from "redux-observable";
-import { mergeMap,} from "rxjs/operators";
+import {mergeMap,} from "rxjs/operators";
 import type {RootStavanger} from "./rootStavanger";
 import {veilRestApiMaestro} from "./alta/maestro/veil-restapi";
 

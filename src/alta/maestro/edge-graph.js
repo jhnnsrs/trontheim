@@ -1,7 +1,5 @@
 import {combineEpics, Epic, ofType} from "redux-observable";
 import {mergeMap} from "rxjs/operators";
-import type {GraphStavanger} from "./graph-node";
-import type {HortenNode} from "../horten/node";
 import type {HortenEdge} from "../horten/edge";
 import type {HortenNomogram} from "../horten/nomogram";
 import rootStavanger from "../../rootStavanger";

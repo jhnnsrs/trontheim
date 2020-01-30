@@ -1,5 +1,4 @@
 //@flow
-import {Observable} from "rxjs";
 import {ajax} from "rxjs/ajax";
 import {getRootUrl} from "../helpers";
 import type {OsloHeader} from "./index";

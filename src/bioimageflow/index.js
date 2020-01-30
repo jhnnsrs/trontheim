@@ -1,30 +1,20 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Button, Card, CardBody, Col, Container, Row} from "reactstrap";
-import {bioimageFlowStavanger} from "./stavanger";
+import {Container, Row} from "reactstrap";
+import {bioImageFlowStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
-import DisplayComponent from "./smartcomponents/BioImageComponent";
+import FlowComponent from "../common/flow/FlowComponent";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
-import NodeGridContainer from "../flow/smartcomponents/NodeGridContainer";
-import LayoutsCard from "../sampleflow/smartcomponents/LayoutsCard";
-import FlowComponent from "../sampleflow/smartcomponents/FlowComponent";
+import LayoutsCard from "../common/flow/LayoutsCard";
+import Registry from "../common/flow/Registry";
+import Show from "../common/flow/Show";
+import BioImageComponent from "./smartcomponents/BioImageComponent";
 
 export class Bergen extends Component {
 
-
-    constructor() {
-        super();
-        this.state = {
-            grid: false,
-        }
-    }
-
-    changeLayout() {
-        this.setState({grid: !this.state.grid})
-    }
 
     render() {
         console.log("Rerender Major Template")
@@ -35,11 +25,12 @@ export class Bergen extends Component {
                         <Row>
                             <Sidebar>
                                 <FlowComponent/>
-                                <DisplayComponent/>
+                                <BioImageComponent/>
                                 <LayoutsCard/>
+                                <Show/>
                             </Sidebar>
                             <MainContainer>
-                                <NodeGridContainer/>
+                                <Registry/>
                             </MainContainer>
                         </Row>
                     </Container>
@@ -51,4 +42,4 @@ export class Bergen extends Component {
 
 
 // dynamic:
-export  default connectOpera(bioimageFlowStavanger)(orchestraterEpic)(Bergen)("bioimageflow",rootStavanger);
+export  default connectOpera(bioImageFlowStavanger)(orchestraterEpic)(Bergen)("bioimageflow",rootStavanger);

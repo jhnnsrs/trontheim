@@ -1,4 +1,3 @@
-import {Link} from 'react-router-dom'
 import {NavLink} from "reactstrap";
 import React from "react"
 import {connectInstrument} from "../alta/react";

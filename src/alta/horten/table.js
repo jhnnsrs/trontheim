@@ -1,26 +1,20 @@
 //@flow
-import type {Alias, HortenApiCall, HortenModel, HortenSelectors, HortenSelectorsCreator} from "./types";
-import * as qs from "querystring";
-import {ajax} from "rxjs/ajax";
+import type {Alias, Horten, HortenModel, HortenSelectors, HortenType, Props, State} from "./types";
 import {Reducer} from "redux";
-import handleActions from "redux-actions/es/handleActions";
 import {ABORTED, ITEMCREATED, ITEMDELETED, ITEMUPDATED, LOADED} from "../constants";
 import {
-    createOsloApiEpic,
-    createOsloJoinRoomEpic, createOsloPassThroughEpic,
+    createOsloPassThroughEpic,
     deletedFromStavangerList,
     deletingFromStavangerList,
-    expandFromOslo, getHeader, getRootUrl,
-    pushToStavangerList, updateStavangerList
+    expandFromOslo,
+    pushToStavangerList,
+    updateStavangerList
 } from "../helpers";
-import {combineEpics, Epic} from "redux-observable";
-import {createHorten, createHorten2} from "./index";
-import type {Horten, HortenType, State, Props} from "./types";
-import {Action, Observable} from "rxjs";
-import {createOsloActions} from "../oslo";
-import {createHortenApi, createHortenEpic, createHortenModel, createHortenReducer} from "./creators";
-import {createHaldenAction, createHaldenApi} from "../halden";
+import {Epic} from "redux-observable";
+import {createHorten2} from "./index";
 import type {HaldenActions} from "../oslo";
+import {createHortenEpic, createHortenHelpers, createHortenModel, createHortenReducer} from "./creators";
+import {createHaldenAction} from "../halden";
 
 
 export type HortenModelUrl = string
@@ -67,7 +61,8 @@ export type HortenListDefaultState = {
     data: any[],
     meta: { status: any, statuscode: any, error: any },
     newItem: { data: any, meta: { error: any, status: any } },
-    deletedItem: { data: any, meta: { error: any, status: any } }
+    deletedItem: { data: any, meta: { error: any, status: any } },
+    latestError: any
 }
 
 
@@ -125,7 +120,7 @@ export const createHortenListSelectors = (alias: Alias, type: HortenType) => ({
 });
 
 
-export const createHortenListHelper = (alias: Alias, type: HortenType) => null
+export const createHortenListHelper = createHortenHelpers({})
 
 export const createHortenListEpic = createHortenEpic((hortenListModel: HortenListModel, hortenListSelector: HortenListSelectors) => ({
         selectPassThrough: createOsloPassThroughEpic(hortenListModel.selectItem),
@@ -149,7 +144,7 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             return { ...state, data: datalist, meta: {...state.meta, loading:false, error: null} };
         },
         [hortenListModel.fetchList.failure]: (state, action) => {
-            let error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
+            let error = action.payload.detail
             return { ...state, meta: { ...state.meta, error: error, loading: false} };
         },
         [hortenListModel.fetchList.abort]: (state, action) => {
@@ -168,7 +163,7 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             return { ...state, data: datalist, meta: {...state.meta, loading:false, error: null} };
         },
         [hortenListModel.setList.failure]: (state, action) => {
-            let error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
+            let error = action.payload.detail
             return { ...state, meta: { ...state.meta, error: error, loading: false} };
         },
         [hortenListModel.setList.abort]: (state, action) => {
@@ -193,11 +188,11 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             return {...state, newItem: {data: action.payload.response, meta : {error:null, loading: false, status: action.payload.status}}}
         },
         [hortenListModel.postItem.failure]: (state, action) => {
-            let error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
-            return {...state, newItem: {data:null, meta : { error:error, loading: false}}}
+            let error = action.payload.detail
+            return {...state, newItem: {data:null, meta : { error:error, loading: false}}, meta: { ...state.meta, error: error, loading: false}}
         },
         [hortenListModel.postItem.abort]: (state, action) => {
-            return {...state,  newItem:{data:null, meta : {error:null, loading: false}}}
+            return {...state,  newItem:{data:null, meta : {error:null, loading: false}} }
         },
 
         // SELECT OPTIONS
@@ -216,8 +211,8 @@ export const createHortenListReducer = createHortenReducer( (hortenListModel: Ho
             //return {...state, deletedItem: {item: action.payload, error:null, loading: false}}
         },
         [hortenListModel.deleteItem.failure]: (state, action) => {
-            let error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
-            return {...state, deletedItem: {item:null, error:error, loading: false}}
+            let error = action.payload ? action.payload.detail : "Massive Server Error"
+            return {...state, deletedItem: {item:null, error:error, loading: false}, meta: { ...state.meta, error: error, loading: false}}
         },
         [hortenListModel.deleteItem.abort]: (state, action) => {
             return {...state,  deletedItem:{item:null, error:null, loading: false}}

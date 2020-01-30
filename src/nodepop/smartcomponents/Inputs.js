@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import type {NodeTesterStavanger} from "../stavanger";
-import {Button, Card, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
+import {Button, Card} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
 
 class Inputs extends Component {

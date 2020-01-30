@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Col, Container, Row} from 'reactstrap';
-import './style.css';
+import {Container, Row} from 'reactstrap';
+import './style.scss';
 import {connectOpera} from "../alta/react";
 import {orchestraterEpic} from "./orchestrator";
 import {rootStavanger} from "../rootStavanger";
@@ -9,6 +9,7 @@ import FlowsList from "./smartcomponents/FlowsList";
 import NodesList from "./smartcomponents/NodesList";
 import GraphBuilder from "./smartcomponents/FlowBuilder";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
+import NodeSlick from "./smartcomponents/NodeSlick";
 
 
 class FlowBuilder extends Component {
@@ -23,7 +24,7 @@ class FlowBuilder extends Component {
                             </Sidebar>
                             <MainContainer xs={12}  md={7} lg={9} xl={10}>
                                 <GraphBuilder/>
-                                <NodesList/>
+                                <NodeSlick/>
                             </MainContainer>
                         </Row>
                     </Container>

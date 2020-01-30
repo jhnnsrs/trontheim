@@ -1,15 +1,4 @@
-import {
-    Button,
-    ButtonGroup,
-    Card,
-    CardBody,
-    CardImg,
-    CardImgOverlay,
-    CardText,
-    CardTitle,
-    InputGroup,
-    InputGroupAddon
-} from "reactstrap"
+import {Button, ButtonGroup, Card, InputGroup, InputGroupAddon} from "reactstrap"
 import {connectInstrument} from "../../alta/react";
 import React, {Component} from "react";
 import {Field} from "react-final-form";

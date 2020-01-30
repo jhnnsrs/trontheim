@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-
-import {Button, Card, CardBody, CardHeader, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
-import Octicon, {ArrowRight, Plus} from "@githubprimer/octicons-react";
 import RepresentationList from "./TransformationList";
 import NodeFrame from "../lib/NodeFrame";
 

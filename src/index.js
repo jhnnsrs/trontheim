@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './App';
-import './custom.scss';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));

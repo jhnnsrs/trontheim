@@ -1,7 +1,7 @@
 //@flow
 
 import {mapBuilder, StavangerContext} from "./index";
-import React, {Component}from "react";
+import React, {Component} from "react";
 import {Form} from 'react-final-form'
 import {connect} from "react-redux";
 import type {HortenForm} from "../horten/form";

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Container, Row} from "reactstrap";
-import Octicon, {LightBulb, Plus, Squirrel} from "@githubprimer/octicons-react";
+import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Row} from "reactstrap";
+import Octicon, {Plus} from "@githubprimer/octicons-react";
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
 import {ScrollabeHorizontalListCreator} from "../../generics/creators/ScrollableHorizontalList";
 

@@ -1,12 +1,7 @@
-import {createStavanger} from "../../alta/stavanger";
-import type {HortenDetail} from "../../alta/horten/detail";
-import {createHortenDetail} from "../../alta/horten/detail";
-import * as constants from "../../constants"
 import type {Stavanger} from "../../alta/stavanger";
-import {createHortenList} from "../../alta/horten/list";
-import type {HortenList} from "../../alta/horten/list";
-import {createHortenTable} from "../../alta/horten/table";
+import {createStavanger} from "../../alta/stavanger";
 import type {HortenTable} from "../../alta/horten/table";
+import {createHortenTable} from "../../alta/horten/table";
 import {DEF_DISPLAY, DEF_EXHIBIT, DEF_FLOW, DEF_REPRESENTATION, DEF_SAMPLE} from "../../constants/definitions";
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
@@ -21,12 +16,14 @@ export type SampleStavanger = Stavanger & {
     displayflows: HortenTable,
     sampleflows: HortenTable,
     exhibitflows: HortenTable,
+    repflows: HortenTable,
 }
 
 export const sampleStavanger: SampleStavanger = createStavanger({
     sample: createHortenItem(DEF_SAMPLE),
     selectedRepresentation: createHortenItem(DEF_REPRESENTATION),
     representations: createHortenTable(DEF_REPRESENTATION),
+    repflows: createHortenTable(DEF_FLOW),
     displayflows: createHortenTable(DEF_FLOW),
     sampleflows: createHortenTable(DEF_FLOW),
     exhibitflows: createHortenTable(DEF_FLOW),

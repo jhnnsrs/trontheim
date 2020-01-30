@@ -1,13 +1,9 @@
 import React, {Component} from "react";
-import {Route, Switch} from 'react-router-dom'
-
-
-
+import {Route} from 'react-router-dom'
 // Header Fouter and Route
 import PrivateRoute from "../auth/PrivateRoute";
 import Footer from "../common/components/Footer";
 import Header from "../header";
-
 // Common Stavanger
 import Experiment from "../experiment";
 import NodeBuilder from "../nodebuilder";
@@ -25,6 +21,7 @@ import LatestRoi from "../latestroi";
 import Nodes from "../nodeitems";
 import Display from "../display";
 import BioImageFlow from "../bioimageflow";
+import RepresentationFlow from "../representationflow";
 import ExhibitFlow from "../exhibitflow";
 import LockerFlow from "../lockerflow";
 import DisplayFlow from "../displayflow";
@@ -80,6 +77,7 @@ class Wrapped extends Component {
                     <PrivateRoute path={`/lockerflow/:flowid/locker/:lockerid`} component={LockerFlow}/>
                     <PrivateRoute path={`/bioimageflow/:flowid/bioimage/:bioimageid`} component={BioImageFlow}/>
                     <PrivateRoute path={`/exhibitflow/:flowid/exhibit/:exhibitid`} component={ExhibitFlow}/>
+                    <PrivateRoute path={`/representationflow/:flowid/representation/:represenationid`} component={RepresentationFlow}/>
                     <PrivateRoute path={`/flows`} component={Flow}/>
                     <Route path={`/landing`} component={Landing}/>
                     <PrivateRoute exact path={`/`} component={MyHome}/>

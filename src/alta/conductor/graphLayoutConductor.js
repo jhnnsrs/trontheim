@@ -1,15 +1,15 @@
 import type {HortenEdge} from "../horten/edge";
 import type {HortenNomogram} from "../horten/nomogram";
 import {combineEpics, Epic, ofType} from "redux-observable";
-import {combineLatest, mergeMap, switchMap, take} from "rxjs/operators";
+import {mergeMap, switchMap, take, withLatestFrom} from "rxjs/operators";
 import type {HortenItem} from "../horten/item";
 import type {HortenTable} from "../horten/table";
 import type {HortenPage} from "../horten/page";
 import {userIDPortal} from "../../portals";
 import {generateName} from "../../utils";
-import {graphNodeMaestro} from "../maestro/graph-node";
 import {graphEdgeMaestro} from "../maestro/graph-edge";
 import type {HortenNodes} from "../horten/nodes";
+import {autoResetMaestro} from "../maestro/autoreset";
 
 
 export interface GraphLayoutStavanger {
@@ -57,6 +57,9 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
     let MODEL = configuration.model
     let WATCHERNAME = configuration.watcherName
 
+
+    const autoreset = autoResetMaestro(stavanger)
+
     const onPageInitLoadFlow = (action$, state$) =>
         action$.pipe(
             ofType(stavanger.page.model.initPage.success),
@@ -74,9 +77,16 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
             ofType(flow.model.fetchItem.success),
             mergeMap(action => {
                 return [
-                    graph.model.setGraphFromFlow.request(action.payload),
                     possibleLayouts.model.fetchList.request({meta: {filter: {flows: action.payload.data.id}}}),
                     possibleLayouts.model.osloJoin.request({meta: {room: {creator: userIDPortal(state$.value)}}}),]
+            }));
+
+    const onFlowAndLayoutLoaded = (action$, state$) =>
+        action$.pipe(
+            ofType(flow.model.fetchItem.success),
+            mergeMap(action => {
+                return [
+                    graph.model.setGraphFromFlow.request(action.payload),]
             }));
 
     const onLayoutSelectedChangeLayout = (action$, state$) =>
@@ -85,6 +95,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
             mergeMap(action => {
                 return [layout.model.setItem.request(action.payload)]
             }));
+
 
     const onLayoutListComesSelectFirstLayout = (action$, state$) =>
         action$.pipe(
@@ -95,7 +106,13 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
                     let firstitem = list[0]
                     return [layout.model.setItem.request(firstitem)]
                 }
-                else return [layout.model.dynamic("NO_LAYOUT_TO_SET").request("")]
+                else return [layout.model.setItem.request(
+                    {
+                        data:
+                            {id: 1, name: " No Layout Yet", layout: JSON.stringify({}), creator: 1, flows: []}
+                    }
+
+                )]
             }));
 
 
@@ -170,7 +187,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
     const onGraphAndSampleLoadedStartFlow = (action$, state$) =>
         action$.pipe(
             ofType(watcher.model.fetchItem.success),
-            combineLatest(action$.ofType(nodes.model.allNodesRegistered.success)),
+            withLatestFrom(action$.ofType(nodes.model.allNodesRegistered.success)),
             mergeMap(actions => {
                 console.log("STARTING THE FLOW")
                 let watchingdata = actions[0].payload
@@ -195,7 +212,7 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
             }));
 
 
-    let addin = graphNodeMaestro(stavanger)
+    let addin = graphEdgeMaestro(stavanger)
     let addin2 = graphEdgeMaestro(stavanger)
 
     return combineEpics(
@@ -207,8 +224,10 @@ export const graphLayoutWatcherConductor = (stavanger: GraphLayoutStavanger, con
         onFlowSelectedLoadedSetGraph,
         onGraphSetNodes,
         onGraphAndSampleLoadedStartFlow,
+        onFlowAndLayoutLoaded,
         addin,
         addin2,
+        autoreset,
         )
 
 }

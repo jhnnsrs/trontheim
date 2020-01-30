@@ -1,5 +1,4 @@
 import shadersInterpolation from './interpolation/shaders.interpolation';
-import shadersIntersectBox from './helpers/shaders.helpers.intersectBox';
 
 export default class ShadersFragment {
   // pass uniforms object

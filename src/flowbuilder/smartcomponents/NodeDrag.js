@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Button, Card} from "reactstrap";
+import {Card} from "reactstrap";
 
 class NodeDrag extends Component {
     constructor(props) {

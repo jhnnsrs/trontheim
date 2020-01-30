@@ -1,7 +1,8 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {LockersStavanger} from "../stavanger";
-import {apiConnector, itemConnector, userSelector} from "../../rootMaestros";
+import {apiConnector, itemConnector} from "../../rootMaestros";
+import {userIDPortal} from "../../portals";
 
 export const orchestraterEpic = (stavanger: LockersStavanger) => {
 
@@ -41,7 +42,7 @@ export const orchestraterEpic = (stavanger: LockersStavanger) => {
 
                 let locker = {
                     data: {
-                        creator: userSelector(state$.value),
+                        creator: userIDPortal(state$.value),
                         name: data.name,
                         location: data.location,
                     },

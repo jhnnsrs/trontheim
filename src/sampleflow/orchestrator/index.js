@@ -1,36 +1,76 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest, switchMap, take} from "rxjs/operators";
-import type {SampleFlowStavanger} from "../stavanger";
-import {graphNodeMaestro} from "../../alta/maestro/graph-node";
+import type {LockerFlowStavanger, SampleFlowStavanger} from "../stavanger";
 import * as constants from "../../constants";
-import {apiConnector, itemConnector} from "../../rootMaestros";
-import {graphEdgeMaestro} from "../../alta/maestro/graph-edge";
+import {itemConnector} from "../../rootMaestros";
+import {mergeMap, withLatestFrom} from "rxjs/operators";
 import {userIDPortal} from "../../portals";
-import {generateName} from "../../utils";
-import {graphLayoutWatcherConductor} from "../../alta/conductor/graphLayoutConductor";
+import {combineOrchestrator} from "../../alta/react/EpicRegistry";
+import {flowMaestro} from "../../maestros/flowMeastro";
+import {createFlowApi} from "../../conductors/createFlowConductor";
+import {OsloString} from "../../constants/endpoints";
 
 export const orchestraterEpic = (stavanger: SampleFlowStavanger) => {
 
+    const flow = stavanger.flow
+    const page = stavanger.page
+    const initial = stavanger.sample
+    const registry = stavanger.registry
+    const layoutlist = stavanger.availableLayouts
+    const graph = stavanger.graph
+    const externals = stavanger.externals
 
-    const watcherConductor = graphLayoutWatcherConductor(stavanger, {
-        watcherName: "SampleWatcher",
-        watcher: "sample",
-        watcherParamsAccessor: (params) => params.sampleid,
-        flowParamsAccessor: (params) => params.flowid,
-        model: constants.SAMPLE,
+    const m_flow = flowMaestro(stavanger, null)
+
+    const onPageInitLoadFlow = (action$, state$) =>
+        action$.pipe(
+            ofType(stavanger.page.model.initPage.success),
+            mergeMap(action => {
+                let flowid = action.payload.match.params.flowid;
+                let sampleid = action.payload.match.params.sampleid;
+                page.helpers.log("Flow Page initiated")
+                return [
+                    flow.model.fetchItem.request({data: {id: flowid}}),
+                    initial.model.fetchItem.request({data: {id: sampleid}}),
+                    layoutlist.model.fetchList.request({meta: {filter: {flows: flowid}}}),
+                    externals.model.osloJoin.request({meta: {room: {creator: userIDPortal(state$.value), subset: OsloString}}})
+                ]
+            }));
 
 
-    })
+    const allEpicsLoadedSetInitial = (action$, state$) =>
+        action$.pipe(
+            ofType(registry.model.allNodesRegistered.success),
+            withLatestFrom(action$.ofType(graph.model.setGraphFromFlow.success),action$.ofType(initial.model.fetchItem.success)),
+            mergeMap(actions => {
+                graph.helpers.log("____________________")
+                graph.helpers.log("=== Flow Started ===")
+                let graphrep = actions[1].payload
+                let initial = actions[2].payload
+
+                let watcher = graph.selectors.getNodeByName("SampleWatcher")(state$.value)
+                if (!watcher) return [graph.model.setGraphError.request("No Watcher for this Graph")]
+
+                let modelin = {
+                    data: initial.data,
+                    meta: { type: constants.SAMPLE, origin: "flow", port: "_watcher"}
+                }
+                return [graph.model.setNodeIn(watcher.alias).request(modelin, modelin.meta)]
+            }));
 
 
     const apiConnections = combineEpics(
         itemConnector(stavanger.sample),
-        itemConnector(stavanger.flow),
-        itemConnector(stavanger.layout),
-        apiConnector(stavanger.possibleLayouts),
+        createFlowApi(stavanger)
     )
 
-    return combineEpics(watcherConductor,apiConnections)
+    return combineOrchestrator(stavanger, {
+        onPageInitLoadFlow,
+        allEpicsLoadedSetInitial,
+        m_flow,
+        apiConnections
+        }
+
+    )
 }
 
 export default orchestraterEpic

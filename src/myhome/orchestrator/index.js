@@ -1,7 +1,6 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {HomeStavanger} from "../stavanger";
-import * as constants from "../../constants";
 import {apiConnector} from "../../rootMaestros";
 import {userIDPortal} from "../../portals";
 import rootStavanger from "../../rootStavanger";
@@ -12,6 +11,7 @@ export const orchestraterEpic = (stavanger: HomeStavanger) => {
         action$.pipe(
             ofType(stavanger.page.model.initPage.success),
             mergeMap(action => {
+                console.log("Hallo")
                 let userid = userIDPortal(state$.value)
                 return [
                     stavanger.displays.model.fetchList.request({filter: {creator: userid}}),

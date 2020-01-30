@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import memoizeOne from 'memoize-one';
 import type {OrganizerStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";

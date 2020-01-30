@@ -1,10 +1,9 @@
-
-import React, {Component} from "react";
+import React from "react";
 import {Button, ButtonGroup, Container} from "reactstrap";
 
 import {connectInstrument} from "../alta/react";
 import type {CubeStavanger} from "./stavanger";
-import {orientations, conventions, angles} from "./models"
+import {angles, conventions, orientations} from "./models"
 
 const NiftiControls = ({ zValue, setLowerLimit, setUpperLimit,lowerLimit,upperLimit , postSlice, setOrientation, setConvention, setAngle}) =>
     <Container className="text-center mt-2">

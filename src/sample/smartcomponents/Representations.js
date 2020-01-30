@@ -5,11 +5,13 @@ import {connectInstrument} from "../../alta/react";
 import DisplaysForRepresentation from "./DisplaysForRepresentation";
 import ExhibitsForRepresentation from "./ExhibitsForRepresentation";
 import {Link} from "react-router-dom";
+import ButtonToNavigate from "../../generics/ButtonToNavigate";
+import * as _ from "lodash";
 
 class Representations extends Component {
 
     render() {
-        const {representations} = this.props;
+        const {representations, flows} = this.props;
         if (representations.data) {
             return (
                 <React.Fragment>
@@ -23,6 +25,11 @@ class Representations extends Component {
                                     </Row>
                                 </CardTitle>
                                 <CardSubtitle>Representation {representation.data.id}</CardSubtitle>
+                                { flows.map( (flow,key) =>
+                                    <ButtonToNavigate key={_.uniqueId()} size="sm" outline  to={"/representationflow/"+flow.data.id+ "/representation/" + representation.data.id}>
+                                        {flow.data.name}
+                                    </ButtonToNavigate>
+                                )}
                                 <Container>
                                     <DisplaysForRepresentation representation={representation}/>
                                     <ExhibitsForRepresentation representation={representation}/>
@@ -41,6 +48,7 @@ class Representations extends Component {
 const mapStavangerToProps = (stavanger: SampleStavanger) => ({
     representations: stavanger.representations.selectors.getModel,
     displays: stavanger.displays.selectors.getModel,
+    flows: stavanger.repflows.selectors.getData
 });
 
 const mapStavangerToDispatch  = (stavanger: SampleStavanger) =>  ({

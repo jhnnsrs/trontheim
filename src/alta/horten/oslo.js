@@ -1,24 +1,28 @@
 //@flow
 import type {Alias, HortenHelpers, HortenModel, HortenSelectors, HortenType} from "./types";
-import { createHorten2} from "./index";
-import { Epic, ofType} from "redux-observable";
-import { of } from 'rxjs';
+import {createHorten2} from "./index";
+import {Epic, ofType} from "redux-observable";
+import {of} from 'rxjs';
 import {catchError, map, mergeMap, takeUntil} from "rxjs/operators";
-import {createHortenEpic,
+import {
+    createHortenEpic,
     createHortenHelpers,
-    createHortenModel, createHortenReducer,
+    createHortenModel,
+    createHortenReducer,
     createHortenSelectors
 } from "./creators";
+import type {HaldenSelector} from "../halden";
 import {
     createHaldenAction,
-    createHaldenEpic, createHaldenPassThroughEpicFromActions,
+    createHaldenEpic,
+    createHaldenPassThroughEpicFromActions,
     createHaldenSelector
 } from "../halden";
-import type {HaldenSelector} from "../halden";
 import {Reducer} from "redux";
 import websocketConnect from "rxjs-websockets";
 import {QueueingSubject} from "queueing-subject";
 import type {HaldenActions} from "../oslo";
+import {OsloString} from "../../constants/endpoints";
 
 export type HortenOsloModel = HortenModel &{
     setAuth: HaldenActions,
@@ -73,7 +77,7 @@ export const createHortenOsloModel = createHortenModel({
     leaveRoomServer: createHaldenAction("LEAVE_ROOM_SERVER"),
 })
 
-export const createHortenOsloHelpers = createHortenHelpers()
+export const createHortenOsloHelpers = createHortenHelpers({})
 
 export const createHordenOsloSelectors = createHortenSelectors({
     getCurrentAuth: createHaldenSelector("currentAuth"),
@@ -87,12 +91,13 @@ export function objToString (obj) {
     let str = '';
     for (let key of Object.keys(obj)) {
         let value = obj[key];
-        str += key.toString() + '_' + value + "_";
+        if (value === OsloString) { str += key.toString() + "_" }
+        else { str += key.toString() + '_' + value + "_" };
     }
     return str.slice(0, -1);
 }
 
-export const createHortenOsloEpic = createHortenEpic((model: HortenOsloModel, selectors: HortenOsloSelectors) => ({
+export const createHortenOsloEpic = createHortenEpic((model: HortenOsloModel, selectors: HortenOsloSelectors, helpers: HortenOsloHelpers) => ({
 
     startOsloEpic: createHaldenEpic((action$, state$) =>
         action$.pipe(
@@ -121,6 +126,7 @@ export const createHortenOsloEpic = createHortenEpic((model: HortenOsloModel, se
 
                                     let stream = payload.stream;
                                     if (joinedRoom.stream.toUpperCase() == stream.toUpperCase()) {
+                                        helpers.log("New Item on Stream", stream)
                                         if (method == "update") return joinedRoom.updateAction.request(sendpayload)
                                         if (method == "delete") return joinedRoom.deleteAction.request(sendpayload)
                                         if (method == "create") return joinedRoom.createAction.request(sendpayload)
@@ -161,10 +167,11 @@ export const createHortenOsloEpic = createHortenEpic((model: HortenOsloModel, se
                 try {
                     let room = objToString(action.payload.meta.room)
                     input.next(JSON.stringify({"command":"sub","room":room,"alias":action.payload.meta.alias}));
+                    helpers.log("Listening to Stream", room, "with alias", action.payload.meta.alias)
                     return [model.joinRoom.success(action.payload)]
                 }
                 catch (e) {
-                    console.log("Joining the room for '" +action.payload.meta.alias+ '" failed');
+                    helpers.log("Joining the room for '" +action.payload.meta.alias+ '" failed');
                     return [model.joinRoom.failure("Join Room Failure")]
 
                 }

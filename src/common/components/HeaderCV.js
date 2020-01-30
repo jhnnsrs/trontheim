@@ -1,15 +1,5 @@
-import React, { Component } from 'react';
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink
-} from 'reactstrap';
-import { Container } from 'reactstrap';
-
+import React, {Component} from 'react';
+import {Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
 
 
 class HeaderTrontheim extends Component {

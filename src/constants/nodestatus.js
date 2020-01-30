@@ -1,56 +1,83 @@
 
+export type StatusCode = number
+//GRAPH ERROR
+const graphConnectionError: StatusCode = 701
+
+//NODE ERROR
+const functionFailed: StatusCode  = 801
+
 // ATTENTION STATES
-const requireUserAtStart = 401
-const requireUserOnInput = 402
-const attentionElse = 499
+const requireUserAtStart: StatusCode  = 401
+const requireUserOnInput: StatusCode  = 402
+const attentionElse: StatusCode  = 499
 
 //PROGRESS STATES
 
 //WAITING
-const initialWait = 100
-const waitingForInput = 110
+const initialWait: StatusCode  = 100
+const initializing: StatusCode  = 101
+const waitingForInput: StatusCode  = 110
 
 //SERVER
-const serverPost = 210
-const serverProgress = 220
-const serverWarning = 230
-const serverError = 240
+const serverPost: StatusCode  = 210
+const serverProgress: StatusCode  = 220
+const serverWarning: StatusCode  = 230
+const serverError: StatusCode  = 240
 
 
 // DONE
-const outputSend = 310
+const outputSend: StatusCode  = 310
+
+// NODE
+const sendOnPort: StatusCode  = 501
 
 
+export interface StatusCodeContainer {
+    [string]: StatusCode
+}
 
+export const NODE = {
+    sendOnPort: sendOnPort,
+    waitingForInput: waitingForInput
+}
 
-
-export const UNKNOWN = {
+export const UNKNOWN: StatusCodeContainer = {
     notSet: 999
 }
 
 
-export const ATTENTION = {
+export const ATTENTION: StatusCodeContainer = {
     requireUserAtStart: requireUserAtStart,
     requireUserOnInput: requireUserOnInput,
     ELSE: attentionElse
 }
 
-export const SERVER = {
+export const SERVER: StatusCodeContainer = {
     serverPost: serverPost,
     serverProgress: serverProgress,
     serverWarning: serverWarning,
     serverError: serverError,
 }
 
-export const WAITING = {
+export const WAITING: StatusCodeContainer = {
+    initializing: initializing,
     initialWait: initialWait,
     waitingForInput: waitingForInput
 }
 
-export const DONE = {
-    ouputSend: outputSend,
+export const DONE: StatusCodeContainer = {
+    outputSend: outputSend,
 }
 
-export function buildStatus(code, message = null){
+export const NODEERROR: StatusCodeContainer = {
+    functionFailed: functionFailed,
+}
+
+export const GRAPHERROR: StatusCodeContainer = {
+    connectionError: graphConnectionError,
+}
+
+
+export function buildStatus(code: StatusCode, message: string = null){
     return { code: code, message: message}
 }

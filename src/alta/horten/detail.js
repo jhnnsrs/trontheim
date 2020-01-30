@@ -1,28 +1,41 @@
 //@flow
-import type {Alias, HortenApiCall, HortenModel, HortenSelectors} from "./types";
+import type {Alias, HortenApiCall, HortenModel, HortenSelectors, HortenType} from "./types";
 import {ajax} from "rxjs/ajax";
 import {Reducer} from "redux";
 import handleActions from "redux-actions/es/handleActions";
 import {
     deletedFromStavangerList,
     deletingFromStavangerList,
-    expandFromOslo, getHeader, getRootUrl
-    , updateStavangerDetail
+    expandFromOslo,
+    getHeader,
+    getRootUrl,
+    updateStavangerDetail
 } from "../helpers";
 import {combineEpics, Epic} from "redux-observable";
 import {createHorten} from "./index";
-import type {Horten, HortenType, State, Props} from "./types";
-import {Action, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {createHortenApi, createHortenHelpers, createHortenModel, createHortenSelectors} from "./creators";
+import type {HaldenSelector} from "../halden";
 import {createHaldenAction, createHaldenApi, createHaldenSelector} from "../halden";
 import type {HaldenActions} from "../oslo";
-import type {HaldenSelector} from "../halden";
 import {
     combineOsloActionsWithOsloApiCall,
     combineOsloActionsWithPassThrough,
     combineOsloActionWithRoomJoin
 } from "../oslo/epics";
-import {ABORTED, FAILURE, ITEMCREATED, ITEMDELETED, ITEMUPDATED, LOADED, LOADING, POSTED, POSTING, SETTING, SET} from "../constants";
+import {
+    ABORTED,
+    FAILURE,
+    ITEMCREATED,
+    ITEMDELETED,
+    ITEMUPDATED,
+    LOADED,
+    LOADING,
+    POSTED,
+    POSTING,
+    SET,
+    SETTING
+} from "../constants";
 
 
 export type HortenModelUrl = string

@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
-import * as _ from "lodash"
 import {getRootUrl} from "../../alta/helpers";
 
 

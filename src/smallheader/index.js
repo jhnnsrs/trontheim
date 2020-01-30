@@ -1,10 +1,8 @@
-import {Container, Navbar, NavbarBrand, NavbarToggler} from "reactstrap";
-import {NavigationBar} from "./components/NavigationBar";
 import React from "react";
 import {connectOpera} from "../alta/react";
 import {rootStavanger} from "../rootStavanger";
-import {headerStavanger} from "./stavanger";
-import {orchestraterEpic} from "./orchestrator";
+import {headerStavanger} from "../header/stavanger";
+import {orchestraterEpic} from "../header/orchestrator";
 
 class Header extends React.Component {
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Card, Col, Container, Row} from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 import {lockerStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";

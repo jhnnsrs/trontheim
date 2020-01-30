@@ -1,6 +1,11 @@
 export const FILEMATCHSTRING = "filematchstring";
 export const EXCELEXPORT = "excelexport";
 export const QUESTION = "question";
+export const EXTERNAL = "external";
+export const EXTERNALREQUEST = "externalrequest";
+export const SETTINGS = "settings";
+export const CUBE = "cube";
+export const REGISTRY = "registry";
 export const CREATOR = "user";
 export const ANIMAL = "animal";
 export const ANSWER = "answer";
@@ -33,6 +38,7 @@ export const UNKNOWN = "unknown"
 export const BIOSERIES = "bioseries";
 export const BIOIMAGE = "bioimage";
 export const VOLUMEDATA = "volumedata";
+export const LENGTHDATA = "lengthdata";
 export const DATA = "data";
 export const MUTATING = "mutating";
 export const ANALYZING = "analyzing";
@@ -41,8 +47,13 @@ export const CONVERSING = "conversing";
 export const FILTERING = "filtering";
 export const REFLECTION = "reflection";
 export const TRANSFORMING = "transforming";
+export const STRAINING = "straining";
+export const STRAINER = "strainer";
 export const EXHIBIT = "exhibit";
 export const REPRESENTATION = "representation";
+export const ZARR = "zarr";
+export const ZARR_CHANNEL= "zarr_channel";
+export const CHANNELMAP= "channelmap";
 export const TRANSFORMATION = "transformation";
 export const EXPERIMENT = "experiment";
 export const SAMPLE = "sample";
@@ -88,4 +99,20 @@ export const FLOWTYPES = {
     SAMPLE: "sample",
     ROI: "roi",
     LOCKER: "locker",
+}
+
+
+export const VARIETYDESCRIPTION = {
+    collector: {
+        name: "Collectors",
+        description: "collect incoming Data and forward on demand"
+    },
+    watcher: {
+        name: "Watchers",
+        description: "A watcher is the initial node that receives input in a Flow"
+    },
+    consumer: {
+        name: "Generic Consumers",
+        description: "Generic Consumers do not fit in any category"
+    },
 }

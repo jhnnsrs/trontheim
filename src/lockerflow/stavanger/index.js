@@ -1,36 +1,20 @@
 import {createStavanger} from "../../alta/stavanger";
-import {createHortenNodes} from "../../alta/horten/nodes";
-import type {HortenNodes} from "../../alta/horten/nodes";
-import type {HortenGraph} from "../../alta/horten/graph";
-import * as constants from "../../constants"
-import type {Stavanger} from "../../alta/stavanger";
-import {createHortenItem} from "../../alta/horten/item";
 import type {HortenItem} from "../../alta/horten/item";
-import {createHortenNomogram} from "../../alta/horten/nomogram";
-import {createHortenTable} from "../../alta/horten/table";
-import type {HortenTable} from "../../alta/horten/table";
-import type {HortenNomogramNode} from "../../alta/horten/nomogram";
-import {DEF_LOCKER} from "../../constants/definitions";
+import {createHortenItem} from "../../alta/horten/item";
+import {DEF_FLOW, DEF_LOCKER} from "../../constants/definitions";
+import type {FlowStavanger} from "../../maestros/flowMeastro";
+import {createFlowConductor} from "../../conductors/createFlowConductor";
 
 
-export type LockerFlowStavanger = Stavanger & {
-    nodes: HortenNodes,
-    graph: HortenGraph,
-    flow: HortenItem,
+export type LockerFlowStavanger = FlowStavanger & {
     locker: HortenItem,
-    layout: HortenItem,
-    possibleLayouts: HortenTable,
 }
 
+const flowConductor = createFlowConductor()
+
 export const lockerFlowStavanger: LockerFlowStavanger = createStavanger({
-    nodes: createHortenNodes("NODES"),
-    graph: createHortenNomogram({type: "GRAPH",
-        start: (nodes) => nodes.find( (node: HortenNomogramNode) => node.type === "watcher")
-    }),
-    flow: createHortenItem({type: constants.FLOW, url: "filterflows"}),
+    ...flowConductor,
     locker: createHortenItem(DEF_LOCKER),
-    layout: createHortenItem({type: constants.LAYOUT, url: "layouts"}),
-    possibleLayouts: createHortenTable({type: constants.LAYOUT, url: "layouts"})
 })
 
 // You Should decide upfront if this is

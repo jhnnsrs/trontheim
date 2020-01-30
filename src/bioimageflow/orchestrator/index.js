@@ -1,35 +1,33 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest, switchMap, take} from "rxjs/operators";
 import type {BioImageFlowStavanger} from "../stavanger";
-import {graphNodeMaestro} from "../../alta/maestro/graph-node";
 import * as constants from "../../constants";
-import {apiConnector, itemConnector} from "../../rootMaestros";
-import {graphEdgeMaestro} from "../../alta/maestro/graph-edge";
+import {itemConnector} from "../../rootMaestros";
+import {mergeMap, withLatestFrom} from "rxjs/operators";
 import {userIDPortal} from "../../portals";
-import {generateName} from "../../utils";
-import {graphLayoutWatcherConductor} from "../../alta/conductor/graphLayoutConductor";
+import {combineOrchestrator} from "../../alta/react/EpicRegistry";
+import {flowMaestro} from "../../maestros/flowMeastro";
+import {createFlowApi} from "../../conductors/createFlowConductor";
+import {OsloString} from "../../constants/endpoints";
 
 export const orchestraterEpic = (stavanger: BioImageFlowStavanger) => {
 
-
-    const watcherConductor = graphLayoutWatcherConductor(stavanger, {
-        watcherName: "BioImageWatcher",
-        watcher: "bioimage",
-        watcherParamsAccessor: (params) => params.bioimageid,
-        flowParamsAccessor: (params) => params.flowid,
-        model: constants.BIOIMAGE,
-
-
+    const m_flow = flowMaestro(stavanger, {
+        initial: stavanger.bioimage,
+        paramsMap: (params) => ({ initialid: params.bioimageid, flowid: params.flowid})
     })
+
 
     const apiConnections = combineEpics(
         itemConnector(stavanger.bioimage),
-        itemConnector(stavanger.flow),
-        itemConnector(stavanger.layout),
-        apiConnector(stavanger.possibleLayouts),
+        createFlowApi(stavanger)
     )
 
-    return combineEpics(watcherConductor, apiConnections)
+    return combineOrchestrator(stavanger, {
+        m_flow,
+        apiConnections
+        }
+
+    )
 }
 
 export default orchestraterEpic

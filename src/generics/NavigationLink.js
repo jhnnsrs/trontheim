@@ -1,5 +1,5 @@
-import {Link, withRouter} from 'react-router-dom'
-import {Button, NavLink} from "reactstrap";
+import {Link} from 'react-router-dom'
+import {NavLink} from "reactstrap";
 import React from "react"
 
 const NavigationLink = (props) => (

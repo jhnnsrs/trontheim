@@ -1,6 +1,6 @@
 import {Epic} from "redux-observable";
 import {Action, Reducer} from "redux";
-import type {HaldenApiCreator, HaldenSelector} from "../halden";
+import type {HaldenSelector} from "../halden";
 import type {Header} from "../oslo/api";
 import {Observable} from "rxjs";
 import type {HaldenActions} from "../oslo";
@@ -34,6 +34,7 @@ export type HortenSelectors = {
     getModel: HaldenSelector
 }
 export type HortenHelpers = {
+    log: (string) => void
     [string]: any
 }
 export type HortenDefaulState = any

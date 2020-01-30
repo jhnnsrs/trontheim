@@ -1,8 +1,6 @@
 import React, {Component} from "react";
-import type {BioImageFlowStavanger, SampleFlowStavanger} from "../stavanger";
+import type {BioImageFlowStavanger} from "../stavanger";
 import {connectInstrument} from "../../alta/react";
-import {NodeTestContainer} from "../../alta/react/Nodes";
-import * as _ from 'lodash'
 import {Button} from "reactstrap";
 
 

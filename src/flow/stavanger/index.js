@@ -1,18 +1,14 @@
-import {createStavanger} from "../../alta/stavanger";
-import {createHortenNodes} from "../../alta/horten/nodes";
-import {createHortenGraph} from "../../alta/horten/graph";
-import type {HortenGraph} from "../../alta/horten/graph";
-import type {HortenDetail} from "../../alta/horten/detail";
-import {createHortenDetail} from "../../alta/horten/detail";
-import * as constants from "../../constants"
 import type {Stavanger} from "../../alta/stavanger";
-import {createHortenTable} from "../../alta/horten/table";
-import type {HortenTable} from "../../alta/horten/table";
-import {createHortenNomogram} from "../../alta/horten/nomogram";
+import {createStavanger} from "../../alta/stavanger";
 import type {HortenNodes} from "../../alta/horten/nodes";
-import type {HortenNomogramNode} from "../../alta/horten/nomogram";
-import {createHortenItem} from "../../alta/horten/item";
+import {createHortenNodes} from "../../alta/horten/nodes";
+import * as constants from "../../constants"
+import type {HortenTable} from "../../alta/horten/table";
+import {createHortenTable} from "../../alta/horten/table";
+import type {HortenNomogram, HortenNomogramNode} from "../../alta/horten/nomogram";
+import {createHortenNomogram} from "../../alta/horten/nomogram";
 import type {HortenItem} from "../../alta/horten/item";
+import {createHortenItem} from "../../alta/horten/item";
 
 
 export type BioImageFlowStavanger = Stavanger & {
@@ -24,7 +20,7 @@ export type BioImageFlowStavanger = Stavanger & {
 }
 
 export const bioImageFlowStavanger: BioImageFlowStavanger = createStavanger({
-    nodes: createHortenNodes("NODES"),
+    nodes: createHortenNodes({type: "NODES"}),
     graph: createHortenNomogram({type: "GRAPH",
         start: (nodes) => nodes.find( (node: HortenNomogramNode) => node.type === "watcher")
     }),

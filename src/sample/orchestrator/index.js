@@ -1,5 +1,5 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import type {SampleStavanger} from "../stavanger";
 import * as constants from "../../constants";
 import {apiConnector, itemConnector} from "../../rootMaestros";
@@ -20,6 +20,7 @@ export const orchestraterEpic = (stavanger: SampleStavanger) => {
                     stavanger.displayflows.model.fetchList.request({meta: {filter: {type: constants.FLOWTYPES.DISPLAY}}}),
                     stavanger.exhibitflows.model.fetchList.request({meta: {filter: {type: constants.FLOWTYPES.EXHIBIT}}}),
                     stavanger.sampleflows.model.fetchList.request({meta: {filter: {type: constants.FLOWTYPES.SAMPLE}}}),
+                    stavanger.repflows.model.fetchList.request({meta: {filter: {type: constants.FLOWTYPES.REPRESENTATION}}}),
                 ]
             }));
 

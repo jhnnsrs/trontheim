@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import type {HomeStavanger} from "../stavanger";
-import {Button, ButtonGroup, Card, CardImg, CardImgOverlay, CardText, CardTitle, Col, Container, Row} from "reactstrap";
+import {Button, ButtonGroup, Card, CardImg, CardImgOverlay} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
 import Slider from "react-slick";

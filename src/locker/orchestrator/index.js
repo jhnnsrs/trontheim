@@ -1,13 +1,10 @@
 import {combineEpics, ofType} from "redux-observable";
-import {map, mergeMap, combineLatest} from "rxjs/operators";
-import type {LockerStavanger, SampleStavanger} from "../stavanger";
+import {mergeMap} from "rxjs/operators";
+import type {LockerStavanger} from "../stavanger";
 import * as constants from "../../constants";
-import {createApiPost, createOsloApi} from "../../alta/oslo/api";
-import {apiConnector, itemConnector, userSelector} from "../../rootMaestros";
+import {apiConnector, itemConnector} from "../../rootMaestros";
 import rootStavanger from "../../rootStavanger";
-import type {HaldenActions} from "../../alta/oslo";
-import type {HortenHTTPRequestAuth} from "../../alta/horten/http";
-import {userIDPortal, userPortal} from "../../portals";
+import {userIDPortal} from "../../portals";
 
 export const orchestraterEpic = (stavanger: LockerStavanger) => {
 

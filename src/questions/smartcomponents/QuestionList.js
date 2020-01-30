@@ -1,19 +1,7 @@
 import React, {Component} from "react";
-import type {QuestionsStavanger, SampleStavanger} from "../stavanger";
-import {
-    Button, ButtonGroup,
-    Card,
-    CardBody,
-    CardImg,
-    CardImgOverlay,
-    CardSubtitle,
-    CardText,
-    CardTitle,
-    Container
-} from "reactstrap";
+import type {QuestionsStavanger} from "../stavanger";
+import {Button, ButtonGroup, Card, CardBody, CardSubtitle, CardTitle} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
-import Octicon, {Plus} from "@githubprimer/octicons-react";
-import * as _ from "lodash"
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
 
 class QuestionList extends Component {

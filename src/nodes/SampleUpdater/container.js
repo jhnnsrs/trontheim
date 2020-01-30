@@ -5,9 +5,6 @@ import NodeFrame from "../lib/NodeFrame";
 import ItemShow from "./ItemShow";
 
 
-
-
-
 export default class ExperimentAdder extends Component {
 
     constructor(props){

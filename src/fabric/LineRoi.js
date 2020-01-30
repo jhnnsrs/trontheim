@@ -37,8 +37,6 @@ export const LineRoi = (props: LineRoiProps) => {
                     curve={curveBasis}
                     x={x}
                     y={y}
-                    xScale={scale}
-                    yScale={scale}
                 />
             </g>
         )

@@ -1,30 +1,20 @@
 import React, {Component} from 'react';
 import './style.css';
 import {rootStavanger} from "../rootStavanger";
-import {Button, Card, CardBody, Col, Container, Row} from "reactstrap";
+import {Container, Row} from "reactstrap";
 import {lockerFlowStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
-import FlowComponent from "./smartcomponents/FlowComponent";
+import FlowComponent from "../common/flow/FlowComponent";
 import LockerComponent from "./smartcomponents/LockerComponent";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
-import NodeGridContainer from "../flow/smartcomponents/NodeGridContainer";
-import LayoutsCard from "./smartcomponents/LayoutsCard";
+import LayoutsCard from "../common/flow/LayoutsCard";
+import Registry from "../common/flow/Registry";
+import Show from "../common/flow/Show";
 
 export class Bergen extends Component {
 
-
-    constructor() {
-        super();
-        this.state = {
-            grid: false,
-        }
-    }
-
-    changeLayout() {
-        this.setState({grid: !this.state.grid})
-    }
 
     render() {
         console.log("Rerender Major Template")
@@ -37,9 +27,10 @@ export class Bergen extends Component {
                                 <FlowComponent/>
                                 <LockerComponent/>
                                 <LayoutsCard/>
+                                <Show/>
                             </Sidebar>
                             <MainContainer>
-                                <NodeGridContainer/>
+                                <Registry/>
                             </MainContainer>
                         </Row>
                     </Container>

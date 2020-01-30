@@ -5,7 +5,6 @@ import "uuid";
 import {Nav, NavLink} from "reactstrap";
 
 
-
 export class ROINodeWidget extends BaseWidget<DefaultNodeProps, DefaultNodeState> {
     constructor(props: DefaultNodeProps) {
         super("srd-default-node", props);

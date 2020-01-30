@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Modal, ModalHeader} from 'reactstrap';
 import AddExperimentForm from "./AddExperimentForm";
 import type {HomeStavanger} from "../../stavanger";
 import {connectInstrument} from "../../../alta/react";

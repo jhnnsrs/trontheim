@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connectInstrument} from "../alta/react";
 import type {Stavanger} from "../alta/stavanger";
 import type {HortenItem} from "../alta/horten/item";
+import {ReactSVGPanZoom} from "react-svg-pan-zoom";
 
 
 class Display extends Component {

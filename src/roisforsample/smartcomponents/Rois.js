@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import type {RepresentationStavanger, RoiForSampleStavanger} from "../stavanger";
-import {Button, ButtonGroup, Card, CardImg, CardImgOverlay, CardText, CardTitle, Col, Container, Row} from "reactstrap";
+import type {RoiForSampleStavanger} from "../stavanger";
+import {ButtonGroup, Row} from "reactstrap";
 import {connectInstrument} from "../../alta/react";
 import ButtonToNavigate from "../../generics/ButtonToNavigate";
 

@@ -1,9 +1,9 @@
 //@flow
 import type {Alias, HortenApiCall, HortenType, Props, State} from "../horten/types";
-import {createHaldenActions} from "../oslo";
+import type {HaldenActions} from "../oslo";
+import {createHaldenActions, createHaldenMetaActions, createHaldenParameterActions} from "../oslo";
 import {Action} from "redux";
 import type {ActionStream, StateStream} from "../horten/creators";
-import type {HaldenActions} from "../oslo";
 import {Epic, ofType} from "redux-observable";
 import {Observable} from "rxjs";
 import {catchError, map} from "rxjs/operators";
@@ -13,18 +13,22 @@ export type HaldenActionParameter= string;
 export type HaldenAction = (Alias,HortenType,string) => HaldenActions;
 export type HaldenParameterAction = (any) => (Alias,HortenType,string) => HaldenActions;
 export type HaldenApiCreator = (Alias,HortenType) => HortenApiCall;
-export type HaldenSelector = (State,Props) => any;
+export type HaldenSelector<T> = (State,Props) => T;
 export type HaldenAccesor = (any) => (State,Props) => any;
 
 
-export function createHaldenAction(haldenActionParameter: HaldenActionParameter ): HaldenAction {
+export function createHaldenAction(haldenActionParameter: HaldenActionParameter, meta = null, parameter = null): HaldenAction {
     return function (alias: Alias,type: HortenType,key) {
-        try {
+
+        if (parameter) {
+            return createHaldenParameterActions(alias, type, key, haldenActionParameter)
+        }
+        if (meta) {
+            return createHaldenMetaActions(alias, type, key, haldenActionParameter)
+        }
+        else {
             return createHaldenActions(alias, type, key, haldenActionParameter)
         }
-        catch(e) {
-            return createHaldenAction(alias,type,key,haldenActionParameter)
-            console.log(alias,type,key,haldenActionParameter)}
     }
 }
 
@@ -105,15 +109,15 @@ export function createHaldenApi(fn: (State, Action) => any)
     }
 }
 
-export function createHaldenEpic(fn: (ActionStream, StateStream) => any)
+export function createHaldenEpic( fn: (ActionStream, StateStream) => any)
 {
     return fn
 }
 
 export function createHaldenHelper(fn: any)
 {
-    return function (alias: Alias,type: HortenType, model: any) {
-        return fn(alias,type,model)
+    return function  (model: any, selectors: any) {
+        return fn(model,selectors)
     }
 }
 

@@ -5,6 +5,7 @@ import {POSITION_NONE, ReactSVGPanZoom} from "react-svg-pan-zoom";
 import {connectInstrument} from "../alta/react";
 import type {Stavanger} from "../alta/stavanger";
 import type {HortenCanvas} from "../alta/horten/canvas";
+import type {HortenItem} from "../alta/horten/item";
 
 export class Canvas extends Component<any, any> {
 
@@ -30,11 +31,11 @@ export class Canvas extends Component<any, any> {
 
 
     render() {
-        const {canvas} = this.props;
+        const {canvas, display} = this.props;
 
         let viewerValue = canvas.viewerValue;
         let viewerTool = canvas.viewerTool;
-        let shape = canvas.shape ? canvas.shape : [1024, 1024]
+        let shape = display ? JSON.parse(display.shape) : [1024, 1024]
         return (
             <div id="theid">
                 <ParentSize>
@@ -52,9 +53,8 @@ export class Canvas extends Component<any, any> {
                                 preventPanOutside={true}
                                 detectWheel={this.props.detectWheel}
                             >
-                                <svg width={shape[0]} height={shape[1]}>
-                                    {this.props.children}
-                                </svg>
+                                <svg width={shape[0]} height={shape[1]}>{this.props.children}</svg>
+
                             </ReactSVGPanZoom>);
                     }}
                 </ParentSize>
@@ -68,6 +68,7 @@ export const mapStavangerToProps = (stavanger) => {
 
     return {
         canvas: stavanger.canvas.selectors.getModel,
+        display: stavanger.display.selectors.getData,
     };
 };
 
@@ -79,16 +80,21 @@ export const mapStavangerToDispatch = (stavanger) => ({
 
 export default connectInstrument(mapStavangerToProps, mapStavangerToDispatch)(Canvas);
 
-export const CanvasCreator = (accesor: (Stavanger) => HortenCanvas) => {
+class HortenDisplay {
+}
+
+export const CanvasCreator = (canvasaccesor: (Stavanger) => HortenCanvas, displayaccesor: (Stavanger) => HortenItem) => {
 
     const mapStavangerToProps = (stavanger) => ({
-        canvas: accesor(stavanger).selectors.getModel,
+        canvas: canvasaccesor(stavanger).selectors.getModel,
+        display: displayaccesor(stavanger).selectors.getData,
+
     });
 
 
     const mapStavangerToDispatch = (stavanger) => ({
-        setValue: (value) => accesor(stavanger).model.setValue.request(value),
-        selectTool: (value) => accesor(stavanger).model.selectTool.request(value),
+        setValue: (value) => canvasaccesor(stavanger).model.setValue.request(value),
+        selectTool: (value) => canvasaccesor(stavanger).model.selectTool.request(value),
     });
 
 
