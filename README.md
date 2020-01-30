@@ -1,68 +1,149 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Oslo
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7096184f-28d9-4309-a194-dea2d1d71799/deploy-status)](https://app.netlify.com/sites/arnheim/deploys)
 
-## Available Scripts
+### Idea
 
-In the project directory, you can run:
+This is a basic implementation of the Oslo Frontend for the Arnheim Framework, that seeks to implement a working pipeline for the processing
+and analysis of microscopic data. Arnheim uses Docker-Containers to ensure most of its workflow is as modular and scalable as
+possible. This Repository contains
+ * Oslo (the Frontend, react-based orchestrator of the modules)
+ 
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As Oslo is based on react and therefore Node it needs a working Node installation running on your Machine
+(detailed instructions found on [Node.js](https://nodejs.org/en/))
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+### Installing
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once this repository is cloned, cd into the parent directory and run
 
-### `npm run build`
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This should cause the initial installation of all required libraries through npm, (please be patient)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Running
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From now on you can run the project through 
+```
+npm start
+```
 
-### `npm run eject`
+The server should now bind on "localhost:3000"
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Accessing your local Bergen instance
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Oslo is just the frontend for your Bergen instance, so in order to connect to your local server adjust the
+endpoints.js in the "src/constants" to your needs, populate and Instance after you setup a new Oauth Application on your backend
+(http://localhost/o/applications) (refer to [django-oauth-toolkit](https://django-oauth-toolkit.readthedocs.io/en/latest/rest-framework/getting_started.html) for more information)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Testing and Documentation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+So far Oslo does not provide unit-tests and is in desperate need of documentation,
+please beware that you are using an Alpha-Version
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### And coding style tests
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Explain what these tests test and why
 
-### Analyzing the Bundle Size
+```
+Give an example
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Build with
 
-### Making a Progressive Web App
+- [Stavanger](https://github.com/jhnnsrs/) - a yet to be released framework for redux, rxjs state management
+- [React js ](https://facebook.github.io/react/)
+- [Redux js ](http://redux.js.org/)
+- [react-router-dom ](https://github.com/ReactTraining/react-router)
+- [react-redux ](https://github.com/reactjs/react-redux)
+- [react-router-dom ](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
+- [redux-observable ](https://redux-observable.js.org)
+- [Rxjs - Rxjs v6](https://github.com/ReactiveX/rxjs)
+- [reactstrap - Easy to use React Bootstrap 4 components](https://reactstrap.github.io/)
+- [react-loadable - 5.4.0](https://github.com/jamiebuilds/react-loadable)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+#### Features
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+- Scss
+- [Domain-style](https://github.com/reactjs/redux/blob/master/docs/faq/CodeStructure.md) for code structure
+- Bundle Size analysis
+- Code splitting with [react-loadable](https://github.com/jamiebuilds/react-loadable)
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Roadmap
 
-### `npm run build` fails to minify
+This is considered pre-Alpha so pretty much everything is still on the roadmap
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Adding new Node/Module/Feature
+
+- Create a Module/Feature folder at `src/nodes`
+like - - `src/nodes/MaxISP`
+Feature folder must contain booststrap file named `index.js` and css file 'style.css' at root
+
+Like -
+
+- `src/nodes/MaxISP/index.js`
+- `src/nodes/MaxISP/style.css`
+
+Next as per need, add sub folders like -
+
+- `src/home/actions/`
+- `src/nodes/MaxISP/components/`
+
+See reference implementations in the src/nodes directory
+
+
+## Styling
+
+we are using `scss` Preprocessor. Create a feature/domain specfic scss file, example - `src/home/style.scss`
+
+After compilation the new corresponding CSS file next to it.
+example - `src/home/style.css`
+
+Finally you can import that css file in `LoginApp.js` file
+example - `src/home/LoginApp.js` will import `src/home/style.css`
+
+## Analyzing the Bundle Size
+
+We can Analyze and debug JavaScript (or Sass or LESS) code bloat through source maps and [source-map-explorer](https://www.npmjs.com/package/source-map-explorer) great tool for this.
+
+The source map explorer determines which file each byte in your minified code came from. It shows you a treemap visualization to help you debug where all the code is coming from.
+
+To analyzing bundle, run command -
+
+`$ npm run analyze` / `$ yarn analyze`
+
+
+
+
+## Deployment
+
+Contact the Developer before you plan to deploy this App, it is NOT ready for public release
+
+## Versioning
+
+There is not yet a working versioning profile in place, consider non-stable for every release 
+
+## Authors
+
+* **Johannes Roos ** - *Initial work* - [jhnnsrs](https://github.com/jhnnsrs)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is yet to be licensed. Consider Private 
+
+## Acknowledgments
+
+* EVERY single open-source project this library used (the list is too extensive so far)
+
