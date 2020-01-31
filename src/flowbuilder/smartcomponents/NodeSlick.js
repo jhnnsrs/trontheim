@@ -9,6 +9,11 @@ import {VARIETYDESCRIPTION} from "../../constants";
 
 class InList extends React.Component {
 
+    state = {
+        slideIndex: 0,
+        updateCount: 0
+    }
+
     componentDidMount(): void {
         this.setState({
             slideIndex: 0,
