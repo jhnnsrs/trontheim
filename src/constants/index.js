@@ -1,3 +1,4 @@
+export const ANALYZER = "analyzer";
 export const FILEMATCHSTRING = "filematchstring";
 export const EXCELEXPORT = "excelexport";
 export const QUESTION = "question";
@@ -63,6 +64,7 @@ export const EXPERIMENTALGROUP = "experimentalgroup"
 export const LOCKER = "locker"
 export const IMPORTER = "importer"
 export const IMPORTING = "importing"
+export const CONVERTER = "converter"
 export const STAR = "*"
 
 

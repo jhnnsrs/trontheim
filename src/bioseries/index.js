@@ -8,6 +8,7 @@ import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
 import SampleList from "./smartcomponents/SampleList";
 import BioSeriesDetailCard from "./smartcomponents/BioSeriesDetailCard";
+import Converters from "./smartcomponents/Converters";
 
 
 export class BioSeries extends Component {
@@ -20,6 +21,7 @@ export class BioSeries extends Component {
                         <Row>
                             <Col xs={12}  md={5} lg={3}>
                                 <BioSeriesDetailCard/>
+                                <Converters/>
                             </Col>
                             <Col xs={12}  md={7} lg={9}>
                                 <SampleList/>

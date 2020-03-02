@@ -8,6 +8,7 @@ import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
 import BioseriesList from "./smartcomponents/BioseriesList";
 import BioImageDetailCard from "./smartcomponents/BioImageDetailCard";
+import Analyzers from "./smartcomponents/Analyzers";
 
 
 export class Bioimage extends Component {
@@ -20,6 +21,7 @@ export class Bioimage extends Component {
                         <Row>
                             <Col xs={12}  md={5} lg={3}>
                                 <BioImageDetailCard/>
+                                <Analyzers/>
                             </Col>
                             <Col xs={12}  md={7} lg={9}>
                                 <BioseriesList/>
