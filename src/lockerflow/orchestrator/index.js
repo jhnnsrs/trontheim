@@ -11,50 +11,10 @@ import {OsloString} from "../../constants/endpoints";
 
 export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
 
-    const flow = stavanger.flow
-    const page = stavanger.page
-    const initial = stavanger.locker
-    const registry = stavanger.registry
-    const layoutlist = stavanger.availableLayouts
-    const graph = stavanger.graph
-    const externals = stavanger.externals
-
-    const m_flow = flowMaestro(stavanger, null)
-
-    const onPageInitLoadFlow = (action$, state$) =>
-        action$.pipe(
-            ofType(stavanger.page.model.initPage.success),
-            mergeMap(action => {
-                let flowid = action.payload.match.params.flowid;
-                page.helpers.log("Flow Page initiated")
-                return [
-                    flow.model.fetchItem.request({data: {id: flowid}}),
-                    initial.model.fetchItem.request({data: {id: action.payload.match.params.lockerid}}),
-                    layoutlist.model.fetchList.request({meta: {filter: {flows: flowid}}}),
-                    externals.model.osloJoin.request({meta: {room: {creator: userIDPortal(state$.value), subset: OsloString}}})
-                ]
-            }));
-
-
-    const allEpicsLoadedSetInitial = (action$, state$) =>
-        action$.pipe(
-            ofType(registry.model.allNodesRegistered.success),
-            withLatestFrom(action$.ofType(graph.model.setGraphFromFlow.success),action$.ofType(initial.model.fetchItem.success)),
-            mergeMap(actions => {
-                graph.helpers.log("____________________")
-                graph.helpers.log("=== Flow Started ===")
-                let graphrep = actions[1].payload
-                let initial = actions[2].payload
-
-                let watcher = graph.selectors.getNodeByName("LockerWatcher")(state$.value)
-
-
-                let modelin = {
-                    data: initial.data,
-                    meta: { type: constants.LOCKER, origin: "flow", port: "_watcher"}
-                }
-                return [graph.model.setNodeIn(watcher.alias).request(modelin, modelin.meta)]
-            }));
+    const m_flow = flowMaestro(stavanger, {
+        initial: stavanger.locker,
+        paramsMap: (params) => ({ initialid: params.lockerid, flowid: params.flowid})
+    })
 
 
     const apiConnections = combineEpics(
@@ -63,10 +23,8 @@ export const orchestraterEpic = (stavanger: LockerFlowStavanger) => {
     )
 
     return combineOrchestrator(stavanger, {
-        onPageInitLoadFlow,
-        allEpicsLoadedSetInitial,
-        m_flow,
-        apiConnections
+            m_flow,
+            apiConnections
         }
 
     )

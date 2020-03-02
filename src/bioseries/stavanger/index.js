@@ -3,9 +3,10 @@ import {createStavanger} from "../../alta/stavanger";
 import * as constants from "../../constants"
 import type {HortenList} from "../../alta/horten/list";
 import {createHortenTable} from "../../alta/horten/table";
-import {DEF_BIOSERIES} from "../../constants/definitions";
+import {DEF_ANALYZER, DEF_ANALYZING, DEF_BIOSERIES, DEF_CONVERSING, DEF_CONVERTER} from "../../constants/definitions";
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
+import type {HortenTable} from "../../alta/horten/table";
 
 
 export type BioSeriesStavanger = Stavanger & {
@@ -14,6 +15,9 @@ export type BioSeriesStavanger = Stavanger & {
     samples: HortenList,
     sampleflows: HortenList,
     representationflows: HortenList,
+
+    converters: HortenTable,
+    conversings: HortenTable,
 }
 
 export const bioSeriesStavanger: BioSeriesStavanger = createStavanger({
@@ -22,6 +26,11 @@ export const bioSeriesStavanger: BioSeriesStavanger = createStavanger({
     representations: createHortenTable({type: constants.REPRESENTATION, url: "representations"}),
     sampleflows: createHortenTable({type: constants.FLOW, url: "filterflows"}),
     representationflows: createHortenTable({type: constants.FLOW, url: "filterflows"}),
+
+
+
+    converters: createHortenTable(DEF_CONVERTER),
+    conversings: createHortenTable(DEF_CONVERSING),
 })
 
 // You Should decide upfront if this is
