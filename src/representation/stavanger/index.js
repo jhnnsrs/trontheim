@@ -4,7 +4,14 @@ import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
-import {DEF_DISPLAY, DEF_EXHIBIT, DEF_FLOW, DEF_REPRESENTATION, DEF_ROI} from "../../constants/definitions";
+import {
+    DEF_DISPLAY,
+    DEF_EXHIBIT,
+    DEF_FLOW,
+    DEF_METAMORPHER, DEF_METAMORPHING,
+    DEF_REPRESENTATION,
+    DEF_ROI
+} from "../../constants/definitions";
 
 
 export type RepresentationStavanger = Stavanger & {
@@ -14,6 +21,8 @@ export type RepresentationStavanger = Stavanger & {
     rois: HortenTable,
     displayflows: HortenTable,
     roiflows: HortenTable,
+    metamorphers: HortenTable,
+    metamorphings: HortenTable,
 }
 
 
@@ -24,6 +33,10 @@ export const representationStavanger: RepresentationStavanger = createStavanger(
     rois: createHortenTable(DEF_ROI),
     displayflows: createHortenTable(DEF_FLOW),
     roiflows: createHortenTable(DEF_FLOW),
+
+    //
+    metamorphers: createHortenTable(DEF_METAMORPHER),
+    metamorphings: createHortenTable(DEF_METAMORPHING),
 })
 
 // You Should decide upfront if this is

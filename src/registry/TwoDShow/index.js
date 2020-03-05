@@ -11,7 +11,7 @@ import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import type {HortenValue} from "../../alta/horten/value";
 import {createHortenValue} from "../../alta/horten/value";
-import {DEF_DISPLAY, DEF_ROI} from "../../constants/definitions";
+import {DEF_DISPLAY, DEF_LINEROI, DEF_ROI} from "../../constants/definitions";
 import {createNodeConductor} from "../../conductors/createNodeConductor";
 import type {NodeStavanger} from "../lib/types";
 
@@ -30,7 +30,7 @@ export const ports = {
         { name: "display" , type: constants.DISPLAY, map: "display" },
     ],
     outs: [
-        {name: "roi", type: constants.ROI},
+        {name: "lineroi", type: constants.LINEROI},
         {name: "bounds", type: constants.BOUNDS}
     ]
 }
@@ -41,7 +41,7 @@ export const twoDStavanger = createStavanger({
     ...nodeConductor,
     display: createHortenValue(DEF_DISPLAY),
     displayedDisplay: createHortenItem(DEF_DISPLAY),
-    rois: createHortenTable(DEF_ROI),
+    rois: createHortenTable(DEF_LINEROI),
     canvas: createHortenCanvas({ type: constants.CANVAS})
 })
 

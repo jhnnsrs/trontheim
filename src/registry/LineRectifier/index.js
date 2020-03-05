@@ -9,6 +9,7 @@ import type {HortenTable} from "../../alta/horten/table";
 import {createHortenTable} from "../../alta/horten/table";
 import {createNodeConductor} from "../../conductors/createNodeConductor";
 import type {NodeStavanger} from "../lib/types";
+import {DEF_LINEROI} from "../../constants/definitions";
 
 
 export type LineTransformer = NodeStavanger &{
@@ -23,7 +24,7 @@ export type LineTransformer = NodeStavanger &{
 
 export const ports = {
     ins: [
-        { name: "roi" , type: constants.ROI, map: "roi" },
+        { name: "lineroi" , type: constants.LINEROI, map: "roi" },
         { name: "representation" , type: constants.REPRESENTATION, map: "representation" },
     ],
     outs: [
@@ -38,7 +39,7 @@ const nodeConductor = createNodeConductor({ports: ports, isPoppable: false})
 export const lineTransformerStavanger = createStavanger({
     ...nodeConductor,
     representation: createHortenItem({type: constants.REPRESENTATION, url: "representation"}),
-    roi: createHortenItem({type: constants.ROI, url: "rois"}),
+    roi: createHortenItem(DEF_LINEROI),
     transformings: createHortenTable({type: constants.TRANSFORMING, url: "transformings"}),
     transformations:  createHortenTable({type:constants.TRANSFORMATION, url:"transformation"}),
 })

@@ -6,25 +6,14 @@ import {displayFlowStavanger} from "./stavanger";
 import {orchestraterEpic} from "./orchestrator";
 import {connectOpera} from "../alta/react";
 import LoadAfterProfile from "../authentification/LoadAfterProfile";
-import FlowComponent from "./smartcomponents/FlowComponent";
 import DisplayComponent from "./smartcomponents/DisplayComponent";
 import {MainContainer, Sidebar} from "../common/components/HomeRow";
-import NodeGridContainer from "../flow/smartcomponents/NodeGridContainer";
-import LayoutsCard from "./smartcomponents/LayoutsCard";
+import Show from "../common/flow/Show";
+import Registry from "../common/flow/Registry";
+import FlowComponent from "../common/flow/FlowComponent";
+import LayoutsCard from "../common/flow/LayoutsCard";
 
 export class Bergen extends Component {
-
-
-    constructor() {
-        super();
-        this.state = {
-            grid: false,
-        }
-    }
-
-    changeLayout() {
-        this.setState({grid: !this.state.grid})
-    }
 
     render() {
         console.log("Rerender Major Template")
@@ -37,9 +26,10 @@ export class Bergen extends Component {
                                 <FlowComponent/>
                                 <DisplayComponent/>
                                 <LayoutsCard/>
+                                <Show/>
                             </Sidebar>
                             <MainContainer>
-                                <NodeGridContainer/>
+                                <Registry/>
                             </MainContainer>
                         </Row>
                     </Container>

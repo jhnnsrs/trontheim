@@ -20,7 +20,7 @@ export const orchestraterEpic = (stavanger: TwoDShowStavanger) => {
                 let vectors = action.payload.vectors;
                 let display = stavanger.display.selectors.getModel(state$.value)
 
-                console.log("posting vectors and display",vectors, display)
+                stavanger.canvas.helpers.log("posting vectors and display",vectors, display)
                 let roi = {
                     data: {
                         representation: display.data.representation,
@@ -30,7 +30,7 @@ export const orchestraterEpic = (stavanger: TwoDShowStavanger) => {
                         color: randomColor({luminosity: 'bright', format: 'rgb'}),
                         sample: display.data.sample,//is initial
                         experiment: display.data.experiment,
-                        nodeid: stavanger.page.model.alias
+                        nodeid: stavanger.node.alias
                     },
                     meta:{
                         buffer: "None"
@@ -47,7 +47,7 @@ export const orchestraterEpic = (stavanger: TwoDShowStavanger) => {
                     stavanger.rois.model.osloItemUpdate.success),
             mergeMap(action => {
                 let roi = action.payload;
-                return [node.model.setOut("Roi").request(roi),
+                return [node.model.setOut("lineroi").request(roi),
                     node.helpers.setStatus(DONE.outputSend, "Send away")]
             })
         );
@@ -60,8 +60,8 @@ export const orchestraterEpic = (stavanger: TwoDShowStavanger) => {
                 return [
                     stavanger.displayedDisplay.model.fetchItem.request(display),
                     stavanger.rois.model.fetchList.request({filter: {representation: display.data.representation}}),
-                    stavanger.rois.model.osloJoin.request({meta: {room: {sample: display.data.sample}, singlealias: true}}),
-                    stavanger.node.helpers.requireUser("Start marking Rois")
+                    stavanger.rois.model.osloJoin.request({meta: {room: {nodeid: stavanger.node.alias}, singlealias: true}}),
+                    stavanger.node.helpers.requireUser("Start drawing Line")
                 ]
                 }
             ));

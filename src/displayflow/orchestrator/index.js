@@ -1,31 +1,30 @@
 import {combineEpics} from "redux-observable";
 import type {DisplayFlowStavanger} from "../stavanger";
-import * as constants from "../../constants";
-import {apiConnector, itemConnector} from "../../rootMaestros";
-import {graphLayoutWatcherConductor} from "../../alta/conductor/graphLayoutConductor";
+import {itemConnector} from "../../rootMaestros";
+import {flowMaestro} from "../../maestros/flowMeastro";
+import {createFlowApi} from "../../conductors/createFlowConductor";
+import {combineOrchestrator} from "../../alta/react/EpicRegistry";
 
 export const orchestraterEpic = (stavanger: DisplayFlowStavanger) => {
 
 
-    const watcherConductor = graphLayoutWatcherConductor(stavanger, {
-        watcherName: "DisplayWatcher",
-        watcher: "display",
-        watcherParamsAccessor: (params) => params.displayid,
-        flowParamsAccessor: (params) => params.flowid,
-        model: constants.DISPLAY,
-
-
+    const m_flow = flowMaestro(stavanger, {
+        initial: stavanger.display,
+        paramsMap: (params) => ({ initialid: params.displayid, flowid: params.flowid})
     })
 
 
     const apiConnections = combineEpics(
         itemConnector(stavanger.display),
-        itemConnector(stavanger.flow),
-        itemConnector(stavanger.layout),
-        apiConnector(stavanger.possibleLayouts),
+        createFlowApi(stavanger)
     )
 
-    return combineEpics(watcherConductor,apiConnections)
+    return combineOrchestrator(stavanger, {
+            m_flow,
+            apiConnections
+        }
+
+    )
 }
 
 export default orchestraterEpic

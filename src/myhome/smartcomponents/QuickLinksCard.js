@@ -19,8 +19,7 @@ class QuickLinksCard extends Component {
                     </CardText>
                     {}
                     <CardText>
-                        <Link size="sm" outline="true" color="light" to={"/lockers/" + userid}>Open my Lockers</Link><br/>
-                        <Link size="sm" outline="true" color="light" to={"/imports/" + userid}>Imports</Link><br/>
+                        <Link size="sm" outline="true" color="light" to={"/imports/" + userid}>Organizer</Link><br/>
                         <Link size="sm" outline="true" color="light" to={"/latestroi/" + this.props.id}>LatestRois</Link><br/>
                         <Link size="sm" outline="true" color="light" to={"/flows/" + this.props.id}>Flows</Link><br/>
                         <Link size="sm" outline="true" color="light" to={"/questions"}>Questions</Link><br/>
