@@ -39,6 +39,7 @@ import Representation from "../representation";
 import ExperimentalGroup from "../experimentalgroup";
 import Questions from "../questions";
 import Aliens from "../aliens";
+import Graph from "../graph";
 
 class Wrapped extends Component {
 
@@ -78,6 +79,7 @@ class Wrapped extends Component {
                     <PrivateRoute path={`/bioimageflow/:flowid/bioimage/:bioimageid`} component={BioImageFlow}/>
                     <PrivateRoute path={`/exhibitflow/:flowid/exhibit/:exhibitid`} component={ExhibitFlow}/>
                     <PrivateRoute path={`/representationflow/:flowid/representation/:represenationid`} component={RepresentationFlow}/>
+                    <PrivateRoute path={`/graph/:graphid/:model1/:id1/:model2/:mid2`} component={Graph}/>
                     <PrivateRoute path={`/flows`} component={Flow}/>
                     <Route path={`/landing`} component={Landing}/>
                     <PrivateRoute exact path={`/`} component={MyHome}/>

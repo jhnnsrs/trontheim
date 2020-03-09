@@ -13,6 +13,7 @@ export const DEF_NODETYPE = {type: constants.NODETYPE, url: "nodetype"};
 export const DEF_NODEELEMENT = {type: constants.NODEELEMENT, url: "nodeelement"};
 export const DEF_ENTITYNULL = {type: constants.ENTITY, url: "none"};
 export const DEF_BIOIMAGE = {type: constants.BIOIMAGE, url: "bioimages"};
+export const DEF_UNKNOWN = {type: constants.STAR};
 export const DEF_SAMPLE = {type: constants.SAMPLE, url: "samples"};
 export const DEF_ANIMAL = {type: constants.ANIMAL, url: "animals"};
 export const DEF_EXPERIMENTALGROUP = {type: constants.EXPERIMENTALGROUP, url: "experimentalgroups"};

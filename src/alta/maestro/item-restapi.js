@@ -6,6 +6,16 @@ import type {HortenItem} from "../horten/item";
 
 export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem): Epic  => {
 
+    const getSubUrl = (meta, definition) => {
+        // First
+        let suburl = ""
+        if (meta.url) suburl += meta.url
+        else if (definition.url) suburl += definition.url
+        else throw "Neither Model nur Definition.url was provided"
+
+        if (meta.restaction) suburl += "/" + meta.restaction
+        return suburl
+    }
 
     //TODO: Set Node Input from FlowDiagram
     const postItem = (action$, state$) =>
@@ -33,10 +43,12 @@ export const itemRestAPIMaestro = (restAPI: HortenRestAPI) => (item: HortenItem)
                 if (!meta) meta = {}
 
                 let urlaction = meta.urlaction
+
+
                 meta = {
                     actions: item.model.fetchItem,
                     method: "GET_ITEM",
-                    suburl: meta.restaction ? item.definition.url + "/" + meta.restaction : item.definition.url,
+                    suburl: getSubUrl(meta, item.definition),
                     urlaction: meta.urlaction ? meta.urlaction : item.definition.urlaction,
                     ...meta,
                 }
