@@ -131,24 +131,25 @@ export class TwoDShowComponent extends Component<any,any> {
                         {parent => {
                             if (!display.data) return "Waiting for Initial Input"
                             let shape = [1024,1024,2]
+                            let height = parent.height
                             if (display) {
                                 if (display.data.shape) {
                                     shape = JSON.parse(display.data.shape);
-                                    parent.height = parent.width * (shape[0]/shape[1]);
+                                    height = parent.width * (shape[1]/shape[0]);
                                 }
                                 else {
-                                    parent.height = parent.width; // TODO: is this really correct?
+                                    height = parent.width; // TODO: is this really correct?
                                 }
                             }
                             else {
-                                parent.height = parent.width; // TODO: is this really correct?
+                                height = parent.width; // TODO: is this really correct?
                             }
                             let scaleFactorX = viewerValue ? viewerValue.a: 1;
                             let scaleFactorY = viewerValue ? viewerValue.d: 1;
                             console.log(shape)
                             return (
                                 <ReactSVGPanZoom
-                                    width={parent.width} height={parent.height}
+                                    width={parent.width} height={height}
                                     value={this.props.viewerValue} onChangeValue={value => this.props.setValue(value)}
                                     tool={this.props.viewerTool} onChangeTool={tool => this.props.selectTool(tool)}
                                     miniaturePosition={POSITION_RIGHT}
@@ -156,11 +157,11 @@ export class TwoDShowComponent extends Component<any,any> {
                                     onMouseMove={this.mouseMove}
                                     onMouseDown={this.mouseDown}
                                 >
-                                    <svg width={shape[0]} height={shape[1]}>
+                                    <svg width={shape[1]} height={shape[0]}>
 
 
                                         <DisplayImage display={display}
-                                                      parent={parent} width={shape[0]} height={shape[1]}/>
+                                                      parent={parent} width={shape[1]} height={shape[0]}/>
 
 
                                         {rois.data && rois.data.map( roi => <LineRoi key={roi.data.id} roi={roi}/>)}

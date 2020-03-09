@@ -9,6 +9,7 @@ import LoadAfterProfile from "../authentification/LoadAfterProfile";
 import DisplayList from "./smartcomponents/DisplayList";
 import RepresentationDetailCard from "./smartcomponents/RepresentationDetailCard";
 import ExhibitList from "./smartcomponents/ExhibitList";
+import Metamorphers from "./smartcomponents/Metamorphers";
 
 
 export class Representation extends Component {
@@ -21,6 +22,7 @@ export class Representation extends Component {
                         <Row>
                             <Col xs={12}  md={5} lg={3}>
                                 <RepresentationDetailCard/>
+                                <Metamorphers/>
                             </Col>
                             <Col xs={12}  md={7} lg={9}>
                                 <DisplayList/>

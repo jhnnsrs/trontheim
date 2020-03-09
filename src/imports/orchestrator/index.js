@@ -6,6 +6,8 @@ import {userIDPortal} from "../../portals";
 
 export const orchestraterEpic = (stavanger: ImportsStavanger) => {
 
+    let room = "uinsoinsoeifnoisnefoisnef"
+
     const onPageInitLoadLockers = (action$, state$) =>
         action$.pipe(
             ofType(stavanger.page.model.initPage.success),
@@ -15,7 +17,7 @@ export const orchestraterEpic = (stavanger: ImportsStavanger) => {
                     stavanger.creator.model.fetchItem.request({data: {id: creatorid}}),
                     stavanger.lockers.model.fetchList.request({meta: {filter: {creator: creatorid}}}),
                     stavanger.lockers.model.osloJoin.request({meta: {room: {creator: creatorid}}}),
-                    stavanger.importings.model.osloJoin.request({meta: {room: {creator: creatorid}}}),
+                    stavanger.importings.model.osloJoin.request({meta: {room: {nodeid: room}}}),
                     stavanger.importers.model.fetchList.request({})
                 ]
             }));
@@ -28,7 +30,7 @@ export const orchestraterEpic = (stavanger: ImportsStavanger) => {
                 return [
                     stavanger.selectedLocker.model.setItem.request(action.payload),
                     stavanger.bioimages.model.fetchList.request({meta: {filter: {locker: action.payload.data.id}}}),
-                    stavanger.bioimages.model.osloJoin.request({meta: {room: {locker: action.payload.data.id}}})]
+                    stavanger.bioimages.model.osloJoin.request({meta: {room: {nodeid: room}}})]
             }));
 
 
@@ -46,7 +48,7 @@ export const orchestraterEpic = (stavanger: ImportsStavanger) => {
                         settings: JSON.stringify({normalize: true}),
                         importer: importer.id,
                         locker: locker.id,
-                        nodeid: "user",
+                        nodeid: room,
                     },
                     meta: {
                         new: true

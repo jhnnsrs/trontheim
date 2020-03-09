@@ -59,6 +59,7 @@ export const TRANSFORMATION = "transformation";
 export const EXPERIMENT = "experiment";
 export const SAMPLE = "sample";
 export const ROI = "roi";
+export const LINEROI = "lineroi";
 export const DISPLAY = "display"
 export const EXPERIMENTALGROUP = "experimentalgroup"
 export const LOCKER = "locker"
@@ -66,6 +67,7 @@ export const IMPORTER = "importer"
 export const IMPORTING = "importing"
 export const CONVERTER = "converter"
 export const STAR = "*"
+export const METAMORPHER = "metamorpher"
 
 
 // GRAPH EXCLUSIVE
@@ -105,6 +107,10 @@ export const FLOWTYPES = {
 
 
 export const VARIETYDESCRIPTION = {
+    transformer: {
+        name: "Transformers",
+        description: "Isolate an area from a Representation through a Transformation"
+    },
     collector: {
         name: "Collectors",
         description: "collect incoming Data and forward on demand"

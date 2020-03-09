@@ -1,21 +1,23 @@
 import {createStavanger} from "../../alta/stavanger";
 import type {HortenItem} from "../../alta/horten/item";
 import {createHortenItem} from "../../alta/horten/item";
-import {DEF_DISPLAY} from "../../constants/definitions";
-import {createFlowConductor} from "../../conductors/createFlowConductor";
+import {DEF_BIOIMAGE, DEF_FLOW, DEF_LOCKER, DEF_UNKNOWN} from "../../constants/definitions";
 import type {FlowStavanger} from "../../maestros/flowMeastro";
+import {createFlowConductor} from "../../conductors/createFlowConductor";
 
 
-export type DisplayFlowStavanger = FlowStavanger & {
-    display: HortenItem,
+export type GraphStavanger = FlowStavanger & {
+    first: HortenItem,
+    second: HortenItem,
 }
 
 const flowConductor = createFlowConductor()
 
-
-export const displayFlowStavanger: DisplayFlowStavanger = createStavanger({
+export const bioImageFlowStavanger: GraphStavanger = createStavanger({
     ...flowConductor,
-    display: createHortenItem(DEF_DISPLAY),})
+    first: createHortenItem(DEF_UNKNOWN),
+    second: createHortenItem(DEF_UNKNOWN),
+})
 
 // You Should decide upfront if this is
 // supposed to be a dynamically spawned container with a lot of instances - A Node
