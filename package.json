@@ -25,7 +25,7 @@
     "electron-is-dev": "^1.1.0",
     "final-form": "^4.12.0",
     "jpeg-lossless-decoder-js": "^2.0.4",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "loaders.css": "^0.1.2",
     "lodash": "^4.17.15",
     "math-float32-to-binary-string": "^1.0.0",
