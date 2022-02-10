@@ -32,7 +32,7 @@
     "memoize-one": "latest",
     "named-regexp": "^0.1.1",
     "nifti-reader-js": "^0.5.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "nrrd-js": "^0.2.1",
     "numjs": "^0.16.0",
     "pako": "^1.0.10",
